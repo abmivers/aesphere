@@ -16,21 +16,24 @@ package aesphere;
  */
 public class MainUI extends javax.swing.JFrame {
 
-    String lang;
-
     /** Creates new form Main */
     public MainUI() {
-        lang = "ES";
         initComponents();
+        setLangLabels();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
 
-    @Override
-    public String getTitle() {
-        String titulo = "";
-        if (lang.equals("ES")) titulo = "AESphere - Ventana principal";
-        else if (lang.equals("EN")) titulo = "AESphere - Main Window";
-        return titulo;
+
+    /** Sets all the titles of the interface elements */
+    private void setLangLabels () {
+        if (Entorno.lang.equals("ES")) {
+            this.setTitle("AES - Ventana Principal");
+            main_menu_idiomas.setText("Idiomas");
+        }
+        else if (Entorno.lang.equals("EN")) {
+            this.setTitle("AES - Main Window");
+            main_menu_idiomas.setText("Languages");
+        }
     }
 
     /** This method is called from within the constructor to
@@ -42,18 +45,34 @@ public class MainUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        main_menu_idiomas_popup = new javax.swing.JPopupMenu();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        main_menu_idiomas = new javax.swing.JMenu();
+        lang_menu_ingles = new javax.swing.JCheckBoxMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle(getTitle());
+        setTitle("AESphere 0.1 - Hola");
+
+        main_menu_idiomas.setText("Language");
+        main_menu_idiomas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        lang_menu_ingles.setSelected(lang_menu_ingles.isSelected());
+        lang_menu_ingles.setText("Inglés");
+        main_menu_idiomas.add(lang_menu_ingles);
+
+        jMenuBar1.add(main_menu_idiomas);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 641, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 459, Short.MAX_VALUE)
         );
 
         pack();
@@ -71,6 +90,14 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JCheckBoxMenuItem lang_menu_ingles;
+    private javax.swing.JMenu main_menu_idiomas;
+    private javax.swing.JPopupMenu main_menu_idiomas_popup;
     // End of variables declaration//GEN-END:variables
+
+}
+
+class LanguageChekBoxMenuItem extends javax.swing.JCheckBoxMenuItem {
 
 }
