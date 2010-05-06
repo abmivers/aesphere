@@ -20,17 +20,16 @@ public class MainUI extends javax.swing.JFrame {
     public MainUI() {
         initComponents();
         setLangLabels();
-        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
 
     /** Sets all the titles of the interface elements */
     private void setLangLabels () {
         if (Entorno.lang.equals("ES")) {
-            this.setTitle("AES - Ventana Principal");
+            this.setTitle("AESphere - Ventana Principal");
         }
         else if (Entorno.lang.equals("EN")) {
-            this.setTitle("AES - Main Window");
+            this.setTitle("AESphere - Main Window");
         }
     }
 
