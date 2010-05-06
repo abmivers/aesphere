@@ -28,11 +28,9 @@ public class MainUI extends javax.swing.JFrame {
     private void setLangLabels () {
         if (Entorno.lang.equals("ES")) {
             this.setTitle("AES - Ventana Principal");
-            main_menu_idiomas.setText("Idiomas");
         }
         else if (Entorno.lang.equals("EN")) {
             this.setTitle("AES - Main Window");
-            main_menu_idiomas.setText("Languages");
         }
     }
 
@@ -46,23 +44,9 @@ public class MainUI extends javax.swing.JFrame {
     private void initComponents() {
 
         main_menu_idiomas_popup = new javax.swing.JPopupMenu();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        main_menu_idiomas = new javax.swing.JMenu();
-        lang_menu_ingles = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AESphere 0.1 - Hola");
-
-        main_menu_idiomas.setText("Language");
-        main_menu_idiomas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        lang_menu_ingles.setSelected(lang_menu_ingles.isSelected());
-        lang_menu_ingles.setText("Inglés");
-        main_menu_idiomas.add(lang_menu_ingles);
-
-        jMenuBar1.add(main_menu_idiomas);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,7 +56,7 @@ public class MainUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+            .addGap(0, 480, Short.MAX_VALUE)
         );
 
         pack();
@@ -90,9 +74,6 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JCheckBoxMenuItem lang_menu_ingles;
-    private javax.swing.JMenu main_menu_idiomas;
     private javax.swing.JPopupMenu main_menu_idiomas_popup;
     // End of variables declaration//GEN-END:variables
 
