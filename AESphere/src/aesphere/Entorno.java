@@ -11,4 +11,5 @@ package aesphere;
  */
 public class Entorno {
     public static String lang = "ES";
+
 }
