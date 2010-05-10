@@ -139,7 +139,6 @@
                         <EtchetBorder/>
                       </Border>
                       <Font PropertyName="font" name="Tahoma" size="18" style="1"/>
-                      <Color PropertyName="color" blue="0" green="0" id="TextField.caretForeground" palette="3" red="0" type="palette"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -148,15 +147,27 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="788" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="133" max="-2" attributes="0"/>
+                          <EmptySpace pref="594" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="101" max="-2" attributes="0"/>
+                          <EmptySpace pref="171" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                </Component>
+              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="cifrarPanelAdvOptions">
               <Properties>
@@ -167,7 +178,6 @@
                         <EtchetBorder/>
                       </Border>
                       <Font PropertyName="font" name="Tahoma" size="18" style="1"/>
-                      <Color PropertyName="color" blue="0" green="0" id="TextField.caretForeground" palette="3" red="0" type="palette"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -176,7 +186,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="788" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="768" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -195,7 +205,6 @@
                         <EtchetBorder/>
                       </Border>
                       <Font PropertyName="font" name="Tahoma" size="18" style="1"/>
-                      <Color PropertyName="color" blue="0" green="0" id="TextField.caretForeground" palette="3" red="0" type="palette"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -204,7 +213,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="788" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="768" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
