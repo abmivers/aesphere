@@ -46,42 +46,111 @@ public class MainUI extends javax.swing.JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         jPopupMenu3 = new javax.swing.JPopupMenu();
         jPopupMenu4 = new javax.swing.JPopupMenu();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        cifrarScrollPaneMain = new javax.swing.JScrollPane();
+        cifrarPanelMain = new javax.swing.JPanel();
+        cifrarPanelInput = new javax.swing.JPanel();
+        cifrarPanelAdvOptions = new javax.swing.JPanel();
+        cifrarPanelOutput = new javax.swing.JPanel();
+        mainMenuBar = new javax.swing.JMenuBar();
+        mainMenuArchivo = new javax.swing.JMenu();
+        mainMenuEditar = new javax.swing.JMenu();
+        mainMenuOperaciones = new javax.swing.JMenu();
+        mainMenuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Archivo");
-        jMenuBar1.add(jMenu1);
+        cifrarScrollPaneMain.setBorder(null);
 
-        jMenu2.setText("Editar");
-        jMenuBar1.add(jMenu2);
+        cifrarPanelMain.setPreferredSize(new java.awt.Dimension(788, 566));
 
-        jMenu3.setText("Operaciones");
-        jMenuBar1.add(jMenu3);
+        cifrarPanelInput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " INPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), javax.swing.UIManager.getDefaults().getColor("TextField.caretForeground"))); // NOI18N
 
-        jMenu4.setText("Ayuda");
-        jMenu4.setComponentPopupMenu(jPopupMenu1);
-        jMenuBar1.add(jMenu4);
+        javax.swing.GroupLayout cifrarPanelInputLayout = new javax.swing.GroupLayout(cifrarPanelInput);
+        cifrarPanelInput.setLayout(cifrarPanelInputLayout);
+        cifrarPanelInputLayout.setHorizontalGroup(
+            cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 788, Short.MAX_VALUE)
+        );
+        cifrarPanelInputLayout.setVerticalGroup(
+            cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
-        jMenu5.setText("jMenu5");
-        jMenuBar1.add(jMenu5);
+        cifrarPanelAdvOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " ADVANCED OPTIONS ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), javax.swing.UIManager.getDefaults().getColor("TextField.caretForeground"))); // NOI18N
 
-        setJMenuBar(jMenuBar1);
+        javax.swing.GroupLayout cifrarPanelAdvOptionsLayout = new javax.swing.GroupLayout(cifrarPanelAdvOptions);
+        cifrarPanelAdvOptions.setLayout(cifrarPanelAdvOptionsLayout);
+        cifrarPanelAdvOptionsLayout.setHorizontalGroup(
+            cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 788, Short.MAX_VALUE)
+        );
+        cifrarPanelAdvOptionsLayout.setVerticalGroup(
+            cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+
+        cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " OUTPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), javax.swing.UIManager.getDefaults().getColor("TextField.caretForeground"))); // NOI18N
+
+        javax.swing.GroupLayout cifrarPanelOutputLayout = new javax.swing.GroupLayout(cifrarPanelOutput);
+        cifrarPanelOutput.setLayout(cifrarPanelOutputLayout);
+        cifrarPanelOutputLayout.setHorizontalGroup(
+            cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 788, Short.MAX_VALUE)
+        );
+        cifrarPanelOutputLayout.setVerticalGroup(
+            cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout cifrarPanelMainLayout = new javax.swing.GroupLayout(cifrarPanelMain);
+        cifrarPanelMain.setLayout(cifrarPanelMainLayout);
+        cifrarPanelMainLayout.setHorizontalGroup(
+            cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cifrarPanelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cifrarPanelInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        cifrarPanelMainLayout.setVerticalGroup(
+            cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
+                .addComponent(cifrarPanelInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        cifrarScrollPaneMain.setViewportView(cifrarPanelMain);
+
+        mainMenuArchivo.setText("Archivo");
+        mainMenuBar.add(mainMenuArchivo);
+
+        mainMenuEditar.setText("Editar");
+        mainMenuBar.add(mainMenuEditar);
+
+        mainMenuOperaciones.setText("Operaciones");
+        mainMenuBar.add(mainMenuOperaciones);
+
+        mainMenuAyuda.setText("Ayuda");
+        mainMenuAyuda.setComponentPopupMenu(jPopupMenu1);
+        mainMenuBar.add(mainMenuAyuda);
+
+        setJMenuBar(mainMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
+            .addComponent(cifrarScrollPaneMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 578, Short.MAX_VALUE)
+            .addComponent(cifrarScrollPaneMain, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
         );
 
         pack();
@@ -99,16 +168,20 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel cifrarPanelAdvOptions;
+    private javax.swing.JPanel cifrarPanelInput;
+    private javax.swing.JPanel cifrarPanelMain;
+    private javax.swing.JPanel cifrarPanelOutput;
+    private javax.swing.JScrollPane cifrarScrollPaneMain;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JPopupMenu jPopupMenu4;
+    private javax.swing.JMenu mainMenuArchivo;
+    private javax.swing.JMenu mainMenuAyuda;
+    private javax.swing.JMenuBar mainMenuBar;
+    private javax.swing.JMenu mainMenuEditar;
+    private javax.swing.JMenu mainMenuOperaciones;
     // End of variables declaration//GEN-END:variables
 
 }
