@@ -80,6 +80,10 @@ public class MainUI extends javax.swing.JFrame {
         PanelMain.setLayout(PanelMainLayout);
         PanelMainLayout.setHorizontalGroup(
             PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMainLayout.createSequentialGroup()
+                .addContainerGap(775, Short.MAX_VALUE)
+                .addComponent(BotonInfo)
+                .addGap(20, 20, 20))
             .addGroup(PanelMainLayout.createSequentialGroup()
                 .addGap(137, 137, 137)
                 .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,10 +91,6 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(BotonDescifrar)
                     .addComponent(BotonCifrar))
                 .addContainerGap(583, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMainLayout.createSequentialGroup()
-                .addContainerGap(775, Short.MAX_VALUE)
-                .addComponent(BotonInfo)
-                .addGap(20, 20, 20))
         );
         PanelMainLayout.setVerticalGroup(
             PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,9 +99,9 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(BotonCifrar)
                 .addGap(59, 59, 59)
                 .addComponent(BotonDescifrar)
-                .addGap(50, 50, 50)
+                .addGap(58, 58, 58)
                 .addComponent(BotonAtaques)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(BotonInfo)
                 .addGap(17, 17, 17))
         );
