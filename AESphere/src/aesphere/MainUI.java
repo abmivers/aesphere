@@ -48,13 +48,10 @@ public class MainUI extends javax.swing.JFrame {
         jPopupMenu4 = new javax.swing.JPopupMenu();
         cifrarScrollPaneMain = new javax.swing.JScrollPane();
         cifrarPanelMain = new javax.swing.JPanel();
-        cifrarPanelInput = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        cifrarPanelAdvOptions = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        cifrarPanelOutput = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         mainMenuEditar = new javax.swing.JMenu();
@@ -67,96 +64,45 @@ public class MainUI extends javax.swing.JFrame {
 
         cifrarPanelMain.setPreferredSize(new java.awt.Dimension(788, 566));
 
-        cifrarPanelInput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " INPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef1.png"))); // NOI18N
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef1.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lock2.png"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
-        javax.swing.GroupLayout cifrarPanelInputLayout = new javax.swing.GroupLayout(cifrarPanelInput);
-        cifrarPanelInput.setLayout(cifrarPanelInputLayout);
-        cifrarPanelInputLayout.setHorizontalGroup(
-            cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelInputLayout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(45, 45, 45)
-                .addComponent(jButton1)
-                .addContainerGap(623, Short.MAX_VALUE))
-        );
-        cifrarPanelInputLayout.setVerticalGroup(
-            cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelInputLayout.createSequentialGroup()
-                .addGroup(cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton1))
-                .addContainerGap(146, Short.MAX_VALUE))
-        );
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/unlock3.png"))); // NOI18N
+        jButton2.setBorder(null);
 
-        cifrarPanelAdvOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " ADVANCED OPTIONS ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
+        jButton3.setBorder(null);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef3.png"))); // NOI18N
-
-        javax.swing.GroupLayout cifrarPanelAdvOptionsLayout = new javax.swing.GroupLayout(cifrarPanelAdvOptions);
-        cifrarPanelAdvOptions.setLayout(cifrarPanelAdvOptionsLayout);
-        cifrarPanelAdvOptionsLayout.setHorizontalGroup(
-            cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addContainerGap(718, Short.MAX_VALUE))
-        );
-        cifrarPanelAdvOptionsLayout.setVerticalGroup(
-            cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addContainerGap(68, Short.MAX_VALUE))
-        );
-
-        cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " OUTPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/antonio/Documents/EUI/TFC/AES pics/botondef2.png")); // NOI18N
-
-        javax.swing.GroupLayout cifrarPanelOutputLayout = new javax.swing.GroupLayout(cifrarPanelOutput);
-        cifrarPanelOutput.setLayout(cifrarPanelOutputLayout);
-        cifrarPanelOutputLayout.setHorizontalGroup(
-            cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelOutputLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(718, Short.MAX_VALUE))
-        );
-        cifrarPanelOutputLayout.setVerticalGroup(
-            cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelOutputLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(68, Short.MAX_VALUE))
-        );
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        jButton4.setBorder(null);
 
         javax.swing.GroupLayout cifrarPanelMainLayout = new javax.swing.GroupLayout(cifrarPanelMain);
         cifrarPanelMain.setLayout(cifrarPanelMainLayout);
         cifrarPanelMainLayout.setHorizontalGroup(
             cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelMainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cifrarPanelInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
+                .addContainerGap(786, Short.MAX_VALUE)
+                .addComponent(jButton4)
                 .addContainerGap())
+            .addGroup(cifrarPanelMainLayout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addContainerGap(583, Short.MAX_VALUE))
         );
         cifrarPanelMainLayout.setVerticalGroup(
             cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cifrarPanelInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(cifrarPanelMainLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jButton1)
+                .addGap(59, 59, 59)
+                .addComponent(jButton2)
+                .addGap(63, 63, 63)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(jButton4)
                 .addContainerGap())
         );
 
@@ -191,10 +137,6 @@ public class MainUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
     * @param args the command line arguments
     */
@@ -207,15 +149,12 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel cifrarPanelAdvOptions;
-    private javax.swing.JPanel cifrarPanelInput;
     private javax.swing.JPanel cifrarPanelMain;
-    private javax.swing.JPanel cifrarPanelOutput;
     private javax.swing.JScrollPane cifrarScrollPaneMain;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
