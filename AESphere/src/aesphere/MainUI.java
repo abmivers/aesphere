@@ -52,6 +52,9 @@ public class MainUI extends javax.swing.JFrame {
         BotonDescifrar = new javax.swing.JButton();
         BotonAtaques = new javax.swing.JButton();
         BotonInfo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         mainMenuEditar = new javax.swing.JMenu();
@@ -76,6 +79,15 @@ public class MainUI extends javax.swing.JFrame {
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("CIFRAR");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("DESCIFRAR");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setText("SIMULAR ATAQUES");
+
         javax.swing.GroupLayout PanelMainLayout = new javax.swing.GroupLayout(PanelMain);
         PanelMain.setLayout(PanelMainLayout);
         PanelMainLayout.setHorizontalGroup(
@@ -87,20 +99,31 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(PanelMainLayout.createSequentialGroup()
                 .addGap(137, 137, 137)
                 .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonAtaques)
+                    .addComponent(BotonCifrar)
                     .addComponent(BotonDescifrar)
-                    .addComponent(BotonCifrar))
-                .addContainerGap(583, Short.MAX_VALUE))
+                    .addComponent(BotonAtaques))
+                .addGap(52, 52, 52)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(276, Short.MAX_VALUE))
         );
         PanelMainLayout.setVerticalGroup(
             PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMainLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addComponent(BotonCifrar)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonCifrar)
+                    .addComponent(jLabel1))
                 .addGap(59, 59, 59)
-                .addComponent(BotonDescifrar)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonDescifrar)
+                    .addComponent(jLabel2))
                 .addGap(58, 58, 58)
-                .addComponent(BotonAtaques)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonAtaques)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(BotonInfo)
                 .addGap(17, 17, 17))
@@ -155,6 +178,9 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton BotonInfo;
     private javax.swing.JPanel PanelMain;
     private javax.swing.JScrollPane cifrarScrollPaneMain;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
