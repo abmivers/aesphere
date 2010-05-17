@@ -105,25 +105,25 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="778" max="32767" attributes="0"/>
-                      <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="BotonCifrar" min="-2" max="-2" attributes="0"/>
+                          <Component id="BotonAtaques" min="-2" max="-2" attributes="0"/>
                           <Component id="BotonDescifrar" min="-2" max="-2" attributes="0"/>
-                          <Component id="BotonAtaques" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="AtaquesLabel" alignment="0" min="-2" pref="255" max="-2" attributes="0"/>
-                          <Component id="DescifrarLabel" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
                           <Component id="CifrarLabel" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="DescifrarLabel" min="-2" pref="182" max="-2" attributes="0"/>
+                          <Component id="AtaquesLabel" min="-2" pref="255" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="276" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="786" max="32767" attributes="0"/>
+                      <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -131,24 +131,23 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="BotonCifrar" min="-2" max="-2" attributes="0"/>
-                          <Component id="CifrarLabel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BotonCifrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CifrarLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="DescifrarLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="BotonDescifrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BotonDescifrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DescifrarLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="BotonAtaques" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="AtaquesLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BotonAtaques" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="AtaquesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -186,6 +185,9 @@
                   <Border info="null"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonAtaquesActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="BotonInfo">
               <Properties>

@@ -80,6 +80,11 @@ public class MainUI extends javax.swing.JFrame {
 
         BotonAtaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
         BotonAtaques.setBorder(null);
+        BotonAtaques.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAtaquesActionPerformed(evt);
+            }
+        });
 
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
@@ -97,41 +102,41 @@ public class MainUI extends javax.swing.JFrame {
         PanelMain.setLayout(PanelMainLayout);
         PanelMainLayout.setHorizontalGroup(
             PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMainLayout.createSequentialGroup()
-                .addContainerGap(778, Short.MAX_VALUE)
-                .addComponent(BotonInfo)
-                .addGap(17, 17, 17))
             .addGroup(PanelMainLayout.createSequentialGroup()
                 .addGap(137, 137, 137)
                 .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotonCifrar)
-                    .addComponent(BotonDescifrar)
-                    .addComponent(BotonAtaques))
+                    .addComponent(BotonAtaques)
+                    .addComponent(BotonDescifrar))
                 .addGap(52, 52, 52)
                 .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CifrarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DescifrarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CifrarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(276, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMainLayout.createSequentialGroup()
+                .addContainerGap(786, Short.MAX_VALUE)
+                .addComponent(BotonInfo)
+                .addContainerGap())
         );
         PanelMainLayout.setVerticalGroup(
             PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMainLayout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonCifrar)
                     .addComponent(CifrarLabel))
-                .addGap(90, 90, 90)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DescifrarLabel)
-                    .addComponent(BotonDescifrar))
-                .addGap(84, 84, 84)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelMainLayout.createSequentialGroup()
-                        .addComponent(BotonAtaques)
-                        .addGap(13, 13, 13)
-                        .addComponent(BotonInfo))
-                    .addComponent(AtaquesLabel)))
+                .addGap(46, 46, 46)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonDescifrar)
+                    .addComponent(DescifrarLabel))
+                .addGap(46, 46, 46)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonAtaques)
+                    .addComponent(AtaquesLabel))
+                .addGap(71, 71, 71)
+                .addComponent(BotonInfo)
+                .addContainerGap())
         );
 
         cifrarScrollPaneMain.setViewportView(PanelMain);
@@ -168,6 +173,10 @@ public class MainUI extends javax.swing.JFrame {
     private void BotonDescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDescifrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonDescifrarActionPerformed
+
+    private void BotonAtaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAtaquesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonAtaquesActionPerformed
 
     /**
     * @param args the command line arguments
