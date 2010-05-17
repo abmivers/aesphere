@@ -16,6 +16,8 @@ package aesphere;
  */
 public class MainUI extends javax.swing.JFrame {
 
+    private MainCifrarUI cifrarUIhijo;
+
     /** Creates new form Main */
     public MainUI() {
         initComponents();
@@ -70,6 +72,11 @@ public class MainUI extends javax.swing.JFrame {
         BotonCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lock2.png"))); // NOI18N
         BotonCifrar.setBorder(null);
         BotonCifrar.setContentAreaFilled(false);
+        BotonCifrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCifrarActionPerformed(evt);
+            }
+        });
 
         BotonDescifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/unlock3.png"))); // NOI18N
         BotonDescifrar.setBorder(null);
@@ -184,6 +191,16 @@ public class MainUI extends javax.swing.JFrame {
     private void BotonAtaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAtaquesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonAtaquesActionPerformed
+
+    private void BotonCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCifrarActionPerformed
+        // TODO add your handling code here:
+        //this.setEnabled(false);
+        if (cifrarUIhijo == null) {
+            cifrarUIhijo = new MainCifrarUI(this);
+            cifrarUIhijo.setVisible(true);
+        }
+        else cifrarUIhijo.requestFocus();
+    }//GEN-LAST:event_BotonCifrarActionPerformed
 
     /**
     * @param args the command line arguments
