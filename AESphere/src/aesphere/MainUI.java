@@ -80,10 +80,6 @@ public class MainUI extends javax.swing.JFrame {
         cifrarPanelMain.setLayout(cifrarPanelMainLayout);
         cifrarPanelMainLayout.setHorizontalGroup(
             cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
-                .addContainerGap(786, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addContainerGap())
             .addGroup(cifrarPanelMainLayout.createSequentialGroup()
                 .addGap(137, 137, 137)
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,6 +87,10 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addContainerGap(583, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
+                .addContainerGap(775, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(20, 20, 20))
         );
         cifrarPanelMainLayout.setVerticalGroup(
             cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,11 +99,11 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(59, 59, 59)
                 .addComponent(jButton2)
-                .addGap(63, 63, 63)
+                .addGap(50, 50, 50)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(jButton4)
-                .addContainerGap())
+                .addGap(17, 17, 17))
         );
 
         cifrarScrollPaneMain.setViewportView(cifrarPanelMain);
