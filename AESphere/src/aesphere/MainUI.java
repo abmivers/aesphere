@@ -48,10 +48,10 @@ public class MainUI extends javax.swing.JFrame {
         jPopupMenu4 = new javax.swing.JPopupMenu();
         cifrarScrollPaneMain = new javax.swing.JScrollPane();
         cifrarPanelMain = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BotonCifrar = new javax.swing.JButton();
+        BotonDescifrar = new javax.swing.JButton();
+        BotonAtaques = new javax.swing.JButton();
+        BotonInfo = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         mainMenuEditar = new javax.swing.JMenu();
@@ -64,17 +64,17 @@ public class MainUI extends javax.swing.JFrame {
 
         cifrarPanelMain.setPreferredSize(new java.awt.Dimension(788, 566));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lock2.png"))); // NOI18N
-        jButton1.setBorder(null);
+        BotonCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lock2.png"))); // NOI18N
+        BotonCifrar.setBorder(null);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/unlock3.png"))); // NOI18N
-        jButton2.setBorder(null);
+        BotonDescifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/unlock3.png"))); // NOI18N
+        BotonDescifrar.setBorder(null);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
-        jButton3.setBorder(null);
+        BotonAtaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
+        BotonAtaques.setBorder(null);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
-        jButton4.setBorder(null);
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
 
         javax.swing.GroupLayout cifrarPanelMainLayout = new javax.swing.GroupLayout(cifrarPanelMain);
         cifrarPanelMain.setLayout(cifrarPanelMainLayout);
@@ -83,26 +83,26 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(cifrarPanelMainLayout.createSequentialGroup()
                 .addGap(137, 137, 137)
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(BotonAtaques)
+                    .addComponent(BotonDescifrar)
+                    .addComponent(BotonCifrar))
                 .addContainerGap(583, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap(775, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(BotonInfo)
                 .addGap(20, 20, 20))
         );
         cifrarPanelMainLayout.setVerticalGroup(
             cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cifrarPanelMainLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addComponent(jButton1)
+                .addComponent(BotonCifrar)
                 .addGap(59, 59, 59)
-                .addComponent(jButton2)
+                .addComponent(BotonDescifrar)
                 .addGap(50, 50, 50)
-                .addComponent(jButton3)
+                .addComponent(BotonAtaques)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(BotonInfo)
                 .addGap(17, 17, 17))
         );
 
@@ -149,12 +149,12 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonAtaques;
+    private javax.swing.JButton BotonCifrar;
+    private javax.swing.JButton BotonDescifrar;
+    private javax.swing.JButton BotonInfo;
     private javax.swing.JPanel cifrarPanelMain;
     private javax.swing.JScrollPane cifrarScrollPaneMain;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
