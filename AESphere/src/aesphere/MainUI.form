@@ -113,14 +113,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="BotonCifrar" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="BotonDescifrar" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="BotonAtaques" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="BotonCifrar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" pref="182" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="173" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="255" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="276" max="32767" attributes="0"/>
@@ -132,8 +132,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="BotonCifrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BotonCifrar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
