@@ -49,9 +49,11 @@ public class MainUI extends javax.swing.JFrame {
         cifrarScrollPaneMain = new javax.swing.JScrollPane();
         cifrarPanelMain = new javax.swing.JPanel();
         cifrarPanelInput = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         cifrarPanelAdvOptions = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         cifrarPanelOutput = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         mainMenuEditar = new javax.swing.JMenu();
@@ -66,47 +68,59 @@ public class MainUI extends javax.swing.JFrame {
 
         cifrarPanelInput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " INPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef1.png"))); // NOI18N
+
         javax.swing.GroupLayout cifrarPanelInputLayout = new javax.swing.GroupLayout(cifrarPanelInput);
         cifrarPanelInput.setLayout(cifrarPanelInputLayout);
         cifrarPanelInputLayout.setHorizontalGroup(
             cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cifrarPanelInputLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(594, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addContainerGap(718, Short.MAX_VALUE))
         );
         cifrarPanelInputLayout.setVerticalGroup(
             cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cifrarPanelInputLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         cifrarPanelAdvOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " ADVANCED OPTIONS ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef3.png"))); // NOI18N
 
         javax.swing.GroupLayout cifrarPanelAdvOptionsLayout = new javax.swing.GroupLayout(cifrarPanelAdvOptions);
         cifrarPanelAdvOptions.setLayout(cifrarPanelAdvOptionsLayout);
         cifrarPanelAdvOptionsLayout.setHorizontalGroup(
             cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
+            .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addContainerGap(718, Short.MAX_VALUE))
         );
         cifrarPanelAdvOptionsLayout.setVerticalGroup(
             cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " OUTPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/antonio/Documents/EUI/TFC/AES pics/botondef2.png")); // NOI18N
 
         javax.swing.GroupLayout cifrarPanelOutputLayout = new javax.swing.GroupLayout(cifrarPanelOutput);
         cifrarPanelOutput.setLayout(cifrarPanelOutputLayout);
         cifrarPanelOutputLayout.setHorizontalGroup(
             cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
+            .addGroup(cifrarPanelOutputLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addContainerGap(718, Short.MAX_VALUE))
         );
         cifrarPanelOutputLayout.setVerticalGroup(
             cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 84, Short.MAX_VALUE)
+            .addGroup(cifrarPanelOutputLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout cifrarPanelMainLayout = new javax.swing.GroupLayout(cifrarPanelMain);
@@ -116,9 +130,9 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cifrarPanelInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cifrarPanelInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         cifrarPanelMainLayout.setVerticalGroup(
@@ -181,6 +195,8 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel cifrarPanelOutput;
     private javax.swing.JScrollPane cifrarScrollPaneMain;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
