@@ -47,7 +47,7 @@ public class MainUI extends javax.swing.JFrame {
         jPopupMenu3 = new javax.swing.JPopupMenu();
         jPopupMenu4 = new javax.swing.JPopupMenu();
         cifrarScrollPaneMain = new javax.swing.JScrollPane();
-        cifrarPanelMain = new javax.swing.JPanel();
+        PanelMain = new javax.swing.JPanel();
         BotonCifrar = new javax.swing.JButton();
         BotonDescifrar = new javax.swing.JButton();
         BotonAtaques = new javax.swing.JButton();
@@ -62,7 +62,7 @@ public class MainUI extends javax.swing.JFrame {
 
         cifrarScrollPaneMain.setBorder(null);
 
-        cifrarPanelMain.setPreferredSize(new java.awt.Dimension(788, 566));
+        PanelMain.setPreferredSize(new java.awt.Dimension(788, 566));
 
         BotonCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lock2.png"))); // NOI18N
         BotonCifrar.setBorder(null);
@@ -76,25 +76,25 @@ public class MainUI extends javax.swing.JFrame {
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
 
-        javax.swing.GroupLayout cifrarPanelMainLayout = new javax.swing.GroupLayout(cifrarPanelMain);
-        cifrarPanelMain.setLayout(cifrarPanelMainLayout);
-        cifrarPanelMainLayout.setHorizontalGroup(
-            cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelMainLayout.createSequentialGroup()
+        javax.swing.GroupLayout PanelMainLayout = new javax.swing.GroupLayout(PanelMain);
+        PanelMain.setLayout(PanelMainLayout);
+        PanelMainLayout.setHorizontalGroup(
+            PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelMainLayout.createSequentialGroup()
                 .addGap(137, 137, 137)
-                .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotonAtaques)
                     .addComponent(BotonDescifrar)
                     .addComponent(BotonCifrar))
                 .addContainerGap(583, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMainLayout.createSequentialGroup()
                 .addContainerGap(775, Short.MAX_VALUE)
                 .addComponent(BotonInfo)
                 .addGap(20, 20, 20))
         );
-        cifrarPanelMainLayout.setVerticalGroup(
-            cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelMainLayout.createSequentialGroup()
+        PanelMainLayout.setVerticalGroup(
+            PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelMainLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(BotonCifrar)
                 .addGap(59, 59, 59)
@@ -106,7 +106,7 @@ public class MainUI extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        cifrarScrollPaneMain.setViewportView(cifrarPanelMain);
+        cifrarScrollPaneMain.setViewportView(PanelMain);
 
         mainMenuArchivo.setText("Archivo");
         mainMenuBar.add(mainMenuArchivo);
@@ -153,7 +153,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton BotonCifrar;
     private javax.swing.JButton BotonDescifrar;
     private javax.swing.JButton BotonInfo;
-    private javax.swing.JPanel cifrarPanelMain;
+    private javax.swing.JPanel PanelMain;
     private javax.swing.JScrollPane cifrarScrollPaneMain;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
