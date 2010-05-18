@@ -57,6 +57,8 @@ public class MainUI extends javax.swing.JFrame {
         CifrarLabel = new javax.swing.JLabel();
         DescifrarLabel = new javax.swing.JLabel();
         AtaquesLabel = new javax.swing.JLabel();
+        BotonHerramientas = new javax.swing.JButton();
+        HerramientasLabel = new javax.swing.JLabel();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         mainMenuEditar = new javax.swing.JMenu();
@@ -112,46 +114,68 @@ public class MainUI extends javax.swing.JFrame {
         AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         AtaquesLabel.setText("SIMULAR ATAQUES");
 
+        BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientas.png"))); // NOI18N
+        BotonHerramientas.setBorder(null);
+        BotonHerramientas.setBorderPainted(false);
+        BotonHerramientas.setContentAreaFilled(false);
+        BotonHerramientas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonHerramientasActionPerformed(evt);
+            }
+        });
+
+        HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        HerramientasLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        HerramientasLabel.setText("HERRAMIENTAS");
+
         javax.swing.GroupLayout PanelMainLayout = new javax.swing.GroupLayout(PanelMain);
         PanelMain.setLayout(PanelMainLayout);
         PanelMainLayout.setHorizontalGroup(
             PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelMainLayout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonCifrar)
+                    .addComponent(BotonDescifrar)
+                    .addComponent(BotonAtaques)
+                    .addComponent(BotonHerramientas))
+                .addGap(70, 70, 70)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AtaquesLabel)
+                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CifrarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(127, 127, 127))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMainLayout.createSequentialGroup()
-                .addContainerGap(785, Short.MAX_VALUE)
+                .addContainerGap(786, Short.MAX_VALUE)
                 .addComponent(BotonInfo)
                 .addContainerGap())
-            .addGroup(PanelMainLayout.createSequentialGroup()
-                .addGap(202, 202, 202)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonCifrar)
-                    .addComponent(BotonAtaques)
-                    .addComponent(BotonDescifrar))
-                .addGap(18, 18, 18)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(244, Short.MAX_VALUE))
         );
         PanelMainLayout.setVerticalGroup(
             PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMainLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                    .addComponent(BotonCifrar))
-                .addGap(46, 46, 46)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                    .addComponent(BotonDescifrar))
-                .addGap(46, 46, 46)
+                .addGap(63, 63, 63)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonDescifrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonAtaques))
-                .addGap(78, 78, 78)
+                    .addComponent(BotonAtaques, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonHerramientas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(BotonInfo)
                 .addContainerGap())
         );
+
+        PanelMainLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BotonAtaques, BotonCifrar, BotonDescifrar, BotonHerramientas});
 
         mainScrollPane.setViewportView(PanelMain);
 
@@ -202,6 +226,10 @@ public class MainUI extends javax.swing.JFrame {
         else cifrarUIhijo.requestFocus();    
     }//GEN-LAST:event_BotonCifrarActionPerformed
 
+    private void BotonHerramientasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonHerramientasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonHerramientasActionPerformed
+
     public void wclosed (javax.swing.JFrame hijo){
         if (hijo.equals(cifrarUIhijo)) cifrarUIhijo = null;
     }
@@ -222,9 +250,11 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton BotonAtaques;
     private javax.swing.JButton BotonCifrar;
     private javax.swing.JButton BotonDescifrar;
+    private javax.swing.JButton BotonHerramientas;
     private javax.swing.JButton BotonInfo;
     private javax.swing.JLabel CifrarLabel;
     private javax.swing.JLabel DescifrarLabel;
+    private javax.swing.JLabel HerramientasLabel;
     private javax.swing.JPanel PanelMain;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
