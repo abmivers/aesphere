@@ -48,7 +48,7 @@ public class MainUI extends javax.swing.JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         jPopupMenu3 = new javax.swing.JPopupMenu();
         jPopupMenu4 = new javax.swing.JPopupMenu();
-        cifrarScrollPaneMain = new javax.swing.JScrollPane();
+        mainScrollPane = new javax.swing.JScrollPane();
         PanelMain = new javax.swing.JPanel();
         BotonCifrar = new javax.swing.JButton();
         BotonDescifrar = new javax.swing.JButton();
@@ -65,7 +65,7 @@ public class MainUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cifrarScrollPaneMain.setBorder(null);
+        mainScrollPane.setBorder(null);
 
         PanelMain.setPreferredSize(new java.awt.Dimension(788, 566));
 
@@ -136,7 +136,7 @@ public class MainUI extends javax.swing.JFrame {
         PanelMainLayout.setVerticalGroup(
             PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMainLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(75, 75, 75)
                 .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                     .addComponent(BotonCifrar))
@@ -153,7 +153,7 @@ public class MainUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        cifrarScrollPaneMain.setViewportView(PanelMain);
+        mainScrollPane.setViewportView(PanelMain);
 
         mainMenuArchivo.setText("Archivo");
         mainMenuBar.add(mainMenuArchivo);
@@ -174,11 +174,11 @@ public class MainUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cifrarScrollPaneMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addComponent(mainScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cifrarScrollPaneMain, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+            .addComponent(mainScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
         );
 
         pack();
@@ -194,13 +194,17 @@ public class MainUI extends javax.swing.JFrame {
 
     private void BotonCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCifrarActionPerformed
         // TODO add your handling code here:
-        //this.setEnabled(false);
+        this.setEnabled(false);
         if (cifrarUIhijo == null) {
             cifrarUIhijo = new MainCifrarUI(this);
             cifrarUIhijo.setVisible(true);
         }
-        else cifrarUIhijo.requestFocus();
+        else cifrarUIhijo.requestFocus();    
     }//GEN-LAST:event_BotonCifrarActionPerformed
+
+    public void wclosed (javax.swing.JFrame hijo){
+        if (hijo.equals(cifrarUIhijo)) cifrarUIhijo = null;
+    }
 
     /**
     * @param args the command line arguments
@@ -222,7 +226,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JLabel CifrarLabel;
     private javax.swing.JLabel DescifrarLabel;
     private javax.swing.JPanel PanelMain;
-    private javax.swing.JScrollPane cifrarScrollPaneMain;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
@@ -232,6 +235,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenu mainMenuEditar;
     private javax.swing.JMenu mainMenuOperaciones;
+    private javax.swing.JScrollPane mainScrollPane;
     // End of variables declaration//GEN-END:variables
 
 }
