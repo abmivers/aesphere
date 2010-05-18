@@ -105,54 +105,54 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="BotonCifrar" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="BotonDescifrar" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="BotonAtaques" min="-2" max="-2" attributes="0"/>
-                          <Component id="BotonHerramientas" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="AtaquesLabel" alignment="0" min="-2" max="-2" attributes="1"/>
-                          <Component id="DescifrarLabel" alignment="0" min="-2" pref="382" max="-2" attributes="1"/>
-                          <Component id="CifrarLabel" alignment="0" min="-2" pref="230" max="-2" attributes="1"/>
-                          <Component id="HerramientasLabel" min="-2" pref="283" max="-2" attributes="1"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="786" max="32767" attributes="0"/>
                       <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="BotonDescifrar" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="BotonAtaques" min="-2" max="-2" attributes="0"/>
+                          <Component id="BotonHerramientas" min="-2" max="-2" attributes="0"/>
+                          <Component id="BotonCifrar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="AtaquesLabel" alignment="0" min="-2" max="-2" attributes="1"/>
+                          <Component id="DescifrarLabel" alignment="0" min="-2" pref="382" max="-2" attributes="1"/>
+                          <Component id="HerramientasLabel" min="-2" pref="283" max="-2" attributes="1"/>
+                          <Component id="CifrarLabel" min="-2" pref="238" max="-2" attributes="1"/>
+                      </Group>
+                      <EmptySpace pref="144" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="CifrarLabel" max="32767" attributes="1"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="CifrarLabel" pref="100" max="32767" attributes="1"/>
                           <Component id="BotonCifrar" linkSize="2" alignment="0" pref="100" max="32767" attributes="3"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="DescifrarLabel" max="32767" attributes="1"/>
-                          <Component id="BotonDescifrar" linkSize="2" alignment="0" max="32767" attributes="3"/>
+                          <Component id="BotonDescifrar" linkSize="2" alignment="0" min="-2" max="-2" attributes="3"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="AtaquesLabel" max="32767" attributes="1"/>
-                          <Component id="BotonAtaques" linkSize="2" alignment="0" pref="100" max="32767" attributes="3"/>
+                          <Component id="BotonAtaques" linkSize="2" alignment="0" min="-2" pref="100" max="-2" attributes="3"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="HerramientasLabel" max="32767" attributes="1"/>
-                          <Component id="BotonHerramientas" linkSize="2" alignment="0" max="32767" attributes="3"/>
+                          <Component id="BotonHerramientas" linkSize="2" alignment="0" min="-2" max="-2" attributes="3"/>
                       </Group>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
