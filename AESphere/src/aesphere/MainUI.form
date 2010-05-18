@@ -76,17 +76,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="cifrarScrollPaneMain" alignment="1" pref="820" max="32767" attributes="0"/>
+          <Component id="mainScrollPane" alignment="1" pref="820" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="cifrarScrollPaneMain" alignment="0" pref="579" max="32767" attributes="0"/>
+          <Component id="mainScrollPane" alignment="0" pref="579" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="cifrarScrollPaneMain">
+    <Container class="javax.swing.JScrollPane" name="mainScrollPane">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -130,7 +130,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="CifrarLabel" pref="99" max="32767" attributes="1"/>
                           <Component id="BotonCifrar" alignment="0" min="-2" max="-2" attributes="1"/>

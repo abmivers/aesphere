@@ -16,13 +16,13 @@ package aesphere;
  */
 public class MainCifrarUI extends javax.swing.JFrame {
 
-    private MainUI mainUIpadre;
+    private MainUI wpadre;
 
     /** Creates new form Main */
     public MainCifrarUI(MainUI padre) {
         initComponents();
         setLangLabels();
-        mainUIpadre = padre;
+        wpadre = padre;
     }
 
 
@@ -57,7 +57,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cifrarPanelOutput = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        mainMenuBar = new javax.swing.JMenuBar();
+        cifrarMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         mainMenuEditar = new javax.swing.JMenu();
         mainMenuOperaciones = new javax.swing.JMenu();
@@ -161,19 +161,19 @@ public class MainCifrarUI extends javax.swing.JFrame {
         cifrarScrollPaneMain.setViewportView(cifrarPanelMain);
 
         mainMenuArchivo.setText("Archivo");
-        mainMenuBar.add(mainMenuArchivo);
+        cifrarMenuBarMain.add(mainMenuArchivo);
 
         mainMenuEditar.setText("Editar");
-        mainMenuBar.add(mainMenuEditar);
+        cifrarMenuBarMain.add(mainMenuEditar);
 
         mainMenuOperaciones.setText("Operaciones");
-        mainMenuBar.add(mainMenuOperaciones);
+        cifrarMenuBarMain.add(mainMenuOperaciones);
 
         mainMenuAyuda.setText("Ayuda");
         mainMenuAyuda.setComponentPopupMenu(jPopupMenu1);
-        mainMenuBar.add(mainMenuAyuda);
+        cifrarMenuBarMain.add(mainMenuAyuda);
 
-        setJMenuBar(mainMenuBar);
+        setJMenuBar(cifrarMenuBarMain);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,12 +191,14 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        mainUIpadre.setEnabled(true);
-        mainUIpadre.requestFocus();
+        wpadre.setEnabled(true);
+        wpadre.requestFocus();
+        wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar cifrarMenuBarMain;
     private javax.swing.JPanel cifrarPanelAdvOptions;
     private javax.swing.JPanel cifrarPanelInput;
     private javax.swing.JPanel cifrarPanelMain;
@@ -211,7 +213,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu4;
     private javax.swing.JMenu mainMenuArchivo;
     private javax.swing.JMenu mainMenuAyuda;
-    private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenu mainMenuEditar;
     private javax.swing.JMenu mainMenuOperaciones;
     // End of variables declaration//GEN-END:variables
