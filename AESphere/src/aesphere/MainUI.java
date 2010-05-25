@@ -48,17 +48,17 @@ public class MainUI extends javax.swing.JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         jPopupMenu3 = new javax.swing.JPopupMenu();
         jPopupMenu4 = new javax.swing.JPopupMenu();
-        mainScrollPane = new javax.swing.JScrollPane();
-        PanelMain = new javax.swing.JPanel();
+        MainScrollPane = new javax.swing.JScrollPane();
+        MainPanel = new javax.swing.JPanel();
+        AtaquesLabel = new javax.swing.JLabel();
+        DescifrarLabel = new javax.swing.JLabel();
         BotonCifrar = new javax.swing.JButton();
         BotonDescifrar = new javax.swing.JButton();
-        BotonAtaques = new javax.swing.JButton();
         BotonInfo = new javax.swing.JButton();
-        CifrarLabel = new javax.swing.JLabel();
-        DescifrarLabel = new javax.swing.JLabel();
-        AtaquesLabel = new javax.swing.JLabel();
         BotonHerramientas = new javax.swing.JButton();
         HerramientasLabel = new javax.swing.JLabel();
+        BotonAtaques = new javax.swing.JButton();
+        CifrarLabel = new javax.swing.JLabel();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         mainMenuEditar = new javax.swing.JMenu();
@@ -67,9 +67,15 @@ public class MainUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        mainScrollPane.setBorder(null);
+        MainPanel.setPreferredSize(new java.awt.Dimension(750, 550));
 
-        PanelMain.setPreferredSize(new java.awt.Dimension(788, 566));
+        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        AtaquesLabel.setText("SIMULAR ATAQUES");
+
+        DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        DescifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        DescifrarLabel.setText("DESCIFRAR");
 
         BotonCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lock2.png"))); // NOI18N
         BotonCifrar.setBorder(null);
@@ -89,30 +95,14 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        BotonAtaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
-        BotonAtaques.setBorder(null);
-        BotonAtaques.setContentAreaFilled(false);
-        BotonAtaques.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonAtaquesActionPerformed(evt);
-            }
-        });
-
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
         BotonInfo.setContentAreaFilled(false);
-
-        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
-        CifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        CifrarLabel.setText("CIFRAR");
-
-        DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
-        DescifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        DescifrarLabel.setText("DESCIFRAR");
-
-        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
-        AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        AtaquesLabel.setText("SIMULAR ATAQUES");
+        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInfoActionPerformed(evt);
+            }
+        });
 
         BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientas.png"))); // NOI18N
         BotonHerramientas.setBorder(null);
@@ -128,57 +118,69 @@ public class MainUI extends javax.swing.JFrame {
         HerramientasLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HerramientasLabel.setText("HERRAMIENTAS");
 
-        javax.swing.GroupLayout PanelMainLayout = new javax.swing.GroupLayout(PanelMain);
-        PanelMain.setLayout(PanelMainLayout);
-        PanelMainLayout.setHorizontalGroup(
-            PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMainLayout.createSequentialGroup()
-                .addContainerGap(786, Short.MAX_VALUE)
-                .addComponent(BotonInfo)
-                .addContainerGap())
-            .addGroup(PanelMainLayout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        BotonAtaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
+        BotonAtaques.setBorder(null);
+        BotonAtaques.setContentAreaFilled(false);
+        BotonAtaques.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAtaquesActionPerformed(evt);
+            }
+        });
+
+        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        CifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        CifrarLabel.setText("CIFRAR");
+
+        javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
+        MainPanel.setLayout(MainPanelLayout);
+        MainPanelLayout.setHorizontalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainPanelLayout.createSequentialGroup()
+                .addGap(191, 191, 191)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonCifrar)
                     .addComponent(BotonDescifrar)
                     .addComponent(BotonAtaques)
-                    .addComponent(BotonHerramientas)
-                    .addComponent(BotonCifrar))
-                .addGap(70, 70, 70)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonCifrar)
-                    .addComponent(BotonAtaques)
-                    .addComponent(BotonDescifrar))
+                    .addComponent(BotonHerramientas))
                 .addGap(18, 18, 18)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                    .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(HerramientasLabel)
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CifrarLabel)
+                            .addComponent(DescifrarLabel)
+                            .addComponent(AtaquesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(206, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
+                .addContainerGap(763, Short.MAX_VALUE)
+                .addComponent(BotonInfo)
+                .addContainerGap())
         );
-        PanelMainLayout.setVerticalGroup(
-            PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMainLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                    .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonDescifrar))
-                .addGap(18, 18, 18)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonAtaques, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(78, 78, 78)
+        MainPanelLayout.setVerticalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonCifrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CifrarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonDescifrar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonAtaques, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonHerramientas, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addComponent(BotonInfo)
                 .addContainerGap())
         );
 
-        PanelMainLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BotonAtaques, BotonCifrar, BotonDescifrar, BotonHerramientas});
-
-        mainScrollPane.setViewportView(PanelMain);
+        MainScrollPane.setViewportView(MainPanel);
 
         mainMenuArchivo.setText("Archivo");
         mainMenuBar.add(mainMenuArchivo);
@@ -199,11 +201,11 @@ public class MainUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addComponent(MainScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+            .addComponent(MainScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
         );
 
         pack();
@@ -230,6 +232,10 @@ public class MainUI extends javax.swing.JFrame {
     private void BotonHerramientasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonHerramientasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonHerramientasActionPerformed
+
+    private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonInfoActionPerformed
 
     public void wclosed (javax.swing.JFrame hijo){
         if (hijo.equals(cifrarUIhijo)) {
@@ -259,7 +265,8 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JLabel CifrarLabel;
     private javax.swing.JLabel DescifrarLabel;
     private javax.swing.JLabel HerramientasLabel;
-    private javax.swing.JPanel PanelMain;
+    private javax.swing.JPanel MainPanel;
+    private javax.swing.JScrollPane MainScrollPane;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
@@ -269,7 +276,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenu mainMenuEditar;
     private javax.swing.JMenu mainMenuOperaciones;
-    private javax.swing.JScrollPane mainScrollPane;
     // End of variables declaration//GEN-END:variables
 
 }
