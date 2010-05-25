@@ -102,15 +102,15 @@ public class MainUI extends javax.swing.JFrame {
         BotonInfo.setBorder(null);
         BotonInfo.setContentAreaFilled(false);
 
-        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
         CifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         CifrarLabel.setText("CIFRAR");
 
-        DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
         DescifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         DescifrarLabel.setText("DESCIFRAR");
 
-        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
         AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         AtaquesLabel.setText("SIMULAR ATAQUES");
 
@@ -145,11 +145,16 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(BotonCifrar))
                 .addGap(70, 70, 70)
                 .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AtaquesLabel)
-                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CifrarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(144, Short.MAX_VALUE))
+                    .addComponent(BotonCifrar)
+                    .addComponent(BotonAtaques)
+                    .addComponent(BotonDescifrar))
+                .addGap(18, 18, 18)
+                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
         PanelMainLayout.setVerticalGroup(
             PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,12 +170,8 @@ public class MainUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonAtaques, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonHerramientas))
-                .addGap(35, 35, 35)
+                    .addComponent(BotonAtaques, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(78, 78, 78)
                 .addComponent(BotonInfo)
                 .addContainerGap())
         );
@@ -231,7 +232,10 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonHerramientasActionPerformed
 
     public void wclosed (javax.swing.JFrame hijo){
-        if (hijo.equals(cifrarUIhijo)) cifrarUIhijo = null;
+        if (hijo.equals(cifrarUIhijo)) {
+            cifrarUIhijo.dispose();
+            cifrarUIhijo = null;
+        }
     }
 
     /**
