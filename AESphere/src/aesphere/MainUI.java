@@ -50,15 +50,16 @@ public class MainUI extends javax.swing.JFrame {
         jPopupMenu4 = new javax.swing.JPopupMenu();
         MainScrollPane = new javax.swing.JScrollPane();
         MainPanel = new javax.swing.JPanel();
-        AtaquesLabel = new javax.swing.JLabel();
-        DescifrarLabel = new javax.swing.JLabel();
-        BotonCifrar = new javax.swing.JButton();
-        BotonDescifrar = new javax.swing.JButton();
         BotonInfo = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        BotonCifrar = new javax.swing.JButton();
+        CifrarLabel = new javax.swing.JLabel();
+        BotonDescifrar = new javax.swing.JButton();
+        DescifrarLabel = new javax.swing.JLabel();
+        BotonAtaques = new javax.swing.JButton();
+        AtaquesLabel = new javax.swing.JLabel();
         BotonHerramientas = new javax.swing.JButton();
         HerramientasLabel = new javax.swing.JLabel();
-        BotonAtaques = new javax.swing.JButton();
-        CifrarLabel = new javax.swing.JLabel();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         mainMenuEditar = new javax.swing.JMenu();
@@ -69,13 +70,14 @@ public class MainUI extends javax.swing.JFrame {
 
         MainPanel.setPreferredSize(new java.awt.Dimension(750, 550));
 
-        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        AtaquesLabel.setText("SIMULAR ATAQUES");
-
-        DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        DescifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        DescifrarLabel.setText("DESCIFRAR");
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
+        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInfoActionPerformed(evt);
+            }
+        });
 
         BotonCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lock2.png"))); // NOI18N
         BotonCifrar.setBorder(null);
@@ -85,6 +87,14 @@ public class MainUI extends javax.swing.JFrame {
                 BotonCifrarActionPerformed(evt);
             }
         });
+        BotonCifrar.setBounds(110, 10, 100, 110);
+        jLayeredPane1.add(BotonCifrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        CifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        CifrarLabel.setText("CIFRAR");
+        CifrarLabel.setBounds(240, 10, 92, 110);
+        jLayeredPane1.add(CifrarLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         BotonDescifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/unlock3.png"))); // NOI18N
         BotonDescifrar.setBorder(null);
@@ -94,15 +104,31 @@ public class MainUI extends javax.swing.JFrame {
                 BotonDescifrarActionPerformed(evt);
             }
         });
+        BotonDescifrar.setBounds(110, 130, 100, 132);
+        jLayeredPane1.add(BotonDescifrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
-        BotonInfo.setBorder(null);
-        BotonInfo.setContentAreaFilled(false);
-        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
+        DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
+        DescifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        DescifrarLabel.setText("DESCIFRAR");
+        DescifrarLabel.setBounds(240, 130, 140, 132);
+        jLayeredPane1.add(DescifrarLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        BotonAtaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
+        BotonAtaques.setBorder(null);
+        BotonAtaques.setContentAreaFilled(false);
+        BotonAtaques.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonInfoActionPerformed(evt);
+                BotonAtaquesActionPerformed(evt);
             }
         });
+        BotonAtaques.setBounds(110, 270, 100, 123);
+        jLayeredPane1.add(BotonAtaques, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        AtaquesLabel.setText("SIMULAR ATAQUES");
+        AtaquesLabel.setBounds(240, 270, 282, 123);
+        jLayeredPane1.add(AtaquesLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientas.png"))); // NOI18N
         BotonHerramientas.setBorder(null);
@@ -113,69 +139,33 @@ public class MainUI extends javax.swing.JFrame {
                 BotonHerramientasActionPerformed(evt);
             }
         });
+        BotonHerramientas.setBounds(110, 400, 100, 128);
+        jLayeredPane1.add(BotonHerramientas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         HerramientasLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HerramientasLabel.setText("HERRAMIENTAS");
-
-        BotonAtaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
-        BotonAtaques.setBorder(null);
-        BotonAtaques.setContentAreaFilled(false);
-        BotonAtaques.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonAtaquesActionPerformed(evt);
-            }
-        });
-
-        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        CifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        CifrarLabel.setText("CIFRAR");
+        HerramientasLabel.setBounds(240, 450, 195, 29);
+        jLayeredPane1.add(HerramientasLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(191, 191, 191)
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BotonCifrar)
-                    .addComponent(BotonDescifrar)
-                    .addComponent(BotonAtaques)
-                    .addComponent(BotonHerramientas))
-                .addGap(18, 18, 18)
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(HerramientasLabel)
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CifrarLabel)
-                            .addComponent(DescifrarLabel)
-                            .addComponent(AtaquesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(206, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addContainerGap(763, Short.MAX_VALUE)
                 .addComponent(BotonInfo)
                 .addContainerGap())
+            .addGroup(MainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonCifrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CifrarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BotonDescifrar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonAtaques, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonHerramientas, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotonInfo)
                 .addContainerGap())
         );
@@ -267,6 +257,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JLabel HerramientasLabel;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JScrollPane MainScrollPane;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
