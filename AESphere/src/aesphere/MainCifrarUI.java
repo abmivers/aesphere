@@ -13,6 +13,8 @@ package aesphere;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -30,6 +32,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         BotonBrowseCifrar.setEnabled(false);
         BotonBrowseCifrarKey.setEnabled(false);
         BotonBrowseCifrarOutput.setEnabled(false);
+        TextoOutput.setEnabled(false);
 
     }
 
@@ -81,7 +84,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         cifrarPanelAdvOptions = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        ModoCifrado = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         cifrarPanelOutput = new javax.swing.JPanel();
@@ -89,7 +92,8 @@ public class MainCifrarUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         ComboBoxOutputCifrar = new javax.swing.JComboBox();
         BotonBrowseCifrarOutput = new javax.swing.JButton();
-        BotonInfo = new javax.swing.JButton();
+        TextoOutput = new javax.swing.JTextField();
+        BotonInfoCifrar = new javax.swing.JButton();
         cifrarMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -149,7 +153,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 ComboBoxKeyActionPerformed(evt);
             }
         });
-        ComboBoxKey.setBounds(20, 20, 137, 27);
+        ComboBoxKey.setBounds(30, 20, 137, 27);
         KeyPaneCifrar.add(ComboBoxKey, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         BotonBrowseCifrarKey.setText("Buscar");
@@ -158,7 +162,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 BotonBrowseCifrarKeyActionPerformed(evt);
             }
         });
-        BotonBrowseCifrarKey.setBounds(210, 20, 85, 29);
+        BotonBrowseCifrarKey.setBounds(190, 20, 85, 29);
         KeyPaneCifrar.add(BotonBrowseCifrarKey, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         TextoKey.setColumns(20);
@@ -191,9 +195,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
         jLabel3.setBounds(10, 10, 50, 47);
         jLayeredPane3.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modo ECB", "Modo CBC" }));
-        jComboBox1.setBounds(240, 20, 160, 30);
-        jLayeredPane3.add(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ModoCifrado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modo ECB", "Modo CBC" }));
+        ModoCifrado.setBounds(240, 20, 160, 30);
+        jLayeredPane3.add(ModoCifrado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel4.setText("Método de Cifrado:");
         jLabel4.setBounds(90, 20, 140, 30);
@@ -250,6 +254,15 @@ public class MainCifrarUI extends javax.swing.JFrame {
         BotonBrowseCifrarOutput.setBounds(90, 60, 85, 29);
         jLayeredPane2.add(BotonBrowseCifrarOutput, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        TextoOutput.setText("Archivo de Salida");
+        TextoOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextoOutputActionPerformed(evt);
+            }
+        });
+        TextoOutput.setBounds(260, 20, 480, 28);
+        jLayeredPane2.add(TextoOutput, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout cifrarPanelOutputLayout = new javax.swing.GroupLayout(cifrarPanelOutput);
         cifrarPanelOutput.setLayout(cifrarPanelOutputLayout);
         cifrarPanelOutputLayout.setHorizontalGroup(
@@ -265,12 +278,12 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
-        BotonInfo.setBorder(null);
-        BotonInfo.setContentAreaFilled(false);
-        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
+        BotonInfoCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfoCifrar.setBorder(null);
+        BotonInfoCifrar.setContentAreaFilled(false);
+        BotonInfoCifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonInfoActionPerformed(evt);
+                BotonInfoCifrarActionPerformed(evt);
             }
         });
 
@@ -287,7 +300,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                             .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
-                    .addComponent(BotonInfo, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(BotonInfoCifrar, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
         cifrarPanelMainLayout.setVerticalGroup(
             cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,7 +312,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(BotonInfo)
+                .addComponent(BotonInfoCifrar)
                 .addContainerGap())
         );
 
@@ -370,10 +383,12 @@ public class MainCifrarUI extends javax.swing.JFrame {
         switch (selectedIndex) {
             case 0: BotonBrowseCifrar.setEnabled(false);
                     TextoInput.setEnabled(true);
+                    TextoInput.setText("");
 
                 break;
             case 1: BotonBrowseCifrar.setEnabled(false);
                     TextoInput.setEnabled(true);
+                    TextoInput.setText("");
 
                 break;
             case 2: BotonBrowseCifrar.setEnabled(true);
@@ -407,11 +422,26 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private void BotonBrowseCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarActionPerformed
         // TODO add your handling code here:
+        String rutaInput;
+        JFileChooser archivos = new JFileChooser();
+        archivos.showOpenDialog(null);
+        File arch= archivos.getSelectedFile();
+        rutaInput = arch.getPath();
+        this.TextoInput.setText(rutaInput);
+
 
     }//GEN-LAST:event_BotonBrowseCifrarActionPerformed
 
     private void BotonBrowseCifrarOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarOutputActionPerformed
         // TODO add your handling code here:
+
+        String rutaOutput;
+        JFileChooser archivos = new JFileChooser();
+        archivos.showOpenDialog(null);
+        File archi= archivos.getSelectedFile();
+        rutaOutput = archi.getPath();
+        this.TextoOutput.setText(rutaOutput);
+
     }//GEN-LAST:event_BotonBrowseCifrarOutputActionPerformed
 
     private void ComboBoxKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxKeyActionPerformed
@@ -421,10 +451,12 @@ public class MainCifrarUI extends javax.swing.JFrame {
         switch (selectedIndex) {
             case 0: BotonBrowseCifrarKey.setEnabled(false);
                     TextoKey.setEnabled(true);
+                    TextoKey.setText("");
 
                 break;
             case 1: BotonBrowseCifrarKey.setEnabled(false);
                     TextoKey.setEnabled(true);
+                    TextoKey.setText("");
 
                 break;
             case 2: BotonBrowseCifrarKey.setEnabled(true);
@@ -436,15 +468,28 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private void BotonBrowseCifrarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarKeyActionPerformed
         // TODO add your handling code here:
+
+        String rutaKey;
+        JFileChooser archivos = new JFileChooser();
+        archivos.showOpenDialog(null);
+        File archi= archivos.getSelectedFile();
+        rutaKey = archi.getPath();
+        this.TextoKey.setText(rutaKey);
+
     }//GEN-LAST:event_BotonBrowseCifrarKeyActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
+    private void BotonInfoCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoCifrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BotonInfoActionPerformed
+
+    }//GEN-LAST:event_BotonInfoCifrarActionPerformed
+
+    private void TextoOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoOutputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextoOutputActionPerformed
 
 
 
@@ -458,14 +503,16 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JButton BotonBrowseCifrar;
     private javax.swing.JButton BotonBrowseCifrarKey;
     private javax.swing.JButton BotonBrowseCifrarOutput;
-    private javax.swing.JButton BotonInfo;
+    private javax.swing.JButton BotonInfoCifrar;
     private javax.swing.JComboBox ComboBoxInputCifrar;
     private javax.swing.JComboBox ComboBoxKey;
     private javax.swing.JComboBox ComboBoxOutputCifrar;
     private javax.swing.JLayeredPane KeyPaneCifrar;
+    private javax.swing.JComboBox ModoCifrado;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JTextArea TextoInput;
     private javax.swing.JTextArea TextoKey;
+    private javax.swing.JTextField TextoOutput;
     private javax.swing.JMenuBar cifrarMenuBarMain;
     private javax.swing.JPanel cifrarPanelAdvOptions;
     private javax.swing.JPanel cifrarPanelInput;
@@ -473,7 +520,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JPanel cifrarPanelOutput;
     private javax.swing.JScrollPane cifrarScrollPaneMain;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
