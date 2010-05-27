@@ -87,7 +87,7 @@ public class MainUI extends javax.swing.JFrame {
                 BotonCifrarActionPerformed(evt);
             }
         });
-        BotonCifrar.setBounds(110, 10, 100, 110);
+        BotonCifrar.setBounds(110, 10, 101, 110);
         jLayeredPane1.add(BotonCifrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -104,7 +104,7 @@ public class MainUI extends javax.swing.JFrame {
                 BotonDescifrarActionPerformed(evt);
             }
         });
-        BotonDescifrar.setBounds(110, 130, 100, 132);
+        BotonDescifrar.setBounds(110, 130, 101, 132);
         jLayeredPane1.add(BotonDescifrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
@@ -121,7 +121,7 @@ public class MainUI extends javax.swing.JFrame {
                 BotonAtaquesActionPerformed(evt);
             }
         });
-        BotonAtaques.setBounds(110, 270, 100, 123);
+        BotonAtaques.setBounds(110, 270, 101, 123);
         jLayeredPane1.add(BotonAtaques, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -139,13 +139,13 @@ public class MainUI extends javax.swing.JFrame {
                 BotonHerramientasActionPerformed(evt);
             }
         });
-        BotonHerramientas.setBounds(110, 400, 100, 128);
+        BotonHerramientas.setBounds(110, 400, 101, 128);
         jLayeredPane1.add(BotonHerramientas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         HerramientasLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HerramientasLabel.setText("HERRAMIENTAS");
-        HerramientasLabel.setBounds(240, 450, 195, 29);
+        HerramientasLabel.setBounds(240, 450, 270, 29);
         jLayeredPane1.add(HerramientasLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
@@ -158,13 +158,13 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotonInfo)
                 .addContainerGap())
