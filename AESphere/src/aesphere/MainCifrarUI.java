@@ -22,6 +22,7 @@ import javax.swing.JInternalFrame;
  */
 public class MainCifrarUI extends javax.swing.JFrame {
 
+    private ProcesoCifrarUI procesocifrado;
     private MainUI wpadre;
 
     /** Creates new form Main */
@@ -33,6 +34,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         BotonBrowseCifrarKey.setEnabled(false);
         BotonBrowseCifrarOutput.setEnabled(false);
         TextoOutput.setEnabled(false);
+        JFileChooser archivos = new JFileChooser();
 
     }
 
@@ -67,6 +69,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         jPopupMenu3 = new javax.swing.JPopupMenu();
         jPopupMenu4 = new javax.swing.JPopupMenu();
+        archivos = new javax.swing.JFileChooser();
         cifrarScrollPaneMain = new javax.swing.JScrollPane();
         cifrarPanelMain = new javax.swing.JPanel();
         cifrarPanelInput = new javax.swing.JPanel();
@@ -91,7 +94,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         BotonBrowseCifrarOutput = new javax.swing.JButton();
         TextoOutput = new javax.swing.JTextField();
         BotonInfoCifrar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        BotonSiguiente = new javax.swing.JButton();
         cifrarMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -141,10 +144,10 @@ public class MainCifrarUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(ComboBoxKey, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addComponent(BotonBrowseCifrarKey, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -235,36 +238,13 @@ public class MainCifrarUI extends javax.swing.JFrame {
         cifrarPanelAdvOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " ADVANCED OPTIONS ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef3.png"))); // NOI18N
+        cifrarPanelAdvOptions.add(jLabel3);
 
         jLabel4.setText("Método de Cifrado:");
+        cifrarPanelAdvOptions.add(jLabel4);
 
         ModoCifrado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modo ECB", "Modo CBC" }));
-
-        javax.swing.GroupLayout cifrarPanelAdvOptionsLayout = new javax.swing.GroupLayout(cifrarPanelAdvOptions);
-        cifrarPanelAdvOptions.setLayout(cifrarPanelAdvOptionsLayout);
-        cifrarPanelAdvOptionsLayout.setHorizontalGroup(
-            cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
-        );
-        cifrarPanelAdvOptionsLayout.setVerticalGroup(
-            cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
-                .addGroup(cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                    .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
+        cifrarPanelAdvOptions.add(ModoCifrado);
 
         cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " OUTPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
@@ -304,7 +284,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BotonBrowseCifrarOutput)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         cifrarPanelOutputLayout.setVerticalGroup(
             cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +297,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                             .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonBrowseCifrarOutput)))
                     .addComponent(jLabel1))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         BotonInfoCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
@@ -329,10 +309,10 @@ public class MainCifrarUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Siguiente");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonSiguiente.setText("Siguiente");
+        BotonSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonSiguienteActionPerformed(evt);
             }
         });
 
@@ -343,19 +323,14 @@ public class MainCifrarUI extends javax.swing.JFrame {
             .addGroup(cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cifrarPanelMainLayout.createSequentialGroup()
-                        .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(BotonSiguiente)
                         .addGap(65, 65, 65)
-                        .addComponent(BotonInfoCifrar)
-                        .addContainerGap())
-                    .addGroup(cifrarPanelMainLayout.createSequentialGroup()
-                        .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cifrarPanelInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addComponent(BotonInfoCifrar))
+                    .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cifrarPanelInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         cifrarPanelMainLayout.setVerticalGroup(
             cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,11 +339,11 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addComponent(cifrarPanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(BotonSiguiente)
                     .addComponent(BotonInfoCifrar))
                 .addContainerGap())
         );
@@ -479,25 +454,25 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private void BotonBrowseCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarActionPerformed
         // TODO add your handling code here:
+
         String rutaInput;
-        JFileChooser archivos = new JFileChooser();
-        archivos.showOpenDialog(null);
+        int resul = archivos.showOpenDialog(null);
         File arch= archivos.getSelectedFile();
         rutaInput = arch.getPath();
         this.TextoInput.setText(rutaInput);
 
-
+  
     }//GEN-LAST:event_BotonBrowseCifrarActionPerformed
 
     private void BotonBrowseCifrarOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarOutputActionPerformed
         // TODO add your handling code here:
 
         String rutaOutput;
-        JFileChooser archivos = new JFileChooser();
         archivos.showOpenDialog(null);
         File archi= archivos.getSelectedFile();
         rutaOutput = archi.getPath();
         this.TextoOutput.setText(rutaOutput);
+
 
     }//GEN-LAST:event_BotonBrowseCifrarOutputActionPerformed
 
@@ -527,7 +502,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String rutaKey;
-        JFileChooser archivos = new JFileChooser();
         archivos.showOpenDialog(null);
         File archi= archivos.getSelectedFile();
         rutaKey = archi.getPath();
@@ -535,9 +509,12 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BotonBrowseCifrarKeyActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiguienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.setEnabled(false);
+        procesocifrado = new ProcesoCifrarUI (TextoInput,TextoKey,TextoOutput);
+        procesocifrado.setVisible(true);
+    }//GEN-LAST:event_BotonSiguienteActionPerformed
 
     private void BotonInfoCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoCifrarActionPerformed
         // TODO add your handling code here:
@@ -561,6 +538,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JButton BotonBrowseCifrarKey;
     private javax.swing.JButton BotonBrowseCifrarOutput;
     private javax.swing.JButton BotonInfoCifrar;
+    private javax.swing.JButton BotonSiguiente;
     private javax.swing.JComboBox ComboBoxInputCifrar;
     private javax.swing.JComboBox ComboBoxKey;
     private javax.swing.JComboBox ComboBoxOutputCifrar;
@@ -569,13 +547,13 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JTextArea TextoInput;
     private javax.swing.JTextArea TextoKey;
     private javax.swing.JTextField TextoOutput;
+    private javax.swing.JFileChooser archivos;
     private javax.swing.JMenuBar cifrarMenuBarMain;
     private javax.swing.JPanel cifrarPanelAdvOptions;
     private javax.swing.JPanel cifrarPanelInput;
     private javax.swing.JPanel cifrarPanelMain;
     private javax.swing.JPanel cifrarPanelOutput;
     private javax.swing.JScrollPane cifrarScrollPaneMain;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
