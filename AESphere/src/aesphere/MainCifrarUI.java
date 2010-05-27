@@ -105,8 +105,8 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -416,18 +416,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
     /** Enable calling/father window and notify it that the current windows
      * is closed. Also gives the focus to the calling/father window.
      */
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-        wpadre.setEnabled(true);
-        wpadre.requestFocus();
-        wpadre.wclosed(this);
-         
-        
-    }//GEN-LAST:event_formWindowClosed
-
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         // TODO add your handling code here:
-        this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSED));
+        this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_SalirActionPerformed
 
     private void ComboBoxInputCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxInputCifrarActionPerformed
@@ -533,9 +524,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private void BotonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiguienteActionPerformed
         // TODO add your handling code here:
-        this.setEnabled(false);
-        procesocifrado = new ProcesoCifrarUI (TextoInput,TextoKey,TextoOutput);
+        procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText());
         procesocifrado.setVisible(true);
+        wpadre.newchild(procesocifrado);        
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
     private void BotonInfoCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoCifrarActionPerformed
@@ -546,6 +537,13 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private void TextoOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoOutputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextoOutputActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        wpadre.setEnabled(true);
+        wpadre.requestFocus();
+        wpadre.wclosed(this);
+    }//GEN-LAST:event_formWindowClosing
 
 
 

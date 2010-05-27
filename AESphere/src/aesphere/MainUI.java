@@ -16,7 +16,7 @@ package aesphere;
  */
 public class MainUI extends javax.swing.JFrame {
 
-    private MainCifrarUI cifrarUIhijo;
+    private javax.swing.JFrame hijoActual;
 
     /** Creates new form Main */
     public MainUI() {
@@ -212,11 +212,11 @@ public class MainUI extends javax.swing.JFrame {
     private void BotonCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCifrarActionPerformed
         // TODO add your handling code here:
         this.setEnabled(false);
-        if (cifrarUIhijo == null) {
-            cifrarUIhijo = new MainCifrarUI(this);
-            cifrarUIhijo.setVisible(true);
+        if (hijoActual == null) {
+            hijoActual = new MainCifrarUI(this);
+            hijoActual.setVisible(true);
         }
-        else cifrarUIhijo.requestFocus();    
+        else hijoActual.requestFocus();
     }//GEN-LAST:event_BotonCifrarActionPerformed
 
     private void BotonHerramientasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonHerramientasActionPerformed
@@ -228,9 +228,17 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonInfoActionPerformed
 
     public void wclosed (javax.swing.JFrame hijo){
-        if (hijo.equals(cifrarUIhijo)) {
-            cifrarUIhijo.dispose();
-            cifrarUIhijo = null;
+        if (hijoActual.equals(hijo)) {
+            hijoActual.dispose();
+            hijoActual = null;            
+        }        
+    }
+
+    public void newchild (javax.swing.JFrame newhijo){
+        if (hijoActual == null) hijoActual = newhijo;
+        else {
+            hijoActual.dispose();
+            hijoActual = newhijo;
         }
     }
 
