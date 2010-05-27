@@ -10,6 +10,7 @@
  */
 package aesphere;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -34,8 +35,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         BotonBrowseCifrarKey.setEnabled(false);
         BotonBrowseCifrarOutput.setEnabled(false);
         TextoOutput.setEnabled(false);
-        JFileChooser archivos = new JFileChooser();
-
+        archivos = new JFileChooser();
     }
 
 
@@ -127,7 +127,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         TextoKey.setColumns(20);
         TextoKey.setRows(5);
-        TextoKey.setText("Introduce la clave aquí");
         jScrollPane3.setViewportView(TextoKey);
 
         BotonBrowseCifrarKey.setText("Buscar");
@@ -164,7 +163,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         TextoInput.setColumns(20);
         TextoInput.setRows(5);
-        TextoInput.setText("Introduce el texto a cifrar aquí");
         jScrollPane1.setViewportView(TextoInput);
 
         BotonBrowseCifrar.setText("Buscar");
@@ -283,13 +281,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
         BotonBrowseCifrarOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBrowseCifrarOutputActionPerformed(evt);
-            }
-        });
-
-        TextoOutput.setText("Archivo de Salida");
-        TextoOutput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextoOutputActionPerformed(evt);
             }
         });
 
@@ -438,7 +429,8 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 break;
             case 2: BotonBrowseCifrar.setEnabled(true);
                     TextoInput.setEnabled(false);
-
+                    TextoInput.setBackground(Color.LIGHT_GRAY);
+                    TextoInput.setText("");
                 break;
         }
 
@@ -472,8 +464,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         int resul = archivos.showOpenDialog(null);
         File arch= archivos.getSelectedFile();
         rutaInput = arch.getPath();
-        this.TextoInput.setText(rutaInput);
-
+        if (resul == archivos.APPROVE_OPTION) this.TextoInput.setText(rutaInput);
   
     }//GEN-LAST:event_BotonBrowseCifrarActionPerformed
 
@@ -481,12 +472,10 @@ public class MainCifrarUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String rutaOutput;
-        archivos.showOpenDialog(null);
+        int resul = archivos.showOpenDialog(null);
         File archi= archivos.getSelectedFile();
         rutaOutput = archi.getPath();
-        this.TextoOutput.setText(rutaOutput);
-
-
+        if (resul == archivos.APPROVE_OPTION) this.TextoOutput.setText(rutaOutput);
     }//GEN-LAST:event_BotonBrowseCifrarOutputActionPerformed
 
     private void ComboBoxKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxKeyActionPerformed
@@ -506,7 +495,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 break;
             case 2: BotonBrowseCifrarKey.setEnabled(true);
                     TextoKey.setEnabled(false);
-
+                    TextoKey.setText("");
                 break;
         }
     }//GEN-LAST:event_ComboBoxKeyActionPerformed
@@ -515,10 +504,10 @@ public class MainCifrarUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String rutaKey;
-        archivos.showOpenDialog(null);
+        int resul = archivos.showOpenDialog(null);
         File archi= archivos.getSelectedFile();
         rutaKey = archi.getPath();
-        this.TextoKey.setText(rutaKey);
+        if (resul == archivos.APPROVE_OPTION) this.TextoKey.setText(rutaKey);
 
     }//GEN-LAST:event_BotonBrowseCifrarKeyActionPerformed
 
@@ -533,10 +522,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_BotonInfoCifrarActionPerformed
-
-    private void TextoOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoOutputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextoOutputActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
