@@ -23,17 +23,15 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     private String cadenaInput;
     private String cadenaKey;
     private String cadenaOutput;
+    private MainUI wpadre;
 
     /** Creates new form ProcesoCifrarUI */
-    public ProcesoCifrarUI(JTextArea Texto1, JTextArea Texto2, JTextField Texto3) {
+    public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, String Texto3) {
         initComponents();
-
-        cadenaInput = Texto1.getText();
-        cadenaKey = Texto2.getText();
-        cadenaOutput = Texto3.getText();
-
-        System.out.println(cadenaInput);
-
+        wpadre=padre;
+        cadenaInput = Texto1;
+        cadenaKey = Texto2;
+        cadenaOutput = Texto3;
     }
 
     /** This method is called from within the constructor to
@@ -49,7 +47,12 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTextField2.setText("jTextField2");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -70,11 +73,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(466, Short.MAX_VALUE)
                 .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(197, 197, 197))
+                .add(239, 239, 239))
             .add(layout.createSequentialGroup()
                 .add(152, 152, 152)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(362, Short.MAX_VALUE))
+                .addContainerGap(482, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -83,7 +86,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(62, 62, 62)
                 .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,6 +96,13 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         
 }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        wpadre.setEnabled(true);
+        wpadre.requestFocus();
+        wpadre.wclosed(this);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
     * @param args the command line arguments
