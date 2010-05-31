@@ -214,6 +214,7 @@ public class MainUI extends javax.swing.JFrame {
         this.setEnabled(false);
         if (hijoActual == null) {
             hijoActual = new MainCifrarUI(this);
+            hijoActual.setLocationRelativeTo(null);
             hijoActual.setVisible(true);
         }
         else hijoActual.requestFocus();
@@ -245,13 +246,7 @@ public class MainUI extends javax.swing.JFrame {
     /**
     * @param args the command line arguments
     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainUI().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AtaquesLabel;
