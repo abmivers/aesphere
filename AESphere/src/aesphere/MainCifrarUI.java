@@ -126,6 +126,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         });
 
         TextoKey.setColumns(20);
+        TextoKey.setLineWrap(true);
         TextoKey.setRows(5);
         jScrollPane3.setViewportView(TextoKey);
 
@@ -162,6 +163,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         );
 
         TextoInput.setColumns(20);
+        TextoInput.setLineWrap(true);
         TextoInput.setRows(5);
         jScrollPane1.setViewportView(TextoInput);
 
