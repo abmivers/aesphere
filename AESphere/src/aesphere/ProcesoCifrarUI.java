@@ -115,7 +115,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         wpadre.setEnabled(true);
         wpadre.requestFocus();
-        wpadre.wclosed(this);
+        wpadre.wclosed(this);       
     }//GEN-LAST:event_formWindowClosing
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
