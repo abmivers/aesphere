@@ -45,6 +45,13 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        cifradoMenuBarMain = new javax.swing.JMenuBar();
+        mainMenuArchivoCifrado = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        Salir = new javax.swing.JMenuItem();
+        mainMenuEditarCifrado = new javax.swing.JMenu();
+        mainMenuOperacionesCifrado = new javax.swing.JMenu();
+        mainMenuAyudaCifrado = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -57,6 +64,32 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jTextArea1.setText(cadenaInput);
         jScrollPane1.setViewportView(jTextArea1);
+
+        mainMenuArchivoCifrado.setText("Archivo");
+
+        jMenuItem2.setText("jMenuItem2");
+        mainMenuArchivoCifrado.add(jMenuItem2);
+
+        Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
+        mainMenuArchivoCifrado.add(Salir);
+
+        cifradoMenuBarMain.add(mainMenuArchivoCifrado);
+
+        mainMenuEditarCifrado.setText("Editar");
+        cifradoMenuBarMain.add(mainMenuEditarCifrado);
+
+        mainMenuOperacionesCifrado.setText("Operaciones");
+        cifradoMenuBarMain.add(mainMenuOperacionesCifrado);
+
+        mainMenuAyudaCifrado.setText("Ayuda");
+        cifradoMenuBarMain.add(mainMenuAyudaCifrado);
+
+        setJMenuBar(cifradoMenuBarMain);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,14 +118,26 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing
 
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        // TODO add your handling code here:
+        this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSED));
+}//GEN-LAST:event_SalirActionPerformed
+
     /**
     * @param args the command line arguments
     */
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Salir;
+    private javax.swing.JMenuBar cifradoMenuBarMain;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JMenu mainMenuArchivoCifrado;
+    private javax.swing.JMenu mainMenuAyudaCifrado;
+    private javax.swing.JMenu mainMenuEditarCifrado;
+    private javax.swing.JMenu mainMenuOperacionesCifrado;
     // End of variables declaration//GEN-END:variables
 
 }
