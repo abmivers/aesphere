@@ -34,7 +34,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
         BotonBrowseCifrar.setEnabled(false);
         BotonBrowseCifrarKey.setEnabled(false);
         BotonBrowseCifrarOutput.setEnabled(false);
-        TextoOutput.setEnabled(false);
         archivos = new JFileChooser();
     }
 
@@ -95,6 +94,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         TextoOutput = new javax.swing.JTextField();
         BotonInfoCifrar = new javax.swing.JButton();
         BotonSiguiente = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
         cifrarMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -118,7 +118,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Key"));
 
-        ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto", "Hexadecimal", "Archivo" }));
+        ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII", "Hexadecimal", "Archivo" }));
         ComboBoxKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxKeyActionPerformed(evt);
@@ -176,7 +176,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef1.png"))); // NOI18N
 
-        ComboBoxInputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto", "Hexadecimal", "Archivo" }));
+        ComboBoxInputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto ASCII", "Hexadecimal", "Archivo" }));
         ComboBoxInputCifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxInputCifrarActionPerformed(evt);
@@ -286,6 +286,13 @@ public class MainCifrarUI extends javax.swing.JFrame {
             }
         });
 
+        TextoOutput.setEnabled(false);
+        TextoOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextoOutputActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout cifrarPanelOutputLayout = new javax.swing.GroupLayout(cifrarPanelOutput);
         cifrarPanelOutput.setLayout(cifrarPanelOutputLayout);
         cifrarPanelOutputLayout.setHorizontalGroup(
@@ -331,6 +338,13 @@ public class MainCifrarUI extends javax.swing.JFrame {
             }
         });
 
+        Cancelar.setLabel("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout cifrarPanelMainLayout = new javax.swing.GroupLayout(cifrarPanelMain);
         cifrarPanelMain.setLayout(cifrarPanelMainLayout);
         cifrarPanelMainLayout.setHorizontalGroup(
@@ -340,6 +354,8 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
+                        .addComponent(Cancelar)
+                        .addGap(18, 18, 18)
                         .addComponent(BotonSiguiente)
                         .addGap(65, 65, 65)
                         .addComponent(BotonInfoCifrar))
@@ -358,7 +374,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BotonSiguiente)
+                    .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BotonSiguiente)
+                        .addComponent(Cancelar))
                     .addComponent(BotonInfoCifrar))
                 .addContainerGap())
         );
@@ -431,7 +449,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 break;
             case 2: BotonBrowseCifrar.setEnabled(true);
                     TextoInput.setEnabled(false);
-                    TextoInput.setBackground(Color.LIGHT_GRAY);
                     TextoInput.setText("");
                 break;
         }
@@ -445,15 +462,15 @@ public class MainCifrarUI extends javax.swing.JFrame {
          int selectedIndex = ComboBoxOutputCifrar.getSelectedIndex();
         switch (selectedIndex) {
             case 0: BotonBrowseCifrarOutput.setEnabled(false);
-                    
+                    TextoOutput.setText("");
 
                 break;
             case 1: BotonBrowseCifrarOutput.setEnabled(false);
-                    
+                    TextoOutput.setText("");
 
                 break;
             case 2: BotonBrowseCifrarOutput.setEnabled(true);
-                   
+                    TextoOutput.setEnabled(true);
 
                 break;
         }
@@ -532,6 +549,14 @@ public class MainCifrarUI extends javax.swing.JFrame {
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing
 
+    private void TextoOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoOutputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextoOutputActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelarActionPerformed
+
 
 
 
@@ -546,6 +571,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JButton BotonBrowseCifrarOutput;
     private javax.swing.JButton BotonInfoCifrar;
     private javax.swing.JButton BotonSiguiente;
+    private javax.swing.JButton Cancelar;
     private javax.swing.JComboBox ComboBoxInputCifrar;
     private javax.swing.JComboBox ComboBoxKey;
     private javax.swing.JComboBox ComboBoxOutputCifrar;
