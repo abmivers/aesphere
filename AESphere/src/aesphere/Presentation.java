@@ -11,6 +11,8 @@
 
 package aesphere;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author antonio
@@ -31,101 +33,56 @@ public class Presentation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setUndecorated(true);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(46, 46, 46)
-                .add(jLabel1)
-                .addContainerGap(151, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(54, 54, 54)
-                .add(jLabel1)
-                .addContainerGap(100, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pres.jpg"))); // NOI18N
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(117, 117, 117)
-                .add(jDesktopPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 228, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(29, 29, 29)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+            .add(jLabel1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(41, 41, 41)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jDesktopPane1)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(47, Short.MAX_VALUE))
+            .add(jLabel1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-
-
-      public static void waiting (int n){
-
-        long t0, t1;
-
-        t0 =  System.currentTimeMillis();
-
-        do{
-            t1 = System.currentTimeMillis();
-        }
-        while ((t1 - t0) < (n * 1000));
-    }
-
-
-    private void llamarmain() {
-                MainUI ventana = new MainUI();
-                ventana.setLocationRelativeTo(null);
-                ventana.setVisible(true);
-                this.dispose();
-    };
-
 
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        //java.awt.EventQueue.invokeLater(new Runnable() {
+            //public void run() {
                 Presentation pres = new Presentation();
                 pres.setLocationRelativeTo(null);
                 pres.setVisible(true);
 
-                
-                pres.llamarmain();
+                try {
+                    Thread.sleep(2000);
+                } catch(Exception exc) {
+                    JOptionPane.showMessageDialog(pres, exc);
+                }
+
+                MainUI ventana = new MainUI();
+                ventana.setLocationRelativeTo(null);
+                ventana.setVisible(true);
+
+                pres.dispose();
                 pres=null;
                 
-            }
-        });
+            //}
+       // });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
 }
