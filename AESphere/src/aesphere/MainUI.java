@@ -50,16 +50,15 @@ public class MainUI extends javax.swing.JFrame {
         jPopupMenu4 = new javax.swing.JPopupMenu();
         MainScrollPane = new javax.swing.JScrollPane();
         MainPanel = new javax.swing.JPanel();
-        BotonInfo = new javax.swing.JButton();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        BotonCifrar = new javax.swing.JButton();
-        CifrarLabel = new javax.swing.JLabel();
-        BotonDescifrar = new javax.swing.JButton();
-        DescifrarLabel = new javax.swing.JLabel();
-        BotonAtaques = new javax.swing.JButton();
-        AtaquesLabel = new javax.swing.JLabel();
-        BotonHerramientas = new javax.swing.JButton();
         HerramientasLabel = new javax.swing.JLabel();
+        BotonHerramientas = new javax.swing.JButton();
+        AtaquesLabel = new javax.swing.JLabel();
+        BotonAtaques = new javax.swing.JButton();
+        DescifrarLabel = new javax.swing.JLabel();
+        BotonDescifrar = new javax.swing.JButton();
+        CifrarLabel = new javax.swing.JLabel();
+        BotonCifrar = new javax.swing.JButton();
+        BotonInfo = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         mainMenuEditar = new javax.swing.JMenu();
@@ -68,67 +67,13 @@ public class MainUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        MainPanel.setPreferredSize(new java.awt.Dimension(750, 550));
+        MainScrollPane.setPreferredSize(new java.awt.Dimension(700, 500));
 
-        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
-        BotonInfo.setBorder(null);
-        BotonInfo.setContentAreaFilled(false);
-        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonInfoActionPerformed(evt);
-            }
-        });
+        MainPanel.setPreferredSize(new java.awt.Dimension(700, 500));
 
-        BotonCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lock2.png"))); // NOI18N
-        BotonCifrar.setBorder(null);
-        BotonCifrar.setContentAreaFilled(false);
-        BotonCifrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonCifrarActionPerformed(evt);
-            }
-        });
-        BotonCifrar.setBounds(110, 10, 101, 110);
-        jLayeredPane1.add(BotonCifrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        CifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        CifrarLabel.setText("CIFRAR");
-        CifrarLabel.setBounds(240, 10, 92, 110);
-        jLayeredPane1.add(CifrarLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        BotonDescifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/unlock3.png"))); // NOI18N
-        BotonDescifrar.setBorder(null);
-        BotonDescifrar.setContentAreaFilled(false);
-        BotonDescifrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonDescifrarActionPerformed(evt);
-            }
-        });
-        BotonDescifrar.setBounds(110, 130, 101, 132);
-        jLayeredPane1.add(BotonDescifrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
-        DescifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        DescifrarLabel.setText("DESCIFRAR");
-        DescifrarLabel.setBounds(240, 130, 140, 132);
-        jLayeredPane1.add(DescifrarLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        BotonAtaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
-        BotonAtaques.setBorder(null);
-        BotonAtaques.setContentAreaFilled(false);
-        BotonAtaques.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonAtaquesActionPerformed(evt);
-            }
-        });
-        BotonAtaques.setBounds(110, 270, 101, 123);
-        jLayeredPane1.add(BotonAtaques, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        AtaquesLabel.setText("SIMULAR ATAQUES");
-        AtaquesLabel.setBounds(240, 270, 282, 123);
-        jLayeredPane1.add(AtaquesLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        HerramientasLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        HerramientasLabel.setText("HERRAMIENTAS");
 
         BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientas.png"))); // NOI18N
         BotonHerramientas.setBorder(null);
@@ -139,33 +84,107 @@ public class MainUI extends javax.swing.JFrame {
                 BotonHerramientasActionPerformed(evt);
             }
         });
-        BotonHerramientas.setBounds(110, 400, 101, 128);
-        jLayeredPane1.add(BotonHerramientas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        HerramientasLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        HerramientasLabel.setText("HERRAMIENTAS");
-        HerramientasLabel.setBounds(240, 450, 270, 29);
-        jLayeredPane1.add(HerramientasLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        AtaquesLabel.setText("SIMULAR ATAQUES");
+
+        BotonAtaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
+        BotonAtaques.setBorder(null);
+        BotonAtaques.setBorderPainted(false);
+        BotonAtaques.setContentAreaFilled(false);
+        BotonAtaques.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAtaquesActionPerformed(evt);
+            }
+        });
+
+        DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        DescifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        DescifrarLabel.setText("DESCIFRAR");
+
+        BotonDescifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/unlock3.png"))); // NOI18N
+        BotonDescifrar.setBorder(null);
+        BotonDescifrar.setBorderPainted(false);
+        BotonDescifrar.setContentAreaFilled(false);
+        BotonDescifrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonDescifrarActionPerformed(evt);
+            }
+        });
+
+        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        CifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        CifrarLabel.setText("CIFRAR");
+
+        BotonCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lock2.png"))); // NOI18N
+        BotonCifrar.setBorder(null);
+        BotonCifrar.setBorderPainted(false);
+        BotonCifrar.setContentAreaFilled(false);
+        BotonCifrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCifrarActionPerformed(evt);
+            }
+        });
+
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
+        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInfoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addComponent(BotonInfo)
-                .addContainerGap())
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGap(133, 133, 133)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addComponent(BotonAtaques)
+                        .addGap(50, 50, 50)
+                        .addComponent(AtaquesLabel))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addComponent(BotonDescifrar)
+                        .addGap(50, 50, 50)
+                        .addComponent(DescifrarLabel))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addComponent(BotonCifrar)
+                        .addGap(50, 50, 50)
+                        .addComponent(CifrarLabel))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addComponent(BotonHerramientas)
+                        .addGap(50, 50, 50)
+                        .addComponent(HerramientasLabel)))
+                .addGap(319, 319, 319))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
+                .addContainerGap(762, Short.MAX_VALUE)
+                .addComponent(BotonInfo)
+                .addGap(49, 49, 49))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(72, 72, 72)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                    .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(BotonDescifrar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                    .addComponent(BotonAtaques, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(BotonHerramientas, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(40, 40, 40)
                 .addComponent(BotonInfo)
                 .addContainerGap())
         );
@@ -203,6 +222,13 @@ public class MainUI extends javax.swing.JFrame {
 
     private void BotonDescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDescifrarActionPerformed
         // TODO add your handling code here:
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new ProcesoCifrarUI(this,"","","");
+            hijoActual.setLocationRelativeTo(null);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
     }//GEN-LAST:event_BotonDescifrarActionPerformed
 
     private void BotonAtaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAtaquesActionPerformed
@@ -260,7 +286,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JLabel HerramientasLabel;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JScrollPane MainScrollPane;
-    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
