@@ -567,8 +567,14 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         int selectedIndex1 = ComboBoxInputCifrar.getSelectedIndex();
         int selectedIndex2 = ComboBoxKey.getSelectedIndex();
+
+        if (TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty()){
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+        }
+
+        else {
         
-        if ( (selectedIndex1==1) &  (ComprobarHexadecimal(TextoInput.getText()) == false) )
+        if ( ((selectedIndex1==1) &  (ComprobarHexadecimal(TextoInput.getText()) == false)))
              {
                  JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo INPUT.");
 
@@ -590,7 +596,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         }
 
 
-
+      }
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
     private void BotonInfoCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoCifrarActionPerformed
