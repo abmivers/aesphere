@@ -11,6 +11,8 @@
 
 package aesphere;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -156,20 +158,13 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String textoInicio = jTextArea1.getText();
-        String textoFinal = new String(); 
-        String textoFinal2 = new String();
         byte [] bloqueCifra;
 
-        bloqueCifra = Conversor.stringToASCII(textoInicio);
+        //bloqueCifra = Conversor.stringToASCII(jTextArea1.getText());
+        bloqueCifra = Conversor.hexStringToByte(jTextArea1.getText());
 
-        for (int i = 0; (i < bloqueCifra.length); i++) {
-            textoFinal2 = textoFinal2 + Character.toString((char) bloqueCifra[i]);
-            textoFinal = textoFinal + Integer.toHexString(bloqueCifra[i]);
-        }
-
-        jTextArea2.setText(textoFinal);
-        jTextArea3.setText(textoFinal2);
+        //jTextArea3.setText(Conversor.byteToTextString(bloqueCifra));
+        jTextArea2.setText(Conversor.byteToHexString(bloqueCifra).trim());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -580,12 +580,10 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     for (int i = 0; i < cadena.length() ; i++){
 
-        System.out.print(cadena.charAt(i));
-
       if ( ((cadena.charAt(i) >= 'A') & (cadena.charAt(i) <= 'F')) ||
           ((cadena.charAt(i) >= 'a') & (cadena.charAt(i) <= 'f')) ||
-          ((cadena.charAt(i) >= '0') & (cadena.charAt(i) <= '9'))){ ;
-      }else {
+          ((cadena.charAt(i) >= '0') & (cadena.charAt(i) <= '9')));
+      else {
           resul=false;
       }
     }
@@ -669,9 +667,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
 
     private void BotonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiguienteActionPerformed
-        // TODO add your handling code here:
-
-        
+       
     if (ComprobarDatos()){
        procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText());
        procesocifrado.setLocationRelativeTo(null);
