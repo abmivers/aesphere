@@ -65,7 +65,7 @@ public class Presentation extends javax.swing.JFrame {
                 pres.setVisible(true);
 
                 try {
-                    //Thread.sleep(2000);
+                    Thread.sleep(2000);
                 } catch(Exception exc) {
                     JOptionPane.showMessageDialog(pres, exc);
                 }
