@@ -10,13 +10,9 @@
  */
 package aesphere;
 
-import java.awt.Color;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import javax.swing.JDialog;
+import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,6 +33,12 @@ public class MainCifrarUI extends javax.swing.JFrame {
         BotonBrowseCifrarKey.setEnabled(false);
         BotonBrowseCifrarOutput.setEnabled(false);
         archivos = new JFileChooser();
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(RadioButton128);
+        group.add(RadioButton192);
+        group.add(RadioButton256);
+
     }
 
 
@@ -79,9 +81,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         TextoKey = new javax.swing.JTextArea();
         BotonBrowseCifrarKey = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        RadioButton128 = new javax.swing.JRadioButton();
+        RadioButton192 = new javax.swing.JRadioButton();
+        RadioButton256 = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextoInput = new javax.swing.JTextArea();
@@ -142,11 +144,28 @@ public class MainCifrarUI extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton1.setText("jRadioButton1");
+        RadioButton128.setSelected(true);
+        RadioButton128.setText("128 bits");
+        RadioButton128.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RadioButton128ActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("jRadioButton2");
+        RadioButton192.setText("192 bits");
+        RadioButton192.setActionCommand("192 bits");
+        RadioButton192.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RadioButton192ActionPerformed(evt);
+            }
+        });
 
-        jRadioButton3.setText("jRadioButton3");
+        RadioButton256.setText("256 bits");
+        RadioButton256.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RadioButton256ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,17 +174,17 @@ public class MainCifrarUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(ComboBoxKey, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                         .addComponent(BotonBrowseCifrarKey, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addComponent(jRadioButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(jRadioButton3)))
+                        .addComponent(RadioButton128)
+                        .addGap(18, 18, 18)
+                        .addComponent(RadioButton192)
+                        .addGap(18, 18, 18)
+                        .addComponent(RadioButton256)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -176,9 +195,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
                     .addComponent(BotonBrowseCifrarKey))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2))
+                    .addComponent(RadioButton128)
+                    .addComponent(RadioButton192)
+                    .addComponent(RadioButton256))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -211,15 +230,15 @@ public class MainCifrarUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(ComboBoxInputCifrar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonBrowseCifrar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addComponent(BotonBrowseCifrar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,8 +253,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                             .addComponent(ComboBoxInputCifrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonBrowseCifrar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout cifrarPanelInputLayout = new javax.swing.GroupLayout(cifrarPanelInput);
@@ -246,13 +264,13 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         cifrarPanelInputLayout.setVerticalGroup(
             cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cifrarPanelInputLayout.createSequentialGroup()
                 .addGroup(cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -328,7 +346,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BotonBrowseCifrarOutput)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         cifrarPanelOutputLayout.setVerticalGroup(
             cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +359,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                             .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonBrowseCifrarOutput)))
                     .addComponent(jLabel1))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         BotonInfoCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
@@ -374,7 +392,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
             .addGroup(cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                    .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
                         .addComponent(Cancelar)
                         .addGap(18, 18, 18)
@@ -390,9 +408,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cifrarPanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -485,10 +503,12 @@ public class MainCifrarUI extends javax.swing.JFrame {
         switch (selectedIndex) {
             case 0: BotonBrowseCifrarOutput.setEnabled(false);
                     TextoOutput.setText("");
+                    TextoOutput.setEnabled(false);
 
                 break;
             case 1: BotonBrowseCifrarOutput.setEnabled(false);
                     TextoOutput.setText("");
+                    TextoOutput.setEnabled(false);
 
                 break;
             case 2: BotonBrowseCifrarOutput.setEnabled(true);
@@ -554,9 +574,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
 
 
-
-
-
     private boolean ComprobarHexadecimal (String cadena){
 
     boolean resul = true;
@@ -579,43 +596,87 @@ public class MainCifrarUI extends javax.swing.JFrame {
     }
 
 
+    private boolean ComprobarDatos () {
+        int selectedIndex1 = ComboBoxInputCifrar.getSelectedIndex();
+        int selectedIndex2 = ComboBoxKey.getSelectedIndex();
+        int selectedIndex3 = ComboBoxOutputCifrar.getSelectedIndex();
+        String contenido = TextoKey.getText();
+        boolean aux=true;
 
+        if (TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty()){
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           aux=false;
+        }
+
+        if (TextoOutput.getText().isEmpty() & selectedIndex3==2 & aux ){
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           aux=false;
+        }
+
+        if ( ((selectedIndex1==1) &  (ComprobarHexadecimal(TextoInput.getText()) == false)) & aux)
+             {
+                 JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo INPUT.");
+                 aux=false;
+             }
+        if (( selectedIndex2==1)  &  (ComprobarHexadecimal(TextoKey.getText()) == false) & aux)
+             {
+            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo KEY.");
+            aux=false;
+            }
+
+
+        if ((RadioButton256.isSelected()) & aux) {
+
+            if ((contenido.length() > 32) & selectedIndex2==0) {
+            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 32 caracteres ASCII");
+            aux=false;
+            }
+
+            if ((contenido.length() > 64) & selectedIndex2==1) {
+            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 64 dígitos hexadecimales");
+            aux=false;
+            }
+        }
+
+        if ((RadioButton192.isSelected()) & aux) {
+
+            if ((contenido.length() > 24) & selectedIndex2==0) {
+            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 24 caracteres ASCII");
+            aux=false;
+            }
+
+            if ((contenido.length() > 48) & selectedIndex2==1) {
+            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 48 dígitos hexadecimales");
+            aux=false;
+            }
+        }
+
+        if ((RadioButton128.isSelected()) & aux) {
+
+            if ((contenido.length() > 16) & selectedIndex2==0) {
+            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 16 caracteres ASCII");
+            aux=false;
+            }
+
+            if ((contenido.length() > 32) & selectedIndex2==1) {
+            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 32 dígitos hexadecimales");
+            aux=false;
+            }
+        }
+
+        return aux;
+    }
 
 
     private void BotonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiguienteActionPerformed
         // TODO add your handling code here:
 
-        int selectedIndex1 = ComboBoxInputCifrar.getSelectedIndex();
-        int selectedIndex2 = ComboBoxKey.getSelectedIndex();
-
-        if (TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty()){
-           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
-        }
-
-        else {
         
-        if ( ((selectedIndex1==1) &  (ComprobarHexadecimal(TextoInput.getText()) == false)))
-             {
-                 JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo INPUT.");
-
-            
-
-        } else if (( selectedIndex2==1)  &  (ComprobarHexadecimal(TextoKey.getText()) == false))
-             {
-
-
-             JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo KEY.");
-
-
-            } else {
-
-                procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText());
-                procesocifrado.setLocationRelativeTo(null);
-                procesocifrado.setVisible(true);                
-                wpadre.newchild(procesocifrado);
-        }
-
-
+    if (ComprobarDatos()){
+       procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText());
+       procesocifrado.setLocationRelativeTo(null);
+       procesocifrado.setVisible(true);                
+       wpadre.newchild(procesocifrado);
       }
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
@@ -640,6 +701,21 @@ public class MainCifrarUI extends javax.swing.JFrame {
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_CancelarActionPerformed
 
+    private void RadioButton256ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton256ActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_RadioButton256ActionPerformed
+
+    private void RadioButton128ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton128ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_RadioButton128ActionPerformed
+
+    private void RadioButton192ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton192ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_RadioButton192ActionPerformed
+
 
 
 
@@ -659,6 +735,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JComboBox ComboBoxKey;
     private javax.swing.JComboBox ComboBoxOutputCifrar;
     private javax.swing.JComboBox ModoCifrado;
+    private javax.swing.JRadioButton RadioButton128;
+    private javax.swing.JRadioButton RadioButton192;
+    private javax.swing.JRadioButton RadioButton256;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JTextArea TextoInput;
     private javax.swing.JTextArea TextoKey;
@@ -681,9 +760,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JPopupMenu jPopupMenu4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JMenu mainMenuArchivo;
