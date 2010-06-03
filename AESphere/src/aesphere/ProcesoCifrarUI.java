@@ -39,7 +39,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
             cifrarArchivoArchivo();
         }
 
-        
+         if (opcionentrada==1 & opcionkey==1){
+            cifrarHexaHexa();
+        }
            
           
 
@@ -175,6 +177,49 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
 
+    private void cifrarTextoTexto (){
+
+    }
+
+
+    private void cifrarHexaHexa (){
+
+      //hay que hacer algo con el tema del tamaño de clave
+      //rellenar con c0 hasta tamaño de clave
+      int a = 0;
+      int b = 0;
+
+      if (tamanoclave == 128) {
+           a=16;
+           b=4;
+      }
+
+      if (tamanoclave == 192) {
+           a=24;
+           b=6;
+      }
+
+      if (tamanoclave == 256) {
+           a=32;
+           b=8;
+      }
+
+      byte[] in = Conversor.hexStringToByte(cadenaInput,16);
+      byte[] key = Conversor.hexStringToByte(cadenaKey,a);
+
+      
+      AESencrypt aes = new AESencrypt(key, b);
+      jTextArea2.setText(Conversor.byteToHexString(in));
+      jTextArea4.setText(Conversor.byteToHexString(key));
+      byte[] out = new byte[16];
+      aes.Cipher(in, out);
+      jTextArea3.setText(Conversor.byteToHexString(out));
+      Print.printArray("Ciphertext:    ", out);
+    }
+
+
+
+
     private void cifrarArchivoArchivo (){
 
         int a1 = 0;
@@ -241,7 +286,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         byte [] bloqueCifra;
 
         //bloqueCifra = Conversor.stringToASCII(jTextArea1.getText());
-        bloqueCifra = Conversor.hexStringToByte(jTextArea1.getText());
+        bloqueCifra = Conversor.hexStringToByte(jTextArea1.getText(),16);
 
         //jTextArea3.setText(Conversor.byteToTextString(bloqueCifra));
         jTextArea2.setText(Conversor.byteToHexString(bloqueCifra).trim());

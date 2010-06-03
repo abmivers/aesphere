@@ -19,9 +19,9 @@ public class AEStest {
       // for 256-bit key, use 16, 32 and 8 below
       GetBytes getInput = new GetBytes("/Users/antonio/Downloads/plaintext.txt", 16);
       byte[] in = getInput.getBytes();
-      GetBytes getKey = new GetBytes("/Users/antonio/Downloads/key.txt", 16);
+      GetBytes getKey = new GetBytes("/Users/antonio/Downloads/key.txt", 32);
       byte[] key = getKey.getBytes();
-      AESencrypt aes = new AESencrypt(key, 4);
+      AESencrypt aes = new AESencrypt(key, 8);
       Print.printArray("Plaintext:     ", in);
       Print.printArray("Key:           ", key);
       byte[] out = new byte[16];
