@@ -24,69 +24,24 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     private String cadenaKey;
     private String cadenaOutput;
     private MainUI wpadre;
+    private int tamanoclave;
 
     /** Creates new form ProcesoCifrarUI */
-    public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamanoclave) {
+    public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamano) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
         cadenaKey = Texto2;
         cadenaOutput = Texto3;
-        
-        
-        //meter todo esto en un metodo nuevo que mola mas
-        //de momento solo para probar eligiendo archivo
-        
-        
-        int a1 = 0;
-        int a2 = 0;
-        int a3 = 0;
+        tamanoclave = tamano;
 
-        switch (tamanoclave) {
-
-            case 128: {
-                a1 = 16;
-                a2 = 16;
-                a3 = 4;
-                }
-
-            case 192: {
-                a1 = 16;
-                a2 = 24;
-                a3 = 6;
-                }
-
-            case 256: {
-                a1 = 16;
-                a2 = 32;
-                a3 = 8;
-                }
-
+        if (opcionentrada==2 & opcionkey==2){
+            cifrarArchivoArchivo();
         }
 
-
-        //paso el integer a cadena. Es solo para probar. Se puede borrar
-        String numCadena= String.valueOf(tamanoclave);
-
-        jTextArea1.setText(cadenaInput);
-        jTextArea4.setText(numCadena);
-        GetBytes getInput = new GetBytes(cadenaInput, a1);
-        byte[] in = getInput.getBytes();
-        GetBytes getKey = new GetBytes(cadenaKey, a2);
-        byte[] key = getKey.getBytes();
-        AESencrypt aes = new AESencrypt(key, a3);
-
-
-        jTextArea2.setText(Conversor.byteToHexString(in));
-
-        byte[] out = new byte[16];
-        aes.Cipher(in, out);
-
-        jTextArea3.setText(Conversor.byteToHexString(out));
-
-
-
-
+        
+           
+          
 
     }
 
@@ -220,7 +175,60 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
 
+    private void cifrarArchivoArchivo (){
 
+        int a1 = 0;
+        int a2 = 0;
+        int a3 = 0;
+
+        switch (tamanoclave) {
+
+            case 128: {
+                a1 = 16;
+                a2 = 16;
+                a3 = 4;
+                break;
+                }
+
+            case 192: {
+                a1 = 16;
+                a2 = 24;
+                a3 = 6;
+                break;
+                }
+
+            case 256: {
+                a1 = 16;
+                a2 = 32;
+                a3 = 8;
+                break;
+                }
+
+        }
+
+
+        //paso el integer a cadena. Es solo para probar. Se puede borrar
+        String numCadena= String.valueOf(tamanoclave);
+
+        jTextArea1.setText(cadenaInput);
+
+        GetBytes getInput = new GetBytes(cadenaInput, a1);
+        byte[] in = getInput.getBytes();
+        GetBytes getKey = new GetBytes(cadenaKey, a2);
+        byte[] key = getKey.getBytes();
+        AESencrypt aes = new AESencrypt(key, a3);
+
+
+        jTextArea2.setText(Conversor.byteToHexString(in));
+        jTextArea4.setText(Conversor.byteToHexString(key));
+
+        byte[] out = new byte[16];
+        aes.Cipher(in, out);
+
+        jTextArea3.setText(Conversor.byteToHexString(out));
+        Print.printArray("Ciphertext:    ", out);
+
+    }
 
 
 
