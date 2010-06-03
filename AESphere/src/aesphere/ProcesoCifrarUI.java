@@ -26,12 +26,68 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     private MainUI wpadre;
 
     /** Creates new form ProcesoCifrarUI */
-    public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, String Texto3) {
+    public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamanoclave) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
         cadenaKey = Texto2;
         cadenaOutput = Texto3;
+        
+        
+        //meter todo esto en un metodo nuevo que mola mas
+        //de momento solo para probar eligiendo archivo
+        
+        
+        int a1 = 0;
+        int a2 = 0;
+        int a3 = 0;
+
+        switch (tamanoclave) {
+
+            case 128: {
+                a1 = 16;
+                a2 = 16;
+                a3 = 4;
+                }
+
+            case 192: {
+                a1 = 16;
+                a2 = 24;
+                a3 = 6;
+                }
+
+            case 256: {
+                a1 = 16;
+                a2 = 32;
+                a3 = 8;
+                }
+
+        }
+
+
+        //paso el integer a cadena. Es solo para probar. Se puede borrar
+        String numCadena= String.valueOf(tamanoclave);
+
+        jTextArea1.setText(cadenaInput);
+        jTextArea4.setText(numCadena);
+        GetBytes getInput = new GetBytes(cadenaInput, a1);
+        byte[] in = getInput.getBytes();
+        GetBytes getKey = new GetBytes(cadenaKey, a2);
+        byte[] key = getKey.getBytes();
+        AESencrypt aes = new AESencrypt(key, a3);
+
+
+        jTextArea2.setText(Conversor.byteToHexString(in));
+
+        byte[] out = new byte[16];
+        aes.Cipher(in, out);
+
+        jTextArea3.setText(Conversor.byteToHexString(out));
+
+
+
+
+
     }
 
     /** This method is called from within the constructor to
@@ -50,6 +106,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -89,6 +147,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         jTextArea3.setRows(5);
         jScrollPane3.setViewportView(jTextArea3);
 
+        jTextArea4.setColumns(20);
+        jTextArea4.setRows(5);
+        jScrollPane4.setViewportView(jTextArea4);
+
         mainMenuArchivoCifrado.setText("Archivo");
 
         jMenuItem2.setText("jMenuItem2");
@@ -125,9 +187,12 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
                     .add(jButton1)
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 182, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(layout.createSequentialGroup()
+                        .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -140,7 +205,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
                     .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButton1)
-                .addContainerGap(404, Short.MAX_VALUE))
+                .add(49, 49, 49)
+                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(271, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,6 +218,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         wpadre.requestFocus();
         wpadre.wclosed(this);       
     }//GEN-LAST:event_formWindowClosing
+
+
+
+
+
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSED));
@@ -180,9 +252,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
     private javax.swing.JMenu mainMenuEditarCifrado;

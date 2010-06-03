@@ -224,7 +224,7 @@ public class MainUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setEnabled(false);
         if (hijoActual == null) {
-            hijoActual = new ProcesoCifrarUI(this,"","","");
+            hijoActual = new ProcesoCifrarUI(this,"","","",0,0,0,0);
             hijoActual.setLocationRelativeTo(null);
             hijoActual.setVisible(true);
         }
