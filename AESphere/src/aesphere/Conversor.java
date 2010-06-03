@@ -49,14 +49,20 @@ public class Conversor {
         return texto;
     }
 
+    //falla para impares. Accede al ultimo caracter q esta fuera del string
     public static byte[] hexStringToByte (String texto, int tamano) {
         //byte[] ascii = new byte [texto.length() / 2];
         byte[] ascii = new byte [tamano];
 
         for (int i = 0; i < texto.length(); i += 2) {
+            System.out.println("antes ");
+            System.out.println(texto.charAt(0));
             ascii[i / 2] = (byte)
                     ( (Character.digit(texto.charAt(i), 16) << 4)
                     + (Character.digit(texto.charAt(i+1), 16)) );
+            System.out.println(i);
+            System.out.println();
+            System.out.println(i/2);
         }
 
         return ascii;
