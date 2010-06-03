@@ -42,8 +42,14 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
          if (opcionentrada==1 & opcionkey==1){
             cifrarHexaHexa();
         }
-           
-          
+
+         if (opcionentrada==2 & opcionkey==1){
+            cifrarArchivoHexa();
+        }
+
+         if (opcionentrada==1 & opcionkey==2){
+            cifrarHexaArchivo();
+        }
 
     }
 
@@ -178,6 +184,108 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
 
     private void cifrarTextoTexto (){
+
+    }
+
+
+    private void cifrarHexaArchivo(){
+
+        //esto se puede poner en el constructor y pasarselo a cada función..... XD
+        int a1 = 0;
+        int a2 = 0;
+        int a3 = 0;
+
+        switch (tamanoclave) {
+
+            case 128: {
+                a1 = 16;
+                a2 = 16;
+                a3 = 4;
+                break;
+                }
+
+            case 192: {
+                a1 = 16;
+                a2 = 24;
+                a3 = 6;
+                break;
+                }
+
+            case 256: {
+                a1 = 16;
+                a2 = 32;
+                a3 = 8;
+                break;
+                }
+
+        }
+
+        byte[] in = Conversor.hexStringToByte(cadenaInput,16);
+
+        GetBytes getKey = new GetBytes(cadenaKey, a2);
+        byte[] key = getKey.getBytes();
+        AESencrypt aes = new AESencrypt(key, a3);
+
+
+        jTextArea2.setText(Conversor.byteToHexString(in));
+        jTextArea4.setText(Conversor.byteToHexString(key));
+
+        byte[] out = new byte[16];
+        aes.Cipher(in, out);
+
+        jTextArea3.setText(Conversor.byteToHexString(out));
+        Print.printArray("Ciphertext:    ", out);
+
+    }
+
+    private void cifrarArchivoHexa (){
+
+        int a1 = 0;
+        int a2 = 0;
+        int a3 = 0;
+
+        switch (tamanoclave) {
+
+            case 128: {
+                a1 = 16;
+                a2 = 16;
+                a3 = 4;
+                break;
+                }
+
+            case 192: {
+                a1 = 16;
+                a2 = 24;
+                a3 = 6;
+                break;
+                }
+
+            case 256: {
+                a1 = 16;
+                a2 = 32;
+                a3 = 8;
+                break;
+                }
+
+        }
+
+        GetBytes getInput = new GetBytes(cadenaInput, a1);
+        byte[] in = getInput.getBytes();
+
+        byte[] key = Conversor.hexStringToByte(cadenaKey,a2);
+        AESencrypt aes = new AESencrypt(key, a3);
+
+
+        jTextArea2.setText(Conversor.byteToHexString(in));
+        jTextArea4.setText(Conversor.byteToHexString(key));
+
+        byte[] out = new byte[16];
+        aes.Cipher(in, out);
+
+        jTextArea3.setText(Conversor.byteToHexString(out));
+        Print.printArray("Ciphertext:    ", out);
+
+
 
     }
 

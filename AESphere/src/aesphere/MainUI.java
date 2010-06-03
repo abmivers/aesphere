@@ -71,7 +71,7 @@ public class MainUI extends javax.swing.JFrame {
 
         MainPanel.setPreferredSize(new java.awt.Dimension(700, 500));
 
-        HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
         HerramientasLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HerramientasLabel.setText("HERRAMIENTAS");
 
@@ -85,7 +85,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
         AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         AtaquesLabel.setText("SIMULAR ATAQUES");
 
@@ -99,7 +99,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        DescifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
         DescifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         DescifrarLabel.setText("DESCIFRAR");
 
@@ -113,7 +113,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
         CifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         CifrarLabel.setText("CIFRAR");
 
@@ -161,7 +161,7 @@ public class MainUI extends javax.swing.JFrame {
                         .addComponent(HerramientasLabel)))
                 .addGap(319, 319, 319))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addContainerGap(762, Short.MAX_VALUE)
+                .addContainerGap(761, Short.MAX_VALUE)
                 .addComponent(BotonInfo)
                 .addGap(49, 49, 49))
         );
@@ -170,19 +170,19 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                     .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(BotonDescifrar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                     .addComponent(BotonAtaques, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(BotonHerramientas, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(40, 40, 40)
                 .addComponent(BotonInfo)
@@ -224,7 +224,7 @@ public class MainUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setEnabled(false);
         if (hijoActual == null) {
-            hijoActual = new ProcesoCifrarUI(this,"","","",0,0,0,0);
+            hijoActual = new MainDescifrarUI(this);
             hijoActual.setLocationRelativeTo(null);
             hijoActual.setVisible(true);
         }
