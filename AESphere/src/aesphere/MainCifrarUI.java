@@ -667,9 +667,26 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
 
     private void BotonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiguienteActionPerformed
-       
+    
+        int opcion1 = ComboBoxInputCifrar.getSelectedIndex();
+        int opcion2 = ComboBoxKey.getSelectedIndex();
+        int opcion3 = ComboBoxOutputCifrar.getSelectedIndex();
+
+        int tamano = 0;
+
+        if (RadioButton128.isSelected()) {
+            tamano = 128;
+        }
+        else if (RadioButton192.isSelected()) {
+            tamano = 192;
+        }
+        else if (RadioButton256.isSelected()) {
+            tamano = 256;
+        }
+
+
     if (ComprobarDatos()){
-       procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText());
+       procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,tamano);
        procesocifrado.setLocationRelativeTo(null);
        procesocifrado.setVisible(true);                
        wpadre.newchild(procesocifrado);
