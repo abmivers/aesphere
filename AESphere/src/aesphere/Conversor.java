@@ -49,8 +49,9 @@ public class Conversor {
         return texto;
     }
 
-    public static byte[] hexStringToByte (String texto) {
-        byte[] ascii = new byte [texto.length() / 2];
+    public static byte[] hexStringToByte (String texto, int tamano) {
+        //byte[] ascii = new byte [texto / 2];
+        byte[] ascii = new byte [tamano];
 
         for (int i = 0; i < texto.length(); i += 2) {
             ascii[i / 2] = (byte)
