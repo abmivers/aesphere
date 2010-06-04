@@ -5,6 +5,9 @@
 
 package aesphere;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 /**
  *
  * @author admin
@@ -55,9 +58,7 @@ public class Conversor {
         byte[] ascii = new byte [tamano];
 
         for (int i = 0; i < texto.length(); i += 2) {
-            System.out.println("antes ");
-            System.out.println(texto.charAt(0));
-
+            
             //solucion anzo. Mirar si es correcta
             if ((i==texto.length()-1) & (texto.length()%2==1) ) {
                 ascii[i / 2] = (byte)
@@ -68,14 +69,35 @@ public class Conversor {
                     ( (Character.digit(texto.charAt(i), 16) << 4)
                     + (Character.digit(texto.charAt(i+1), 16)) );
             }
-
-
-            System.out.println(i);
-            System.out.println();
-            System.out.println(i/2);
         }
 
         return ascii;
+    }
+
+    public static void byteToFile (String texto){
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("/Users/antonio/Downloads/output.txt");
+            pw = new PrintWriter(fichero);
+
+            pw.print(texto);
+           
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para
+           // asegurarnos que se cierra el fichero.
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
     }
 
 }

@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class MainDescifrarUI extends javax.swing.JFrame {
 
-    private ProcesoCifrarUI procesocifrado;
+    private ProcesoDescifrarUI procesodescifrado;
     private MainUI wpadre;
 
     /** Creates new form Main */
@@ -686,10 +686,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
 
     if (ComprobarDatos()){
-       procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,tamano);
-       procesocifrado.setLocationRelativeTo(null);
-       procesocifrado.setVisible(true);                
-       wpadre.newchild(procesocifrado);
+       procesodescifrado = new ProcesoDescifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,tamano);
+       procesodescifrado.setLocationRelativeTo(null);
+       procesodescifrado.setVisible(true);
+       wpadre.newchild(procesodescifrado);
       }
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 

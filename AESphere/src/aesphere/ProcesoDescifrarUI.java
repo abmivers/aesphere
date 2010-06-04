@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author antonio
  */
-public class ProcesoCifrarUI extends javax.swing.JFrame {
+public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
     private String cadenaInput;
     private String cadenaKey;
@@ -26,8 +26,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     private MainUI wpadre;
     private int tamanoclave;
 
-    /** Creates new form ProcesoCifrarUI */
-    public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamano) {
+    /** Creates new form ProcesoDescifrarUI */
+    public ProcesoDescifrarUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamano) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
@@ -122,7 +122,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("AESphere - Proceso Cifrado");
+        setTitle("AESphere - Proceso Descifrado");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
