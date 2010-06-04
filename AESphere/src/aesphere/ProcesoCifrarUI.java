@@ -60,6 +60,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         } else if (opcionsalida == 1){
                 jTextArea3.setText(Conversor.byteToHexString(salida));
                }
+        else if (opcionsalida==2){
+            //FileWriter
+        }
 
 
         Print.printArray("Ciphertext:    ", salida);
