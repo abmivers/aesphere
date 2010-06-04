@@ -57,9 +57,19 @@ public class Conversor {
         for (int i = 0; i < texto.length(); i += 2) {
             System.out.println("antes ");
             System.out.println(texto.charAt(0));
+
+            //solucion anzo. Mirar si es correcta
+            if ((i==texto.length()-1) & (texto.length()%2==1) ) {
+                ascii[i / 2] = (byte)
+                    ( (Character.digit(texto.charAt(i), 16) << 4));
+            } else {
+
             ascii[i / 2] = (byte)
                     ( (Character.digit(texto.charAt(i), 16) << 4)
                     + (Character.digit(texto.charAt(i+1), 16)) );
+            }
+
+
             System.out.println(i);
             System.out.println();
             System.out.println(i/2);
