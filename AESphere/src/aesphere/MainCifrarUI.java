@@ -599,6 +599,8 @@ public class MainCifrarUI extends javax.swing.JFrame {
         int selectedIndex2 = ComboBoxKey.getSelectedIndex();
         int selectedIndex3 = ComboBoxOutputCifrar.getSelectedIndex();
         String contenido = TextoKey.getText();
+        String contenido2 = TextoInput.getText();
+
         boolean aux=true;
 
         if (TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty()){
@@ -621,6 +623,17 @@ public class MainCifrarUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo KEY.");
             aux=false;
             }
+
+        if ((contenido2.length() > 16) & selectedIndex1==0 & aux) {
+            JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 16 caracteres ASCII");
+            aux=false;
+            }
+
+        if ((contenido2.length() > 16) & selectedIndex1==1 & aux) {
+            JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 32 dígitos hexadecimales");
+            aux=false;
+            }
+
 
 
         if ((RadioButton256.isSelected()) & aux) {

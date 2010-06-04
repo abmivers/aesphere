@@ -11,8 +11,8 @@ package aesphere;
  */
 public class Conversor {
 
-    public static byte[] stringToASCII (String texto) {
-        byte[] ascii = new byte[texto.length()];
+    public static byte[] stringToASCII (String texto, int tamano) {
+        byte[] ascii = new byte[tamano];
 
         for (int i = 0; i < texto.length(); i++) {
             ascii[i] = (byte) texto.charAt(i);
