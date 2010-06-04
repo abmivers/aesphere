@@ -34,22 +34,35 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         cadenaKey = Texto2;
         cadenaOutput = Texto3;
         tamanoclave = tamano;
+        byte[] salida = new byte[16];;
 
         if (opcionentrada==2 & opcionkey==2){
-            cifrarArchivoArchivo();
+            salida=cifrarArchivoArchivo();
         }
 
          if (opcionentrada==1 & opcionkey==1){
-            cifrarHexaHexa();
+            salida=cifrarHexaHexa();
         }
 
          if (opcionentrada==2 & opcionkey==1){
-            cifrarArchivoHexa();
+            salida=cifrarArchivoHexa();
         }
 
          if (opcionentrada==1 & opcionkey==2){
-            cifrarHexaArchivo();
+            salida=cifrarHexaArchivo();
         }
+
+        
+        
+        if (opcionsalida==0) {
+          jTextArea3.setText(Conversor.byteToTextString(salida));
+            
+        } else if (opcionsalida == 1){
+                jTextArea3.setText(Conversor.byteToHexString(salida));
+               }
+
+
+        Print.printArray("Ciphertext:    ", salida);
 
     }
 
@@ -188,7 +201,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     }
 
 
-    private void cifrarHexaArchivo(){
+
+    private byte[] cifrarHexaArchivo(){
 
         //esto se puede poner en el constructor y pasarselo a cada función..... XD
         int a1 = 0;
@@ -233,12 +247,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         byte[] out = new byte[16];
         aes.Cipher(in, out);
 
-        jTextArea3.setText(Conversor.byteToHexString(out));
-        Print.printArray("Ciphertext:    ", out);
+        return out;
 
     }
 
-    private void cifrarArchivoHexa (){
+    private byte[] cifrarArchivoHexa (){
 
         int a1 = 0;
         int a2 = 0;
@@ -282,15 +295,14 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         byte[] out = new byte[16];
         aes.Cipher(in, out);
 
-        jTextArea3.setText(Conversor.byteToHexString(out));
-        Print.printArray("Ciphertext:    ", out);
+        return out;
 
 
 
     }
 
 
-    private void cifrarHexaHexa (){
+    private byte[] cifrarHexaHexa (){
 
       //hay que hacer algo con el tema del tamaño de clave
       //rellenar con c0 hasta tamaño de clave
@@ -321,14 +333,14 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       jTextArea4.setText(Conversor.byteToHexString(key));
       byte[] out = new byte[16];
       aes.Cipher(in, out);
-      jTextArea3.setText(Conversor.byteToHexString(out));
-      Print.printArray("Ciphertext:    ", out);
+      
+      return out;
     }
 
 
 
 
-    private void cifrarArchivoArchivo (){
+    private byte[] cifrarArchivoArchivo (){
 
         int a1 = 0;
         int a2 = 0;
@@ -378,8 +390,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         byte[] out = new byte[16];
         aes.Cipher(in, out);
 
-        jTextArea3.setText(Conversor.byteToHexString(out));
-        Print.printArray("Ciphertext:    ", out);
+        return out;
 
     }
 
