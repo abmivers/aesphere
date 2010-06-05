@@ -667,10 +667,10 @@ public class MainCifrarUI extends javax.swing.JFrame {
             aux=false;
             }
 
-        if (comprobarRuta(contenido3)==false & aux) {
-            JOptionPane.showMessageDialog(this, "Error en la ruta del archivo");
-            aux=false;
-            }
+        //if (comprobarRuta(contenido3)==false & aux & selectedOutput == 2) {
+          //  JOptionPane.showMessageDialog(this, "Error en la ruta del archivo");
+         //   aux=false;
+          //  }
 
 
 
