@@ -5,7 +5,11 @@
 
 package aesphere;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
 /**
@@ -74,13 +78,14 @@ public class Conversor {
         return ascii;
     }
 
-    public static void byteToFile (String texto){
+    public static void byteToFile (String texto, String ruta){
 
         FileWriter fichero = null;
         PrintWriter pw = null;
+
         try
         {
-            fichero = new FileWriter("/Users/antonio/Downloads/output.txt");
+            fichero = new FileWriter(ruta);
             pw = new PrintWriter(fichero);
 
             pw.print(texto);
@@ -88,6 +93,7 @@ public class Conversor {
 
         } catch (Exception e) {
             e.printStackTrace();
+
         } finally {
            try {
            // Nuevamente aprovechamos el finally para
@@ -96,8 +102,40 @@ public class Conversor {
               fichero.close();
            } catch (Exception e2) {
               e2.printStackTrace();
+
            }
         }
+    }
+
+ public static byte[] getBytesFromFile(File file) throws Exception {
+        InputStream is = new FileInputStream(file);
+
+        // Get the size of the file
+        long length = file.length();
+
+        if (length > Integer.MAX_VALUE) {
+            // File is too large
+        }
+
+        // Create the byte array to hold the data
+        byte[] bytes = new byte[(int)length];
+
+        // Read in the bytes
+        int offset = 0;
+        int numRead = 0;
+        while (offset < bytes.length
+               && (numRead=is.read(bytes, offset, bytes.length-offset)) >= 0) {
+            offset += numRead;
+        }
+
+        // Ensure all the bytes have been read in
+        if (offset < bytes.length) {
+            throw new IOException("Could not completely read file "+file.getName());
+        }
+
+        // Close the input stream and return bytes
+        is.close();
+        return bytes;
     }
 
 }

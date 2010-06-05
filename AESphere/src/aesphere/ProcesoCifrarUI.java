@@ -85,7 +85,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
                }
         else if (opcionsalida==2){
             String cadenaArchivo = Conversor.byteToTextString(salida);
-            Conversor.byteToFile(cadenaArchivo);
+            Conversor.byteToFile(cadenaArchivo,cadenaOutput);
             jTextArea3.setText(Conversor.byteToTextString(salida));
             
         }
@@ -597,6 +597,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         String numCadena= String.valueOf(tamanoclave);
 
         jTextArea1.setText(cadenaInput);
+
+
 
         GetBytes getInput = new GetBytes(cadenaInput, a1);
         byte[] in = getInput.getBytes();

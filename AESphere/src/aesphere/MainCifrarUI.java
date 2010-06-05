@@ -11,6 +11,8 @@
 package aesphere;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -593,6 +595,36 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     }
 
+        public boolean comprobarRuta (String ruta) {
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        boolean resul = true;
+
+        try
+        {
+            fichero = new FileWriter(ruta);
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            resul=false;
+
+        } finally {
+           try {
+
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+
+           }
+        }
+
+        return resul;
+    }
+
 
     private boolean ComprobarDatos () {
         int selectedIndex1 = ComboBoxInputCifrar.getSelectedIndex();
@@ -600,6 +632,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         int selectedIndex3 = ComboBoxOutputCifrar.getSelectedIndex();
         String contenido = TextoKey.getText();
         String contenido2 = TextoInput.getText();
+        String contenido3 = TextoOutput.getText();
 
         boolean aux=true;
 
@@ -631,6 +664,11 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         if ((contenido2.length() > 32) & selectedIndex1==1 & aux) {
             JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 32 dígitos hexadecimales");
+            aux=false;
+            }
+
+        if (comprobarRuta(contenido3)==false & aux) {
+            JOptionPane.showMessageDialog(this, "Error en la ruta del archivo");
             aux=false;
             }
 

@@ -11,7 +11,7 @@
 
 package aesphere;
 
-import javax.swing.JOptionPane;
+import java.io.File;
 
 
 /**
@@ -40,58 +40,60 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         byte[] salida = new byte[16];;
 
         if (opcionentrada==2 & opcionkey==2){
-            salida=cifrarArchivoArchivo();
+            salida=descifrarArchivoArchivo();
         }
 
          if (opcionentrada==1 & opcionkey==1){
-            salida=cifrarHexaHexa();
+            salida=descifrarHexaHexa();
         }
 
          if (opcionentrada==2 & opcionkey==1){
-            salida=cifrarArchivoHexa();
+            salida=descifrarArchivoHexa();
         }
 
          if (opcionentrada==1 & opcionkey==2){
-            salida=cifrarHexaArchivo();
+            salida=descifrarHexaArchivo();
         }
 
          if (opcionentrada==0 & opcionkey==0){
-            salida=cifrarTextoTexto();
+            salida=descifrarTextoTexto();
         }
 
          if (opcionentrada==0 & opcionkey==1){
-            salida=cifrarTextoHexa();
+            salida=descifrarTextoHexa();
         }
 
          if (opcionentrada==0 & opcionkey==2){
-            salida=cifrarTextoArchivo();
+            salida=descifrarTextoArchivo();
         }
 
          if (opcionentrada==1 & opcionkey==0){
-            salida=cifrarHexaTexto();
+            salida=descifrarHexaTexto();
         }
 
          if (opcionentrada==2 & opcionkey==0){
-            salida=cifrarArchivoTexto();
+            salida=descifrarArchivoTexto();
         }
+
+        
 
         
         
         if (opcionsalida==0) {
-          jTextArea3.setText(Conversor.byteToTextString(salida));
+          TextoSalida.setText(Conversor.byteToTextString(salida));
             
         } else if (opcionsalida == 1){
-                jTextArea3.setText(Conversor.byteToHexString(salida));
+                TextoSalida.setText(Conversor.byteToHexString(salida));
                }
         else if (opcionsalida==2){
             String cadenaArchivo = Conversor.byteToTextString(salida);
-            Conversor.byteToFile(cadenaArchivo);
-            jTextArea3.setText(Conversor.byteToTextString(salida));
+            Conversor.byteToFile(cadenaArchivo,cadenaOutput);
+            TextoSalida.setText(Conversor.byteToTextString(salida));
             
         }
 
 
-        Print.printArray("Ciphertext:    ", salida);
+        Print.printArray("Plaintext:    ", salida);
 
     }
 
@@ -110,7 +112,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        TextoSalida = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
@@ -147,10 +149,10 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
             }
         });
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setLineWrap(true);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        TextoSalida.setColumns(20);
+        TextoSalida.setLineWrap(true);
+        TextoSalida.setRows(5);
+        jScrollPane3.setViewportView(TextoSalida);
 
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
@@ -225,7 +227,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
 
-    private byte [] cifrarArchivoTexto (){
+    private byte [] descifrarArchivoTexto (){
 
         //esto se puede poner en el constructor y pasarselo a cada función..... XD
         int a1 = 0;
@@ -261,20 +263,20 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         byte[] in = getInput.getBytes();
 
         byte[] key = Conversor.stringToASCII(cadenaKey,a2);
-        AESencrypt aes = new AESencrypt(key, a3);
+        AESdecrypt aesenc = new AESdecrypt(key, a3);
 
 
         jTextArea2.setText(Conversor.byteToHexString(in));
         jTextArea4.setText(Conversor.byteToHexString(key));
 
         byte[] out = new byte[16];
-        aes.Cipher(in, out);
+        aesenc.InvCipher(in, out);
 
         return out;
 
     }
 
-    private byte[] cifrarHexaTexto (){
+    private byte[] descifrarHexaTexto (){
 
         int a = 0;
       int b = 0;
@@ -298,17 +300,17 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.stringToASCII(cadenaKey,a);
 
 
-      AESencrypt aes = new AESencrypt(key, b);
+      AESdecrypt aesenc = new AESdecrypt(key, b);
       jTextArea2.setText(Conversor.byteToHexString(in));
       jTextArea4.setText(Conversor.byteToHexString(key));
       byte[] out = new byte[16];
-      aes.Cipher(in, out);
+      aesenc.InvCipher(in, out);
 
       return out;
 
     }
 
-    private byte[] cifrarTextoArchivo (){
+    private byte[] descifrarTextoArchivo (){
 
         int a1 = 0;
         int a2 = 0;
@@ -343,20 +345,20 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         GetBytes getKey = new GetBytes(cadenaKey, a2);
         byte[] key = getKey.getBytes();
-        AESencrypt aes = new AESencrypt(key, a3);
+        AESdecrypt aesenc = new AESdecrypt(key, a3);
 
 
         jTextArea2.setText(Conversor.byteToHexString(in));
         jTextArea4.setText(Conversor.byteToHexString(key));
 
         byte[] out = new byte[16];
-        aes.Cipher(in, out);
+        aesenc.InvCipher(in, out);
 
         return out;
 
     }
 
-    private byte[] cifrarTextoHexa (){
+    private byte[] descifrarTextoHexa (){
       int a = 0;
       int b = 0;
 
@@ -379,17 +381,17 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.hexStringToByte(cadenaKey,a);
 
 
-      AESencrypt aes = new AESencrypt(key, b);
+      AESdecrypt aesenc = new AESdecrypt(key, b);
       jTextArea2.setText(Conversor.byteToHexString(in));
       jTextArea4.setText(Conversor.byteToHexString(key));
       byte[] out = new byte[16];
-      aes.Cipher(in, out);
+      aesenc.InvCipher(in, out);
 
       return out;
 
     }
 
-    private byte[] cifrarTextoTexto (){
+    private byte[] descifrarTextoTexto (){
       int a = 0;
       int b = 0;
 
@@ -412,11 +414,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.stringToASCII(cadenaKey,a);
 
 
-      AESencrypt aes = new AESencrypt(key, b);
+      AESdecrypt aesenc = new AESdecrypt(key, b);
       jTextArea2.setText(Conversor.byteToHexString(in));
       jTextArea4.setText(Conversor.byteToHexString(key));
       byte[] out = new byte[16];
-      aes.Cipher(in, out);
+      aesenc.InvCipher(in, out);
 
       return out;
 
@@ -424,7 +426,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
 
 
-    private byte[] cifrarHexaArchivo(){
+    private byte[] descifrarHexaArchivo(){
 
         int a1 = 0;
         int a2 = 0;
@@ -459,20 +461,20 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         GetBytes getKey = new GetBytes(cadenaKey, a2);
         byte[] key = getKey.getBytes();
-        AESencrypt aes = new AESencrypt(key, a3);
+        AESdecrypt aesenc = new AESdecrypt(key, a3);
 
 
         jTextArea2.setText(Conversor.byteToHexString(in));
         jTextArea4.setText(Conversor.byteToHexString(key));
 
         byte[] out = new byte[16];
-        aes.Cipher(in, out);
+        aesenc.InvCipher(in, out);
 
         return out;
 
     }
 
-    private byte[] cifrarArchivoHexa (){
+    private byte[] descifrarArchivoHexa (){
 
         int a1 = 0;
         int a2 = 0;
@@ -507,14 +509,14 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         byte[] in = getInput.getBytes();
 
         byte[] key = Conversor.hexStringToByte(cadenaKey,a2);
-        AESencrypt aes = new AESencrypt(key, a3);
+        AESdecrypt aesenc = new AESdecrypt(key, a3);
 
 
         jTextArea2.setText(Conversor.byteToHexString(in));
         jTextArea4.setText(Conversor.byteToHexString(key));
 
         byte[] out = new byte[16];
-        aes.Cipher(in, out);
+        aesenc.InvCipher(in, out);
 
         return out;
 
@@ -523,7 +525,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
     }
 
 
-    private byte[] cifrarHexaHexa (){
+    private byte[] descifrarHexaHexa (){
 
       //hay que hacer algo con el tema del tamaño de clave
       //rellenar con c0 hasta tamaño de clave o con ceros?
@@ -549,11 +551,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.hexStringToByte(cadenaKey,a);
 
       
-      AESencrypt aes = new AESencrypt(key, b);
+      AESdecrypt aesdec = new AESdecrypt(key, b);
       jTextArea2.setText(Conversor.byteToHexString(in));
       jTextArea4.setText(Conversor.byteToHexString(key));
       byte[] out = new byte[16];
-      aes.Cipher(in, out);
+      aesdec.InvCipher(in, out);
       
       return out;
     }
@@ -561,7 +563,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
 
 
-    private byte[] cifrarArchivoArchivo (){
+    private byte[] descifrarArchivoArchivo (){
 
         int a1 = 0;
         int a2 = 0;
@@ -593,23 +595,17 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         }
 
 
-        //paso el integer a cadena. Es solo para probar. Se puede borrar
-        String numCadena= String.valueOf(tamanoclave);
+      
+      
+      GetBytes getInput = new GetBytes(cadenaInput, a1);
+      byte[] in = getInput.getBytes();
+      GetBytes getKey = new GetBytes(cadenaKey, a2);
+      byte[] key = getKey.getBytes();
+      AESdecrypt aesDec = new AESdecrypt(key, a3);
 
-        jTextArea1.setText(cadenaInput);
+      byte[] out = new byte[16];
+      aesDec.InvCipher(in, out);
 
-        GetBytes getInput = new GetBytes(cadenaInput, a1);
-        byte[] in = getInput.getBytes();
-        GetBytes getKey = new GetBytes(cadenaKey, a2);
-        byte[] key = getKey.getBytes();
-        AESencrypt aes = new AESencrypt(key, a3);
-
-
-        jTextArea2.setText(Conversor.byteToHexString(in));
-        jTextArea4.setText(Conversor.byteToHexString(key));
-
-        byte[] out = new byte[16];
-        aes.Cipher(in, out);
 
         return out;
 
@@ -624,12 +620,13 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         byte [] bloqueCifra;
+     
 
         //bloqueCifra = Conversor.stringToASCII(jTextArea1.getText());
         bloqueCifra = Conversor.hexStringToByte(jTextArea1.getText(),16);
 
-        //jTextArea3.setText(Conversor.byteToTextString(bloqueCifra));
-        jTextArea2.setText(Conversor.byteToHexString(bloqueCifra).trim());
+        //TextoSalida.setText(Conversor.byteToTextString(bloqueCifra));
+        jTextArea2.setText(Conversor.byteToTextString(bloqueCifra).trim());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -639,6 +636,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Salir;
+    private javax.swing.JTextArea TextoSalida;
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -648,7 +646,6 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
