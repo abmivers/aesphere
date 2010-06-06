@@ -636,78 +636,78 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         boolean aux=true;
 
-        if (TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty()){
+        if ( aux && TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty() ){
            JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
            aux=false;
         }
 
-        if (TextoOutput.getText().isEmpty() & selectedIndex3==2 & aux ){
+        if ( aux && (selectedIndex3==2) && TextoOutput.getText().isEmpty() ){
            JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
            aux=false;
         }
 
-        if ( ((selectedIndex1==1) &  (ComprobarHexadecimal(TextoInput.getText()) == false)) & aux)
+        if ( aux && (selectedIndex1==1) && !ComprobarHexadecimal(TextoInput.getText()) )
              {
                  JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo INPUT.");
                  aux=false;
              }
-        if (( selectedIndex2==1)  &  (ComprobarHexadecimal(TextoKey.getText()) == false) & aux)
+        if ( aux && (selectedIndex2==1) && !ComprobarHexadecimal(TextoKey.getText()) )
              {
             JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo KEY.");
             aux=false;
             }
 
-        if ((contenido2.length() > 16) & selectedIndex1==0 & aux) {
+        if ( aux && (selectedIndex1==0) && (contenido2.length() > 16) ) {
             JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 16 caracteres ASCII");
             aux=false;
             }
 
-        if ((contenido2.length() > 32) & selectedIndex1==1 & aux) {
+        if ( aux && (selectedIndex1==1) && (contenido2.length() > 32) ) {
             JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 32 dígitos hexadecimales");
             aux=false;
             }
 
-        if (comprobarRuta(contenido3)==false & aux & selectedIndex3 == 2) {
+        if (aux && (selectedIndex3 == 2) && !comprobarRuta(contenido3) ) {
             JOptionPane.showMessageDialog(this, "Error en la ruta del archivo");
             aux=false;
             }
 
 
 
-        if ((RadioButton256.isSelected()) & aux) {
+        if (aux && RadioButton256.isSelected() ) {
 
-            if ((contenido.length() > 32) & selectedIndex2==0) {
+            if ( aux && (selectedIndex2==0) && (contenido.length() > 32) ) {
             JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 32 caracteres ASCII");
             aux=false;
             }
 
-            if ((contenido.length() > 64) & selectedIndex2==1) {
+            if ( aux && (selectedIndex2==1) && (contenido.length() > 64) ) {
             JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 64 dígitos hexadecimales");
             aux=false;
             }
         }
 
-        if ((RadioButton192.isSelected()) & aux) {
+        if (aux && RadioButton192.isSelected() ) {
 
-            if ((contenido.length() > 24) & selectedIndex2==0) {
+            if ( aux && (selectedIndex2==0) && (contenido.length() > 24)  ) {
             JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 24 caracteres ASCII");
             aux=false;
             }
 
-            if ((contenido.length() > 48) & selectedIndex2==1) {
+            if ( aux && (selectedIndex2==1) && (contenido.length() > 48) ) {
             JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 48 dígitos hexadecimales");
             aux=false;
             }
         }
 
-        if ((RadioButton128.isSelected()) & aux) {
+        if ( aux && RadioButton128.isSelected() ) {
 
-            if ((contenido.length() > 16) & selectedIndex2==0) {
+            if ( aux && (selectedIndex2==0) && (contenido.length() > 16)  ) {
             JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 16 caracteres ASCII");
             aux=false;
             }
 
-            if ((contenido.length() > 32) & selectedIndex2==1) {
+            if ( aux && (selectedIndex2==1) && (contenido.length() > 32) ) {
             JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 32 dígitos hexadecimales");
             aux=false;
             }

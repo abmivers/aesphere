@@ -80,7 +80,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         
         
         if (opcionsalida==0) {
-          TextoSalida.setText(Conversor.byteToTextString(salida));
+          TextoSalida.setText(Conversor.byteToTextString(salida).trim());
             
         } else if (opcionsalida == 1){
                 TextoSalida.setText(Conversor.byteToHexString(salida));

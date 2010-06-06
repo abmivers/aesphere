@@ -50,20 +50,18 @@ public class Conversor {
         String texto = new String();
 
         for (byte letra: ascii) {
-            texto = texto + Integer.toHexString(byteToInt(letra)) + " ";
+            texto = texto + String.format("%02x ",byteToInt(letra));
         }
         
         return texto;
     }
 
-    //falla para impares. Accede al ultimo caracter q esta fuera del string
     public static byte[] hexStringToByte (String texto, int tamano) {
         //byte[] ascii = new byte [texto.length() / 2];
         byte[] ascii = new byte [tamano];
 
         for (int i = 0; i < texto.length(); i += 2) {
             
-            //solucion anzo. Mirar si es correcta
             if ((i==texto.length()-1) & (texto.length()%2==1) ) {
                 ascii[i / 2] = (byte)
                     ( (Character.digit(texto.charAt(i), 16) << 4));
