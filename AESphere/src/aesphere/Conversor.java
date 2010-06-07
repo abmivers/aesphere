@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author admin
  */
 public class Conversor {
-
+    
     public static byte[] stringToASCII (String texto, int tamano) {
         byte[] ascii = new byte[tamano];
 
@@ -71,6 +71,8 @@ public class Conversor {
         /* si hay un número impar de dígitos hexadecimales, rellenamos el String
          * con un 0 a la izquierda
          */
+        if ( (texto.length() % 2) == 1 ) texto = "0" + texto;
+
         if ((texto.length()/2) <= tamano) {
             /* por diseño de la aplicación, cuando se trate la clave nunca
              * se le pasará un String que contenga más bytes de los que indica
