@@ -266,13 +266,13 @@ public class MainUI extends javax.swing.JFrame {
 
     private void BotonHerramientasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonHerramientasMousePressed
         // TODO add your handling code here:
-        BotonHerramientas.setIcon(new ImageIcon("/Users/antonio/Documents/EUI/TFC/AES Pics/herramientasPres.png"));
+        BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientasPres.png")));
 
     }//GEN-LAST:event_BotonHerramientasMousePressed
 
     private void BotonHerramientasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonHerramientasMouseReleased
         // TODO add your handling code here:
-                BotonHerramientas.setIcon(new ImageIcon("/Users/antonio/Documents/EUI/TFC/AES Pics/herramientas.png"));
+        BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientas.png")));
 
     }//GEN-LAST:event_BotonHerramientasMouseReleased
 
