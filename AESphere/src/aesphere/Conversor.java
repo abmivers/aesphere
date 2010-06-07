@@ -19,26 +19,6 @@ import javax.swing.JOptionPane;
  */
 public class Conversor {
 
-        public static void main (String[] args) {
-        byte[] ascii = null;
-
-        try {
-            File fi = new File("c:/caca.txt");
-            InputStream is = new FileInputStream(fi);
-            int l = (int) fi.length();
-
-            ascii = new byte[l];
-            is.read(ascii, 0, l);
-
-            System.out.println(Conversor.byteToTextString(ascii));
-            
-            JOptionPane.showMessageDialog(null, "LOOK AT THIS, MOTHERFUCKER!!");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
     public static byte[] stringToASCII (String texto, int tamano) {
         byte[] ascii = null;
         int slength = texto.length();
