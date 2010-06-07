@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,27 +53,50 @@ public class Conversor {
         for (byte letra: ascii) {
             texto = texto + String.format("%02x ",byteToInt(letra));
         }
-        
         return texto;
     }
 
+    /**
+     * Devuelve el array de bytes correspondiente al String con dígitos
+     * hexadecimales sin espacios que se le pasa, rellenándolo con 0 a la
+     * izquierda hasta el tamaño indicado en tamano.
+     * @param texto El String con los dígitos hexadecimales sin espacios
+     * @param tamano El tamaño mínimo del array resultante
+     * @return Un array de bytes con la representación byte a byte de los
+     * dígitos hexadecimales de la entrada
+     */
     public static byte[] hexStringToByte (String texto, int tamano) {
-        //byte[] ascii = new byte [texto.length() / 2];
-        byte[] ascii = new byte [tamano];
+        byte[] ascii = null;
 
-        for (int i = 0; i < texto.length(); i += 2) {
+        /* si hay un número impar de dígitos hexadecimales, rellenamos el String
+         * con un 0 a la izquierda
+         */
+        if ((texto.length()/2) <= tamano) {
+            /* por diseño de la aplicación, cuando se trate la clave nunca
+             * se le pasará un String que contenga más bytes de los que indica
+             * tamano
+             */
+            ascii = new byte [tamano];
+
+            for (int i = 0; i < texto.length(); i += 2) {
+                ascii[tamano + (i - texto.length())/2] = (byte)
+                    ( (Character.digit(texto.charAt(i), 16) << 4)
+                    + (Character.digit(texto.charAt(i+1), 16)) );
+            }
+
+        } else {
+            /* por diseño de la aplicación, si el String que se le pasa tiene
+             * más bytes que los indicados en tamano, sabemos que estamos
+             * tratando la cadena de entrada
+             */
+            ascii = new byte[texto.length()/2];
             
-            if ((i==texto.length()-1) & (texto.length()%2==1) ) {
-                ascii[i / 2] = (byte)
-                    ( (Character.digit(texto.charAt(i), 16) << 4));
-            } else {
-
-            ascii[i / 2] = (byte)
+            for (int i = 0; i < texto.length(); i += 2) {
+                ascii[i/2] = (byte)
                     ( (Character.digit(texto.charAt(i), 16) << 4)
                     + (Character.digit(texto.charAt(i+1), 16)) );
             }
         }
-
         return ascii;
     }
 
