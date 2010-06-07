@@ -97,12 +97,12 @@ public class Conversor {
      */
     public static byte[] hexStringToByte (String texto, int tamano) {
         byte[] ascii = null;
-        int slength = texto.length();
 
         /* si hay un número impar de dígitos hexadecimales, rellenamos el String
          * con un 0 a la izquierda
          */
-        if ( (slength % 2) == 1 ) texto = "0" + texto;
+        if ( (texto.length() % 2) == 1 ) texto = "0" + texto;
+        int slength = texto.length();
 
         if ((slength/2) <= tamano) {
             /* por diseño de la aplicación, cuando se trate la clave nunca
