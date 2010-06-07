@@ -18,14 +18,44 @@ import javax.swing.JOptionPane;
  * @author admin
  */
 public class Conversor {
-    
-    public static byte[] stringToASCII (String texto, int tamano) {
-        byte[] ascii = new byte[tamano];
 
-        for (int i = 0; i < texto.length(); i++) {
-            ascii[i] = (byte) texto.charAt(i);
+        public static void main (String[] args) {
+        byte[] ascii = null;
+
+        try {
+            File fi = new File("c:/caca.txt");
+            InputStream is = new FileInputStream(fi);
+            int l = (int) fi.length();
+
+            ascii = new byte[l];
+            is.read(ascii, 0, l);
+
+            System.out.println(Conversor.byteToTextString(ascii));
+            
+            JOptionPane.showMessageDialog(null, "LOOK AT THIS, MOTHERFUCKER!!");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
+    }
 
+    public static byte[] stringToASCII (String texto, int tamano) {
+        byte[] ascii = null;
+        int slength = texto.length();
+
+        if (slength <= tamano){
+            ascii = new byte[tamano];
+
+            for (int i = 0; i < slength; i++) {
+                ascii[tamano - slength + i] = (byte) texto.charAt(i);
+            }
+        } else {
+            ascii = new byte[slength];
+
+            for (int i = 0; i < slength; i++) {
+                ascii[i] = (byte) texto.charAt(i);
+            }
+        }
         return ascii;
     }
 
@@ -67,21 +97,22 @@ public class Conversor {
      */
     public static byte[] hexStringToByte (String texto, int tamano) {
         byte[] ascii = null;
+        int slength = texto.length();
 
         /* si hay un número impar de dígitos hexadecimales, rellenamos el String
          * con un 0 a la izquierda
          */
-        if ( (texto.length() % 2) == 1 ) texto = "0" + texto;
+        if ( (slength % 2) == 1 ) texto = "0" + texto;
 
-        if ((texto.length()/2) <= tamano) {
+        if ((slength/2) <= tamano) {
             /* por diseño de la aplicación, cuando se trate la clave nunca
              * se le pasará un String que contenga más bytes de los que indica
              * tamano
              */
             ascii = new byte [tamano];
 
-            for (int i = 0; i < texto.length(); i += 2) {
-                ascii[tamano + (i - texto.length())/2] = (byte)
+            for (int i = 0; i < slength; i += 2) {
+                ascii[tamano + (i - slength)/2] = (byte)
                     ( (Character.digit(texto.charAt(i), 16) << 4)
                     + (Character.digit(texto.charAt(i+1), 16)) );
             }
@@ -91,9 +122,9 @@ public class Conversor {
              * más bytes que los indicados en tamano, sabemos que estamos
              * tratando la cadena de entrada
              */
-            ascii = new byte[texto.length()/2];
+            ascii = new byte[slength/2];
             
-            for (int i = 0; i < texto.length(); i += 2) {
+            for (int i = 0; i < slength; i += 2) {
                 ascii[i/2] = (byte)
                     ( (Character.digit(texto.charAt(i), 16) << 4)
                     + (Character.digit(texto.charAt(i+1), 16)) );
