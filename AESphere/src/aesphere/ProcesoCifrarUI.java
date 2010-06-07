@@ -11,7 +11,7 @@
 
 package aesphere;
 
-import javax.swing.JOptionPane;
+import java.io.File;
 
 
 /**
@@ -604,6 +604,27 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         byte[] in = getInput.getBytes();
         GetBytes getKey = new GetBytes(cadenaKey, a2);
         byte[] key = getKey.getBytes();
+
+        byte [] in2 = new byte [a1];
+        byte [] key2 = new byte [a2];
+
+        try {
+         in2 = ReadFileIntoByteArray.getBytesFromFile(new File("/Users/antonio/Downloads/plaintext.txt"));
+         key2 = ReadFileIntoByteArray.getBytesFromFile(new File("/Users/antonio/Downloads/key.txt"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
+
+        System.out.println("in: "+Conversor.byteToHexString(in));
+        System.out.println("in2: "+Conversor.byteToHexString(in2));
+        System.out.println("key: "+Conversor.byteToHexString(key));
+        System.out.println("key2: "+Conversor.byteToHexString(key2));
+
         AESencrypt aes = new AESencrypt(key, a3);
 
 

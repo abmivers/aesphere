@@ -247,6 +247,9 @@ public class MainUI extends javax.swing.JFrame {
 
     private void BotonCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCifrarActionPerformed
         // TODO add your handling code here:
+
+
+
         this.setEnabled(false);
         if (hijoActual == null) {
             hijoActual = new MainCifrarUI(this);

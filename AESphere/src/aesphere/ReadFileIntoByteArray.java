@@ -53,7 +53,7 @@ public class ReadFileIntoByteArray {
      * @param file File this method should read
      * @return byte[] Returns a byte[] array of the contents of the file
      */
-    private static byte[] getBytesFromFile(File file) throws IOException {
+    public static byte[] getBytesFromFile(File file) throws IOException {
 
         InputStream is = new FileInputStream(file);
         System.out.println("\nDEBUG: FileInputStream is " + file);
