@@ -648,11 +648,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         byte [] bloqueCifra;
 
-        //bloqueCifra = Conversor.stringToASCII(jTextArea1.getText());
-        bloqueCifra = Conversor.hexStringToByte(jTextArea1.getText(),16);
+        bloqueCifra = Conversor.stringToASCII(jTextArea1.getText(), 16);
+        //bloqueCifra = Conversor.hexStringToByte(jTextArea1.getText(),16);
 
-        //jTextArea3.setText(Conversor.byteToTextString(bloqueCifra));
-        jTextArea2.setText(Conversor.byteToHexString(bloqueCifra).trim());
+        jTextArea3.setText(Conversor.byteToTextString(bloqueCifra).trim());
+        //jTextArea2.setText(Conversor.byteToHexString(bloqueCifra).trim());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
