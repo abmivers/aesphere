@@ -84,8 +84,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
                 jTextArea3.setText(Conversor.byteToHexString(salida));
                }
         else if (opcionsalida==2){
-            String cadenaArchivo = Conversor.byteToTextString(salida);
-            Conversor.byteToFile(salida,cadenaOutput);
+            Conversor.byteToFile(salida,cadenaOutput) ;
             jTextArea3.setText(Conversor.byteToTextString(salida));
             
         }
