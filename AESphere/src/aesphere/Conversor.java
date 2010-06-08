@@ -61,7 +61,7 @@ public class Conversor {
         String texto = new String();
 
         for (byte letra: ascii) {
-            texto = texto + String.format("%02x ",byteToInt(letra));
+            texto = texto + String.format("%02x",byteToInt(letra));
         }
         return texto;
     }
@@ -113,7 +113,7 @@ public class Conversor {
         return ascii;
     }
 
-    public static void byteToFile (String texto, String ruta){
+    public static void byteToFile (byte [] texto, String ruta){
 
         FileWriter fichero = null;
         PrintWriter pw = null;
@@ -122,6 +122,7 @@ public class Conversor {
         {
             fichero = new FileWriter(ruta);
             pw = new PrintWriter(fichero);
+
 
             pw.print(texto);
            
