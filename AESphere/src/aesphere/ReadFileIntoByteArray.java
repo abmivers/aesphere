@@ -106,7 +106,7 @@ public class ReadFileIntoByteArray {
         byte[] fileArray = null;
 
         try {
-            fileArray = getBytesFromFile(new File("/Users/antonio/output.txt"));
+            fileArray = getBytesFromFile(new File("c:/plaintext.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
