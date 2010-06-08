@@ -86,8 +86,8 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
                 TextoSalida.setText(Conversor.byteToHexString(salida));
                }
         else if (opcionsalida==2){
-            String cadenaArchivo = Conversor.byteToTextString(salida);
-            Conversor.byteToFile(cadenaArchivo,cadenaOutput);
+            
+            Conversor.byteToFile(salida,cadenaOutput);
             TextoSalida.setText(Conversor.byteToTextString(salida));
             
         }
@@ -259,8 +259,20 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         }
 
-        GetBytes getInput = new GetBytes(cadenaInput, a1);
-        byte[] in = getInput.getBytes();
+        //GetBytes getInput = new GetBytes(cadenaInput, a1);
+        //byte[] in = getInput.getBytes();
+        byte [] in2 = new byte [a1];
+        byte [] in = new byte [a1];
+
+        try {
+         in2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        in= Conversor.hexStringToByte(Conversor.byteToHexString(in2), a1);
 
         byte[] key = Conversor.stringToASCII(cadenaKey,a2);
         AESdecrypt aesenc = new AESdecrypt(key, a3);
@@ -343,8 +355,23 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         byte[] in = Conversor.stringToASCII(cadenaInput,16);
 
-        GetBytes getKey = new GetBytes(cadenaKey, a2);
-        byte[] key = getKey.getBytes();
+        //GetBytes getKey = new GetBytes(cadenaKey, a2);
+        //byte[] key = getKey.getBytes();
+
+
+        byte [] key2 = new byte [a2];
+        byte [] key = new byte [a2];
+
+        try {
+         key2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        key=Conversor.hexStringToByte(Conversor.byteToHexString(key2), a2);
+
+
         AESdecrypt aesenc = new AESdecrypt(key, a3);
 
 
@@ -459,8 +486,21 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         byte[] in = Conversor.hexStringToByte(cadenaInput,16);
 
-        GetBytes getKey = new GetBytes(cadenaKey, a2);
-        byte[] key = getKey.getBytes();
+        //GetBytes getKey = new GetBytes(cadenaKey, a2);
+        //byte[] key = getKey.getBytes();
+
+        byte [] key2 = new byte [a2];
+        byte [] key = new byte [a2];
+
+        try {
+         key2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        key=Conversor.hexStringToByte(Conversor.byteToHexString(key2), a2);
+
         AESdecrypt aesenc = new AESdecrypt(key, a3);
 
 
@@ -505,8 +545,21 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         }
 
-        GetBytes getInput = new GetBytes(cadenaInput, a1);
-        byte[] in = getInput.getBytes();
+        //GetBytes getInput = new GetBytes(cadenaInput, a1);
+        //byte[] in = getInput.getBytes();
+
+        byte [] in2 = new byte [a1];
+        byte [] in = new byte [a1];
+
+        try {
+         in2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        in= Conversor.hexStringToByte(Conversor.byteToHexString(in2), a1);
 
         byte[] key = Conversor.hexStringToByte(cadenaKey,a2);
         AESdecrypt aesenc = new AESdecrypt(key, a3);
@@ -597,14 +650,41 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
       
       
-      GetBytes getInput = new GetBytes(cadenaInput, a1);
-      byte[] in = getInput.getBytes();
-      GetBytes getKey = new GetBytes(cadenaKey, a2);
-      byte[] key = getKey.getBytes();
+      //GetBytes getInput = new GetBytes(cadenaInput, a1);
+      //byte[] in = getInput.getBytes();
+      //GetBytes getKey = new GetBytes(cadenaKey, a2);
+      //byte[] key = getKey.getBytes();
+
+
+        byte [] in2 = new byte [a1];
+        byte [] key2 = new byte [a2];
+        byte [] in = new byte [a1];
+        byte [] key = new byte [a2];
+
+        try {
+         in2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
+         key2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
+
+        System.out.println("in: "+Conversor.byteToTextString(in2));
+        in= Conversor.hexStringToByte(Conversor.byteToHexString(in2), a1);
+        //System.out.println("key: "+Conversor.byteToHexString(key));
+        key=Conversor.hexStringToByte(Conversor.byteToHexString(key2), a2);
+
       AESdecrypt aesDec = new AESdecrypt(key, a3);
 
       byte[] out = new byte[16];
       aesDec.InvCipher(in, out);
+        //jTextArea1.setText();
+        jTextArea2.setText(Conversor.byteToHexString(in));
+        jTextArea4.setText(Conversor.byteToHexString(key));
 
 
         return out;
