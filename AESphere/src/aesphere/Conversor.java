@@ -7,11 +7,10 @@ package aesphere;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
-import javax.swing.JOptionPane;
+import java.io.OutputStream;
 
 /**
  *
@@ -66,6 +65,11 @@ public class Conversor {
         return texto;
     }
 
+    public static byte hexPairToByte (String par, int offset){
+        return (byte) ( (Character.digit(par.charAt(offset), 16) << 4)
+                + (Character.digit(par.charAt(offset + 1), 16)) );
+    }
+
     /**
      * Devuelve el array de bytes correspondiente al String con dígitos
      * hexadecimales sin espacios que se le pasa, rellenándolo con 0 a la
@@ -91,11 +95,8 @@ public class Conversor {
              */
             ascii = new byte [tamano];
 
-            for (int i = 0; i < slength; i += 2) {
-                ascii[tamano + (i - slength)/2] = (byte)
-                    ( (Character.digit(texto.charAt(i), 16) << 4)
-                    + (Character.digit(texto.charAt(i+1), 16)) );
-            }
+            for (int i = 0; i < slength; i += 2) 
+                ascii[tamano + (i - slength)/2] = hexPairToByte(texto,i);
 
         } else {
             /* por diseño de la aplicación, si el String que se le pasa tiene
@@ -114,18 +115,24 @@ public class Conversor {
     }
 
     public static void byteToFile (byte [] texto, String ruta){
-
-        FileWriter fichero = null;
-        PrintWriter pw = null;
+        OutputStream fichero = null;
+        byte [] sinCero;
 
         try
         {
-            fichero = new FileWriter(ruta);
-            pw = new PrintWriter(fichero);
+            fichero = new FileOutputStream(ruta);
 
+            int  i = 0;
+            while(texto[i] == 0) i++;
+            sinCero = new byte [texto.length - i];
+            for (int j = 0; i < texto.length; j++, i++){
+                if (j < sinCero.length) sinCero[j] = texto[i];
+                else System.out.println("WARNING: Puede que el archivo no se" +
+                        "haya escrito bien");
+            }
+            
+            fichero.write(sinCero);
 
-            pw.print(texto);
-           
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -141,37 +148,6 @@ public class Conversor {
 
            }
         }
-    }
-
- public static byte[] getBytesFromFile(File file) throws Exception {
-        InputStream is = new FileInputStream(file);
-
-        // Get the size of the file
-        long length = file.length();
-
-        if (length > Integer.MAX_VALUE) {
-            // File is too large
-        }
-
-        // Create the byte array to hold the data
-        byte[] bytes = new byte[(int)length];
-
-        // Read in the bytes
-        int offset = 0;
-        int numRead = 0;
-        while (offset < bytes.length
-               && (numRead=is.read(bytes, offset, bytes.length-offset)) >= 0) {
-            offset += numRead;
-        }
-
-        // Ensure all the bytes have been read in
-        if (offset < bytes.length) {
-            throw new IOException("Could not completely read file "+file.getName());
-        }
-
-        // Close the input stream and return bytes
-        is.close();
-        return bytes;
     }
 
 }
