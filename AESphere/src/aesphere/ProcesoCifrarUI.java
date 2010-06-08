@@ -18,6 +18,7 @@ import java.io.File;
  *
  * @author antonio
  */
+
 public class ProcesoCifrarUI extends javax.swing.JFrame {
 
     private String cadenaInput;

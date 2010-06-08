@@ -84,14 +84,14 @@ public class AESencrypt {
    }
 
    // SubBytes: apply Sbox substitution to each byte of state
-   private void SubBytes(byte[][] state) {
+   public void SubBytes(byte[][] state) {
       for (int row = 0; row < 4; row++)
          for (int col = 0; col < Nb; col++)
             state[row][col] = tab.SBox(state[row][col]);
    }
 
    // ShiftRows: simple circular shift of rows 1, 2, 3 by 1, 2, 3
-   private void ShiftRows(byte[][] state) {
+   public void ShiftRows(byte[][] state) {
       byte[] t = new byte[4];
        for (int r = 1; r < 4; r++) {
          for (int c = 0; c < Nb; c++)
@@ -102,7 +102,7 @@ public class AESencrypt {
    }
 
    // MixColumns: complex and sophisticated mixing of columns
-   private void MixColumns(byte[][] s) {
+   public void MixColumns(byte[][] s) {
       int[] sp = new int[4];
       byte b02 = (byte)0x02, b03 = (byte)0x03;
       for (int c = 0; c < 4; c++) {
@@ -119,7 +119,7 @@ public class AESencrypt {
    }
 
    // AddRoundKey: xor a portion of expanded key with state
-   private void AddRoundKey(byte[][] state) {
+   public void AddRoundKey(byte[][] state) {
       for (int c = 0; c < Nb; c++)
          for (int r = 0; r < 4; r++)
             state[r][c] = (byte)(state[r][c] ^ w[wCount++]);
