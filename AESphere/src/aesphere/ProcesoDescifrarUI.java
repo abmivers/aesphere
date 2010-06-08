@@ -85,9 +85,8 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         } else if (opcionsalida == 1){
                 TextoSalida.setText(Conversor.byteToHexString(salida));
                }
-        else if (opcionsalida==2){
-            
-            Conversor.byteToFile(salida,cadenaOutput);
+        else if (opcionsalida==2){   
+            Conversor.byteToFile(salida,cadenaOutput) ;
             TextoSalida.setText(Conversor.byteToTextString(salida));
             
         }
