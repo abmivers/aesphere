@@ -18,6 +18,11 @@ public class AESencrypt {
    private AEStables tab; // all the tables needed for AES
    private byte[] w; // the expanded key
 
+
+   public AESencrypt(){
+
+   }
+
    // AESencrypt: constructor for class.  Mainly expands key
    public AESencrypt(byte[] key, int NkIn) {
       Nk = NkIn; // words in a key, = 4, or 6, or 8

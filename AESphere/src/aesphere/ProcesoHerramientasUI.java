@@ -23,6 +23,8 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
     public ProcesoHerramientasUI(MainUI padre) {
         initComponents();
         this.setSize(800, 622);
+
+
     }
 
     /** This method is called from within the constructor to
@@ -325,7 +327,24 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
+    private byte [][] rellenarmatriz () {
+        byte[][] matriz = new byte[4][4];
 
+        matriz [0][0]= Conversor.hexPairToByte(a11.getText(), 0);
+        matriz [0][1]= Conversor.hexPairToByte(a12.getText(), 0);
+        matriz [0][2]= Conversor.hexPairToByte(a13.getText(), 0);
+        matriz [1][4]= Conversor.hexPairToByte(a14.getText(), 0);
+        matriz [2][1]= Conversor.hexPairToByte(a21.getText(), 0);
+        matriz [2][2]= Conversor.hexPairToByte(a22.getText(), 0);
+        matriz [2][3]= Conversor.hexPairToByte(a23.getText(), 0);
+        matriz [2][4]= Conversor.hexPairToByte(a24.getText(), 0);
+        matriz [4][1]= Conversor.hexPairToByte(a31.getText(), 0);
+        matriz [4][2]= Conversor.hexPairToByte(a32.getText(), 0);
+        matriz [4][3]= Conversor.hexPairToByte(a33.getText(), 0);
+        matriz [4][4]= Conversor.hexPairToByte(a34.getText(), 0);
+
+        return matriz;
+    }
 
 
 
@@ -344,20 +363,16 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        byte[][] matriz = new byte[4][4];
+        AESencrypt objeto = new AESencrypt();
 
-       /* matriz [1][1]= ;
-        matriz [1][2]= ;
-        matriz [1][3]= ;
-        matriz [1][4]= ;
-        matriz [2][1]= ;
-        matriz [2][2]= ;
-        matriz [2][3]= ;
-        matriz [2][4]= ;
-        matriz [4][1]= ;
-        matriz [4][2]= ;
-        matriz [4][3]= ;
-        matriz [4][4]= ;*/
+        byte [][] matrix = rellenarmatriz();
+
+        objeto.SubBytes(matrix);
+
+        System.out.println(matrix.toString());
+
+
+
 
 
 
