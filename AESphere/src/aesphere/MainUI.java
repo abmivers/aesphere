@@ -261,6 +261,13 @@ public class MainUI extends javax.swing.JFrame {
 
     private void BotonHerramientasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonHerramientasActionPerformed
         // TODO add your handling code here:
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new ProcesoHerramientasUI(this);
+            hijoActual.setLocationRelativeTo(null);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
     }//GEN-LAST:event_BotonHerramientasActionPerformed
 
     private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
@@ -269,13 +276,13 @@ public class MainUI extends javax.swing.JFrame {
 
     private void BotonHerramientasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonHerramientasMousePressed
         // TODO add your handling code here:
-        BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientasPres.png")));
+        //BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientasPres.png")));
 
     }//GEN-LAST:event_BotonHerramientasMousePressed
 
     private void BotonHerramientasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonHerramientasMouseReleased
         // TODO add your handling code here:
-        BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientas.png")));
+        //BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientas.png")));
 
     }//GEN-LAST:event_BotonHerramientasMouseReleased
 
