@@ -17,9 +17,9 @@ public class AEStest {
       // for 128-bit key, use 16, 16, and 4 below
       // for 192-bit key, use 16, 24 and 6 below
       // for 256-bit key, use 16, 32 and 8 below
-      GetBytes getInput = new GetBytes("/Users/antonio/Downloads/plaintext.txt", 16);
+      GetBytes getInput = new GetBytes("/Users/antonio/plaintext.txt", 16);
       byte[] in = getInput.getBytes();
-      GetBytes getKey = new GetBytes("/Users/antonio/Downloads/key.txt", 16);
+      GetBytes getKey = new GetBytes("/Users/antonio/key.txt", 16);
       byte[] key = getKey.getBytes();
       AESencrypt aes = new AESencrypt(key, 4);
       Print.printArray("Plaintext:     ", in);

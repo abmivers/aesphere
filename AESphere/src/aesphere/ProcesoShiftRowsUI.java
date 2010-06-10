@@ -4,7 +4,7 @@
  */
 
 /*
- * ProcesoHerramientasUI.java
+ * ProcesoSubBytesUI.java
  *
  * Created on 08-jun-2010, 17:46:18
  */
@@ -15,14 +15,15 @@ package aesphere;
  *
  * @author antonio
  */
-public class ProcesoHerramientasUI extends javax.swing.JFrame {
+public class ProcesoShiftRowsUI extends javax.swing.JFrame {
 
     
 
-    /** Creates new form ProcesoHerramientasUI */
-    public ProcesoHerramientasUI(MainUI padre) {
+    /** Creates new form ProcesoSubBytesUI */
+    public ProcesoShiftRowsUI(MainUI padre) {
         initComponents();
         this.setSize(800, 622);
+
 
 
     }
@@ -80,44 +81,43 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("AESphere - Herramientas");
+        setTitle("AESphere - ShiftRows");
 
-        a11.setText("jTextField1");
-
-        a12.setText("jTextField1");
-
-        a13.setText("jTextField1");
-
-        a14.setText("jTextField1");
         a14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 a14ActionPerformed(evt);
             }
         });
 
-        a21.setText("jTextField1");
+        a21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a21ActionPerformed(evt);
+            }
+        });
 
-        a22.setText("jTextField1");
+        a23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a23ActionPerformed(evt);
+            }
+        });
 
-        a23.setText("jTextField1");
+        a24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a24ActionPerformed(evt);
+            }
+        });
 
-        a24.setText("jTextField1");
+        a33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a33ActionPerformed(evt);
+            }
+        });
 
-        a31.setText("jTextField1");
-
-        a32.setText("jTextField1");
-
-        a33.setText("jTextField1");
-
-        a34.setText("jTextField1");
-
-        a41.setText("jTextField1");
-
-        a42.setText("jTextField1");
-
-        a43.setText("jTextField1");
-
-        a44.setText("jTextField1");
+        a44.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a44ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("State!");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -146,8 +146,6 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
         b13.setText("jTextField1");
 
         b31.setText("jTextField1");
-
-        b11.setText("jTextField1");
 
         b22.setText("jTextField1");
 
@@ -194,37 +192,35 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
+                .add(71, 71, 71)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(jButton1))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(58, 58, 58)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(a41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 11, Short.MAX_VALUE)
-                                .add(a42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(a43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(layout.createSequentialGroup()
-                                .add(a31, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(a32, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 11, Short.MAX_VALUE)
-                                .add(a33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(layout.createSequentialGroup()
-                                .add(a11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(11, 11, 11)
-                                .add(a12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(a13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(layout.createSequentialGroup()
-                                .add(a21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 11, Short.MAX_VALUE)
-                                .add(a22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(a23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
+                        .add(a41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 11, Short.MAX_VALUE)
+                        .add(a42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(a43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(a31, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(a32, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 11, Short.MAX_VALUE)
+                        .add(a33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(a11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(11, 11, 11)
+                        .add(a12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(a13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(a21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 11, Short.MAX_VALUE)
+                        .add(a22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(a23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(a44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -263,12 +259,12 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
                     .add(b34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(b24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(b14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(175, 175, 175))
+                .add(162, 162, 162))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(27, 27, 27)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -320,7 +316,7 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
                             .add(a42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(30, 30, 30)
                         .add(jButton1)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .add(95, 95, 95))
         );
 
         pack();
@@ -333,15 +329,19 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
         matriz [0][0]= Conversor.hexPairToByte(a11.getText(), 0);
         matriz [0][1]= Conversor.hexPairToByte(a12.getText(), 0);
         matriz [0][2]= Conversor.hexPairToByte(a13.getText(), 0);
-        matriz [1][4]= Conversor.hexPairToByte(a14.getText(), 0);
-        matriz [2][1]= Conversor.hexPairToByte(a21.getText(), 0);
-        matriz [2][2]= Conversor.hexPairToByte(a22.getText(), 0);
-        matriz [2][3]= Conversor.hexPairToByte(a23.getText(), 0);
-        matriz [2][4]= Conversor.hexPairToByte(a24.getText(), 0);
-        matriz [4][1]= Conversor.hexPairToByte(a31.getText(), 0);
-        matriz [4][2]= Conversor.hexPairToByte(a32.getText(), 0);
-        matriz [4][3]= Conversor.hexPairToByte(a33.getText(), 0);
-        matriz [4][4]= Conversor.hexPairToByte(a34.getText(), 0);
+        matriz [0][3]= Conversor.hexPairToByte(a14.getText(), 0);
+        matriz [1][0]= Conversor.hexPairToByte(a21.getText(), 0);
+        matriz [1][1]= Conversor.hexPairToByte(a22.getText(), 0);
+        matriz [1][2]= Conversor.hexPairToByte(a23.getText(), 0);
+        matriz [1][3]= Conversor.hexPairToByte(a24.getText(), 0);
+        matriz [2][0]= Conversor.hexPairToByte(a31.getText(), 0);
+        matriz [2][1]= Conversor.hexPairToByte(a32.getText(), 0);
+        matriz [2][2]= Conversor.hexPairToByte(a33.getText(), 0);
+        matriz [2][3]= Conversor.hexPairToByte(a44.getText(), 0);
+        matriz [3][0]= Conversor.hexPairToByte(a41.getText(), 0);
+        matriz [3][1]= Conversor.hexPairToByte(a42.getText(), 0);
+        matriz [3][2]= Conversor.hexPairToByte(a43.getText(), 0);
+        matriz [3][3]= Conversor.hexPairToByte(a44.getText(), 0);
 
         return matriz;
     }
@@ -353,15 +353,15 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
 }//GEN-LAST:event_SalirActionPerformed
 
     private void a14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a14ActionPerformed
-        // TODO add your handling code here:
+         
     }//GEN-LAST:event_a14ActionPerformed
 
     private void b14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b14ActionPerformed
-        // TODO add your handling code here:
+         
     }//GEN-LAST:event_b14ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+         
 
         AESencrypt objeto = new AESencrypt();
 
@@ -369,7 +369,10 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
 
         objeto.SubBytes(matrix);
 
-        System.out.println(matrix.toString());
+         for (int i = 0; i < 4; i++)
+         for (int j = 0; j < 4; j++)
+            System.out.print(matrix[i][j]);
+        
 
 
 
@@ -377,6 +380,26 @@ public class ProcesoHerramientasUI extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void a21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a21ActionPerformed
+         
+    }//GEN-LAST:event_a21ActionPerformed
+
+    private void a23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a23ActionPerformed
+         
+    }//GEN-LAST:event_a23ActionPerformed
+
+    private void a24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a24ActionPerformed
+         
+    }//GEN-LAST:event_a24ActionPerformed
+
+    private void a33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a33ActionPerformed
+         
+    }//GEN-LAST:event_a33ActionPerformed
+
+    private void a44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a44ActionPerformed
+         
+    }//GEN-LAST:event_a44ActionPerformed
 
     /**
     * @param args the command line arguments

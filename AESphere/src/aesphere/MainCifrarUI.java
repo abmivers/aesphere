@@ -470,12 +470,12 @@ public class MainCifrarUI extends javax.swing.JFrame {
      * is closed. Also gives the focus to the calling/father window.
      */
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        // TODO add your handling code here:
+         
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_SalirActionPerformed
 
     private void ComboBoxInputCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxInputCifrarActionPerformed
-        // TODO add your handling code here:
+         
 
        int selectedIndex = ComboBoxInputCifrar.getSelectedIndex();
         switch (selectedIndex) {
@@ -499,7 +499,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxInputCifrarActionPerformed
 
     private void ComboBoxOutputCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxOutputCifrarActionPerformed
-        // TODO add your handling code here:
+         
 
          int selectedIndex = ComboBoxOutputCifrar.getSelectedIndex();
         switch (selectedIndex) {
@@ -521,7 +521,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxOutputCifrarActionPerformed
 
     private void BotonBrowseCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarActionPerformed
-        // TODO add your handling code here:
+         
 
         String rutaInput;
         int resul = archivos.showOpenDialog(null);
@@ -532,17 +532,22 @@ public class MainCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonBrowseCifrarActionPerformed
 
     private void BotonBrowseCifrarOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarOutputActionPerformed
-        // TODO add your handling code here:
+         
 
         String rutaOutput;
         int resul = archivos.showOpenDialog(null);
         File archi= archivos.getSelectedFile();
         rutaOutput = archi.getPath();
-        if (resul == archivos.APPROVE_OPTION) this.TextoOutput.setText(rutaOutput);
+        if (resul == archivos.APPROVE_OPTION){
+           
+            this.TextoOutput.setText(rutaOutput);
+        }
+        
+        else ;
     }//GEN-LAST:event_BotonBrowseCifrarOutputActionPerformed
 
     private void ComboBoxKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxKeyActionPerformed
-        // TODO add your handling code here:
+         
 
          int selectedIndex = ComboBoxKey.getSelectedIndex();
         switch (selectedIndex) {
@@ -564,7 +569,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxKeyActionPerformed
 
     private void BotonBrowseCifrarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarKeyActionPerformed
-        // TODO add your handling code here:
+         
 
         String rutaKey;
         int resul = archivos.showOpenDialog(null);
@@ -745,46 +750,37 @@ public class MainCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
     private void BotonInfoCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoCifrarActionPerformed
-        // TODO add your handling code here:
+         
 
     }//GEN-LAST:event_BotonInfoCifrarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
+         
         wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing
 
     private void TextoOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoOutputActionPerformed
-        // TODO add your handling code here:
+         
     }//GEN-LAST:event_TextoOutputActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
-        // TODO add your handling code here:
+         
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void RadioButton256ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton256ActionPerformed
-        // TODO add your handling code here:
-       
+           
     }//GEN-LAST:event_RadioButton256ActionPerformed
 
     private void RadioButton128ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton128ActionPerformed
-        // TODO add your handling code here:
-        
+         
     }//GEN-LAST:event_RadioButton128ActionPerformed
 
     private void RadioButton192ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton192ActionPerformed
-        // TODO add your handling code here:
-        
+         
     }//GEN-LAST:event_RadioButton192ActionPerformed
-
-
-
-
-
-
 
 
 
