@@ -38,7 +38,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         this.setSize(800, 622);
 
-        byte[] salida = new byte[16];;
+        byte[] salida = new byte[16];
 
         if (opcionentrada==2 & opcionkey==2){
             salida=cifrarArchivoArchivo();
@@ -271,10 +271,12 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-        in= Conversor.hexStringToByte(Conversor.byteToHexString(in2), a1);
+        in= Conversor.pad(in2, 16);
 
 
-        byte[] key = Conversor.stringToASCII(cadenaKey,a2);
+        byte[] key = Conversor.stringToASCII(cadenaKey);
+        //Para las claves sólo hay que rellenar si no son del tamaño necesario
+        if (key.length != a2) Conversor.pad(key, a2);
         AESencrypt aes = new AESencrypt(key, a3);
 
 
