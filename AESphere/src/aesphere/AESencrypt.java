@@ -21,7 +21,23 @@ public class AESencrypt {
 
    public AESencrypt(){
 
+       tab = new AEStables();
+
    }
+
+
+   public AESencrypt(byte[][] key, int NkIn){
+
+      Nk = NkIn;
+      Nr = Nk + 6;
+      tab = new AEStables();
+      w = new byte[4*Nb*(Nr+1)];
+      wCount = 0;
+
+   }
+
+
+
 
    // AESencrypt: constructor for class.  Mainly expands key
    public AESencrypt(byte[] key, int NkIn) {
@@ -37,6 +53,8 @@ public class AESencrypt {
       wCount = 0; // count bytes in expanded key throughout encryption
       byte[][] state = new byte[4][Nb]; // the state array
       Copy.copy(state, in); // actual component-wise copy
+
+     
       AddRoundKey(state); // xor with expanded key
       for (int round = 1; round < Nr; round++) {
          Print.printArray("Start round  " + round + ":", state);
@@ -90,9 +108,12 @@ public class AESencrypt {
 
    // SubBytes: apply Sbox substitution to each byte of state
    public void SubBytes(byte[][] state) {
-      for (int row = 0; row < 4; row++)
+       
+
+       for (int row = 0; row < 4; row++)
          for (int col = 0; col < Nb; col++)
             state[row][col] = tab.SBox(state[row][col]);
+      
    }
 
    // ShiftRows: simple circular shift of rows 1, 2, 3 by 1, 2, 3

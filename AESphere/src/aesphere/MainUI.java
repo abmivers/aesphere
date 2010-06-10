@@ -231,7 +231,7 @@ public class MainUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonDescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDescifrarActionPerformed
-        // TODO add your handling code here:
+         
         this.setEnabled(false);
         if (hijoActual == null) {
             hijoActual = new MainDescifrarUI(this);
@@ -242,11 +242,11 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonDescifrarActionPerformed
 
     private void BotonAtaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAtaquesActionPerformed
-        // TODO add your handling code here:
+         
     }//GEN-LAST:event_BotonAtaquesActionPerformed
 
     private void BotonCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCifrarActionPerformed
-        // TODO add your handling code here:
+         
 
 
 
@@ -260,10 +260,10 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonCifrarActionPerformed
 
     private void BotonHerramientasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonHerramientasActionPerformed
-        // TODO add your handling code here:
+         
         this.setEnabled(false);
         if (hijoActual == null) {
-            hijoActual = new ProcesoHerramientasUI(this);
+            hijoActual = new MainHerramientasUI(this);
             hijoActual.setLocationRelativeTo(null);
             hijoActual.setVisible(true);
         }
@@ -271,17 +271,17 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonHerramientasActionPerformed
 
     private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
-        // TODO add your handling code here:
+         
     }//GEN-LAST:event_BotonInfoActionPerformed
 
     private void BotonHerramientasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonHerramientasMousePressed
-        // TODO add your handling code here:
+         
         //BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientasPres.png")));
 
     }//GEN-LAST:event_BotonHerramientasMousePressed
 
     private void BotonHerramientasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonHerramientasMouseReleased
-        // TODO add your handling code here:
+         
         //BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientas.png")));
 
     }//GEN-LAST:event_BotonHerramientasMouseReleased
