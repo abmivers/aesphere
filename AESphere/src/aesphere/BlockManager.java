@@ -46,7 +46,7 @@ public class BlockManager {
             } else
                 throw new IllegalArgumentException("Incorrect 'mode' argument");
 
-            out = addBlock (out, outBlock, i);
+            //TODO out = addBlock (out, outBlock, i);
         }
         return out;
     }
@@ -54,7 +54,9 @@ public class BlockManager {
     private byte [] getBlock (byte [] arr, int numBlock) {
         byte [] aux = new byte [blockSize];
 
-        for ()
+        //for ()
+
+        return aux;
     }
 
 }
