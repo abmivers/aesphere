@@ -310,8 +310,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
            b=8;
       }
 
-      byte[] in = Conversor.hexStringToByte(cadenaInput,16);
-      byte[] key = Conversor.stringToASCII(cadenaKey,a);
+      byte[] in = Conversor.hexStringToByte(cadenaInput);
+      in = Conversor.pad(in, 16);
+      byte[] key = Conversor.stringToASCII(cadenaKey);
+      if (key.length != a) Conversor.pad(key, a);
 
 
       AESencrypt aes = new AESencrypt(key, b);
@@ -355,25 +357,20 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         }
 
-        byte[] in = Conversor.stringToASCII(cadenaInput,16);
+        byte[] in = Conversor.stringToASCII(cadenaInput);
+        in = Conversor.pad(in, 16);
 
-        //GetBytes getKey = new GetBytes(cadenaKey, a2);
-        //byte[] key = getKey.getBytes();
-
-        byte [] key2 = new byte [a2];
-        byte [] key = new byte [a2];
-
-         try {
-         key2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
+        byte[] key = null;
+        try {
+         key = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-        key=Conversor.hexStringToByte(Conversor.byteToHexString(key2), a2);
+        if (key.length != a2) key = Conversor.pad(key, a2);
 
         AESencrypt aes = new AESencrypt(key, a3);
-
 
         jTextArea2.setText(Conversor.byteToHexString(in));
         jTextArea4.setText(Conversor.byteToHexString(key));
