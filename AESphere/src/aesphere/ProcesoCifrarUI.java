@@ -257,21 +257,17 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         }
 
-        //GetBytes getInput = new GetBytes(cadenaInput, a1);
-        //byte[] in = getInput.getBytes();
-
-        byte [] in2 = new byte [a1];
-        byte [] in = new byte [a1];
+        byte [] in = null;
 
         try {
-         in2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
+         in = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-        in= Conversor.pad(in2, 16);
+        in= Conversor.pad(in, 16);
 
 
         byte[] key = Conversor.stringToASCII(cadenaKey);
@@ -636,8 +632,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         }
 
-        byte [] in = new byte [a1];
-        byte [] key = new byte [a2];
+        byte [] in = null;
+        byte [] key = null;
 
 
         try {
