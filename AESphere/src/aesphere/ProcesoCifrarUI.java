@@ -269,10 +269,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         in= Conversor.pad(in, 16);
 
-
         byte[] key = Conversor.stringToASCII(cadenaKey);
         //Para las claves sólo hay que rellenar si no son del tamaño necesario
-        if (key.length != a2) Conversor.pad(key, a2);
+        if (key.length != a2) key = Conversor.pad(key, a2);
         AESencrypt aes = new AESencrypt(key, a3);
 
 
@@ -309,7 +308,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       byte[] in = Conversor.hexStringToByte(cadenaInput);
       in = Conversor.pad(in, 16);
       byte[] key = Conversor.stringToASCII(cadenaKey);
-      if (key.length != a) Conversor.pad(key, a);
+      if (key.length != a) key = Conversor.pad(key, a);
 
 
       AESencrypt aes = new AESencrypt(key, b);
@@ -400,7 +399,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       byte[] in = Conversor.stringToASCII(cadenaInput);
       in = Conversor.pad(in, 16);
       byte[] key = Conversor.hexStringToByte(cadenaKey);
-      if (key.length != a) Conversor.pad(key, a);
+      if (key.length != a) key = Conversor.pad(key, a);
 
       AESencrypt aes = new AESencrypt(key, b);
       jTextArea2.setText(Conversor.byteToHexString(in));
@@ -433,8 +432,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
       byte[] in = Conversor.stringToASCII(cadenaInput);
       in = Conversor.pad(in, 16);
+      System.out.println("Plaintext:      " + Conversor.byteToHexString(in));
       byte[] key = Conversor.stringToASCII(cadenaKey);
-      if (key.length != a) Conversor.pad(key, a);
+      if (key.length != a) key = Conversor.pad(key, a);
 
       AESencrypt aes = new AESencrypt(key, b);
       jTextArea2.setText(Conversor.byteToHexString(in));
@@ -490,9 +490,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-        if (key.length != a2) Conversor.pad(key, a2);
-
-
+        if (key.length != a2) key = Conversor.pad(key, a2);
 
         AESencrypt aes = new AESencrypt(key, a3);
 
@@ -548,7 +546,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         in= Conversor.pad(in, 16);
 
         byte[] key = Conversor.hexStringToByte(cadenaKey);
-        if (key.length != a2) Conversor.pad(key, a2);
+        if (key.length != a2) key = Conversor.pad(key, a2);
 
         AESencrypt aes = new AESencrypt(key, a3);
 
@@ -587,7 +585,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       byte[] in = Conversor.hexStringToByte(cadenaInput);
       in = Conversor.pad(in, 16);
       byte[] key = Conversor.hexStringToByte(cadenaKey);
-      if (key.length != a) Conversor.pad(key, a);
+      if (key.length != a) key = Conversor.pad(key, a);
       
       AESencrypt aes = new AESencrypt(key, b);
       jTextArea2.setText(Conversor.byteToHexString(in));
@@ -644,8 +642,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-        in= Conversor.pad(in, 16);
-        key=Conversor.pad(key, a2);
+        in = Conversor.pad(in, 16);
+        key = Conversor.pad(key, a2);
 
         AESencrypt aes = new AESencrypt(key, a3);
 

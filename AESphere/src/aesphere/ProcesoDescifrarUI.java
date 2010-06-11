@@ -267,7 +267,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         }
 
         byte[] key = Conversor.stringToASCII(cadenaKey);
-        if (key.length != a2) Conversor.pad(key, a2);
+        if (key.length != a2) key = Conversor.pad(key, a2);
 
         AESdecrypt aesenc = new AESdecrypt(key, a3);
 
