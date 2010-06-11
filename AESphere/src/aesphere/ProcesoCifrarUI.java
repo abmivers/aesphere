@@ -401,9 +401,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
            b=8;
       }
 
-      byte[] in = Conversor.stringToASCII(cadenaInput,16);
-      byte[] key = Conversor.hexStringToByte(cadenaKey,a);
-
+      byte[] in = Conversor.stringToASCII(cadenaInput);
+      in = Conversor.pad(in, 16);
+      byte[] key = Conversor.hexStringToByte(cadenaKey);
+      if (key.length != a) Conversor.pad(key, a);
 
       AESencrypt aes = new AESencrypt(key, b);
       jTextArea2.setText(Conversor.byteToHexString(in));
@@ -434,9 +435,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
            b=8;
       }
 
-      byte[] in = Conversor.stringToASCII(cadenaInput,16);
-      byte[] key = Conversor.stringToASCII(cadenaKey,a);
-
+      byte[] in = Conversor.stringToASCII(cadenaInput);
+      in = Conversor.pad(in, 16);
+      byte[] key = Conversor.stringToASCII(cadenaKey);
+      if (key.length != a) Conversor.pad(key, a);
 
       AESencrypt aes = new AESencrypt(key, b);
       jTextArea2.setText(Conversor.byteToHexString(in));
@@ -481,27 +483,22 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         }
 
-        byte[] in = Conversor.hexStringToByte(cadenaInput,16);
+        byte[] in = Conversor.hexStringToByte(cadenaInput);
+        in = Conversor.pad(in, 16);
 
-        //GetBytes getKey = new GetBytes(cadenaKey, a2);
-        //byte[] key = getKey.getBytes();
-
-        byte [] key2 = new byte [a2];
-        byte [] key = new byte [a2];
-
-         try {
-         key2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
+        byte [] key = null;
+        try {
+         key = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-        key=Conversor.hexStringToByte(Conversor.byteToHexString(key2), a2);
+        if (key.length != a2) Conversor.pad(key, a2);
 
 
 
         AESencrypt aes = new AESencrypt(key, a3);
-
 
         jTextArea2.setText(Conversor.byteToHexString(in));
         jTextArea4.setText(Conversor.byteToHexString(key));
@@ -510,7 +507,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         aes.Cipher(in, out);
 
         return out;
-
     }
 
     private byte[] cifrarArchivoHexa (){
@@ -544,31 +540,21 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         }
 
-        //GetBytes getInput = new GetBytes(cadenaInput, a1);
-        //byte[] in = getInput.getBytes();
-
-        byte [] in2 = new byte [a1];
-        byte [] in = new byte [a1];
-
-                try {
-         in2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
+        byte [] in = null;
+        try {
+         in = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
+        in= Conversor.pad(in, 16);
 
+        byte[] key = Conversor.hexStringToByte(cadenaKey);
+        if (key.length != a2) Conversor.pad(key, a2);
 
-
-
-        //System.out.println("in: "+Conversor.byteToHexString(in));
-        in= Conversor.hexStringToByte(Conversor.byteToHexString(in2), a1);
-
-
-        byte[] key = Conversor.hexStringToByte(cadenaKey,a2);
         AESencrypt aes = new AESencrypt(key, a3);
-
 
         jTextArea2.setText(Conversor.byteToHexString(in));
         jTextArea4.setText(Conversor.byteToHexString(key));
@@ -577,9 +563,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         aes.Cipher(in, out);
 
         return out;
-
-
-
     }
 
 
@@ -605,9 +588,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
            b=8;
       }
 
-      byte[] in = Conversor.hexStringToByte(cadenaInput,16);
-      byte[] key = Conversor.hexStringToByte(cadenaKey,a);
-
+      byte[] in = Conversor.hexStringToByte(cadenaInput);
+      in = Conversor.pad(in, 16);
+      byte[] key = Conversor.hexStringToByte(cadenaKey);
+      if (key.length != a) Conversor.pad(key, a);
       
       AESencrypt aes = new AESencrypt(key, b);
       jTextArea2.setText(Conversor.byteToHexString(in));
@@ -652,44 +636,22 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         }
 
-
-        //paso el integer a cadena. Es solo para probar. Se puede borrar
-        String numCadena= String.valueOf(tamanoclave);
-
-        jTextArea1.setText(cadenaInput);
-
-
-
-        //GetBytes getInput = new GetBytes(cadenaInput, a1);
-        //byte[] in = getInput.getBytes();
-        //GetBytes getKey = new GetBytes(cadenaKey, a2);
-        //byte[] key = getKey.getBytes();
-
-        byte [] in2 = new byte [a1];
-        byte [] key2 = new byte [a2];
         byte [] in = new byte [a1];
         byte [] key = new byte [a2];
 
 
         try {
-         in2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
-         key2 = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
+         in = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
+         key = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-
-
-
-
-        //System.out.println("in: "+Conversor.byteToHexString(in));
-        in= Conversor.hexStringToByte(Conversor.byteToHexString(in2), a1);
-        //System.out.println("key: "+Conversor.byteToHexString(key));
-        key=Conversor.hexStringToByte(Conversor.byteToHexString(key2), a2);
+        in= Conversor.pad(in, 16);
+        key=Conversor.pad(key, a2);
 
         AESencrypt aes = new AESencrypt(key, a3);
-
 
         jTextArea2.setText(Conversor.byteToHexString(in));
         jTextArea4.setText(Conversor.byteToHexString(key));
@@ -711,8 +673,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         byte [] bloqueCifra;
 
-        //bloqueCifra = Conversor.stringToASCII(jTextArea1.getText(), 16);
-        bloqueCifra = Conversor.hexStringToByte(jTextArea1.getText(),16);
+        //bloqueCifra = Conversor.stringToASCII(jTextArea1.getText());
+        bloqueCifra = Conversor.hexStringToByte(jTextArea1.getText());
 
         //jTextArea3.setText(Conversor.byteToTextString(bloqueCifra).trim());
         jTextArea2.setText(Conversor.byteToHexString(bloqueCifra).trim());
