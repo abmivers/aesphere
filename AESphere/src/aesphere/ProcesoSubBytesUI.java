@@ -413,7 +413,7 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         matriz [2][0]= Conversor.hexPairToByte(a31.getText(), 0);
         matriz [2][1]= Conversor.hexPairToByte(a32.getText(), 0);
         matriz [2][2]= Conversor.hexPairToByte(a33.getText(), 0);
-        matriz [2][3]= Conversor.hexPairToByte(a44.getText(), 0);
+        matriz [2][3]= Conversor.hexPairToByte(a34.getText(), 0);
         matriz [3][0]= Conversor.hexPairToByte(a41.getText(), 0);
         matriz [3][1]= Conversor.hexPairToByte(a42.getText(), 0);
         matriz [3][2]= Conversor.hexPairToByte(a43.getText(), 0);
@@ -422,6 +422,30 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         return matriz;
     }
 
+
+    private void rellenaroutput (byte [] [] matrizsalida) {
+
+        b11.setText(Conversor.byteToHexPair(matrizsalida[0][0]));
+        b12.setText(Conversor.byteToHexPair(matrizsalida[0][1]));
+        b13.setText(Conversor.byteToHexPair(matrizsalida[0][2]));
+        b14.setText(Conversor.byteToHexPair(matrizsalida[0][3]));
+        b21.setText(Conversor.byteToHexPair(matrizsalida[1][0]));
+        b22.setText(Conversor.byteToHexPair(matrizsalida[1][1]));
+        b23.setText(Conversor.byteToHexPair(matrizsalida[1][2]));
+        b24.setText(Conversor.byteToHexPair(matrizsalida[1][3]));
+        b31.setText(Conversor.byteToHexPair(matrizsalida[2][0]));
+        b32.setText(Conversor.byteToHexPair(matrizsalida[2][1]));
+        b33.setText(Conversor.byteToHexPair(matrizsalida[2][2]));
+        b34.setText(Conversor.byteToHexPair(matrizsalida[2][3]));
+        b41.setText(Conversor.byteToHexPair(matrizsalida[3][0]));
+        b42.setText(Conversor.byteToHexPair(matrizsalida[3][1]));
+        b43.setText(Conversor.byteToHexPair(matrizsalida[3][2]));
+        b44.setText(Conversor.byteToHexPair(matrizsalida[3][3]));
+
+
+
+
+    }
 
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
@@ -443,17 +467,11 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
 
         byte [][] matrix = rellenarmatriz();
 
-        objeto.ShiftRows(matrix);
+        objeto.SubBytes(matrix);
 
-         for (int i = 0; i < 4; i++)
-         for (int j = 0; j < 4; j++)
-            System.out.print(matrix[i][j]);
+        rellenaroutput(matrix);
+
         
-
-
-
-
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

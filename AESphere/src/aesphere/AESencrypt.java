@@ -25,17 +25,14 @@ public class AESencrypt {
 
    }
 
-
-   public AESencrypt(byte[][] key, int NkIn){
-
-      Nk = NkIn;
-      Nr = Nk + 6;
-      tab = new AEStables();
-      w = new byte[4*Nb*(Nr+1)];
-      wCount = 0;
-
+   public AESencrypt(byte[] key, int NkIn, int valor) {
+      Nk = NkIn; // words in a key, = 4, or 6, or 8
+      Nr = Nk + 6; // corresponding number of rounds
+      tab = new AEStables(); // class to give values of various functions
+      w = new byte[4*Nb*(Nr+1)]; // room for expanded key
+      KeyExpansion(key, w); // length of w depends on Nr
+      wCount=valor;
    }
-
 
 
 
@@ -58,10 +55,30 @@ public class AESencrypt {
       AddRoundKey(state); // xor with expanded key
       for (int round = 1; round < Nr; round++) {
          Print.printArray("Start round  " + round + ":", state);
-         SubBytes(state); // S-box substitution
+
+         
+         
+         SubBytes(state); // S-box
+
+         
          ShiftRows(state); // mix up rows
+
+         
          MixColumns(state); // complicated mix of columns
+
+         for (int i = 0; i < 4; i++)
+         for (int j = 0; j < 4; j++)
+            System.out.print(Conversor.byteToHexPair(state[i][j])+"");
+
+
+
          AddRoundKey(state); // xor with expanded key
+
+         System.out.print(" ");
+         System.out.print(" despues de AddRoundKey ");
+         for (int i = 0; i < 4; i++)
+         for (int j = 0; j < 4; j++)
+            System.out.print(Conversor.byteToHexPair(state[i][j])+"");
       }
       Print.printArray("Start round " + Nr + ":", state);
       SubBytes(state); // S-box substitution
