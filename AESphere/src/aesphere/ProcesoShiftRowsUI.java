@@ -11,6 +11,8 @@
 
 package aesphere;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author antonio
@@ -432,6 +434,57 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
 
     }
 
+    private boolean ComprobarHexadecimal (String cadena){
+
+    boolean resul = true;
+
+    for (int i = 0; i < cadena.length() ; i++){
+
+      if ( ((cadena.charAt(i) >= 'A') & (cadena.charAt(i) <= 'F')) ||
+          ((cadena.charAt(i) >= 'a') & (cadena.charAt(i) <= 'f')) ||
+          ((cadena.charAt(i) >= '0') & (cadena.charAt(i) <= '9')));
+      else {
+          resul=false;
+      }
+    }
+
+    return resul;
+
+
+    }
+
+    private boolean ComprobarDatos (){
+        boolean aux=true;
+
+       if (aux && (a11.getText().isEmpty() || a12.getText().isEmpty() || a13.getText().isEmpty() || a14.getText().isEmpty()
+                || a21.getText().isEmpty() || a22.getText().isEmpty() || a23.getText().isEmpty() || a24.getText().isEmpty()
+                || a31.getText().isEmpty() || a32.getText().isEmpty() || a33.getText().isEmpty() || a34.getText().isEmpty()
+                || a41.getText().isEmpty() || a42.getText().isEmpty() || a43.getText().isEmpty() || a44.getText().isEmpty())){
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           aux=false;
+
+        }
+
+        if (aux && (!ComprobarHexadecimal (a11.getText()) || !ComprobarHexadecimal (a12.getText()) || !ComprobarHexadecimal (a13.getText()) || !ComprobarHexadecimal (a14.getText())
+                 || !ComprobarHexadecimal (a21.getText()) || !ComprobarHexadecimal (a22.getText()) || !ComprobarHexadecimal (a23.getText()) || !ComprobarHexadecimal (a24.getText())
+                 || !ComprobarHexadecimal (a31.getText()) || !ComprobarHexadecimal (a32.getText()) || !ComprobarHexadecimal (a33.getText()) || !ComprobarHexadecimal (a34.getText())
+                 || !ComprobarHexadecimal (a41.getText()) || !ComprobarHexadecimal (a42.getText()) || !ComprobarHexadecimal (a43.getText()) || !ComprobarHexadecimal (a44.getText()))) {
+           JOptionPane.showMessageDialog(this, "Debe introducir únicamente parejas de valores hexadecimales.");
+           aux=false;
+        }
+
+        if (aux && (a11.getText().length()!=2 || a12.getText().length()!=2 || a13.getText().length()!=2 || a14.getText().length()!=2
+                 || a21.getText().length()!=2 || a22.getText().length()!=2 || a23.getText().length()!=2 || a24.getText().length()!=2
+                 || a31.getText().length()!=2 || a32.getText().length()!=2 || a33.getText().length()!=2 || a34.getText().length()!=2
+                 || a41.getText().length()!=2 || a42.getText().length()!=2 || a43.getText().length()!=2 || a44.getText().length()!=2 )) {
+
+           JOptionPane.showMessageDialog(this, "Debe introducir únicamente parejas de valores hexadecimales.");
+           aux=false;
+        }
+
+        return aux;
+    }
+
 
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
@@ -449,23 +502,13 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          
 
+      if (ComprobarDatos()){
         AESencrypt objeto = new AESencrypt();
-
         byte [][] matrix = rellenarmatriz();
-
-        for (int i = 0; i < 4; i++)
-         for (int j = 0; j < 4; j++)
-            System.out.print(Conversor.byteToHexPair(matrix[i][j])+"");
-
-        objeto.ShiftRows(matrix);
-        
+        objeto.ShiftRows(matrix);        
         System.out.println(" Shiftrows: ");
-
-        for (int i = 0; i < 4; i++)
-         for (int j = 0; j < 4; j++)
-            System.out.print(Conversor.byteToHexPair(matrix[i][j])+"");
-
         rellenaroutput(matrix);
+        }
 
 
 

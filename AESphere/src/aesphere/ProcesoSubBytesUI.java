@@ -11,12 +11,14 @@
 
 package aesphere;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author antonio
  */
 public class ProcesoSubBytesUI extends javax.swing.JFrame {
-
+    private MainHerramientasUI wpadre;
     
 
     /** Creates new form ProcesoSubBytesUI */
@@ -84,9 +86,14 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         mainMenuOperacionesCifrado = new javax.swing.JMenu();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - SubBytes");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton1.setText("Ejecutar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -327,7 +334,7 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
                 .add(191, 191, 191))
         );
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         jLabel1.setText("Proceso de SubBytes");
 
         AtrasButton.setText("Atrás");
@@ -367,11 +374,11 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(57, 57, 57)
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(189, 189, 189)
                 .add(jLabel1)
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(351, Short.MAX_VALUE)
                 .add(jButton1)
@@ -397,6 +404,8 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+
 
 
     private byte [][] rellenarmatriz () {
@@ -442,10 +451,60 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         b43.setText(Conversor.byteToHexPair(matrizsalida[3][2]));
         b44.setText(Conversor.byteToHexPair(matrizsalida[3][3]));
 
+    }
 
+   private boolean ComprobarHexadecimal (String cadena){
+
+    boolean resul = true;
+
+    for (int i = 0; i < cadena.length() ; i++){
+
+      if ( ((cadena.charAt(i) >= 'A') & (cadena.charAt(i) <= 'F')) ||
+          ((cadena.charAt(i) >= 'a') & (cadena.charAt(i) <= 'f')) ||
+          ((cadena.charAt(i) >= '0') & (cadena.charAt(i) <= '9')));
+      else {
+          resul=false;
+      }
+    }
+
+    return resul;
 
 
     }
+
+    private boolean ComprobarDatos (){
+        boolean aux=true;
+
+       if (aux && (a11.getText().isEmpty() || a12.getText().isEmpty() || a13.getText().isEmpty() || a14.getText().isEmpty()
+                || a21.getText().isEmpty() || a22.getText().isEmpty() || a23.getText().isEmpty() || a24.getText().isEmpty()
+                || a31.getText().isEmpty() || a32.getText().isEmpty() || a33.getText().isEmpty() || a34.getText().isEmpty()
+                || a41.getText().isEmpty() || a42.getText().isEmpty() || a43.getText().isEmpty() || a44.getText().isEmpty())){
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           aux=false;
+
+        }
+
+        if (aux && (!ComprobarHexadecimal (a11.getText()) || !ComprobarHexadecimal (a12.getText()) || !ComprobarHexadecimal (a13.getText()) || !ComprobarHexadecimal (a14.getText())
+                 || !ComprobarHexadecimal (a21.getText()) || !ComprobarHexadecimal (a22.getText()) || !ComprobarHexadecimal (a23.getText()) || !ComprobarHexadecimal (a24.getText())
+                 || !ComprobarHexadecimal (a31.getText()) || !ComprobarHexadecimal (a32.getText()) || !ComprobarHexadecimal (a33.getText()) || !ComprobarHexadecimal (a34.getText())
+                 || !ComprobarHexadecimal (a41.getText()) || !ComprobarHexadecimal (a42.getText()) || !ComprobarHexadecimal (a43.getText()) || !ComprobarHexadecimal (a44.getText()))) {
+           JOptionPane.showMessageDialog(this, "Debe introducir únicamente parejas de valores hexadecimales.");
+           aux=false;
+        }
+
+        if (aux && (a11.getText().length()!=2 || a12.getText().length()!=2 || a13.getText().length()!=2 || a14.getText().length()!=2
+                 || a21.getText().length()!=2 || a22.getText().length()!=2 || a23.getText().length()!=2 || a24.getText().length()!=2
+                 || a31.getText().length()!=2 || a32.getText().length()!=2 || a33.getText().length()!=2 || a34.getText().length()!=2
+                 || a41.getText().length()!=2 || a42.getText().length()!=2 || a43.getText().length()!=2 || a44.getText().length()!=2 )) {
+
+           JOptionPane.showMessageDialog(this, "Debe introducir únicamente parejas de valores hexadecimales.");
+           aux=false;
+        }
+
+        return aux;
+    }
+
+
 
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
@@ -462,16 +521,16 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          
+      if (ComprobarDatos()) {
 
         AESencrypt objeto = new AESencrypt();
-
         byte [][] matrix = rellenarmatriz();
-
         objeto.SubBytes(matrix);
-
         rellenaroutput(matrix);
 
-        
+        }
+
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -506,6 +565,15 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
     private void b23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b23ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b23ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+
+        wpadre.setEnabled(true);
+        wpadre.requestFocus();
+        //wpadre.wclosed(this);
+
+    }//GEN-LAST:event_formWindowClosing
 
     /**
     * @param args the command line arguments
