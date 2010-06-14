@@ -571,7 +571,7 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
 
         wpadre.setEnabled(true);
         wpadre.requestFocus();
-        //wpadre.wclosed(this);
+        wpadre.wclosed(this);
 
     }//GEN-LAST:event_formWindowClosing
 
