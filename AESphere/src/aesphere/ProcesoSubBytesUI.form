@@ -28,6 +28,24 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="CopiarInput">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Copiar Input"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CopiarInputActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="CopiarOutput">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Copiar Output"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CopiarOutputActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mainMenuOperacionesCifrado">
           <Properties>
@@ -462,6 +480,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AtrasButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

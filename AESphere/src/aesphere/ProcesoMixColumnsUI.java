@@ -11,6 +11,9 @@
 
 package aesphere;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +29,7 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         initComponents();
         wpadre=padre;
         this.setSize(555, 430);
+        CopiarOutput.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -74,13 +78,15 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         b22 = new javax.swing.JTextField();
         b24 = new javax.swing.JTextField();
         b43 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        AtrasButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
+        CopiarInput = new javax.swing.JMenuItem();
+        CopiarOutput = new javax.swing.JMenuItem();
         mainMenuOperacionesCifrado = new javax.swing.JMenu();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
@@ -314,7 +320,12 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton2.setText("Atrás");
+        AtrasButton.setText("Atrás");
+        AtrasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtrasButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         jLabel1.setText("Proceso de MixColumns");
@@ -335,6 +346,23 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         cifradoMenuBarMain.add(mainMenuArchivoCifrado);
 
         mainMenuEditarCifrado.setText("Editar");
+
+        CopiarInput.setText("Copiar Input");
+        CopiarInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarInputActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(CopiarInput);
+
+        CopiarOutput.setText("Copiar Output");
+        CopiarOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarOutputActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(CopiarOutput);
+
         cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
         mainMenuOperacionesCifrado.setText("Operaciones");
@@ -365,7 +393,7 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
                         .addContainerGap()
                         .add(jButton1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton2)
+                        .add(AtrasButton)
                         .add(6, 6, 6)))
                 .add(249, 249, 249))
         );
@@ -380,7 +408,7 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
                     .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(28, 28, 28)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton2)
+                    .add(AtrasButton)
                     .add(jButton1))
                 .add(57, 57, 57))
         );
@@ -505,6 +533,7 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         byte [][] matrix = rellenarmatriz();
         objeto.MixColumns(matrix);
         rellenaroutput(matrix);
+        CopiarOutput.setEnabled(true);
         }
 
 
@@ -537,12 +566,66 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing
 
+    private void CopiarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarInputActionPerformed
+        if (ComprobarDatos()) {
+
+        String cadena = new String();
+        byte [][] matriz = rellenarmatriz();
+
+        for (int i = 0; i < 4; i++)
+         for (int j = 0; j < 4; j++)
+            cadena=cadena + (Conversor.byteToHexPair(matriz[i][j]));
+
+
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(cadena);
+        cb.setContents(ss, ss);
+        }
+    }//GEN-LAST:event_CopiarInputActionPerformed
+
+    private void CopiarOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarOutputActionPerformed
+        String cadena = new String();
+        byte [] [] matriz= new byte [4][4];
+
+        matriz [0][0]= Conversor.hexPairToByte(b11.getText(), 0);
+        matriz [0][1]= Conversor.hexPairToByte(b12.getText(), 0);
+        matriz [0][2]= Conversor.hexPairToByte(b13.getText(), 0);
+        matriz [0][3]= Conversor.hexPairToByte(b14.getText(), 0);
+        matriz [1][0]= Conversor.hexPairToByte(b21.getText(), 0);
+        matriz [1][1]= Conversor.hexPairToByte(b22.getText(), 0);
+        matriz [1][2]= Conversor.hexPairToByte(b23.getText(), 0);
+        matriz [1][3]= Conversor.hexPairToByte(b24.getText(), 0);
+        matriz [2][0]= Conversor.hexPairToByte(b31.getText(), 0);
+        matriz [2][1]= Conversor.hexPairToByte(b32.getText(), 0);
+        matriz [2][2]= Conversor.hexPairToByte(b33.getText(), 0);
+        matriz [2][3]= Conversor.hexPairToByte(b34.getText(), 0);
+        matriz [3][0]= Conversor.hexPairToByte(b41.getText(), 0);
+        matriz [3][1]= Conversor.hexPairToByte(b42.getText(), 0);
+        matriz [3][2]= Conversor.hexPairToByte(b43.getText(), 0);
+        matriz [3][3]= Conversor.hexPairToByte(b44.getText(), 0);
+
+        for (int i = 0; i < 4; i++)
+         for (int j = 0; j < 4; j++)
+            cadena=cadena + (Conversor.byteToHexPair(matriz[i][j]));
+
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(cadena);
+        cb.setContents(ss, ss);
+    }//GEN-LAST:event_CopiarOutputActionPerformed
+
+    private void AtrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasButtonActionPerformed
+       this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_AtrasButtonActionPerformed
+
     /**
     * @param args the command line arguments
     */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AtrasButton;
+    private javax.swing.JMenuItem CopiarInput;
+    private javax.swing.JMenuItem CopiarOutput;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JTextField a11;
     private javax.swing.JTextField a12;
@@ -578,7 +661,6 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
     private javax.swing.JTextField b44;
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
