@@ -283,6 +283,11 @@ public class MainCifrarUI extends javax.swing.JFrame {
         jLabel4.setText("Método de Cifrado:");
 
         ModoCifrado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modo ECB", "Modo CBC" }));
+        ModoCifrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModoCifradoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout cifrarPanelAdvOptionsLayout = new javax.swing.GroupLayout(cifrarPanelAdvOptions);
         cifrarPanelAdvOptions.setLayout(cifrarPanelAdvOptionsLayout);
@@ -780,6 +785,10 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private void RadioButton192ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton192ActionPerformed
          
     }//GEN-LAST:event_RadioButton192ActionPerformed
+
+    private void ModoCifradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModoCifradoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ModoCifradoActionPerformed
 
 
 

@@ -137,6 +137,13 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSED));
 }//GEN-LAST:event_SalirActionPerformed
 
+    public void wclosed (javax.swing.JFrame hijo){
+        if (hijoActual.equals(hijo)) {
+            hijoActual.dispose();
+            hijoActual = null;
+        }
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          
         this.setEnabled(false);
