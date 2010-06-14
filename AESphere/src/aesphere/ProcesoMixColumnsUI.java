@@ -18,16 +18,14 @@ import javax.swing.JOptionPane;
  * @author antonio
  */
 public class ProcesoMixColumnsUI extends javax.swing.JFrame {
-
+    private MainHerramientasUI wpadre;
     
 
-    /** Creates new form ProcesoSubBytesUI */
-    public ProcesoMixColumnsUI(MainUI padre) {
+    
+    public ProcesoMixColumnsUI(MainHerramientasUI padre) {
         initComponents();
+        wpadre=padre;
         this.setSize(555, 430);
-
-
-
     }
 
     /** This method is called from within the constructor to
@@ -86,8 +84,13 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         mainMenuOperacionesCifrado = new javax.swing.JMenu();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - MixColumns");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton1.setText("Ejecutar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -526,6 +529,13 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
     private void a44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a44ActionPerformed
          
     }//GEN-LAST:event_a44ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+        wpadre.setEnabled(true);
+        wpadre.requestFocus();
+        wpadre.wclosed(this);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
     * @param args the command line arguments

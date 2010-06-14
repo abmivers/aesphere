@@ -18,10 +18,11 @@ package aesphere;
 public class MainHerramientasUI extends javax.swing.JFrame {
 
     private javax.swing.JFrame hijoActual;
+    private MainUI wpadre;
 
-    /** Creates new form MainHerramientasUI */
     public MainHerramientasUI(MainUI padre) {
         initComponents();
+        wpadre=padre;
     }
 
     /** This method is called from within the constructor to
@@ -45,7 +46,12 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         mainMenuOperacionesCifrado = new javax.swing.JMenu();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/subbytes.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +154,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
          
         this.setEnabled(false);
         if (hijoActual == null) {
-            hijoActual = new ProcesoSubBytesUI(null);
+            hijoActual = new ProcesoSubBytesUI(this);
             hijoActual.setLocationRelativeTo(null);
             hijoActual.setVisible(true);
         }
@@ -159,7 +165,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
          
         this.setEnabled(false);
         if (hijoActual == null) {
-            hijoActual = new ProcesoShiftRowsUI(null);
+            hijoActual = new ProcesoShiftRowsUI(this);
             hijoActual.setLocationRelativeTo(null);
             hijoActual.setVisible(true);
         }
@@ -170,7 +176,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
          
         this.setEnabled(false);
         if (hijoActual == null) {
-            hijoActual = new ProcesoAddRoundKeyUI(null);
+            hijoActual = new ProcesoAddRoundKeyUI(this);
             hijoActual.setLocationRelativeTo(null);
             hijoActual.setVisible(true);
         }
@@ -184,12 +190,19 @@ public class MainHerramientasUI extends javax.swing.JFrame {
 
         this.setEnabled(false);
         if (hijoActual == null) {
-            hijoActual = new ProcesoMixColumnsUI(null);
+            hijoActual = new ProcesoMixColumnsUI(this);
             hijoActual.setLocationRelativeTo(null);
             hijoActual.setVisible(true);
         }
         else hijoActual.requestFocus();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        wpadre.setEnabled(true);
+        wpadre.requestFocus();
+        wpadre.wclosed(this);
+    }//GEN-LAST:event_formWindowClosing
 
 
 
