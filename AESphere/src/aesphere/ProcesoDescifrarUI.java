@@ -269,15 +269,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         byte[] key = Conversor.stringToASCII(cadenaKey);
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        AESdecrypt aesenc = new AESdecrypt(key, a3);
+        BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        jTextArea2.setText(Conversor.byteToHexString(in));
-        jTextArea4.setText(Conversor.byteToHexString(key));
-
-        byte[] out = new byte[16];
-        aesenc.InvCipher(in, out);
-
-        return out;
+        byte[] out = aesenc.ECB(in, "decrypt");
+        
+        return Conversor.unpad(out);
     }
 
     private byte[] descifrarHexaTexto (){
@@ -304,13 +300,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      AESdecrypt aesenc = new AESdecrypt(key, b);
-      jTextArea2.setText(Conversor.byteToHexString(in));
-      jTextArea4.setText(Conversor.byteToHexString(key));
-      byte[] out = new byte[16];
-      aesenc.InvCipher(in, out);
+      BlockManager aesenc = new BlockManager(key, b, 16);
 
-      return out;
+      byte[] out = aesenc.ECB(in, "decrypt");
+
+      return Conversor.unpad(out);
     }
 
     private byte[] descifrarTextoArchivo (){
@@ -356,15 +350,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        AESdecrypt aesenc = new AESdecrypt(key, a3);
+        BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        jTextArea2.setText(Conversor.byteToHexString(in));
-        jTextArea4.setText(Conversor.byteToHexString(key));
+        byte[] out = aesenc.ECB(in, "decrypt");
 
-        byte[] out = new byte[16];
-        aesenc.InvCipher(in, out);
-
-        return out;
+        return Conversor.unpad(out);
     }
 
     private byte[] descifrarTextoHexa (){
@@ -390,13 +380,10 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.hexStringToByte(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      AESdecrypt aesenc = new AESdecrypt(key, b);
-      jTextArea2.setText(Conversor.byteToHexString(in));
-      jTextArea4.setText(Conversor.byteToHexString(key));
-      byte[] out = new byte[16];
-      aesenc.InvCipher(in, out);
+      BlockManager aesenc = new BlockManager(key, b, 16);
+      byte[] out = aesenc.ECB(in, "decrypt");
 
-      return out;
+      return Conversor.unpad(out);
     }
 
     private byte[] descifrarTextoTexto (){
@@ -422,14 +409,10 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      AESdecrypt aesenc = new AESdecrypt(key, b);
-      jTextArea2.setText(Conversor.byteToHexString(in));
-      jTextArea4.setText(Conversor.byteToHexString(key));
-      byte[] out = new byte[16];
-      aesenc.InvCipher(in, out);
+      BlockManager aesenc = new BlockManager(key, b, 16);
+      byte[] out = aesenc.ECB(in, "decrypt");
 
-      return out;
-
+      return Conversor.unpad(out);
     }
 
 
@@ -477,16 +460,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        AESdecrypt aesenc = new AESdecrypt(key, a3);
+        BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        jTextArea2.setText(Conversor.byteToHexString(in));
-        jTextArea4.setText(Conversor.byteToHexString(key));
+        byte[] out = aesenc.ECB(in, "decrypt");
 
-        byte[] out = new byte[16];
-        aesenc.InvCipher(in, out);
-
-        return out;
-
+        return Conversor.unpad(out);
     }
 
     private byte[] descifrarArchivoHexa (){
@@ -531,18 +509,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         byte[] key = Conversor.hexStringToByte(cadenaKey);
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        AESdecrypt aesenc = new AESdecrypt(key, a3);
+        BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        jTextArea2.setText(Conversor.byteToHexString(in));
-        jTextArea4.setText(Conversor.byteToHexString(key));
+        byte[] out = aesenc.ECB(in, "decrypt");
 
-        byte[] out = new byte[16];
-        aesenc.InvCipher(in, out);
-
-        return out;
-
-
-
+        return Conversor.unpad(out);
     }
 
 
@@ -569,14 +540,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] in = Conversor.hexStringToByte(cadenaInput);
       byte[] key = Conversor.hexStringToByte(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
+
+      BlockManager aesenc = new BlockManager(key, b, 16);
+      byte[] out = aesenc.ECB(in, "decrypt");
       
-      AESdecrypt aesdec = new AESdecrypt(key, b);
-      jTextArea2.setText(Conversor.byteToHexString(in));
-      jTextArea4.setText(Conversor.byteToHexString(key));
-      byte[] out = new byte[16];
-      aesdec.InvCipher(in, out);
-      
-      return out;
+      return Conversor.unpad(out);
     }
 
 
@@ -625,14 +593,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         
         key = Conversor.pad(key, a2);
 
-      AESdecrypt aesDec = new AESdecrypt(key, a3);
+      BlockManager aesenc = new BlockManager(key, a3, 16);
 
-      byte[] out = new byte[16];
-      aesDec.InvCipher(in, out);        
-      jTextArea2.setText(Conversor.byteToHexString(in));
-      jTextArea4.setText(Conversor.byteToHexString(key));
+      byte[] out = aesenc.ECB(in, "decrypt");
 
-      return out;
+      return Conversor.unpad(out);
     }
 
 

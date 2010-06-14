@@ -623,7 +623,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             aux=false;
             }
 
-        if ((contenido2.length() > 32) & selectedIndex1==1 & aux) {
+        /*if ((contenido2.length() > 32) & selectedIndex1==1 & aux) {
             JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 32 dígitos hexadecimales");
             aux=false;
             }
@@ -631,7 +631,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         if ((contenido2.length() > 16) & selectedIndex1==0 & aux) {
             JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 16 caracteres ASCII");
             aux=false;
-            }
+            }*/
 
 
         if ((RadioButton256.isSelected()) & aux) {
