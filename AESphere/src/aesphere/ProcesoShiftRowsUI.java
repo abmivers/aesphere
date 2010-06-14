@@ -18,12 +18,13 @@ import javax.swing.JOptionPane;
  * @author antonio
  */
 public class ProcesoShiftRowsUI extends javax.swing.JFrame {
-
+    private MainHerramientasUI wpadre;
     
 
-    /** Creates new form ProcesoSubBytesUI */
-    public ProcesoShiftRowsUI(MainUI padre) {
+    
+    public ProcesoShiftRowsUI(MainHerramientasUI padre) {
         initComponents();
+        wpadre=padre;
         this.setSize(555, 430);
 
 
@@ -87,8 +88,13 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         mainMenuOperacionesCifrado = new javax.swing.JMenu();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - ShiftRows");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton1.setText("Ejecutar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -533,6 +539,13 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void a44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a44ActionPerformed
          
     }//GEN-LAST:event_a44ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        wpadre.setEnabled(true);
+        wpadre.requestFocus();
+        wpadre.wclosed(this);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
     * @param args the command line arguments

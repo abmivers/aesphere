@@ -21,15 +21,14 @@ import javax.swing.JOptionPane;
  * @author antonio
  */
 public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
-
+    private MainHerramientasUI wpadre;
     
 
-    /** Creates new form ProcesoSubBytesUI */
-    public ProcesoAddRoundKeyUI(MainUI padre) {
+
+    public ProcesoAddRoundKeyUI(MainHerramientasUI padre) {
         initComponents();
-        
-
-
+        wpadre=padre;
+        CopiarOutput.setEnabled(false);
 
     }
 
@@ -103,14 +102,19 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        CopiarInput = new javax.swing.JMenuItem();
+        CopiarKey = new javax.swing.JMenuItem();
+        CopiarOutput = new javax.swing.JMenuItem();
         mainMenuOperacionesCifrado = new javax.swing.JMenu();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - AddRoundKey");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton1.setText("Ejecutar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -448,27 +452,29 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
         mainMenuEditarCifrado.setText("Editar");
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.META_MASK));
-        jMenuItem3.setText("Copiar Input");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        CopiarInput.setText("Copiar Input");
+        CopiarInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                CopiarInputActionPerformed(evt);
             }
         });
-        mainMenuEditarCifrado.add(jMenuItem3);
+        mainMenuEditarCifrado.add(CopiarInput);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.META_MASK));
-        jMenuItem4.setText("Copiar Key");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        CopiarKey.setText("Copiar Key");
+        CopiarKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                CopiarKeyActionPerformed(evt);
             }
         });
-        mainMenuEditarCifrado.add(jMenuItem4);
+        mainMenuEditarCifrado.add(CopiarKey);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.META_MASK));
-        jMenuItem5.setText("Copiar Output");
-        mainMenuEditarCifrado.add(jMenuItem5);
+        CopiarOutput.setText("Copiar Output");
+        CopiarOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarOutputActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(CopiarOutput);
 
         cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
@@ -623,6 +629,39 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
     }
 
+    private boolean ComprobarNoVacioInput() {
+
+        boolean aux=true;
+
+        if (aux && (a11.getText().isEmpty() || a12.getText().isEmpty() || a13.getText().isEmpty() || a14.getText().isEmpty()
+                || a21.getText().isEmpty() || a22.getText().isEmpty() || a23.getText().isEmpty() || a24.getText().isEmpty()
+                || a31.getText().isEmpty() || a32.getText().isEmpty() || a33.getText().isEmpty() || a34.getText().isEmpty()
+                || a41.getText().isEmpty() || a42.getText().isEmpty() || a43.getText().isEmpty() || a44.getText().isEmpty())){
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos de la matriz Input.");
+           aux=false;
+
+        }
+       return aux;
+
+    }
+
+    private boolean ComprobarNoVacioKey() {
+
+        boolean aux=true;
+
+        if (aux && (b11.getText().isEmpty() || b12.getText().isEmpty() || b13.getText().isEmpty() || b14.getText().isEmpty()
+                || b21.getText().isEmpty() || b22.getText().isEmpty() || b23.getText().isEmpty() || b24.getText().isEmpty()
+                || b31.getText().isEmpty() || b32.getText().isEmpty() || b33.getText().isEmpty() || b34.getText().isEmpty()
+                || b41.getText().isEmpty() || b42.getText().isEmpty() || b43.getText().isEmpty() || b44.getText().isEmpty())){
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos de la matriz Key.");
+           aux=false;
+
+        }
+       return aux;
+
+    }
+
+
     private boolean ComprobarDatos (){
         boolean aux=true;
 
@@ -697,50 +736,18 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
         //hay que pasar la key como array []
 
-        
-
-
         if (ComprobarDatos()){
 
         byte [][] matrix = rellenarmatriz();
         byte [][] key = rellenarclave();
-        String a = new String();
-        String b = new String();
+       
+        AESencrypt objeto = new AESencrypt();
 
-
-
-        for (int i = 0; i < 4; i++)
-         for (int j = 0; j < 4; j++)
-            a=a + (Conversor.byteToHexPair(key[i][j]));
-
-        System.out.println("A: ");
-        System.out.println(a+" long: "+ a.length());
-        
-
-
-
-        byte[] keyex = Conversor.hexStringToByte(a);
-
-
-        for (int j = 0; j < 16; j++)
-            b=b + (Conversor.byteToHexPair(keyex[j]));
-        System.out.println("keyex: ");
-        System.out.println(b +" long: "+ b.length());
-
-        AESencrypt objeto = new AESencrypt(keyex, 4,0);
-
-        objeto.AddRoundKey(matrix);
-        
-        System.out.println("Despues: ");
-
-        for (int i = 0; i < 4; i++)
-         for (int j = 0; j < 4; j++)
-            System.out.print(Conversor.byteToHexPair(matrix[i][j])+"");
-
+        objeto.AddRoundKey(matrix,key);
+  
         rellenaroutput(matrix);
+        CopiarOutput.setEnabled(true);
 
-
-        
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -777,8 +784,9 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
          
     }//GEN-LAST:event_c22ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+    private void CopiarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarInputActionPerformed
+
+        if (ComprobarNoVacioInput()) {
 
         String cadena = new String();
         byte [][] matriz = rellenarmatriz();
@@ -791,10 +799,14 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
         StringSelection ss = new StringSelection(cadena);
         cb.setContents(ss, ss);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        }
+    }//GEN-LAST:event_CopiarInputActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void CopiarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarKeyActionPerformed
         // TODO add your handling code here:
+        
+        if (ComprobarNoVacioKey()) {
+
         String cadena = new String();
         byte [][] matriz = rellenarclave();
 
@@ -806,7 +818,48 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
         StringSelection ss = new StringSelection(cadena);
         cb.setContents(ss, ss);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+        }
+    }//GEN-LAST:event_CopiarKeyActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        wpadre.setEnabled(true);
+        wpadre.requestFocus();
+        wpadre.wclosed(this);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void CopiarOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarOutputActionPerformed
+
+
+        String cadena = new String();
+        byte [] [] matriz= new byte [4][4];
+
+        matriz [0][0]= Conversor.hexPairToByte(c11.getText(), 0);
+        matriz [0][1]= Conversor.hexPairToByte(c12.getText(), 0);
+        matriz [0][2]= Conversor.hexPairToByte(c13.getText(), 0);
+        matriz [0][3]= Conversor.hexPairToByte(c14.getText(), 0);
+        matriz [1][0]= Conversor.hexPairToByte(c21.getText(), 0);
+        matriz [1][1]= Conversor.hexPairToByte(c22.getText(), 0);
+        matriz [1][2]= Conversor.hexPairToByte(c23.getText(), 0);
+        matriz [1][3]= Conversor.hexPairToByte(c24.getText(), 0);
+        matriz [2][0]= Conversor.hexPairToByte(c31.getText(), 0);
+        matriz [2][1]= Conversor.hexPairToByte(c32.getText(), 0);
+        matriz [2][2]= Conversor.hexPairToByte(c33.getText(), 0);
+        matriz [2][3]= Conversor.hexPairToByte(c34.getText(), 0);
+        matriz [3][0]= Conversor.hexPairToByte(c41.getText(), 0);
+        matriz [3][1]= Conversor.hexPairToByte(c42.getText(), 0);
+        matriz [3][2]= Conversor.hexPairToByte(c43.getText(), 0);
+        matriz [3][3]= Conversor.hexPairToByte(c44.getText(), 0);
+
+        for (int i = 0; i < 4; i++)
+         for (int j = 0; j < 4; j++)
+            cadena=cadena + (Conversor.byteToHexPair(matriz[i][j]));
+
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(cadena);
+        cb.setContents(ss, ss);
+
+    }//GEN-LAST:event_CopiarOutputActionPerformed
 
     /**
     * @param args the command line arguments
@@ -814,6 +867,9 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CopiarInput;
+    private javax.swing.JMenuItem CopiarKey;
+    private javax.swing.JMenuItem CopiarOutput;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JTextField a11;
     private javax.swing.JTextField a12;
@@ -868,9 +924,6 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

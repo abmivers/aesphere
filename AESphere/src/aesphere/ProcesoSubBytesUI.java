@@ -21,12 +21,10 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
     private MainHerramientasUI wpadre;
     
 
-    /** Creates new form ProcesoSubBytesUI */
-    public ProcesoSubBytesUI(MainUI padre) {
+    public ProcesoSubBytesUI(MainHerramientasUI padre) {
         initComponents();
+        wpadre=padre;
         this.setSize(555, 430);
-
-
 
     }
 
