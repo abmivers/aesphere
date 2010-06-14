@@ -43,7 +43,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        EjecutarButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         a33 = new javax.swing.JTextField();
         a13 = new javax.swing.JTextField();
@@ -95,7 +95,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         c33 = new javax.swing.JTextField();
         c41 = new javax.swing.JTextField();
         c22 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        AtrasButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
@@ -116,10 +116,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ejecutar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        EjecutarButton.setText("Ejecutar");
+        EjecutarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EjecutarButtonActionPerformed(evt);
             }
         });
 
@@ -430,7 +430,12 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton2.setText("Atrás");
+        AtrasButton.setText("Atrás");
+        AtrasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtrasButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         jLabel1.setText("Proceso de AddRoundKey");
@@ -498,13 +503,13 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
                             .add(layout.createSequentialGroup()
                                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(56, 56, 56)
-                                .add(jButton1)
+                                .add(EjecutarButton)
                                 .add(18, 18, 18)
-                                .add(jButton2))
+                                .add(AtrasButton))
                             .add(layout.createSequentialGroup()
                                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(44, 44, 44)
-                                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 231, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                     .add(layout.createSequentialGroup()
                         .add(211, 211, 211)
                         .add(jLabel1)))
@@ -528,8 +533,8 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(95, 95, 95)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jButton1)
-                            .add(jButton2)))
+                            .add(EjecutarButton)
+                            .add(AtrasButton)))
                     .add(layout.createSequentialGroup()
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
@@ -629,39 +634,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
     }
 
-    private boolean ComprobarNoVacioInput() {
-
-        boolean aux=true;
-
-        if (aux && (a11.getText().isEmpty() || a12.getText().isEmpty() || a13.getText().isEmpty() || a14.getText().isEmpty()
-                || a21.getText().isEmpty() || a22.getText().isEmpty() || a23.getText().isEmpty() || a24.getText().isEmpty()
-                || a31.getText().isEmpty() || a32.getText().isEmpty() || a33.getText().isEmpty() || a34.getText().isEmpty()
-                || a41.getText().isEmpty() || a42.getText().isEmpty() || a43.getText().isEmpty() || a44.getText().isEmpty())){
-           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos de la matriz Input.");
-           aux=false;
-
-        }
-       return aux;
-
-    }
-
-    private boolean ComprobarNoVacioKey() {
-
-        boolean aux=true;
-
-        if (aux && (b11.getText().isEmpty() || b12.getText().isEmpty() || b13.getText().isEmpty() || b14.getText().isEmpty()
-                || b21.getText().isEmpty() || b22.getText().isEmpty() || b23.getText().isEmpty() || b24.getText().isEmpty()
-                || b31.getText().isEmpty() || b32.getText().isEmpty() || b33.getText().isEmpty() || b34.getText().isEmpty()
-                || b41.getText().isEmpty() || b42.getText().isEmpty() || b43.getText().isEmpty() || b44.getText().isEmpty())){
-           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos de la matriz Key.");
-           aux=false;
-
-        }
-       return aux;
-
-    }
-
-
+    
     private boolean ComprobarDatos (){
         boolean aux=true;
 
@@ -732,7 +705,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
          
     }//GEN-LAST:event_b14ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void EjecutarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecutarButtonActionPerformed
 
         //hay que pasar la key como array []
 
@@ -750,7 +723,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
 
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_EjecutarButtonActionPerformed
 
     private void a21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a21ActionPerformed
          
@@ -786,7 +759,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
     private void CopiarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarInputActionPerformed
 
-        if (ComprobarNoVacioInput()) {
+        if (ComprobarDatos()) {
 
         String cadena = new String();
         byte [][] matriz = rellenarmatriz();
@@ -803,9 +776,8 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CopiarInputActionPerformed
 
     private void CopiarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarKeyActionPerformed
-        // TODO add your handling code here:
-        
-        if (ComprobarNoVacioKey()) {
+      
+        if (ComprobarDatos()) {
 
         String cadena = new String();
         byte [][] matriz = rellenarclave();
@@ -861,15 +833,21 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_CopiarOutputActionPerformed
 
+    private void AtrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasButtonActionPerformed
+        this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_AtrasButtonActionPerformed
+
     /**
     * @param args the command line arguments
     */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AtrasButton;
     private javax.swing.JMenuItem CopiarInput;
     private javax.swing.JMenuItem CopiarKey;
     private javax.swing.JMenuItem CopiarOutput;
+    private javax.swing.JButton EjecutarButton;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JTextField a11;
     private javax.swing.JTextField a12;
@@ -920,8 +898,6 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private javax.swing.JTextField c43;
     private javax.swing.JTextField c44;
     private javax.swing.JMenuBar cifradoMenuBarMain;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
