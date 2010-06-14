@@ -92,7 +92,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
 
         Print.printArray("Ciphertext:    ", salida);
-
     }
 
     /** This method is called from within the constructor to
@@ -272,17 +271,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         byte[] key = Conversor.stringToASCII(cadenaKey);
         //Para las claves sólo hay que rellenar si no son del tamaño necesario
         if (key.length != a2) key = Conversor.pad(key, a2);
-        AESencrypt aes = new AESencrypt(key, a3);
+        //BlockManager se encargará de cifrar
+        BlockManager aes = new BlockManager(key, a3, 16);
 
-
-        jTextArea2.setText(Conversor.byteToHexString(in));
-        jTextArea4.setText(Conversor.byteToHexString(key));
-
-        byte[] out = new byte[16];
-        aes.Cipher(in, out);
-
-        return out;
-
+        return aes.ECB(in, "encrypt");
     }
 
     private byte[] cifrarHexaTexto (){
@@ -310,15 +302,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
+      BlockManager aes = new BlockManager(key, b, 16);   
 
-      AESencrypt aes = new AESencrypt(key, b);
-      jTextArea2.setText(Conversor.byteToHexString(in));
-      jTextArea4.setText(Conversor.byteToHexString(key));
-      byte[] out = new byte[16];
-      aes.Cipher(in, out);
-
-      return out;
-
+      return aes.ECB(in, "encrypt");
     }
 
     private byte[] cifrarTextoArchivo (){
@@ -365,16 +351,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        AESencrypt aes = new AESencrypt(key, a3);
+        BlockManager aes = new BlockManager(key, a3, 16);   
 
-        jTextArea2.setText(Conversor.byteToHexString(in));
-        jTextArea4.setText(Conversor.byteToHexString(key));
-
-        byte[] out = new byte[16];
-        aes.Cipher(in, out);
-
-        return out;
-
+        return aes.ECB(in, "encrypt");
     }
 
     private byte[] cifrarTextoHexa (){
@@ -401,14 +380,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.hexStringToByte(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      AESencrypt aes = new AESencrypt(key, b);
-      jTextArea2.setText(Conversor.byteToHexString(in));
-      jTextArea4.setText(Conversor.byteToHexString(key));
-      byte[] out = new byte[16];
-      aes.Cipher(in, out);
+      BlockManager aes = new BlockManager(key, b, 16);
 
-      return out;
-
+      return aes.ECB(in, "encrypt");
     }
 
     private byte[] cifrarTextoTexto (){
@@ -436,14 +410,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      AESencrypt aes = new AESencrypt(key, b);
-      jTextArea2.setText(Conversor.byteToHexString(in));
-      jTextArea4.setText(Conversor.byteToHexString(key));
-      byte[] out = new byte[16];
-      aes.Cipher(in, out);
+      BlockManager aes = new BlockManager(key, b, 16);
 
-      return out;
-
+      return aes.ECB(in, "encrypt");
     }
 
 
@@ -492,15 +461,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        AESencrypt aes = new AESencrypt(key, a3);
+        BlockManager aes = new BlockManager(key, a3, 16);
 
-        jTextArea2.setText(Conversor.byteToHexString(in));
-        jTextArea4.setText(Conversor.byteToHexString(key));
-
-        byte[] out = new byte[16];
-        aes.Cipher(in, out);
-
-        return out;
+        return aes.ECB(in, "encrypt");
     }
 
     private byte[] cifrarArchivoHexa (){
@@ -548,15 +511,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         byte[] key = Conversor.hexStringToByte(cadenaKey);
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        AESencrypt aes = new AESencrypt(key, a3);
+        BlockManager aes = new BlockManager(key, a3, 16);
 
-        jTextArea2.setText(Conversor.byteToHexString(in));
-        jTextArea4.setText(Conversor.byteToHexString(key));
-
-        byte[] out = new byte[16];
-        aes.Cipher(in, out);
-
-        return out;
+        return aes.ECB(in, "encrypt");
     }
 
 
@@ -586,14 +543,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       in = Conversor.pad(in, 16);
       byte[] key = Conversor.hexStringToByte(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
+
+      BlockManager aes = new BlockManager(key, b, 16);
       
-      AESencrypt aes = new AESencrypt(key, b);
-      jTextArea2.setText(Conversor.byteToHexString(in));
-      jTextArea4.setText(Conversor.byteToHexString(key));
-      byte[] out = new byte[16];
-      aes.Cipher(in, out);
-      
-      return out;
+      return aes.ECB(in, "encrypt");
     }
 
 
@@ -645,16 +598,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         in = Conversor.pad(in, 16);
         key = Conversor.pad(key, a2);
 
-        AESencrypt aes = new AESencrypt(key, a3);
+        BlockManager aes = new BlockManager(key, a3, 16);
 
-        jTextArea2.setText(Conversor.byteToHexString(in));
-        jTextArea4.setText(Conversor.byteToHexString(key));
-
-        byte[] out = new byte[16];
-        aes.Cipher(in, out);
-
-        return out;
-
+        return aes.ECB(in, "encrypt");
     }
 
 

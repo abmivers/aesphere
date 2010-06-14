@@ -666,7 +666,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
             aux=false;
             }
 
-        if ( aux && (selectedIndex1==0) && (contenido2.length() > 16) ) {
+        /*if ( aux && (selectedIndex1==0) && (contenido2.length() > 16) ) {
             JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 16 caracteres ASCII");
             aux=false;
             }
@@ -674,7 +674,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         if ( aux && (selectedIndex1==1) && (contenido2.length() > 32) ) {
             JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 32 dígitos hexadecimales");
             aux=false;
-            }
+            }*/
 
         if (aux && (selectedIndex3 == 2) && !comprobarRuta(contenido3) ) {
             JOptionPane.showMessageDialog(this, "Error en la ruta del archivo");

@@ -21,6 +21,15 @@ public class BlockManager {
         blockSize = bloqueTam;
     }
 
+    /**
+     * Function to encyrpt a byte array using the ECB method to manage the block
+     * creation.
+     * @param in The byte array to be encrypted/decrypted
+     * @param mode A string that indicates the mode of operating: "encrypt" /
+     * "decrypt"
+     * @return The encrypted/decrypted array of bytes
+     * @throws IllegalArgumentException To control the mode parameter
+     */
     public byte [] ECB (byte [] in, String mode)
             throws IllegalArgumentException {
         byte [] outBlock = new byte [blockSize];
@@ -30,15 +39,15 @@ public class BlockManager {
 
         byte [] out = new byte [numBlocks * blockSize];
 
-        for (int i = 0; i <= numBlocks; i++) {
+        for (int i = 0; i < numBlocks; i++) {
             byte [] inBlock = getBlock (in, i);
 
-            if (mode.equals("cipher")) {
+            if (mode.equals("encrypt")) {
 
                 AESencrypt cifrador = new AESencrypt(key, keySize);
                 cifrador.Cipher(inBlock, outBlock);
 
-            } else if (mode.equals("decipher")) {
+            } else if (mode.equals("decrypt")) {
 
                 AESdecrypt descifrador = new AESdecrypt(key,keySize);
                 descifrador.InvCipher(inBlock, outBlock);
@@ -46,17 +55,28 @@ public class BlockManager {
             } else
                 throw new IllegalArgumentException("Incorrect 'mode' argument");
 
-            //TODO out = addBlock (out, outBlock, i);
+            out = addBlock (out, outBlock, i);
         }
         return out;
     }
 
     private byte [] getBlock (byte [] arr, int numBlock) {
+        int offset = numBlock * blockSize;
         byte [] aux = new byte [blockSize];
 
-        //for ()
+        for (int i = 0; i < blockSize; i++)
+           aux[i] = arr[offset + i];
 
         return aux;
+    }
+
+    private byte [] addBlock (byte [] out, byte [] arr, int numBlock) {
+        int offset = numBlock * blockSize;
+
+        for (int i = 0; i < blockSize; i++)
+            out[offset + i] = arr[i];
+
+        return out;
     }
 
 }

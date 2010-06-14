@@ -33,6 +33,26 @@ public class Conversor {
         return padArray;
     }
 
+    public static byte[] unpad (byte [] padArray) {
+        //almacenamos el byte de relleno
+        byte relleno = padArray[padArray.length - 1];
+
+        //Primero calculamos la longitud que tendrá el nuevo array
+        int size = padArray.length - byteToInt(relleno);
+        byte [] noPad = new byte [size];
+
+        //Copiamos un array en el otro empezando por el final
+        for (int i = (padArray.length - 1); i >= 0; i--) {
+            if ( i <= (size - 1) ) {
+                noPad[i] = padArray[i];
+            } else {
+                if (padArray[i] != relleno)
+                    System.out.println("Algo ha ido mal al descifrar");
+            }
+        }
+        return noPad;
+    }
+
     public static byte[] stringToASCII (String texto) {
         int slength = texto.length();
         byte[] ascii = new byte [slength];
