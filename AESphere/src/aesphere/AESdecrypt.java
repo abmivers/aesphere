@@ -30,19 +30,18 @@ public class AESdecrypt {
 
    // InvCipher: actual AES decryption
    public void InvCipher(byte[] in, byte[] out) {
-      Print obj = new Print();
       wCount = 4*Nb*(Nr+1); // count bytes during decryption
       byte[][] state = new byte[4][Nb]; // the state array
       Copy.copy(state, in); // actual component-wise copy
       InvAddRoundKey(state); // xor with expanded key
       for (int round = Nr-1; round >= 1; round--) {
-         cadena = cadena + obj.printArray("Start round  " + (Nr - round) + ":", state);
+         cadena = cadena + Print.printArray("Start round  " + (Nr - round) + ":", state);
          InvShiftRows(state); // mix up rows
          InvSubBytes(state); // inverse S-box substitution
          InvAddRoundKey(state); // xor with expanded key
          InvMixColumns(state); // complicated mix of columns
       }
-      cadena = cadena + obj.printArray("Start round  " + Nr + ":", state);
+      cadena = cadena + Print.printArray("Start round  " + Nr + ":", state);
       InvShiftRows(state); // mix up rows
       InvSubBytes(state); // inverse S-box substitution
       InvAddRoundKey(state); // xor with expanded key

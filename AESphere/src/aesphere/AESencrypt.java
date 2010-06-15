@@ -52,12 +52,9 @@ public class AESencrypt {
       byte[][] state = new byte[4][Nb]; // the state array
       Copy.copy(state, in); // actual component-wise copy
       AddRoundKey(state); // xor with expanded key
-      Print obj=new Print();
-
-
 
       for (int round = 1; round < Nr; round++) {
-         cadena = cadena + obj.printArray("Start round  " + round + ":", state);
+         cadena = cadena + Print.printArray("Start round  " + round + ":", state);
    
          SubBytes(state); // S-box
          ShiftRows(state); // mix up rows
@@ -65,7 +62,7 @@ public class AESencrypt {
          AddRoundKey(state); // xor with expanded key
 
       }
-      cadena = cadena + obj.printArray("Start round " + Nr + ":", state);
+      cadena = cadena + Print.printArray("Start round " + Nr + ":", state);
       SubBytes(state); // S-box substitution
       ShiftRows(state); // mix up rows
       AddRoundKey(state); // xor with expanded key
