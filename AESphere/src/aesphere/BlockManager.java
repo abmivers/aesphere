@@ -35,7 +35,7 @@ public class BlockManager {
      * @return The encrypted/decrypted array of bytes
      * @throws IllegalArgumentException To control the mode parameter
      */
-    public byte [] ECB (byte [] in, Boolean cifrando) {
+    public byte [] ECB (byte [] in, boolean cifrando) {
         byte [] outBlock = new byte [blockSize];
 
         int numBlocks = in.length / blockSize;

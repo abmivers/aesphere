@@ -33,23 +33,30 @@ public class Conversor {
         return padArray;
     }
 
-    public static byte[] unpad (byte [] padArray) {
+    public static byte[] unpad (byte [] padArray, int tam) {
         //almacenamos el byte de relleno
         byte relleno = padArray[padArray.length - 1];
+        int rellenoInt = byteToInt(relleno);
+        //comprobamos si el relleno tiene un valor correcto
+        if ( (rellenoInt <= 0) || (rellenoInt > tam) )
+            return null;
 
         //Primero calculamos la longitud que tendrá el nuevo array
-        int size = padArray.length - byteToInt(relleno);
-        byte [] noPad = new byte [size];
+        int size = padArray.length - rellenoInt;
 
-        //Copiamos un array en el otro empezando por el final
-        for (int i = (padArray.length - 1); i >= 0; i--) {
-            if ( i <= (size - 1) ) {
-                noPad[i] = padArray[i];
-            } else {
-                if (padArray[i] != relleno)
-                    System.out.println("Algo ha ido mal al descifrar");
-            }
+        //comprobamos si el relleno es correcto
+        boolean corr = true;
+        for (int i = size; (i < padArray.length) && corr; i++) {
+            if (padArray[i] != relleno) corr = false;
         }
+        if (!corr) return null;
+
+        //declaramos el nuevo array
+        byte [] noPad = new byte [size];
+        //Copiamos un array en el otro
+        for (int i = 0; i < size; i++)
+                noPad[i] = padArray[i];
+
         return noPad;
     }
 

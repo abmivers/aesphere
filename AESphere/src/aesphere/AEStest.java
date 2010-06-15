@@ -20,7 +20,6 @@ public class AEStest {
       // for 256-bit key, use 16, 32 and 8 below
 
        String b = new String();
-       Print obj = new Print();
 
       GetBytes getInput = new GetBytes("/Users/antonio/plaintext.txt", 16);
       byte[] in = getInput.getBytes();
@@ -34,11 +33,11 @@ public class AEStest {
         System.out.println(b +" long: "+ b.length());
 
       AESencrypt aes = new AESencrypt(key, 4);
-      obj.printArray("Plaintext:     ", in);
-      obj.printArray("Key:           ", key);
+      System.out.println(Print.printArray("Plaintext:     ", in));
+      Print.printArray("Key:           ", key);
       byte[] out = new byte[16];
       aes.Cipher(in, out);
-      obj.printArray("Ciphertext:    ", out);
+      Print.printArray("Ciphertext:    ", out);
    }
 }
 
