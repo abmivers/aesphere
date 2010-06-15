@@ -50,36 +50,17 @@ public class AESencrypt {
       wCount = 0; // count bytes in expanded key throughout encryption
       byte[][] state = new byte[4][Nb]; // the state array
       Copy.copy(state, in); // actual component-wise copy
-
-         for (int i = 0; i < 4; i++)
-         for (int j = 0; j < 4; j++)
-            System.out.print(Conversor.byteToHexPair(state[i][j])+"");
-
       AddRoundKey(state); // xor with expanded key
-      
-      System.out.print(" ");
-         System.out.print(" despues de AddRoundKey ");
-         for (int i = 0; i < 4; i++)
-         for (int j = 0; j < 4; j++)
-            System.out.print(Conversor.byteToHexPair(state[i][j])+"");
 
 
       for (int round = 1; round < Nr; round++) {
          Print.printArray("Start round  " + round + ":", state);
-
-         
-         
+   
          SubBytes(state); // S-box
-
-         
          ShiftRows(state); // mix up rows
-
-         
          MixColumns(state); // complicated mix of columns
-
          AddRoundKey(state); // xor with expanded key
 
-         
       }
       Print.printArray("Start round " + Nr + ":", state);
       SubBytes(state); // S-box substitution
@@ -126,9 +107,7 @@ public class AESencrypt {
 
    // SubBytes: apply Sbox substitution to each byte of state
    public void SubBytes(byte[][] state) {
-       
-
-       for (int row = 0; row < 4; row++)
+      for (int row = 0; row < 4; row++)
          for (int col = 0; col < Nb; col++)
             state[row][col] = tab.SBox(state[row][col]);
       
