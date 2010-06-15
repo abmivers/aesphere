@@ -17,7 +17,7 @@ public class AESencrypt {
    private int wCount; // position in w for RoundKey (= 0 each encrypt)
    private AEStables tab; // all the tables needed for AES
    private byte[] w; // the expanded key
-   String cadena= new String();
+   private String cadena= new String();
 
 
    public AESencrypt(){

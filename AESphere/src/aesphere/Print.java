@@ -29,10 +29,9 @@ public class Print {
       String cadena=new String();
       cadena= (name + " ");
       for (int i = 0; i < a.length; i++)
-         cadena= cadena + hex(a[i]) + " //n";
+         cadena= cadena + hex(a[i]) + " \n";
 
-      return cadena;
-   
+      return cadena;   
    }
 
    public String printArray(String name, byte[][] s) {
@@ -40,7 +39,7 @@ public class Print {
       cadena2 = (name + " ");
       for (int c = 0; c < Nb; c++)
          for (int r = 0; r < 4; r++)
-            cadena2 = cadena2 + hex(s[r][c]) + " //n";
+            cadena2 = cadena2 + hex(s[r][c]) + " \n";
             
       return cadena2;
    }

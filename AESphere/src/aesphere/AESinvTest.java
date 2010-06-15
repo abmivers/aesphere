@@ -21,11 +21,11 @@ public class AESinvTest {
       GetBytes getKey = new GetBytes("/Users/antonio/Downloads/key.txt", 16);
       byte[] key = getKey.getBytes();
       AESdecrypt aesDec = new AESdecrypt(key, 4);
-      Print.printArray("Ciphertext:    ", in);
-      Print.printArray("Key:           ", key);
+      //Print.printArray("Ciphertext:    ", in);
+      //Print.printArray("Key:           ", key);
       byte[] out = new byte[16];
       aesDec.InvCipher(in, out);
-      Print.printArray("Plaintext:     ", out);
+      //Print.printArray("Plaintext:     ", out);
    }
 }
 

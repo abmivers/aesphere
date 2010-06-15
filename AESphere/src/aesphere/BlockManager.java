@@ -14,6 +14,7 @@ public class BlockManager {
     private byte [] key;
     private int keySize;
     private int blockSize;
+    private String resultado;
     
     public BlockManager (byte [] clave, int claveTam, int bloqueTam) {
         key = clave;
@@ -21,17 +22,20 @@ public class BlockManager {
         blockSize = bloqueTam;
     }
 
+    public String getResultado () {
+        return resultado;
+    }
+
     /**
      * Function to encyrpt a byte array using the ECB method to manage the block
      * creation.
      * @param in The byte array to be encrypted/decrypted
-     * @param mode A string that indicates the mode of operating: "encrypt" /
-     * "decrypt"
+     * @param cifrando A boolean that indicates if we are encrypting (true) or
+     * decrypting (false)
      * @return The encrypted/decrypted array of bytes
      * @throws IllegalArgumentException To control the mode parameter
      */
-    public byte [] ECB (byte [] in, String mode)
-            throws IllegalArgumentException {
+    public byte [] ECB (byte [] in, Boolean cifrando) {
         byte [] outBlock = new byte [blockSize];
 
         int numBlocks = in.length / blockSize;
@@ -39,24 +43,26 @@ public class BlockManager {
 
         byte [] out = new byte [numBlocks * blockSize];
 
-        for (int i = 0; i < numBlocks; i++) {
-            byte [] inBlock = getBlock (in, i);
-
-            if (mode.equals("encrypt")) {
-
-                AESencrypt cifrador = new AESencrypt(key, keySize);
+        if (cifrando) {
+            AESencrypt cifrador = new AESencrypt(key, keySize);
+            
+            for (int i = 0; i < numBlocks; i++) {
+                byte [] inBlock = getBlock (in, i);
                 cifrador.Cipher(inBlock, outBlock);
+                out = addBlock (out, outBlock, i);
+            }
+            
+            resultado = cifrador.getCadena();
+        } else {
+            AESdecrypt descifrador = new AESdecrypt(key,keySize);
 
-            } else if (mode.equals("decrypt")) {
-
-                AESdecrypt descifrador = new AESdecrypt(key,keySize);
+            for (int i = 0; i < numBlocks; i++) {
+                byte [] inBlock = getBlock (in, i);
                 descifrador.InvCipher(inBlock, outBlock);
-
-            } else
-                throw new IllegalArgumentException("Incorrect 'mode' argument");
-
-            out = addBlock (out, outBlock, i);
+                out = addBlock (out, outBlock, i);
+            }
         }
+
         return out;
     }
 
@@ -79,4 +85,8 @@ public class BlockManager {
         return out;
     }
 
+    /*public byte [] CBC (byte [] in, String mode)
+            throws IllegalArgumentException {
+        byte [] outBlock = new byte [blockSize];
+    }*/
 }

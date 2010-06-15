@@ -235,23 +235,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
 
-    public void writePlaintext (String cadena){
-
-        Plaintextfield.setText(cadena);
-
-    }
-
-    public void writeOutput (String cadena){
-
-        
-        RondasTextArea.setText("");
-        RondasTextArea.setText(RondasTextArea.getText() + cadena);
-
-    }
-
     private byte [] cifrarArchivoTexto (){
 
-        //esto se puede poner en el constructor y pasarselo a cada función..... XD
         int a1 = 0;
         int a2 = 0;
         int a3 = 0;
@@ -299,7 +284,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         //BlockManager se encargará de cifrar
         BlockManager aes = new BlockManager(key, a3, 16);
 
-        return aes.ECB(in, "encrypt");
+        byte [] out = aes.ECB(in, true);
+        RondasTextArea.setText(aes.getResultado());
+
+        return out;
     }
 
     private byte[] cifrarHexaTexto (){
@@ -329,7 +317,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
       BlockManager aes = new BlockManager(key, b, 16);   
 
-      return aes.ECB(in, "encrypt");
+      byte [] out = aes.ECB(in, true);
+      RondasTextArea.setText(aes.getResultado());
+
+      return out;
     }
 
     private byte[] cifrarTextoArchivo (){
@@ -378,7 +369,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         BlockManager aes = new BlockManager(key, a3, 16);   
 
-        return aes.ECB(in, "encrypt");
+        byte [] out = aes.ECB(in, true);
+        RondasTextArea.setText(aes.getResultado());
+
+        return out;
     }
 
     private byte[] cifrarTextoHexa (){
@@ -407,7 +401,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
       BlockManager aes = new BlockManager(key, b, 16);
 
-      return aes.ECB(in, "encrypt");
+      byte [] out = aes.ECB(in, true);
+      RondasTextArea.setText(aes.getResultado());
+
+      return out;
     }
 
     private byte[] cifrarTextoTexto (){
@@ -437,7 +434,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
       BlockManager aes = new BlockManager(key, b, 16);
 
-      return aes.ECB(in, "encrypt");
+      byte [] out = aes.ECB(in, true);
+      RondasTextArea.setText(aes.getResultado());
+
+      return out;
     }
 
 
@@ -488,7 +488,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         BlockManager aes = new BlockManager(key, a3, 16);
 
-        return aes.ECB(in, "encrypt");
+        byte [] out = aes.ECB(in, true);
+        RondasTextArea.setText(aes.getResultado());
+
+        return out;
     }
 
     private byte[] cifrarArchivoHexa (){
@@ -538,7 +541,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         BlockManager aes = new BlockManager(key, a3, 16);
 
-        return aes.ECB(in, "encrypt");
+        byte [] out = aes.ECB(in, true);
+        RondasTextArea.setText(aes.getResultado());
+
+        return out;
     }
 
 
@@ -571,7 +577,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
       BlockManager aes = new BlockManager(key, b, 16);
       
-      return aes.ECB(in, "encrypt");
+      byte [] out = aes.ECB(in, true);
+      RondasTextArea.setText(aes.getResultado());
+
+      return out;
     }
 
 
@@ -625,7 +634,10 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         BlockManager aes = new BlockManager(key, a3, 16);
 
-        return aes.ECB(in, "encrypt");
+        byte [] out = aes.ECB(in, true);
+        RondasTextArea.setText(aes.getResultado());
+
+        return out;
     }
 
 

@@ -91,9 +91,6 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
             
         }
 
-
-        Print.printArray("Plaintext:    ", salida);
-
     }
 
     /** This method is called from within the constructor to
@@ -274,7 +271,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        byte[] out = aesenc.ECB(in, "decrypt");
+        byte[] out = aesenc.ECB(in, false);
         
         return Conversor.unpad(out);
     }
@@ -305,7 +302,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
       BlockManager aesenc = new BlockManager(key, b, 16);
 
-      byte[] out = aesenc.ECB(in, "decrypt");
+      byte[] out = aesenc.ECB(in, false);
 
       return Conversor.unpad(out);
     }
@@ -355,7 +352,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        byte[] out = aesenc.ECB(in, "decrypt");
+        byte[] out = aesenc.ECB(in, false);
 
         return Conversor.unpad(out);
     }
@@ -384,7 +381,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       if (key.length != a) key = Conversor.pad(key, a);
 
       BlockManager aesenc = new BlockManager(key, b, 16);
-      byte[] out = aesenc.ECB(in, "decrypt");
+      byte[] out = aesenc.ECB(in, false);
 
       return Conversor.unpad(out);
     }
@@ -413,7 +410,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       if (key.length != a) key = Conversor.pad(key, a);
 
       BlockManager aesenc = new BlockManager(key, b, 16);
-      byte[] out = aesenc.ECB(in, "decrypt");
+      byte[] out = aesenc.ECB(in, false);
 
       return Conversor.unpad(out);
     }
@@ -465,7 +462,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        byte[] out = aesenc.ECB(in, "decrypt");
+        byte[] out = aesenc.ECB(in, false);
 
         return Conversor.unpad(out);
     }
@@ -514,7 +511,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        byte[] out = aesenc.ECB(in, "decrypt");
+        byte[] out = aesenc.ECB(in, false);
 
         return Conversor.unpad(out);
     }
@@ -545,7 +542,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       if (key.length != a) key = Conversor.pad(key, a);
 
       BlockManager aesenc = new BlockManager(key, b, 16);
-      byte[] out = aesenc.ECB(in, "decrypt");
+      byte[] out = aesenc.ECB(in, false);
       
       return Conversor.unpad(out);
     }
@@ -598,7 +595,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
       BlockManager aesenc = new BlockManager(key, a3, 16);
 
-      byte[] out = aesenc.ECB(in, "decrypt");
+      byte[] out = aesenc.ECB(in, false);
 
       return Conversor.unpad(out);
     }
