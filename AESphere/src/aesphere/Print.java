@@ -18,7 +18,8 @@ public class Print {
       String cadena=new String();
       cadena= (name + " ");
       for (int i = 0; i < a.length; i++)
-         cadena= cadena + Conversor.byteToHexPair(a[i]) + " \n";
+         cadena= cadena + Conversor.byteToHexPair(a[i]) ;
+      cadena = cadena + "\n";
 
       return cadena;   
    }
@@ -28,7 +29,8 @@ public class Print {
       cadena2 = (name + " ");
       for (int c = 0; c < Nb; c++)
          for (int r = 0; r < 4; r++)
-            cadena2 = cadena2 + Conversor.byteToHexPair(s[r][c]) + " \n";
+            cadena2 = cadena2 + Conversor.byteToHexPair(s[r][c]);
+      cadena2 = cadena2 + "\n";
             
       return cadena2;
    }
