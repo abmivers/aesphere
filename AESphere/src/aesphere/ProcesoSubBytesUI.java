@@ -556,9 +556,6 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         CopiarOutput.setEnabled(true);
 
         }
-
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void a21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a21ActionPerformed
@@ -582,19 +579,19 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_a44ActionPerformed
 
     private void b13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b13ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_b13ActionPerformed
 
     private void b21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b21ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_b21ActionPerformed
 
     private void b23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b23ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_b23ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
+
 
         wpadre.setEnabled(true);
         wpadre.requestFocus();
