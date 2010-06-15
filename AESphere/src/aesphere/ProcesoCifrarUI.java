@@ -428,7 +428,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
       byte[] in = Conversor.stringToASCII(cadenaInput);
       in = Conversor.pad(in, 16);
-      System.out.println("Plaintext:      " + Conversor.byteToHexString(in));
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
