@@ -17,6 +17,7 @@ public class AESencrypt {
    private int wCount; // position in w for RoundKey (= 0 each encrypt)
    private AEStables tab; // all the tables needed for AES
    private byte[] w; // the expanded key
+   String cadena= new String();
 
 
    public AESencrypt(){
@@ -51,10 +52,12 @@ public class AESencrypt {
       byte[][] state = new byte[4][Nb]; // the state array
       Copy.copy(state, in); // actual component-wise copy
       AddRoundKey(state); // xor with expanded key
+      Print obj=new Print();
+
 
 
       for (int round = 1; round < Nr; round++) {
-         Print.printArray("Start round  " + round + ":", state);
+         cadena = cadena + obj.printArray("Start round  " + round + ":", state);
    
          SubBytes(state); // S-box
          ShiftRows(state); // mix up rows
@@ -62,11 +65,16 @@ public class AESencrypt {
          AddRoundKey(state); // xor with expanded key
 
       }
-      Print.printArray("Start round " + Nr + ":", state);
+      cadena = cadena + obj.printArray("Start round " + Nr + ":", state);
       SubBytes(state); // S-box substitution
       ShiftRows(state); // mix up rows
       AddRoundKey(state); // xor with expanded key
       Copy.copy(out, state);
+
+   }
+
+   public String getCadena (){
+       return cadena;
    }
 
    // KeyExpansion: expand key, byte-oriented code, but tracks words
