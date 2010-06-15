@@ -17,6 +17,7 @@ public class AESdecrypt {
    private int wCount; // position in w (= 4*Nb*(Nr+1) each encrypt)
    AEStables tab; // all the tables needed for AES
    byte[] w; // the expanded key
+   private String cadena = new String();
 
    // AESdecrypt: constructor for class.  Mainly expands key
    public AESdecrypt(byte[] key, int NkIn) {
@@ -29,18 +30,19 @@ public class AESdecrypt {
 
    // InvCipher: actual AES decryption
    public void InvCipher(byte[] in, byte[] out) {
+      Print obj = new Print();
       wCount = 4*Nb*(Nr+1); // count bytes during decryption
       byte[][] state = new byte[4][Nb]; // the state array
       Copy.copy(state, in); // actual component-wise copy
       InvAddRoundKey(state); // xor with expanded key
       for (int round = Nr-1; round >= 1; round--) {
-         Print.printArray("Start round  " + (Nr - round) + ":", state);
+         cadena = cadena + obj.printArray("Start round  " + (Nr - round) + ":", state);
          InvShiftRows(state); // mix up rows
          InvSubBytes(state); // inverse S-box substitution
          InvAddRoundKey(state); // xor with expanded key
          InvMixColumns(state); // complicated mix of columns
       }
-      Print.printArray("Start round  " + Nr + ":", state);
+      cadena = cadena + obj.printArray("Start round  " + Nr + ":", state);
       InvShiftRows(state); // mix up rows
       InvSubBytes(state); // inverse S-box substitution
       InvAddRoundKey(state); // xor with expanded key
