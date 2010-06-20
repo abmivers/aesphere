@@ -49,7 +49,8 @@ public class Conversor {
         for (int i = size; (i < padArray.length) && corr; i++) {
             if (padArray[i] != relleno) corr = false;
         }
-        if (!corr) return null;
+        if (!corr) 
+            return null;
 
         //declaramos el nuevo array
         byte [] noPad = new byte [size];

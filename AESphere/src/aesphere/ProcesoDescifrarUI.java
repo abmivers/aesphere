@@ -78,19 +78,19 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         
 
         
-        
-        if (opcionsalida==0) {
-          TextoSalida.setText(Conversor.byteToTextString(salida).trim());
-            
-        } else if (opcionsalida == 1){
+        if (salida == null) {
+            TextoSalida.setText("ERROR DE DESCIFRADO: COMPRUEBE SI HA INTRODU" +
+                    "CIDO CORRECTAMENTE LOS DATOS");
+        } else {
+            if (opcionsalida==0)
+                TextoSalida.setText(Conversor.byteToTextString(salida).trim());
+            else if (opcionsalida == 1)
                 TextoSalida.setText(Conversor.byteToHexString(salida));
-               }
-        else if (opcionsalida==2){   
-            Conversor.byteToFile(salida,cadenaOutput) ;
-            TextoSalida.setText(Conversor.byteToTextString(salida));
-            
+            else if (opcionsalida==2) {
+                Conversor.byteToFile(salida,cadenaOutput) ;
+                TextoSalida.setText(Conversor.byteToTextString(salida));
+            }
         }
-
     }
 
     /** This method is called from within the constructor to
