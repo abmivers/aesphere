@@ -12,6 +12,7 @@
 package aesphere;
 
 import java.io.File;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -35,7 +36,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         cadenaOutput = Texto3;
         tamanoclave = tamano;
 
-        this.setSize(800, 622);
+        this.setSize(550, 300);
 
         byte[] salida = new byte[16];
 
@@ -79,8 +80,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         
         if (salida == null) {
-            TextoSalida.setText("ERROR DE DESCIFRADO: COMPRUEBE SI HA INTRODU" +
-                    "CIDO CORRECTAMENTE LOS DATOS");
+            this.setVisible(false);
+            
+            JOptionPane.showMessageDialog(this, "Error de Descifrado. Compruebe que ha introducido correctamente los datos");
+            
+
         } else {
             if (opcionsalida==0)
                 TextoSalida.setText(Conversor.byteToTextString(salida).trim());

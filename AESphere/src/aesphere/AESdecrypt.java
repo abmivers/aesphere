@@ -127,4 +127,9 @@ public class AESdecrypt {
       for (int r = 3; r >= 0 ; r--)
          state[r][c] = (byte)(state[r][c] ^ w[--wCount]);
    }
+
+   public String getCadena (){
+       return cadena;
+   }
+
 }
