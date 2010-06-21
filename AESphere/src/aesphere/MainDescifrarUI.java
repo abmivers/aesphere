@@ -624,22 +624,22 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         String contenido2 = TextoInput.getText();
         boolean aux=true;
 
-        if (TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty()){
+        if (aux && (TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty())){
            JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
            aux=false;
         }
 
-        if (TextoOutput.getText().isEmpty() & selectedIndex3==2 & aux ){
+        if (aux && selectedIndex3==2 && TextoOutput.getText().isEmpty()  ){
            JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
            aux=false;
         }
 
-        if ( ((selectedIndex1==1) &  (ComprobarHexadecimal(TextoInput.getText()) == false)) & aux)
+        if  (aux && (ComprobarHexadecimal(TextoInput.getText()) == false) && (selectedIndex1==1) )
              {
                  JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo INPUT.");
                  aux=false;
              }
-        if (( selectedIndex2==1)  &  (ComprobarHexadecimal(TextoKey.getText()) == false) & aux)
+        if (aux && (ComprobarHexadecimal(TextoKey.getText()) == false) && ( selectedIndex2==1)  )
              {
             JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo KEY.");
             aux=false;
