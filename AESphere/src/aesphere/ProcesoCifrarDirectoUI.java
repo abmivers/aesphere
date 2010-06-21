@@ -26,6 +26,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     private String cadenaOutput;
     private MainUI wpadre;
     private int tamanoclave;
+    private int blockMode;
 
     /** Creates new form ProcesoCifrarUI */
 
@@ -33,14 +34,16 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
 
     }
 
-    public ProcesoCifrarDirectoUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamano) {
+    public ProcesoCifrarDirectoUI(MainUI padre,String Texto1, String Texto2, 
+            String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
+            int opcionblock, int tamano) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
         cadenaKey = Texto2;
         cadenaOutput = Texto3;
         tamanoclave = tamano;
-
+        blockMode = opcionblock;
 
         this.setSize(550, 300);
 
