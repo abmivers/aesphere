@@ -78,19 +78,19 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         
 
         
-        
-        if (opcionsalida==0) {
-          TextoSalida.setText(Conversor.byteToTextString(salida).trim());
-            
-        } else if (opcionsalida == 1){
+        if (salida == null) {
+            TextoSalida.setText("ERROR DE DESCIFRADO: COMPRUEBE SI HA INTRODU" +
+                    "CIDO CORRECTAMENTE LOS DATOS");
+        } else {
+            if (opcionsalida==0)
+                TextoSalida.setText(Conversor.byteToTextString(salida).trim());
+            else if (opcionsalida == 1)
                 TextoSalida.setText(Conversor.byteToHexString(salida));
-               }
-        else if (opcionsalida==2){   
-            Conversor.byteToFile(salida,cadenaOutput) ;
-            TextoSalida.setText(Conversor.byteToTextString(salida));
-            
+            else if (opcionsalida==2) {
+                Conversor.byteToFile(salida,cadenaOutput) ;
+                TextoSalida.setText(Conversor.byteToTextString(salida));
+            }
         }
-
     }
 
     /** This method is called from within the constructor to
@@ -106,6 +106,8 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         TextoSalida = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TextoSalida1 = new javax.swing.JTextArea();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -131,6 +133,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         jLabel3.setText("Ciphertext:");
 
         jLabel1.setText("Plaintext:");
+
+        TextoSalida1.setColumns(20);
+        TextoSalida1.setLineWrap(true);
+        TextoSalida1.setRows(5);
+        jScrollPane4.setViewportView(TextoSalida1);
 
         mainMenuArchivoCifrado.setText("Archivo");
 
@@ -165,23 +172,26 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(26, 26, 26)
-                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE))
-                    .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(6, 6, 6)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
+                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(32, 32, 32)
-                .add(jLabel3)
-                .add(40, 40, 40)
+                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel1)
-                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(402, Short.MAX_VALUE))
+                    .add(jLabel3)
+                    .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(34, 34, 34)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel1))
+                .addContainerGap(352, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,7 +251,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         byte[] out = aesenc.ECB(in, false);
         
-        return Conversor.unpad(out);
+        return Conversor.unpad(out, 16);
     }
 
     private byte[] descifrarHexaTexto (){
@@ -272,7 +282,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
       byte[] out = aesenc.ECB(in, false);
 
-      return Conversor.unpad(out);
+      return Conversor.unpad(out, 16);
     }
 
     private byte[] descifrarTextoArchivo (){
@@ -322,7 +332,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         byte[] out = aesenc.ECB(in, false);
 
-        return Conversor.unpad(out);
+        return Conversor.unpad(out, 16);
     }
 
     private byte[] descifrarTextoHexa (){
@@ -351,7 +361,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
       BlockManager aesenc = new BlockManager(key, b, 16);
       byte[] out = aesenc.ECB(in, false);
 
-      return Conversor.unpad(out);
+      return Conversor.unpad(out, 16);
     }
 
     private byte[] descifrarTextoTexto (){
@@ -380,7 +390,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
       BlockManager aesenc = new BlockManager(key, b, 16);
       byte[] out = aesenc.ECB(in, false);
 
-      return Conversor.unpad(out);
+      return Conversor.unpad(out, 16);
     }
 
 
@@ -432,7 +442,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         byte[] out = aesenc.ECB(in, false);
 
-        return Conversor.unpad(out);
+        return Conversor.unpad(out, 16);
     }
 
     private byte[] descifrarArchivoHexa (){
@@ -481,7 +491,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         byte[] out = aesenc.ECB(in, false);
 
-        return Conversor.unpad(out);
+        return Conversor.unpad(out, 16);
     }
 
 
@@ -512,7 +522,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
       BlockManager aesenc = new BlockManager(key, b, 16);
       byte[] out = aesenc.ECB(in, false);
       
-      return Conversor.unpad(out);
+      return Conversor.unpad(out, 16);
     }
 
 
@@ -565,7 +575,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
       byte[] out = aesenc.ECB(in, false);
 
-      return Conversor.unpad(out);
+      return Conversor.unpad(out, 16);
     }
 
 
@@ -582,11 +592,13 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Salir;
     private javax.swing.JTextArea TextoSalida;
+    private javax.swing.JTextArea TextoSalida1;
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
     private javax.swing.JMenu mainMenuEditarCifrado;
