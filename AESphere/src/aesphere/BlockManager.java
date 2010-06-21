@@ -16,8 +16,10 @@ public class BlockManager {
     private int blockSize;
     private String resultado;
     private byte [] IV;
+    private boolean paso;
     
-    public BlockManager (byte [] clave, int claveTam, int bloqueTam) {
+    public BlockManager (byte [] clave, int claveTam, int bloqueTam,boolean paso) {
+        this.paso=paso;
         key = clave;
         keySize = claveTam;
         blockSize = bloqueTam;
@@ -47,7 +49,7 @@ public class BlockManager {
         byte [] inBlock = null;
 
         if (cifrando) {
-            AESencrypt cifrador = new AESencrypt(key, keySize);
+            AESencrypt cifrador = new AESencrypt(key, keySize,paso);
             
             for (int i = 0; i < numBlocks; i++) {
                 inBlock = getBlock (in, i);
@@ -57,7 +59,7 @@ public class BlockManager {
             
             resultado = cifrador.getCadena();
         } else {
-            AESdecrypt descifrador = new AESdecrypt(key,keySize);
+            AESdecrypt descifrador = new AESdecrypt(key,keySize,paso);
 
             for (int i = 0; i < numBlocks; i++) {
                 inBlock = getBlock (in, i);
@@ -100,7 +102,7 @@ public class BlockManager {
         byte [] inBlock = null;
 
         if (cifrando) {
-            AESencrypt cifrador = new AESencrypt(key, keySize);
+            AESencrypt cifrador = new AESencrypt(key, keySize,paso);
 
             for (int i = 0; i < numBlocks; i++) {
                 inBlock = getBlock (in, i);
@@ -114,7 +116,7 @@ public class BlockManager {
 
             resultado = cifrador.getCadena();
         } else {
-            AESdecrypt descifrador = new AESdecrypt(key,keySize);
+            AESdecrypt descifrador = new AESdecrypt(key,keySize,paso);
 
             for (int i = 0; i < numBlocks; i++) {
                 inBlock = getBlock (in, i);
