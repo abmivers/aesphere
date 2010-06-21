@@ -18,7 +18,7 @@ public class Print {
       String cadena=new String();
       cadena= (name + " ");
       for (int i = 0; i < a.length; i++)
-         cadena= cadena + Conversor.byteToHexPair(a[i]) ;
+         cadena = cadena + Conversor.byteToHexPair(a[i]) ;
       cadena = cadena + "\n";
 
       return cadena;   

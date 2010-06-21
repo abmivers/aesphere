@@ -272,7 +272,8 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         BlockManager aesenc = new BlockManager(key, a3, 16);
 
         byte[] out = aesenc.ECB(in, false);
-        
+
+        jTextArea4.setText(aesenc.getResultado());
         return Conversor.unpad(out, 16);
     }
 
@@ -304,6 +305,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
       byte[] out = aesenc.ECB(in, false);
 
+      jTextArea4.setText(aesenc.getResultado());
       return Conversor.unpad(out, 16);
     }
 
@@ -354,6 +356,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         byte[] out = aesenc.ECB(in, false);
 
+        jTextArea4.setText(aesenc.getResultado());
         return Conversor.unpad(out, 16);
     }
 
@@ -383,6 +386,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       BlockManager aesenc = new BlockManager(key, b, 16);
       byte[] out = aesenc.ECB(in, false);
 
+      jTextArea4.setText(aesenc.getResultado());
       return Conversor.unpad(out, 16);
     }
 
@@ -412,6 +416,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       BlockManager aesenc = new BlockManager(key, b, 16);
       byte[] out = aesenc.ECB(in, false);
 
+      jTextArea4.setText(aesenc.getResultado());
       return Conversor.unpad(out, 16);
     }
 
@@ -464,6 +469,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         byte[] out = aesenc.ECB(in, false);
 
+        jTextArea4.setText(aesenc.getResultado());
         return Conversor.unpad(out, 16);
     }
 
@@ -513,6 +519,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
         byte[] out = aesenc.ECB(in, false);
 
+        jTextArea4.setText(aesenc.getResultado());
         return Conversor.unpad(out, 16);
     }
 
@@ -543,7 +550,8 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
       BlockManager aesenc = new BlockManager(key, b, 16);
       byte[] out = aesenc.ECB(in, false);
-      
+
+      jTextArea4.setText(aesenc.getResultado());
       return Conversor.unpad(out, 16);
     }
 
@@ -597,6 +605,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
 
       byte[] out = aesenc.ECB(in, false);
 
+      jTextArea4.setText(aesenc.getResultado());
       return Conversor.unpad(out, 16);
     }
 

@@ -64,6 +64,8 @@ public class BlockManager {
                 descifrador.InvCipher(inBlock, outBlock);
                 out = addBlock (out, outBlock, i);
             }
+
+            resultado = descifrador.getCadena();
         }
 
         return out;
@@ -123,6 +125,8 @@ public class BlockManager {
                 descifrador.InvCipher(inBlock, outBlock);
                 out = addBlock (out, outBlock, i);
             }
+
+            resultado = descifrador.getCadena();
         }
 
         return out;
