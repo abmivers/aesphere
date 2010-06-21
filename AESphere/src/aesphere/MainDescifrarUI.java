@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 public class MainDescifrarUI extends javax.swing.JFrame {
 
     private ProcesoDescifrarUI procesodescifrado;
+    private ProcesoDescifrarDirectoUI procesodescifradodir;
     private MainUI wpadre;
 
     /** Creates new form Main */
@@ -94,6 +95,8 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         ModoCifrado = new javax.swing.JComboBox();
+        ModoEjecucion = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
         cifrarPanelOutput = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ComboBoxOutputCifrar = new javax.swing.JComboBox();
@@ -136,6 +139,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         TextoKey.setColumns(20);
         TextoKey.setLineWrap(true);
         TextoKey.setRows(5);
+        TextoKey.setWrapStyleWord(true);
         jScrollPane3.setViewportView(TextoKey);
 
         BotonBrowseCifrarKey.setText("Buscar");
@@ -206,6 +210,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         TextoInput.setColumns(20);
         TextoInput.setLineWrap(true);
         TextoInput.setRows(5);
+        TextoInput.setWrapStyleWord(true);
         jScrollPane1.setViewportView(TextoInput);
 
         BotonBrowseCifrar.setText("Buscar");
@@ -283,6 +288,16 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
         ModoCifrado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modo ECB", "Modo CBC" }));
 
+        ModoEjecucion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Paso a Paso", "Directo" }));
+        ModoEjecucion.setSelectedIndex(1);
+        ModoEjecucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModoEjecucionActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Modo de ejecución:");
+
         javax.swing.GroupLayout cifrarPanelAdvOptionsLayout = new javax.swing.GroupLayout(cifrarPanelAdvOptions);
         cifrarPanelAdvOptions.setLayout(cifrarPanelAdvOptionsLayout);
         cifrarPanelAdvOptionsLayout.setHorizontalGroup(
@@ -293,7 +308,12 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         cifrarPanelAdvOptionsLayout.setVerticalGroup(
             cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +323,9 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -392,7 +414,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             .addGroup(cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
+                    .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
                         .addComponent(Cancelar)
                         .addGap(18, 18, 18)
@@ -623,15 +645,15 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             aux=false;
             }
 
-        /*if ((contenido2.length() > 32) & selectedIndex1==1 & aux) {
-            JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 32 dígitos hexadecimales");
+        if ((contenido2.length() < 32) & selectedIndex1==1 & aux) {
+            JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede ser inferior a los 32 dígitos hexadecimales");
             aux=false;
             }
 
-        if ((contenido2.length() > 16) & selectedIndex1==0 & aux) {
-            JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 16 caracteres ASCII");
+        if ((contenido2.length() < 16) & selectedIndex1==0 & aux) {
+            JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede ser inferior a los 16 caracteres ASCII");
             aux=false;
-            }*/
+            }
 
 
         if ((RadioButton256.isSelected()) & aux) {
@@ -682,6 +704,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         int opcion1 = ComboBoxInputCifrar.getSelectedIndex();
         int opcion2 = ComboBoxKey.getSelectedIndex();
         int opcion3 = ComboBoxOutputCifrar.getSelectedIndex();
+        int opcionejecucion = ModoEjecucion.getSelectedIndex();
 
         int tamano = 0;
 
@@ -696,11 +719,20 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         }
 
 
-    if (ComprobarDatos()){
+    if (opcionejecucion==0 && ComprobarDatos() ){
        procesodescifrado = new ProcesoDescifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,tamano);
        procesodescifrado.setLocationRelativeTo(null);
        procesodescifrado.setVisible(true);
        wpadre.newchild(procesodescifrado);
+
+      }
+
+     if (opcionejecucion==1 && ComprobarDatos() ){
+       procesodescifradodir = new ProcesoDescifrarDirectoUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,tamano);
+       procesodescifradodir.setLocationRelativeTo(null);
+       procesodescifradodir.setVisible(true);
+       wpadre.newchild(procesodescifradodir);
+
       }
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
@@ -740,6 +772,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_RadioButton192ActionPerformed
 
+    private void ModoEjecucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModoEjecucionActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_ModoEjecucionActionPerformed
+
 
 
 
@@ -759,6 +795,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
     private javax.swing.JComboBox ComboBoxKey;
     private javax.swing.JComboBox ComboBoxOutputCifrar;
     private javax.swing.JComboBox ModoCifrado;
+    private javax.swing.JComboBox ModoEjecucion;
     private javax.swing.JRadioButton RadioButton128;
     private javax.swing.JRadioButton RadioButton192;
     private javax.swing.JRadioButton RadioButton256;
@@ -777,6 +814,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

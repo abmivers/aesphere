@@ -25,6 +25,7 @@ import javax.swing.JProgressBar;
 public class MainCifrarUI extends javax.swing.JFrame {
 
     private ProcesoCifrarUI procesocifrado;
+    private ProcesoCifrarDirectoUI procesocifradodir;
     private MainUI wpadre;
     private JProgressBar mibar;
 
@@ -104,7 +105,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         ModoCifrado = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        ModoPaP = new javax.swing.JComboBox();
+        ModoEjecucion = new javax.swing.JComboBox();
         cifrarPanelOutput = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ComboBoxOutputCifrar = new javax.swing.JComboBox();
@@ -146,6 +147,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         TextoKey.setColumns(20);
         TextoKey.setLineWrap(true);
         TextoKey.setRows(5);
+        TextoKey.setWrapStyleWord(true);
         jScrollPane3.setViewportView(TextoKey);
 
         BotonBrowseCifrarKey.setText("Buscar");
@@ -216,6 +218,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         TextoInput.setColumns(20);
         TextoInput.setLineWrap(true);
         TextoInput.setRows(5);
+        TextoInput.setWrapStyleWord(true);
         jScrollPane1.setViewportView(TextoInput);
 
         BotonBrowseCifrar.setText("Buscar");
@@ -300,10 +303,11 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         jLabel5.setText("Modo de ejecución:");
 
-        ModoPaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Paso a Paso", "Directo" }));
-        ModoPaP.addActionListener(new java.awt.event.ActionListener() {
+        ModoEjecucion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Paso a Paso", "Directo" }));
+        ModoEjecucion.setSelectedIndex(1);
+        ModoEjecucion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModoPaPActionPerformed(evt);
+                ModoEjecucionActionPerformed(evt);
             }
         });
 
@@ -321,7 +325,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addGap(91, 91, 91)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ModoPaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(74, Short.MAX_VALUE))
         );
         cifrarPanelAdvOptionsLayout.setVerticalGroup(
@@ -332,7 +336,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                     .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(ModoPaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -340,7 +344,8 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef2.png"))); // NOI18N
 
-        ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto", "Hexadecimal", "Archivo" }));
+        ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto ASCII", "Hexadecimal", "Archivo" }));
+        ComboBoxOutputCifrar.setSelectedIndex(1);
         ComboBoxOutputCifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxOutputCifrarActionPerformed(evt);
@@ -667,7 +672,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         boolean aux=true;
 
-        if ( aux && TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty() ){
+        if ( aux && (TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty()) ){
            JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
            aux=false;
         }
@@ -753,6 +758,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         int opcion1 = ComboBoxInputCifrar.getSelectedIndex();
         int opcion2 = ComboBoxKey.getSelectedIndex();
         int opcion3 = ComboBoxOutputCifrar.getSelectedIndex();
+        int opcionejecucion = ModoEjecucion.getSelectedIndex();
 
         int tamano = 0;
 
@@ -767,12 +773,20 @@ public class MainCifrarUI extends javax.swing.JFrame {
         }
 
 
-    if (ComprobarDatos()){
+    if (opcionejecucion==0 && ComprobarDatos() ){
        procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,tamano);
        procesocifrado.setLocationRelativeTo(null);
        procesocifrado.setVisible(true);                
        wpadre.newchild(procesocifrado);
        
+      }
+
+     if (opcionejecucion==1 && ComprobarDatos() ){
+       procesocifradodir = new ProcesoCifrarDirectoUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,tamano);
+       procesocifradodir.setLocationRelativeTo(null);
+       procesocifradodir.setVisible(true);
+       wpadre.newchild(procesocifradodir);
+
       }
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
@@ -817,9 +831,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ModoCifradoActionPerformed
 
-    private void ModoPaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModoPaPActionPerformed
+    private void ModoEjecucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModoEjecucionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ModoPaPActionPerformed
+    }//GEN-LAST:event_ModoEjecucionActionPerformed
 
 
 
@@ -834,7 +848,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JComboBox ComboBoxKey;
     private javax.swing.JComboBox ComboBoxOutputCifrar;
     private javax.swing.JComboBox ModoCifrado;
-    private javax.swing.JComboBox ModoPaP;
+    private javax.swing.JComboBox ModoEjecucion;
     private javax.swing.JRadioButton RadioButton128;
     private javax.swing.JRadioButton RadioButton192;
     private javax.swing.JRadioButton RadioButton256;

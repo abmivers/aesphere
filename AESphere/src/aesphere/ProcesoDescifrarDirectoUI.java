@@ -18,8 +18,7 @@ import java.io.File;
  *
  * @author antonio
  */
-
-public class ProcesoCifrarUI extends javax.swing.JFrame {
+public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
     private String cadenaInput;
     private String cadenaKey;
@@ -27,13 +26,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     private MainUI wpadre;
     private int tamanoclave;
 
-    /** Creates new form ProcesoCifrarUI */
-
-    public ProcesoCifrarUI () {
-
-    }
-
-    public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamano) {
+    /** Creates new form ProcesoDescifrarUI */
+    public ProcesoDescifrarDirectoUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamano) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
@@ -41,61 +35,61 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         cadenaOutput = Texto3;
         tamanoclave = tamano;
 
-
         this.setSize(800, 622);
 
         byte[] salida = new byte[16];
 
         if (opcionentrada==2 & opcionkey==2){
-            salida=cifrarArchivoArchivo();
+            salida=descifrarArchivoArchivo();
         }
 
          if (opcionentrada==1 & opcionkey==1){
-            salida=cifrarHexaHexa();
+            salida=descifrarHexaHexa();
         }
 
          if (opcionentrada==2 & opcionkey==1){
-            salida=cifrarArchivoHexa();
+            salida=descifrarArchivoHexa();
         }
 
          if (opcionentrada==1 & opcionkey==2){
-            salida=cifrarHexaArchivo();
+            salida=descifrarHexaArchivo();
         }
 
          if (opcionentrada==0 & opcionkey==0){
-            salida=cifrarTextoTexto();
+            salida=descifrarTextoTexto();
         }
 
          if (opcionentrada==0 & opcionkey==1){
-            salida=cifrarTextoHexa();
+            salida=descifrarTextoHexa();
         }
 
          if (opcionentrada==0 & opcionkey==2){
-            salida=cifrarTextoArchivo();
+            salida=descifrarTextoArchivo();
         }
 
          if (opcionentrada==1 & opcionkey==0){
-            salida=cifrarHexaTexto();
+            salida=descifrarHexaTexto();
         }
 
          if (opcionentrada==2 & opcionkey==0){
-            salida=cifrarArchivoTexto();
+            salida=descifrarArchivoTexto();
         }
+
+        
 
         
         
         if (opcionsalida==0) {
-          jTextArea3.setText(Conversor.byteToTextString(salida));
+          TextoSalida.setText(Conversor.byteToTextString(salida).trim());
             
         } else if (opcionsalida == 1){
-                jTextArea3.setText(Conversor.byteToHexString(salida));
+                TextoSalida.setText(Conversor.byteToHexString(salida));
                }
-        else if (opcionsalida==2){
+        else if (opcionsalida==2){   
             Conversor.byteToFile(salida,cadenaOutput) ;
-            jTextArea3.setText(Conversor.byteToTextString(salida));
+            TextoSalida.setText(Conversor.byteToTextString(salida));
             
         }
-
 
     }
 
@@ -109,13 +103,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        Plaintextfield = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        RondasTextArea = new javax.swing.JTextArea();
+        TextoSalida = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -125,7 +115,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("AESphere - Proceso Cifrado");
+        setTitle("AESphere - Proceso Descifrado");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -133,28 +123,14 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
             }
         });
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setLineWrap(true);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
-
-        jLabel1.setText("Plaintext:");
-
-        Plaintextfield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PlaintextfieldActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Rondas AES:");
-
-        RondasTextArea.setColumns(20);
-        RondasTextArea.setLineWrap(true);
-        RondasTextArea.setRows(5);
-        RondasTextArea.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(RondasTextArea);
+        TextoSalida.setColumns(20);
+        TextoSalida.setLineWrap(true);
+        TextoSalida.setRows(5);
+        jScrollPane3.setViewportView(TextoSalida);
 
         jLabel3.setText("Ciphertext:");
+
+        jLabel1.setText("Plaintext:");
 
         mainMenuArchivoCifrado.setText("Archivo");
 
@@ -187,41 +163,25 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(50, 50, 50)
+                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 551, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
                         .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(18, 18, 18)
-                        .add(Plaintextfield, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)))
-                .add(103, 103, 103))
+                        .add(26, 26, 26)
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE))
+                    .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(35, 35, 35)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+            .add(layout.createSequentialGroup()
+                .add(32, 32, 32)
+                .add(jLabel3)
+                .add(40, 40, 40)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel1)
-                    .add(Plaintextfield, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel2)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 271, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(22, 22, 22)
-                        .add(jLabel3))
-                    .add(layout.createSequentialGroup()
-                        .add(18, 18, 18)
-                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(67, 67, 67))
+                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
 
         pack();
@@ -234,7 +194,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
 
-    private byte [] cifrarArchivoTexto (){
+    private byte [] descifrarArchivoTexto (){
 
         int a1 = 0;
         int a2 = 0;
@@ -269,27 +229,22 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         try {
          in = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
-
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-        in= Conversor.pad(in, 16);
-
         byte[] key = Conversor.stringToASCII(cadenaKey);
-        //Para las claves sólo hay que rellenar si no son del tamaño necesario
         if (key.length != a2) key = Conversor.pad(key, a2);
-        //BlockManager se encargará de cifrar
-        BlockManager aes = new BlockManager(key, a3, 16);
 
-        byte [] out = aes.ECB(in, true);
-        RondasTextArea.setText(aes.getResultado());
-        Plaintextfield.setText(Conversor.byteToHexString(in));
-        return out;
+        BlockManager aesenc = new BlockManager(key, a3, 16);
+
+        byte[] out = aesenc.ECB(in, false);
+        
+        return Conversor.unpad(out);
     }
 
-    private byte[] cifrarHexaTexto (){
+    private byte[] descifrarHexaTexto (){
 
         int a = 0;
       int b = 0;
@@ -310,20 +265,17 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       }
 
       byte[] in = Conversor.hexStringToByte(cadenaInput);
-      in = Conversor.pad(in, 16);
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aes = new BlockManager(key, b, 16);   
+      BlockManager aesenc = new BlockManager(key, b, 16);
 
-      byte [] out = aes.ECB(in, true);
-      RondasTextArea.setText(aes.getResultado());
-      Plaintextfield.setText(Conversor.byteToHexString(in));
+      byte[] out = aesenc.ECB(in, false);
 
-      return out;
+      return Conversor.unpad(out);
     }
 
-    private byte[] cifrarTextoArchivo (){
+    private byte[] descifrarTextoArchivo (){
 
         int a1 = 0;
         int a2 = 0;
@@ -355,9 +307,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         }
 
         byte[] in = Conversor.stringToASCII(cadenaInput);
-        in = Conversor.pad(in, 16);
 
-        byte[] key = null;
+        byte [] key = null;
         try {
          key = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
         }
@@ -367,15 +318,14 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        BlockManager aes = new BlockManager(key, a3, 16);   
+        BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        byte [] out = aes.ECB(in, true);
-        RondasTextArea.setText(aes.getResultado());
-        Plaintextfield.setText(Conversor.byteToHexString(in));
-        return out;
+        byte[] out = aesenc.ECB(in, false);
+
+        return Conversor.unpad(out);
     }
 
-    private byte[] cifrarTextoHexa (){
+    private byte[] descifrarTextoHexa (){
       int a = 0;
       int b = 0;
 
@@ -395,19 +345,16 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       }
 
       byte[] in = Conversor.stringToASCII(cadenaInput);
-      in = Conversor.pad(in, 16);
       byte[] key = Conversor.hexStringToByte(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aes = new BlockManager(key, b, 16);
+      BlockManager aesenc = new BlockManager(key, b, 16);
+      byte[] out = aesenc.ECB(in, false);
 
-      byte [] out = aes.ECB(in, true);
-      RondasTextArea.setText(aes.getResultado());
-      Plaintextfield.setText(Conversor.byteToHexString(in));
-      return out;
+      return Conversor.unpad(out);
     }
 
-    private byte[] cifrarTextoTexto (){
+    private byte[] descifrarTextoTexto (){
       int a = 0;
       int b = 0;
 
@@ -427,22 +374,18 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       }
 
       byte[] in = Conversor.stringToASCII(cadenaInput);
-      in = Conversor.pad(in, 16);
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aes = new BlockManager(key, b, 16);
+      BlockManager aesenc = new BlockManager(key, b, 16);
+      byte[] out = aesenc.ECB(in, false);
 
-      byte [] out = aes.ECB(in, true);
-      RondasTextArea.setText(aes.getResultado());
-      Plaintextfield.setText(Conversor.byteToHexString(in));
-
-      return out;
+      return Conversor.unpad(out);
     }
 
 
 
-    private byte[] cifrarHexaArchivo(){
+    private byte[] descifrarHexaArchivo(){
 
         int a1 = 0;
         int a2 = 0;
@@ -474,7 +417,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         }
 
         byte[] in = Conversor.hexStringToByte(cadenaInput);
-        in = Conversor.pad(in, 16);
 
         byte [] key = null;
         try {
@@ -486,15 +428,14 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        BlockManager aes = new BlockManager(key, a3, 16);
+        BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        byte [] out = aes.ECB(in, true);
-        RondasTextArea.setText(aes.getResultado());
-        Plaintextfield.setText(Conversor.byteToHexString(in));
-        return out;
+        byte[] out = aesenc.ECB(in, false);
+
+        return Conversor.unpad(out);
     }
 
-    private byte[] cifrarArchivoHexa (){
+    private byte[] descifrarArchivoHexa (){
 
         int a1 = 0;
         int a2 = 0;
@@ -528,30 +469,24 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         byte [] in = null;
         try {
          in = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
-
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-        in= Conversor.pad(in, 16);
-
         byte[] key = Conversor.hexStringToByte(cadenaKey);
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        BlockManager aes = new BlockManager(key, a3, 16);
+        BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        byte [] out = aes.ECB(in, true);
-        RondasTextArea.setText(aes.getResultado());
-        Plaintextfield.setText(Conversor.byteToHexString(in));
-        return out;
+        byte[] out = aesenc.ECB(in, false);
+
+        return Conversor.unpad(out);
     }
 
 
-    private byte[] cifrarHexaHexa (){
+    private byte[] descifrarHexaHexa (){
 
-      //hay que hacer algo con el tema del tamaño de clave
-      //rellenar con c0 hasta tamaño de clave o con ceros?
       int a = 0;
       int b = 0;
 
@@ -571,22 +506,19 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       }
 
       byte[] in = Conversor.hexStringToByte(cadenaInput);
-      in = Conversor.pad(in, 16);
       byte[] key = Conversor.hexStringToByte(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aes = new BlockManager(key, b, 16);
+      BlockManager aesenc = new BlockManager(key, b, 16);
+      byte[] out = aesenc.ECB(in, false);
       
-      byte [] out = aes.ECB(in, true);
-      RondasTextArea.setText(aes.getResultado());
-      Plaintextfield.setText(Conversor.byteToHexString(in));
-      return out;
+      return Conversor.unpad(out);
     }
 
 
 
 
-    private byte[] cifrarArchivoArchivo (){
+    private byte[] descifrarArchivoArchivo (){
 
         int a1 = 0;
         int a2 = 0;
@@ -619,8 +551,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         byte [] in = null;
         byte [] key = null;
-
-
         try {
          in = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
          key = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
@@ -628,16 +558,14 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         catch (Exception e){
             e.printStackTrace();
         }
-
-        in = Conversor.pad(in, 16);
+        
         key = Conversor.pad(key, a2);
 
-        BlockManager aes = new BlockManager(key, a3, 16);
+      BlockManager aesenc = new BlockManager(key, a3, 16);
 
-        byte [] out = aes.ECB(in, true);
-        RondasTextArea.setText(aes.getResultado());
-        Plaintextfield.setText(Conversor.byteToHexString(in));
-        return out;
+      byte[] out = aesenc.ECB(in, false);
+
+      return Conversor.unpad(out);
     }
 
 
@@ -646,27 +574,19 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSED));
 }//GEN-LAST:event_SalirActionPerformed
 
-    private void PlaintextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaintextfieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PlaintextfieldActionPerformed
-
     /**
     * @param args the command line arguments
     */
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Plaintextfield;
-    private javax.swing.JTextArea RondasTextArea;
     private javax.swing.JMenuItem Salir;
+    private javax.swing.JTextArea TextoSalida;
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
     private javax.swing.JMenu mainMenuEditarCifrado;

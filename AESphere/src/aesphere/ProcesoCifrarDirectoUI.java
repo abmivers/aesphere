@@ -19,7 +19,7 @@ import java.io.File;
  * @author antonio
  */
 
-public class ProcesoCifrarUI extends javax.swing.JFrame {
+public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
 
     private String cadenaInput;
     private String cadenaKey;
@@ -29,11 +29,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
     /** Creates new form ProcesoCifrarUI */
 
-    public ProcesoCifrarUI () {
+    public ProcesoCifrarDirectoUI () {
 
     }
 
-    public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamano) {
+    public ProcesoCifrarDirectoUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamano) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
@@ -42,7 +42,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         tamanoclave = tamano;
 
 
-        this.setSize(800, 622);
+        this.setSize(550, 300);
 
         byte[] salida = new byte[16];
 
@@ -112,9 +112,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         jTextArea3 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         Plaintextfield = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        RondasTextArea = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
@@ -145,14 +142,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
                 PlaintextfieldActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Rondas AES:");
-
-        RondasTextArea.setColumns(20);
-        RondasTextArea.setLineWrap(true);
-        RondasTextArea.setRows(5);
-        RondasTextArea.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(RondasTextArea);
 
         jLabel3.setText("Ciphertext:");
 
@@ -187,41 +176,28 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(50, 50, 50)
+                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 551, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(18, 18, 18)
-                        .add(Plaintextfield, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)))
-                .add(103, 103, 103))
+                    .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+                    .add(Plaintextfield, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(35, 35, 35)
+                .add(40, 40, 40)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(Plaintextfield, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(18, 18, 18)
+                .add(37, 37, 37)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel2)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 271, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(22, 22, 22)
-                        .add(jLabel3))
-                    .add(layout.createSequentialGroup()
-                        .add(18, 18, 18)
-                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(67, 67, 67))
+                    .add(jLabel3)
+                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(357, 357, 357))
         );
 
         pack();
@@ -284,7 +260,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         BlockManager aes = new BlockManager(key, a3, 16);
 
         byte [] out = aes.ECB(in, true);
-        RondasTextArea.setText(aes.getResultado());
+        
         Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
     }
@@ -317,7 +293,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       BlockManager aes = new BlockManager(key, b, 16);   
 
       byte [] out = aes.ECB(in, true);
-      RondasTextArea.setText(aes.getResultado());
+      
       Plaintextfield.setText(Conversor.byteToHexString(in));
 
       return out;
@@ -370,7 +346,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         BlockManager aes = new BlockManager(key, a3, 16);   
 
         byte [] out = aes.ECB(in, true);
-        RondasTextArea.setText(aes.getResultado());
         Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
     }
@@ -402,7 +377,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       BlockManager aes = new BlockManager(key, b, 16);
 
       byte [] out = aes.ECB(in, true);
-      RondasTextArea.setText(aes.getResultado());
       Plaintextfield.setText(Conversor.byteToHexString(in));
       return out;
     }
@@ -434,7 +408,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       BlockManager aes = new BlockManager(key, b, 16);
 
       byte [] out = aes.ECB(in, true);
-      RondasTextArea.setText(aes.getResultado());
       Plaintextfield.setText(Conversor.byteToHexString(in));
 
       return out;
@@ -489,7 +462,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         BlockManager aes = new BlockManager(key, a3, 16);
 
         byte [] out = aes.ECB(in, true);
-        RondasTextArea.setText(aes.getResultado());
         Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
     }
@@ -542,7 +514,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         BlockManager aes = new BlockManager(key, a3, 16);
 
         byte [] out = aes.ECB(in, true);
-        RondasTextArea.setText(aes.getResultado());
         Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
     }
@@ -578,7 +549,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       BlockManager aes = new BlockManager(key, b, 16);
       
       byte [] out = aes.ECB(in, true);
-      RondasTextArea.setText(aes.getResultado());
       Plaintextfield.setText(Conversor.byteToHexString(in));
       return out;
     }
@@ -635,7 +605,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         BlockManager aes = new BlockManager(key, a3, 16);
 
         byte [] out = aes.ECB(in, true);
-        RondasTextArea.setText(aes.getResultado());
         Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
     }
@@ -657,14 +626,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Plaintextfield;
-    private javax.swing.JTextArea RondasTextArea;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JMenu mainMenuArchivoCifrado;
