@@ -556,7 +556,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
          
 
         String rutaOutput;
-        int resul = archivos.showOpenDialog(null);
+        int resul = archivos.showSaveDialog(null);
         File archi= archivos.getSelectedFile();
         rutaOutput = archi.getPath();
         if (resul == archivos.APPROVE_OPTION) this.TextoOutput.setText(rutaOutput);

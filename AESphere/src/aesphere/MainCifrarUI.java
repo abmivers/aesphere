@@ -116,10 +116,13 @@ public class MainCifrarUI extends javax.swing.JFrame {
         Cancelar = new javax.swing.JButton();
         cifrarMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        AbrirClave = new javax.swing.JMenuItem();
+        GuardarClave = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditar = new javax.swing.JMenu();
-        mainMenuOperaciones = new javax.swing.JMenu();
+        Copiar = new javax.swing.JMenuItem();
+        Pegar = new javax.swing.JMenuItem();
+        Cortar = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -458,8 +461,21 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         mainMenuArchivo.setText("Archivo");
 
-        jMenuItem2.setText("jMenuItem2");
-        mainMenuArchivo.add(jMenuItem2);
+        AbrirClave.setText("Abrir Clave");
+        AbrirClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirClaveActionPerformed(evt);
+            }
+        });
+        mainMenuArchivo.add(AbrirClave);
+
+        GuardarClave.setText("Guardar Clave");
+        GuardarClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarClaveActionPerformed(evt);
+            }
+        });
+        mainMenuArchivo.add(GuardarClave);
 
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -472,10 +488,35 @@ public class MainCifrarUI extends javax.swing.JFrame {
         cifrarMenuBarMain.add(mainMenuArchivo);
 
         mainMenuEditar.setText("Editar");
-        cifrarMenuBarMain.add(mainMenuEditar);
 
-        mainMenuOperaciones.setText("Operaciones");
-        cifrarMenuBarMain.add(mainMenuOperaciones);
+        Copiar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        Copiar.setText("Copiar");
+        Copiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(Copiar);
+
+        Pegar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        Pegar.setText("Pegar");
+        Pegar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PegarActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(Pegar);
+
+        Cortar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        Cortar.setText("Cortar");
+        Cortar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CortarActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(Cortar);
+
+        cifrarMenuBarMain.add(mainMenuEditar);
 
         mainMenuAyuda.setText("Ayuda");
         mainMenuAyuda.setComponentPopupMenu(jPopupMenu1);
@@ -566,7 +607,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
          
 
         String rutaOutput;
-        int resul = archivos.showOpenDialog(null);
+        int resul = archivos.showSaveDialog(null);
         File archi= archivos.getSelectedFile();
         rutaOutput = archi.getPath();
         if (resul == archivos.APPROVE_OPTION){
@@ -833,16 +874,52 @@ public class MainCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_RadioButton192ActionPerformed
 
     private void ModoCifradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModoCifradoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_ModoCifradoActionPerformed
 
     private void ModoEjecucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModoEjecucionActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_ModoEjecucionActionPerformed
+
+    private void AbrirClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirClaveActionPerformed
+
+        String rutaKey;
+        int resul = archivos.showOpenDialog(null);
+        File archi= archivos.getSelectedFile();
+        rutaKey = archi.getPath();
+        ComboBoxKey.setSelectedIndex(2);
+        if (resul == archivos.APPROVE_OPTION) this.TextoKey.setText(rutaKey);
+
+
+    }//GEN-LAST:event_AbrirClaveActionPerformed
+
+    private void CopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarActionPerformed
+
+    }//GEN-LAST:event_CopiarActionPerformed
+
+    private void PegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PegarActionPerformed
+
+    }//GEN-LAST:event_PegarActionPerformed
+
+    private void CortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CortarActionPerformed
+
+    }//GEN-LAST:event_CortarActionPerformed
+
+    private void GuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarClaveActionPerformed
+        String rutaClaveGuardar;
+        int resul = archivos.showSaveDialog(null);
+        File archi= archivos.getSelectedFile();
+        rutaClaveGuardar = archi.getPath();
+        if (resul == archivos.APPROVE_OPTION){
+
+           Conversor.byteToFile(Conversor.stringToASCII(TextoKey.getText()), rutaClaveGuardar);
+        }
+    }//GEN-LAST:event_GuardarClaveActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AbrirClave;
     private javax.swing.JButton BotonBrowseCifrar;
     private javax.swing.JButton BotonBrowseCifrarKey;
     private javax.swing.JButton BotonBrowseCifrarOutput;
@@ -852,8 +929,12 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JComboBox ComboBoxInputCifrar;
     private javax.swing.JComboBox ComboBoxKey;
     private javax.swing.JComboBox ComboBoxOutputCifrar;
+    private javax.swing.JMenuItem Copiar;
+    private javax.swing.JMenuItem Cortar;
+    private javax.swing.JMenuItem GuardarClave;
     private javax.swing.JComboBox ModoCifrado;
     private javax.swing.JComboBox ModoEjecucion;
+    private javax.swing.JMenuItem Pegar;
     private javax.swing.JRadioButton RadioButton128;
     private javax.swing.JRadioButton RadioButton192;
     private javax.swing.JRadioButton RadioButton256;
@@ -873,7 +954,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -885,7 +965,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JMenu mainMenuArchivo;
     private javax.swing.JMenu mainMenuAyuda;
     private javax.swing.JMenu mainMenuEditar;
-    private javax.swing.JMenu mainMenuOperaciones;
     // End of variables declaration//GEN-END:variables
 
 }
