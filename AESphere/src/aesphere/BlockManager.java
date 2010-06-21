@@ -18,12 +18,15 @@ public class BlockManager {
     private byte [] IV;
     private boolean paso;
     
-    public BlockManager (byte [] clave, int claveTam, int bloqueTam,boolean paso) {
-        this.paso=paso;
+    public BlockManager (byte [] clave, int claveTam, int bloqueTam, 
+            boolean step) {
+        this.paso = step;
         key = clave;
         keySize = claveTam;
         blockSize = bloqueTam;
         IV = new byte[blockSize];
+        for (int i =0; i < blockSize; i++)
+            IV[i] = Conversor.hexPairToByte("ff", 0);
     }
 
     public String getResultado () {
@@ -49,7 +52,7 @@ public class BlockManager {
         byte [] inBlock = null;
 
         if (cifrando) {
-            AESencrypt cifrador = new AESencrypt(key, keySize,paso);
+            AESencrypt cifrador = new AESencrypt(key, keySize, paso);
             
             for (int i = 0; i < numBlocks; i++) {
                 inBlock = getBlock (in, i);
@@ -59,7 +62,7 @@ public class BlockManager {
             
             resultado = cifrador.getCadena();
         } else {
-            AESdecrypt descifrador = new AESdecrypt(key,keySize,paso);
+            AESdecrypt descifrador = new AESdecrypt(key,keySize, paso);
 
             for (int i = 0; i < numBlocks; i++) {
                 inBlock = getBlock (in, i);
@@ -120,11 +123,11 @@ public class BlockManager {
 
             for (int i = 0; i < numBlocks; i++) {
                 inBlock = getBlock (in, i);
-
-                if (i==0) inBlock = XOR(IV, inBlock);
-                else inBlock = XOR(outBlock, inBlock);
-
                 descifrador.InvCipher(inBlock, outBlock);
+
+                if (i == 0) outBlock = XOR(IV, outBlock);
+                else outBlock = XOR(inBlock,outBlock);
+
                 out = addBlock (out, outBlock, i);
             }
 

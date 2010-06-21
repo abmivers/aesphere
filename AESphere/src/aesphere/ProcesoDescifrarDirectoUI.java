@@ -26,15 +26,19 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
     private String cadenaOutput;
     private MainUI wpadre;
     private int tamanoclave;
+    private int blockMode;
 
     /** Creates new form ProcesoDescifrarUI */
-    public ProcesoDescifrarDirectoUI(MainUI padre,String Texto1, String Texto2, String Texto3,int opcionentrada,int opcionkey,int opcionsalida,int tamano) {
+    public ProcesoDescifrarDirectoUI(MainUI padre,String Texto1, String Texto2, 
+            String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
+            int modoBloque, int tamano) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
         cadenaKey = Texto2;
         cadenaOutput = Texto3;
         tamanoclave = tamano;
+        blockMode = modoBloque;
 
         this.setSize(550, 300);
 
@@ -251,9 +255,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         byte[] key = Conversor.stringToASCII(cadenaKey);
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        BlockManager aesenc = new BlockManager(key, a3, 16);
+        BlockManager aesenc = new BlockManager(key, a3, 16, false);
 
-        byte[] out = aesenc.ECB(in, false);
+        byte[] out = null;
+        if (blockMode == 0) out = aesenc.ECB(in, false);
+        else if (blockMode == 1) out = aesenc.CBC(in, false);
         
         return Conversor.unpad(out, 16);
     }
@@ -282,9 +288,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aesenc = new BlockManager(key, b, 16);
+      BlockManager aesenc = new BlockManager(key, b, 16, false);
 
-      byte[] out = aesenc.ECB(in, false);
+      byte[] out = null;
+      if (blockMode == 0) out = aesenc.ECB(in, false);
+      else if (blockMode == 1) out = aesenc.CBC(in, false);
 
       return Conversor.unpad(out, 16);
     }
@@ -332,9 +340,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        BlockManager aesenc = new BlockManager(key, a3, 16);
+        BlockManager aesenc = new BlockManager(key, a3, 16, false);
 
-        byte[] out = aesenc.ECB(in, false);
+        byte[] out = null;
+        if (blockMode == 0) out = aesenc.ECB(in, false);
+        else if (blockMode == 1) out = aesenc.CBC(in, false);
 
         return Conversor.unpad(out, 16);
     }
@@ -362,8 +372,10 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
       byte[] key = Conversor.hexStringToByte(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aesenc = new BlockManager(key, b, 16);
-      byte[] out = aesenc.ECB(in, false);
+      BlockManager aesenc = new BlockManager(key, b, 16, false);
+      byte[] out = null;
+      if (blockMode == 0) out = aesenc.ECB(in, false);
+      else if (blockMode == 1) out = aesenc.CBC(in, false);
 
       return Conversor.unpad(out, 16);
     }
@@ -391,8 +403,10 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aesenc = new BlockManager(key, b, 16);
-      byte[] out = aesenc.ECB(in, false);
+      BlockManager aesenc = new BlockManager(key, b, 16, false);
+      byte[] out = null;
+      if (blockMode == 0) out = aesenc.ECB(in, false);
+      else if (blockMode == 1) out = aesenc.CBC(in, false);
 
       return Conversor.unpad(out, 16);
     }
@@ -442,9 +456,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        BlockManager aesenc = new BlockManager(key, a3, 16);
+        BlockManager aesenc = new BlockManager(key, a3, 16, false);
 
-        byte[] out = aesenc.ECB(in, false);
+        byte[] out = null;
+        if (blockMode == 0) out = aesenc.ECB(in, false);
+        else if (blockMode == 1) out = aesenc.CBC(in, false);
 
         return Conversor.unpad(out, 16);
     }
@@ -491,9 +507,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         byte[] key = Conversor.hexStringToByte(cadenaKey);
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        BlockManager aesenc = new BlockManager(key, a3, 16);
+        BlockManager aesenc = new BlockManager(key, a3, 16, false);
 
-        byte[] out = aesenc.ECB(in, false);
+        byte[] out = null;
+        if (blockMode == 0) out = aesenc.ECB(in, false);
+        else if (blockMode == 1) out = aesenc.CBC(in, false);
 
         return Conversor.unpad(out, 16);
     }
@@ -523,8 +541,10 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
       byte[] key = Conversor.hexStringToByte(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aesenc = new BlockManager(key, b, 16);
-      byte[] out = aesenc.ECB(in, false);
+      BlockManager aesenc = new BlockManager(key, b, 16, false);
+      byte[] out = null;
+      if (blockMode == 0) out = aesenc.ECB(in, false);
+      else if (blockMode == 1) out = aesenc.CBC(in, false);
       
       return Conversor.unpad(out, 16);
     }
@@ -575,9 +595,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         
         key = Conversor.pad(key, a2);
 
-      BlockManager aesenc = new BlockManager(key, a3, 16);
+      BlockManager aesenc = new BlockManager(key, a3, 16, false);
 
-      byte[] out = aesenc.ECB(in, false);
+      byte[] out = null;
+      if (blockMode == 0) out = aesenc.ECB(in, false);
+      else if (blockMode == 1) out = aesenc.CBC(in, false);
 
       return Conversor.unpad(out, 16);
     }

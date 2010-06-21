@@ -717,6 +717,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         int opcion2 = ComboBoxKey.getSelectedIndex();
         int opcion3 = ComboBoxOutputCifrar.getSelectedIndex();
         int opcionejecucion = ModoEjecucion.getSelectedIndex();
+        int op_block = ModoCifrado.getSelectedIndex();
 
         int tamano = 0;
 
@@ -732,7 +733,9 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
 
     if (opcionejecucion==0 && ComprobarDatos() ){
-       procesodescifrado = new ProcesoDescifrarUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,tamano);
+       procesodescifrado = new ProcesoDescifrarUI (wpadre,TextoInput.getText(),
+               TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
+               op_block, tamano);
        procesodescifrado.setLocationRelativeTo(null);
        procesodescifrado.setVisible(true);
        wpadre.newchild(procesodescifrado);
@@ -740,7 +743,9 @@ public class MainDescifrarUI extends javax.swing.JFrame {
       }
 
      if (opcionejecucion==1 && ComprobarDatos() ){
-       procesodescifradodir = new ProcesoDescifrarDirectoUI (wpadre,TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,tamano);
+       procesodescifradodir = new ProcesoDescifrarDirectoUI (wpadre,
+               TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),
+               opcion1,opcion2,opcion3,op_block,tamano);
        procesodescifradodir.setLocationRelativeTo(null);
        procesodescifradodir.setVisible(true);
        wpadre.newchild(procesodescifradodir);

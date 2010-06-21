@@ -32,11 +32,11 @@ public class AEStest {
         System.out.println("keyex: ");
         System.out.println(b +" long: "+ b.length());
 
-      AESencrypt aes = new AESencrypt(key, 4);
+      //AESencrypt aes = new AESencrypt(key, 4);
       System.out.println(Print.printArray("Plaintext:     ", in));
       Print.printArray("Key:           ", key);
       byte[] out = new byte[16];
-      aes.Cipher(in, out);
+      //aes.Cipher(in, out);
       Print.printArray("Ciphertext:    ", out);
    }
 }

@@ -36,14 +36,14 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
     public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
-            int opcionblock, int tamano) {
+            int modoBloque, int tamano) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
         cadenaKey = Texto2;
         cadenaOutput = Texto3;
         tamanoclave = tamano;
-        blockMode = opcionblock;
+        blockMode = modoBloque;
 
         this.setSize(800, 622);
 
@@ -284,9 +284,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         //Para las claves sólo hay que rellenar si no son del tamaño necesario
         if (key.length != a2) key = Conversor.pad(key, a2);
         //BlockManager se encargará de cifrar
-        BlockManager aes = new BlockManager(key, a3, 16);
+        BlockManager aes = new BlockManager(key, a3, 16, true);
 
-        byte [] out = aes.ECB(in, true);
+        byte[] out = null;
+        if (blockMode == 0) out = aes.ECB(in, true);
+        else if (blockMode == 1) out = aes.CBC(in, true);
         RondasTextArea.setText(aes.getResultado());
         Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
@@ -317,9 +319,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aes = new BlockManager(key, b, 16);   
+      BlockManager aes = new BlockManager(key, b, 16, true);
 
-      byte [] out = aes.ECB(in, true);
+      byte[] out = null;
+      if (blockMode == 0) out = aes.ECB(in, true);
+      else if (blockMode == 1) out = aes.CBC(in, true);
       RondasTextArea.setText(aes.getResultado());
       Plaintextfield.setText(Conversor.byteToHexString(in));
 
@@ -370,9 +374,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        BlockManager aes = new BlockManager(key, a3, 16);   
+        BlockManager aes = new BlockManager(key, a3, 16, true);
 
-        byte [] out = aes.ECB(in, true);
+        byte[] out = null;
+        if (blockMode == 0) out = aes.ECB(in, true);
+        else if (blockMode == 1) out = aes.CBC(in, true);
         RondasTextArea.setText(aes.getResultado());
         Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
@@ -402,9 +408,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.hexStringToByte(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aes = new BlockManager(key, b, 16);
+      BlockManager aes = new BlockManager(key, b, 16, true);
 
-      byte [] out = aes.ECB(in, true);
+      byte[] out = null;
+      if (blockMode == 0) out = aes.ECB(in, true);
+      else if (blockMode == 1) out = aes.CBC(in, true);
       RondasTextArea.setText(aes.getResultado());
       Plaintextfield.setText(Conversor.byteToHexString(in));
       return out;
@@ -434,9 +442,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.stringToASCII(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aes = new BlockManager(key, b, 16);
+      BlockManager aes = new BlockManager(key, b, 16, true);
 
-      byte [] out = aes.ECB(in, true);
+      byte[] out = null;
+      if (blockMode == 0) out = aes.ECB(in, true);
+      else if (blockMode == 1) out = aes.CBC(in, true);
       RondasTextArea.setText(aes.getResultado());
       Plaintextfield.setText(Conversor.byteToHexString(in));
 
@@ -489,9 +499,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        BlockManager aes = new BlockManager(key, a3, 16);
+        BlockManager aes = new BlockManager(key, a3, 16, true);
 
-        byte [] out = aes.ECB(in, true);
+        byte[] out = null;
+        if (blockMode == 0) out = aes.ECB(in, true);
+        else if (blockMode == 1) out = aes.CBC(in, true);
         RondasTextArea.setText(aes.getResultado());
         Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
@@ -542,9 +554,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         byte[] key = Conversor.hexStringToByte(cadenaKey);
         if (key.length != a2) key = Conversor.pad(key, a2);
 
-        BlockManager aes = new BlockManager(key, a3, 16);
+        BlockManager aes = new BlockManager(key, a3, 16, true);
 
-        byte [] out = aes.ECB(in, true);
+        byte[] out = null;
+        if (blockMode == 0) out = aes.ECB(in, true);
+        else if (blockMode == 1) out = aes.CBC(in, true);
         RondasTextArea.setText(aes.getResultado());
         Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
@@ -578,9 +592,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
       byte[] key = Conversor.hexStringToByte(cadenaKey);
       if (key.length != a) key = Conversor.pad(key, a);
 
-      BlockManager aes = new BlockManager(key, b, 16);
+      BlockManager aes = new BlockManager(key, b, 16, true);
       
-      byte [] out = aes.ECB(in, true);
+      byte[] out = null;
+      if (blockMode == 0) out = aes.ECB(in, true);
+      else if (blockMode == 1) out = aes.CBC(in, true);
       RondasTextArea.setText(aes.getResultado());
       Plaintextfield.setText(Conversor.byteToHexString(in));
       return out;
@@ -635,9 +651,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         in = Conversor.pad(in, 16);
         key = Conversor.pad(key, a2);
 
-        BlockManager aes = new BlockManager(key, a3, 16);
+        BlockManager aes = new BlockManager(key, a3, 16, true);
 
-        byte [] out = aes.ECB(in, true);
+        byte[] out = null;
+        if (blockMode == 0) out = aes.ECB(in, true);
+        else if (blockMode == 1) out = aes.CBC(in, true);
         RondasTextArea.setText(aes.getResultado());
         Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
