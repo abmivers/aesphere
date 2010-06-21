@@ -102,15 +102,15 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         TextoSalida = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        CiphertextArea = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -128,31 +128,27 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        jButton1.setText("convertir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         TextoSalida.setColumns(20);
         TextoSalida.setLineWrap(true);
         TextoSalida.setRows(5);
+        TextoSalida.setWrapStyleWord(true);
         jScrollPane3.setViewportView(TextoSalida);
 
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
         jScrollPane4.setViewportView(jTextArea4);
+
+        CiphertextArea.setColumns(20);
+        CiphertextArea.setLineWrap(true);
+        CiphertextArea.setRows(5);
+        CiphertextArea.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(CiphertextArea);
+
+        jLabel1.setText("Ciphertext:");
+
+        jLabel2.setText("Rondas AES:");
+
+        jLabel3.setText("Plaintext:");
 
         mainMenuArchivoCifrado.setText("Archivo");
 
@@ -185,35 +181,38 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
+                .add(49, 49, 49)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 182, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(18, 18, 18)
-                        .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(9, 9, 9)
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
-                        .add(218, 218, 218)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jButton1))))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(286, Short.MAX_VALUE))
+                            .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 589, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .add(275, 275, 275))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(50, 50, 50)
+                .add(31, 31, 31)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(layout.createSequentialGroup()
-                        .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton1))
+                    .add(jLabel1)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(22, 22, 22)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel2)
+                    .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 248, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(18, 18, 18)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel3)
                     .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(46, 46, 46)
-                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         pack();
@@ -274,6 +273,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         byte[] out = aesenc.ECB(in, false);
 
         jTextArea4.setText(aesenc.getResultado());
+        CiphertextArea.setText(Conversor.byteToHexString(in));
         return Conversor.unpad(out, 16);
     }
 
@@ -306,6 +306,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] out = aesenc.ECB(in, false);
 
       jTextArea4.setText(aesenc.getResultado());
+      CiphertextArea.setText(Conversor.byteToHexString(in));
       return Conversor.unpad(out, 16);
     }
 
@@ -357,6 +358,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         byte[] out = aesenc.ECB(in, false);
 
         jTextArea4.setText(aesenc.getResultado());
+        CiphertextArea.setText(Conversor.byteToHexString(in));
         return Conversor.unpad(out, 16);
     }
 
@@ -387,6 +389,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] out = aesenc.ECB(in, false);
 
       jTextArea4.setText(aesenc.getResultado());
+      CiphertextArea.setText(Conversor.byteToHexString(in));
       return Conversor.unpad(out, 16);
     }
 
@@ -417,6 +420,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] out = aesenc.ECB(in, false);
 
       jTextArea4.setText(aesenc.getResultado());
+      CiphertextArea.setText(Conversor.byteToHexString(in));
       return Conversor.unpad(out, 16);
     }
 
@@ -470,6 +474,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         byte[] out = aesenc.ECB(in, false);
 
         jTextArea4.setText(aesenc.getResultado());
+        CiphertextArea.setText(Conversor.byteToHexString(in));
         return Conversor.unpad(out, 16);
     }
 
@@ -520,6 +525,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         byte[] out = aesenc.ECB(in, false);
 
         jTextArea4.setText(aesenc.getResultado());
+        CiphertextArea.setText(Conversor.byteToHexString(in));
         return Conversor.unpad(out, 16);
     }
 
@@ -552,6 +558,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] out = aesenc.ECB(in, false);
 
       jTextArea4.setText(aesenc.getResultado());
+      CiphertextArea.setText(Conversor.byteToHexString(in));
       return Conversor.unpad(out, 16);
     }
 
@@ -606,6 +613,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
       byte[] out = aesenc.ECB(in, false);
 
       jTextArea4.setText(aesenc.getResultado());
+      CiphertextArea.setText(Conversor.byteToHexString(in));
       return Conversor.unpad(out, 16);
     }
 
@@ -615,35 +623,23 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSED));
 }//GEN-LAST:event_SalirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        byte [] bloqueCifra;
-     
-
-        //bloqueCifra = Conversor.stringToASCII(jTextArea1.getText());
-        bloqueCifra = Conversor.hexStringToByte(jTextArea1.getText());
-
-        //TextoSalida.setText(Conversor.byteToTextString(bloqueCifra));
-        jTextArea2.setText(Conversor.byteToTextString(bloqueCifra).trim());
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
     * @param args the command line arguments
     */
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea CiphertextArea;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JTextArea TextoSalida;
     private javax.swing.JMenuBar cifradoMenuBarMain;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;

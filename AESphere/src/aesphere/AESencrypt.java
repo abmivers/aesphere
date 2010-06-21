@@ -18,6 +18,7 @@ public class AESencrypt {
    private AEStables tab; // all the tables needed for AES
    private byte[] w; // the expanded key
    private String cadena= new String();
+   private boolean paso;
 
 
    public AESencrypt(){
@@ -38,12 +39,14 @@ public class AESencrypt {
 
 
    // AESencrypt: constructor for class.  Mainly expands key
-   public AESencrypt(byte[] key, int NkIn) {
+   public AESencrypt(byte[] key, int NkIn, boolean paso) {
+      this.paso=paso;
       Nk = NkIn; // words in a key, = 4, or 6, or 8
       Nr = Nk + 6; // corresponding number of rounds
       tab = new AEStables(); // class to give values of various functions
       w = new byte[4*Nb*(Nr+1)]; // room for expanded key
       KeyExpansion(key, w); // length of w depends on Nr
+
    }
 
    // Cipher: actual AES encrytion
@@ -54,30 +57,31 @@ public class AESencrypt {
       AddRoundKey(state); // xor with expanded key
       
       for (int round = 1; round < Nr; round++) {
+         if (paso){
          cadena = cadena + "ROUND " + round + "\n";
          cadena = cadena + "***********\n";
-         cadena = cadena + Print.printArray("Start Round:\t\t", state);
+         cadena = cadena + Print.printArray("Start Round:\t\t", state);}
    
          SubBytes(state); // S-box
-         cadena = cadena + Print.printArray("After SubBytes:\t\t", state);
+         if (paso) cadena = cadena + Print.printArray("After SubBytes:\t\t", state);
          ShiftRows(state); // mix up rows
-         cadena = cadena + Print.printArray("After ShiftRows:\t", state);
+         if (paso) cadena = cadena + Print.printArray("After ShiftRows:\t", state);
          MixColumns(state); // complicated mix of columns
-         cadena = cadena + Print.printArray("After MixColumns:\t", state);
+         if (paso) cadena = cadena + Print.printArray("After MixColumns:\t", state);
          AddRoundKey(state); // xor with expanded key
-         cadena = cadena + Print.printArray("After AddRoundKey:\t", state);
-         cadena = cadena + "\n";
+         if (paso) cadena = cadena + Print.printArray("After AddRoundKey:\t", state);
+         if (paso) cadena = cadena + "\n";
 
       }
-      cadena = cadena + "ROUND " + Nr + "\n";
-      cadena = cadena + "***********\n";
-      cadena = cadena + Print.printArray("Start Round:\t\t", state);
+      if (paso) cadena = cadena + "ROUND " + Nr + "\n";
+      if (paso) cadena = cadena + "***********\n";
+      if (paso) cadena = cadena + Print.printArray("Start Round:\t\t", state);
       SubBytes(state); // S-box substitution
-      cadena = cadena + Print.printArray("After SubBytes:\t\t", state);
+      if (paso) cadena = cadena + Print.printArray("After SubBytes:\t\t", state);
       ShiftRows(state); // mix up rows
-      cadena = cadena + Print.printArray("After ShiftRows:\t", state);
+      if (paso) cadena = cadena + Print.printArray("After ShiftRows:\t", state);
       AddRoundKey(state); // xor with expanded key
-      cadena = cadena + Print.printArray("After AddRoundKey:\t", state);
+      if (paso) cadena = cadena + Print.printArray("After AddRoundKey:\t", state);
       Copy.copy(out, state);
 
    }

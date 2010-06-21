@@ -18,9 +18,11 @@ public class AESdecrypt {
    AEStables tab; // all the tables needed for AES
    byte[] w; // the expanded key
    private String cadena = new String();
+   private boolean paso;
 
    // AESdecrypt: constructor for class.  Mainly expands key
-   public AESdecrypt(byte[] key, int NkIn) {
+   public AESdecrypt(byte[] key, int NkIn, boolean paso) {
+       this.paso=paso;
       Nk = NkIn; // words in a key, = 4, or 6, or 8
       Nr = Nk + 6; // corresponding number of rounds
       tab = new AEStables(); // class to give values of various functions
@@ -35,16 +37,29 @@ public class AESdecrypt {
       Copy.copy(state, in); // actual component-wise copy
       InvAddRoundKey(state); // xor with expanded key
       for (int round = Nr-1; round >= 1; round--) {
-         cadena = cadena + Print.printArray("Start round  " + (Nr - round) + ":", state);
+         if (paso) cadena = cadena + "ROUND " + (Nr - round) + "\n";
+         if (paso) cadena = cadena + "***********\n";
+         if (paso) cadena = cadena + Print.printArray("Start Round:\t\t", state);
          InvShiftRows(state); // mix up rows
+         if (paso) cadena = cadena + Print.printArray("After InvShiftRows:\t", state);
          InvSubBytes(state); // inverse S-box substitution
+         if (paso) cadena = cadena + Print.printArray("After InvSubBytes:\t", state);
          InvAddRoundKey(state); // xor with expanded key
+         if (paso) cadena = cadena + Print.printArray("After InvAddRoundKey:\t", state);
          InvMixColumns(state); // complicated mix of columns
+         if (paso) cadena = cadena + Print.printArray("After InvMixColumns:\t", state);
+         if (paso) cadena = cadena + "\n";
       }
-      cadena = cadena + Print.printArray("Start round  " + Nr + ":", state);
+      if (paso) cadena = cadena + "ROUND " + Nr + "\n";
+      if (paso) cadena = cadena + "***********\n";
+      if (paso) cadena = cadena + Print.printArray("Start Round:\t\t", state);
       InvShiftRows(state); // mix up rows
+      if (paso) cadena = cadena + Print.printArray("After InvShiftRows:\t", state);
       InvSubBytes(state); // inverse S-box substitution
+      if (paso) cadena = cadena + Print.printArray("After InvSubBytes:\t", state);
       InvAddRoundKey(state); // xor with expanded key
+      if (paso) cadena = cadena + Print.printArray("After InvAddRoundKey:\t", state);
+      if (paso) cadena = cadena + "\n";
       Copy.copy(out, state);
    }
 
