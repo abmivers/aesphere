@@ -819,7 +819,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
        procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),
                TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
                op_block,tamano);
-       procesocifrado.setLocationRelativeTo(null);
+       procesocifrado.setLocationRelativeTo(this);
        procesocifrado.setVisible(true);                
        wpadre.newchild(procesocifrado);
        
@@ -829,7 +829,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
        procesocifradodir = new ProcesoCifrarDirectoUI
                (wpadre,TextoInput.getText(),TextoKey.getText(),
                TextoOutput.getText(),opcion1,opcion2,opcion3,op_block,tamano);
-       procesocifradodir.setLocationRelativeTo(null);
+       procesocifradodir.setLocationRelativeTo(this);
        procesocifradodir.setVisible(true);
        wpadre.newchild(procesocifradodir);
 

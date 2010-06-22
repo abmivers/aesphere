@@ -129,7 +129,7 @@
                               <Component id="HerramientasLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="261" max="32767" attributes="0"/>
+                      <EmptySpace pref="262" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="749" max="-2" attributes="0"/>
@@ -143,22 +143,22 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="CifrarLabel" pref="98" max="32767" attributes="1"/>
+                          <Component id="CifrarLabel" pref="99" max="32767" attributes="1"/>
                           <Component id="BotonCifrar" alignment="0" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="DescifrarLabel" pref="100" max="32767" attributes="1"/>
+                          <Component id="DescifrarLabel" pref="101" max="32767" attributes="1"/>
                           <Component id="BotonDescifrar" alignment="1" min="-2" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="AtaquesLabel" pref="98" max="32767" attributes="1"/>
+                          <Component id="AtaquesLabel" pref="99" max="32767" attributes="1"/>
                           <Component id="BotonAtaques" alignment="1" min="-2" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace type="separate" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="HerramientasLabel" pref="100" max="32767" attributes="1"/>
+                          <Component id="HerramientasLabel" pref="101" max="32767" attributes="1"/>
                           <Component id="BotonHerramientas" alignment="1" min="-2" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>

@@ -736,7 +736,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
        procesodescifrado = new ProcesoDescifrarUI (wpadre,TextoInput.getText(),
                TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
                op_block, tamano);
-       procesodescifrado.setLocationRelativeTo(null);
+       procesodescifrado.setLocationRelativeTo(this);
        procesodescifrado.setVisible(true);
        wpadre.newchild(procesodescifrado);
 
@@ -746,7 +746,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
        procesodescifradodir = new ProcesoDescifrarDirectoUI (wpadre,
                TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),
                opcion1,opcion2,opcion3,op_block,tamano);
-       procesodescifradodir.setLocationRelativeTo(null);
+       procesodescifradodir.setLocationRelativeTo(this);
        procesodescifradodir.setVisible(true);
        wpadre.newchild(procesodescifradodir);
 
