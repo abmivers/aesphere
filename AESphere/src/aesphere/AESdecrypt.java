@@ -17,7 +17,7 @@ public class AESdecrypt {
    private int wCount; // position in w (= 4*Nb*(Nr+1) each encrypt)
    AEStables tab; // all the tables needed for AES
    byte[] w; // the expanded key
-   private String cadena = new String();
+   private String cadena = "";
    private boolean paso;
 
    // AESdecrypt: constructor for class.  Mainly expands key

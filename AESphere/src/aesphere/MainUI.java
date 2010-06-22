@@ -236,7 +236,7 @@ public class MainUI extends javax.swing.JFrame {
         this.setEnabled(false);
         if (hijoActual == null) {
             hijoActual = new MainDescifrarUI(this);
-            hijoActual.setLocationRelativeTo(null);
+            hijoActual.setLocationRelativeTo(this);
             hijoActual.setVisible(true);
         }
         else hijoActual.requestFocus();
@@ -247,14 +247,11 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonAtaquesActionPerformed
 
     private void BotonCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCifrarActionPerformed
-         
-
-
-
+      
         this.setEnabled(false);
         if (hijoActual == null) {
             hijoActual = new MainCifrarUI(this);
-            hijoActual.setLocationRelativeTo(null);
+            hijoActual.setLocationRelativeTo(this);
             hijoActual.setVisible(true);
         }
         else hijoActual.requestFocus();
@@ -265,7 +262,7 @@ public class MainUI extends javax.swing.JFrame {
         this.setEnabled(false);
         if (hijoActual == null) {
             hijoActual = new MainHerramientasUI(this);
-            hijoActual.setLocationRelativeTo(null);
+            hijoActual.setLocationRelativeTo(this);
             hijoActual.setVisible(true);
         }
         else hijoActual.requestFocus();

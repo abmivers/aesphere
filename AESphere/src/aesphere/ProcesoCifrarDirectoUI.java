@@ -95,7 +95,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
                }
         else if (opcionsalida==2){
             Conversor.byteToFile(salida,cadenaOutput) ;
-            jTextArea3.setText(Conversor.byteToTextString(salida));
+            //jTextArea3.setText(Conversor.byteToHexString(salida));
             
         }
 
@@ -266,7 +266,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         if (blockMode == 0) out = aes.ECB(in, true);
         else if (blockMode == 1) out = aes.CBC(in, true);
         
-        Plaintextfield.setText(Conversor.byteToHexString(in));
+        //Plaintextfield.setText(Conversor.byteToHexString(in));
         return out;
     }
 
@@ -633,7 +633,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
 
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSED));
+        this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
 }//GEN-LAST:event_SalirActionPerformed
 
     private void PlaintextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaintextfieldActionPerformed

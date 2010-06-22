@@ -84,19 +84,18 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         
         if (salida == null) {
-            this.setVisible(false);
-            
-            JOptionPane.showMessageDialog(this, "Error de Descifrado. Compruebe que ha introducido correctamente los datos");
-            
-
+            this.setVisible(false);            
+            JOptionPane.showMessageDialog(this, "Error de Descifrado. " +
+                    "Compruebe que ha introducido correctamente los datos");
+            this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSED));
         } else {
             if (opcionsalida==0)
-                TextoSalida.setText(Conversor.byteToTextString(salida).trim());
+                TextoSalida.setText(Conversor.byteToTextString(salida));
             else if (opcionsalida == 1)
                 TextoSalida.setText(Conversor.byteToHexString(salida));
             else if (opcionsalida==2) {
                 Conversor.byteToFile(salida,cadenaOutput) ;
-                TextoSalida.setText(Conversor.byteToTextString(salida));
+                //TextoSalida.setText(Conversor.byteToTextString(salida));
             }
         }
     }
@@ -607,7 +606,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSED));
+        this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
 }//GEN-LAST:event_SalirActionPerformed
 
     /**

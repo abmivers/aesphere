@@ -86,7 +86,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane4" pref="589" max="32767" attributes="1"/>
+                          <Component id="jScrollPane4" pref="595" max="32767" attributes="1"/>
                           <Component id="jScrollPane1" alignment="0" min="-2" pref="589" max="-2" attributes="1"/>
                       </Group>
                   </Group>

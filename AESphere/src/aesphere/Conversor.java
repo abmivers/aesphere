@@ -75,10 +75,16 @@ public class Conversor {
     public static String byteToTextString (byte [] ascii) {
         String texto = new String();
 
+        System.out.print("[" + java.util.Calendar.getInstance().getTime() + "]\n");
+        System.out.println("Convirtiendo byte to String");
         for (byte letra: ascii) {
+            System.out.print(letra + " ");
             texto = texto + Character.toString(byteToChar(letra));
         }
 
+        System.out.println();
+        System.out.println("[" + java.util.Calendar.getInstance().getTime() + "]");
+        System.out.println("Convertido\n");
         return texto;
     }
 
@@ -93,10 +99,16 @@ public class Conversor {
     public static String byteToHexString (byte[] ascii) {
         String texto = new String();
 
+        System.out.print("[" + java.util.Calendar.getInstance().getTime() + "]\n");
+        System.out.println("Convirtiendo byte to HexString");
         for (byte letra: ascii) {
+            System.out.print(letra + " ");
             texto = texto + byteToHexPair(letra);
         }
 
+        System.out.println();
+        System.out.println("[" + java.util.Calendar.getInstance().getTime() + "]");
+        System.out.println("Convertido\n");
         return texto;
     }
 
