@@ -132,14 +132,16 @@ public class BlockManager {
             resultado = cifrador.getCadena();
         } else {
             AESdecrypt descifrador = new AESdecrypt(key,keySize,paso);
+            byte [] preBlock = null;
 
             for (int i = 0; i < numBlocks; i++) {
                 inBlock = getBlock (in, i);
                 descifrador.InvCipher(inBlock, outBlock);
 
                 if (i == 0) outBlock = XOR(IV, outBlock);
-                else outBlock = XOR(inBlock,outBlock);
+                else outBlock = XOR(preBlock,outBlock);
 
+                preBlock = inBlock;
                 out = addBlock (out, outBlock, i);
             }
 

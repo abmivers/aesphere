@@ -594,28 +594,18 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private void BotonBrowseCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarActionPerformed
          
-
-        String rutaInput;
         int resul = archivos.showOpenDialog(null);
-        File arch= archivos.getSelectedFile();
-        rutaInput = arch.getPath();
-        if (resul == archivos.APPROVE_OPTION) this.TextoInput.setText(rutaInput);
+        File arch= archivos.getSelectedFile(); 
+        if (resul == archivos.APPROVE_OPTION) this.TextoInput.setText(arch.getPath());
   
     }//GEN-LAST:event_BotonBrowseCifrarActionPerformed
 
     private void BotonBrowseCifrarOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarOutputActionPerformed
          
-
-        String rutaOutput;
         int resul = archivos.showSaveDialog(null);
         File archi= archivos.getSelectedFile();
-        rutaOutput = archi.getPath();
-        if (resul == archivos.APPROVE_OPTION){
-           
-            this.TextoOutput.setText(rutaOutput);
-        }
+        if (resul == archivos.APPROVE_OPTION) this.TextoOutput.setText(archi.getPath());
         
-        else ;
     }//GEN-LAST:event_BotonBrowseCifrarOutputActionPerformed
 
     private void ComboBoxKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxKeyActionPerformed
@@ -642,12 +632,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private void BotonBrowseCifrarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarKeyActionPerformed
          
-
-        String rutaKey;
         int resul = archivos.showOpenDialog(null);
-        File archi= archivos.getSelectedFile();
-        rutaKey = archi.getPath();
-        if (resul == archivos.APPROVE_OPTION) this.TextoKey.setText(rutaKey);
+        File archi= archivos.getSelectedFile();        
+        if (resul == archivos.APPROVE_OPTION) this.TextoKey.setText(archi.getPath());
 
     }//GEN-LAST:event_BotonBrowseCifrarKeyActionPerformed
 
@@ -883,12 +870,10 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private void AbrirClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirClaveActionPerformed
 
-        String rutaKey;
         int resul = archivos.showOpenDialog(null);
-        File archi= archivos.getSelectedFile();
-        rutaKey = archi.getPath();
+        File archi= archivos.getSelectedFile(); 
         ComboBoxKey.setSelectedIndex(2);
-        if (resul == archivos.APPROVE_OPTION) this.TextoKey.setText(rutaKey);
+        if (resul == archivos.APPROVE_OPTION) this.TextoKey.setText(archi.getPath());
 
 
     }//GEN-LAST:event_AbrirClaveActionPerformed
@@ -906,14 +891,11 @@ public class MainCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CortarActionPerformed
 
     private void GuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarClaveActionPerformed
-        String rutaClaveGuardar;
+
         int resul = archivos.showSaveDialog(null);
         File archi= archivos.getSelectedFile();
-        rutaClaveGuardar = archi.getPath();
-        if (resul == archivos.APPROVE_OPTION){
-
-           Conversor.byteToFile(Conversor.stringToASCII(TextoKey.getText()), rutaClaveGuardar);
-        }
+        if (resul == archivos.APPROVE_OPTION)
+            Conversor.byteToFile(Conversor.stringToASCII(TextoKey.getText()), archi.getPath());
     }//GEN-LAST:event_GuardarClaveActionPerformed
 
 
