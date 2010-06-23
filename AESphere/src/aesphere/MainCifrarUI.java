@@ -10,6 +10,11 @@
  */
 package aesphere;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -123,9 +128,10 @@ public class MainCifrarUI extends javax.swing.JFrame {
         GuardarClave = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditar = new javax.swing.JMenu();
-        Copiar = new javax.swing.JMenuItem();
-        Pegar = new javax.swing.JMenuItem();
-        Cortar = new javax.swing.JMenuItem();
+        CopiarInput = new javax.swing.JMenuItem();
+        PegarInput = new javax.swing.JMenuItem();
+        CopiarKey = new javax.swing.JMenuItem();
+        PegarKey = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -492,32 +498,37 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         mainMenuEditar.setText("Editar");
 
-        Copiar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        Copiar.setText("Copiar");
-        Copiar.addActionListener(new java.awt.event.ActionListener() {
+        CopiarInput.setText("Copiar Input");
+        CopiarInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CopiarActionPerformed(evt);
+                CopiarInputActionPerformed(evt);
             }
         });
-        mainMenuEditar.add(Copiar);
+        mainMenuEditar.add(CopiarInput);
 
-        Pegar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
-        Pegar.setText("Pegar");
-        Pegar.addActionListener(new java.awt.event.ActionListener() {
+        PegarInput.setText("Pegar Input");
+        PegarInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PegarActionPerformed(evt);
+                PegarInputActionPerformed(evt);
             }
         });
-        mainMenuEditar.add(Pegar);
+        mainMenuEditar.add(PegarInput);
 
-        Cortar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        Cortar.setText("Cortar");
-        Cortar.addActionListener(new java.awt.event.ActionListener() {
+        CopiarKey.setText("Copiar Key");
+        CopiarKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CortarActionPerformed(evt);
+                CopiarKeyActionPerformed(evt);
             }
         });
-        mainMenuEditar.add(Cortar);
+        mainMenuEditar.add(CopiarKey);
+
+        PegarKey.setText("Pegar Key");
+        PegarKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PegarKeyActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(PegarKey);
 
         cifrarMenuBarMain.add(mainMenuEditar);
 
@@ -905,17 +916,28 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AbrirClaveActionPerformed
 
-    private void CopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarActionPerformed
+    private void CopiarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarInputActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(TextoInput.getText());
+        cb.setContents(ss, ss);
+    }//GEN-LAST:event_CopiarInputActionPerformed
 
-    }//GEN-LAST:event_CopiarActionPerformed
+    private void PegarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PegarInputActionPerformed
+      Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+      Transferable t = cb.getContents(this);
 
-    private void PegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PegarActionPerformed
 
-    }//GEN-LAST:event_PegarActionPerformed
+       try{
+           DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
+           if (t.isDataFlavorSupported(dataFlavorStringJava)) {
+           String texto = (String) t.getTransferData(dataFlavorStringJava);
+           TextoInput.setText(texto);}
+       }
+       catch (Exception e){
+           JOptionPane.showMessageDialog(this, "Ha ocurrido un error al intentar pegar el contenido del Portapapeles");
 
-    private void CortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CortarActionPerformed
-
-    }//GEN-LAST:event_CortarActionPerformed
+       }
+    }//GEN-LAST:event_PegarInputActionPerformed
 
     private void GuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarClaveActionPerformed
 
@@ -924,6 +946,29 @@ public class MainCifrarUI extends javax.swing.JFrame {
         if (resul == archivos.APPROVE_OPTION)
             Conversor.byteToFile(Conversor.stringToASCII(TextoKey.getText()), archi.getPath());
     }//GEN-LAST:event_GuardarClaveActionPerformed
+
+    private void CopiarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarKeyActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(TextoKey.getText());
+        cb.setContents(ss, ss);
+    }//GEN-LAST:event_CopiarKeyActionPerformed
+
+    private void PegarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PegarKeyActionPerformed
+           Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+      Transferable t = cb.getContents(this);
+
+
+       try{
+           DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
+           if (t.isDataFlavorSupported(dataFlavorStringJava)) {
+           String texto = (String) t.getTransferData(dataFlavorStringJava);
+           TextoKey.setText(texto);}
+       }
+       catch (Exception e){
+           JOptionPane.showMessageDialog(this, "Ha ocurrido un error al intentar pegar el contenido del Portapapeles");
+
+       }
+    }//GEN-LAST:event_PegarKeyActionPerformed
 
 
 
@@ -938,12 +983,13 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JComboBox ComboBoxInputCifrar;
     private javax.swing.JComboBox ComboBoxKey;
     private javax.swing.JComboBox ComboBoxOutputCifrar;
-    private javax.swing.JMenuItem Copiar;
-    private javax.swing.JMenuItem Cortar;
+    private javax.swing.JMenuItem CopiarInput;
+    private javax.swing.JMenuItem CopiarKey;
     private javax.swing.JMenuItem GuardarClave;
     private javax.swing.JComboBox ModoCifrado;
     private javax.swing.JComboBox ModoEjecucion;
-    private javax.swing.JMenuItem Pegar;
+    private javax.swing.JMenuItem PegarInput;
+    private javax.swing.JMenuItem PegarKey;
     private javax.swing.JRadioButton RadioButton128;
     private javax.swing.JRadioButton RadioButton192;
     private javax.swing.JRadioButton RadioButton256;

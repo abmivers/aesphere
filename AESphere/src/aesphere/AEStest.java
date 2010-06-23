@@ -23,7 +23,7 @@ public class AEStest {
 
       GetBytes getInput = new GetBytes("/Users/antonio/plaintext.txt", 16);
       byte[] in = getInput.getBytes();
-      GetBytes getKey = new GetBytes("/Users/antonio/key.txt", 32);
+      GetBytes getKey = new GetBytes("/Users/antonio/key.txt", 24);
       byte[] key = getKey.getBytes();
       String salida = new String ();
 
@@ -33,7 +33,7 @@ public class AEStest {
         System.out.println("keyex: ");
         System.out.println(b +" long: "+ b.length());
 
-      AESencrypt aes = new AESencrypt(key, 8,false);
+      AESencrypt aes = new AESencrypt(key, 6,false);
       System.out.println(Print.printArray("Plaintext:     ", in));
       Print.printArray("Key:           ", key);
       byte[] out = new byte[16];
