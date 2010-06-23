@@ -26,6 +26,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private ProcesoCifrarUI procesocifrado;
     private ProcesoCifrarDirectoUI procesocifradodir;
+    private ProcesoCifrarArchivosUI procesocifradoarchivos;
     private MainUI wpadre;
     private JProgressBar mibar;
 
@@ -48,6 +49,8 @@ public class MainCifrarUI extends javax.swing.JFrame {
         mibar=new JProgressBar(0,500);
         mibar.setValue(220);
         mibar.setStringPainted(true);
+
+
 
     }
 
@@ -550,13 +553,17 @@ public class MainCifrarUI extends javax.swing.JFrame {
          
 
        int selectedIndex = ComboBoxInputCifrar.getSelectedIndex();
+       int selectedIndex2 = ComboBoxOutputCifrar.getSelectedIndex();
+
         switch (selectedIndex) {
-            case 0: BotonBrowseCifrar.setEnabled(false);
+            case 0: ModoEjecucion.setEnabled(true);
+                    BotonBrowseCifrar.setEnabled(false);
                     TextoInput.setEnabled(true);
                     TextoInput.setText("");
 
                 break;
-            case 1: BotonBrowseCifrar.setEnabled(false);
+            case 1: ModoEjecucion.setEnabled(true);
+                    BotonBrowseCifrar.setEnabled(false);
                     TextoInput.setEnabled(true);
                     TextoInput.setText("");
 
@@ -564,6 +571,8 @@ public class MainCifrarUI extends javax.swing.JFrame {
             case 2: BotonBrowseCifrar.setEnabled(true);
                     TextoInput.setEnabled(false);
                     TextoInput.setText("");
+                    if (selectedIndex2==2) ModoEjecucion.setEnabled(false);
+
                 break;
         }
 
@@ -574,8 +583,11 @@ public class MainCifrarUI extends javax.swing.JFrame {
          
 
          int selectedIndex = ComboBoxOutputCifrar.getSelectedIndex();
+         int selectedIndex2 = ComboBoxInputCifrar.getSelectedIndex();
+
         switch (selectedIndex) {
-            case 0: BotonBrowseCifrarOutput.setEnabled(false);
+            case 0: ModoEjecucion.setEnabled(true);
+                    BotonBrowseCifrarOutput.setEnabled(false);
                     TextoOutput.setText("");
                     TextoOutput.setEnabled(false);
 
@@ -583,14 +595,19 @@ public class MainCifrarUI extends javax.swing.JFrame {
             case 1: BotonBrowseCifrarOutput.setEnabled(false);
                     TextoOutput.setText("");
                     TextoOutput.setEnabled(false);
+                    ModoEjecucion.setEnabled(true);
 
                 break;
             case 2: BotonBrowseCifrarOutput.setEnabled(true);
                     TextoOutput.setEnabled(true);
+                    if (selectedIndex2==2) ModoEjecucion.setEnabled(false);
 
                 break;
         }
     }//GEN-LAST:event_ComboBoxOutputCifrarActionPerformed
+
+
+
 
     private void BotonBrowseCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBrowseCifrarActionPerformed
          
@@ -801,8 +818,18 @@ public class MainCifrarUI extends javax.swing.JFrame {
             tamano = 256;
         }
 
+    if (opcion1==2 && opcion3==2){
+        procesocifradoarchivos = new ProcesoCifrarArchivosUI (wpadre,TextoInput.getText(),
+               TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
+               op_block,tamano);
+       procesocifradoarchivos.setLocationRelativeTo(this);
+       procesocifradoarchivos.setVisible(true);
+       wpadre.newchild(procesocifradoarchivos);
+    }
+    
 
-    if (opcionejecucion==0 && ComprobarDatos() ){
+
+       else if (opcionejecucion==0 && ComprobarDatos() ){
        procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),
                TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
                op_block,tamano);
@@ -812,7 +839,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
        
       }
 
-     if (opcionejecucion==1 && ComprobarDatos() ){
+        else if (opcionejecucion==1 && ComprobarDatos() ){
        procesocifradodir = new ProcesoCifrarDirectoUI
                (wpadre,TextoInput.getText(),TextoKey.getText(),
                TextoOutput.getText(),opcion1,opcion2,opcion3,op_block,tamano);
