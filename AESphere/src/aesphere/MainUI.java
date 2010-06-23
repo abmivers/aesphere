@@ -61,10 +61,10 @@ public class MainUI extends javax.swing.JFrame {
         CifrarLabel = new javax.swing.JLabel();
         BotonCifrar = new javax.swing.JButton();
         BotonInfo = new javax.swing.JButton();
+        CifradoBasico = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
-        mainMenuEditar = new javax.swing.JMenu();
         mainMenuOperaciones = new javax.swing.JMenu();
         Cifrar = new javax.swing.JMenuItem();
         Descifrar = new javax.swing.JMenuItem();
@@ -151,6 +151,14 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
+        CifradoBasico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/basico.png"))); // NOI18N
+        CifradoBasico.setText("Cifrado Básico");
+        CifradoBasico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CifradoBasicoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
@@ -179,11 +187,17 @@ public class MainUI extends javax.swing.JFrame {
                 .addGap(749, 749, 749)
                 .addComponent(BotonInfo)
                 .addGap(26, 26, 26))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
+                .addContainerGap(645, Short.MAX_VALUE)
+                .addComponent(CifradoBasico)
+                .addGap(9, 9, 9))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(17, 17, 17)
+                .addComponent(CifradoBasico)
+                .addGap(0, 0, 0)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                     .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -217,9 +231,6 @@ public class MainUI extends javax.swing.JFrame {
         mainMenuArchivo.add(Salir);
 
         mainMenuBar.add(mainMenuArchivo);
-
-        mainMenuEditar.setText("Editar");
-        mainMenuBar.add(mainMenuEditar);
 
         mainMenuOperaciones.setText("Operaciones");
 
@@ -366,11 +377,22 @@ public class MainUI extends javax.swing.JFrame {
 }//GEN-LAST:event_HerramientasActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
 }//GEN-LAST:event_SalirActionPerformed
 
     private void SimularAtaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimularAtaquesActionPerformed
     }//GEN-LAST:event_SimularAtaquesActionPerformed
+
+    private void CifradoBasicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CifradoBasicoActionPerformed
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new CifrarDescifrarSimple(this);
+            hijoActual.setLocationRelativeTo(this);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
+    }//GEN-LAST:event_CifradoBasicoActionPerformed
 
     public void wclosed (javax.swing.JFrame hijo){
         if (hijoActual.equals(hijo)) {
@@ -399,6 +421,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton BotonDescifrar;
     private javax.swing.JButton BotonHerramientas;
     private javax.swing.JButton BotonInfo;
+    private javax.swing.JButton CifradoBasico;
     private javax.swing.JMenuItem Cifrar;
     private javax.swing.JLabel CifrarLabel;
     private javax.swing.JMenuItem Descifrar;
@@ -416,7 +439,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenu mainMenuArchivo;
     private javax.swing.JMenu mainMenuAyuda;
     private javax.swing.JMenuBar mainMenuBar;
-    private javax.swing.JMenu mainMenuEditar;
     private javax.swing.JMenu mainMenuOperaciones;
     // End of variables declaration//GEN-END:variables
 
