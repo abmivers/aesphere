@@ -23,6 +23,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
     private ProcesoDescifrarUI procesodescifrado;
     private ProcesoDescifrarDirectoUI procesodescifradodir;
+    private ProcesoDescifrarArchivosUI procesodescifradoarchivos;
     private MainUI wpadre;
 
     /** Creates new form Main */
@@ -499,13 +500,16 @@ public class MainDescifrarUI extends javax.swing.JFrame {
          
 
        int selectedIndex = ComboBoxInputCifrar.getSelectedIndex();
+       int selectedIndex2 = ComboBoxOutputCifrar.getSelectedIndex();
         switch (selectedIndex) {
-            case 0: BotonBrowseCifrar.setEnabled(false);
+            case 0: ModoEjecucion.setEnabled(true);
+                    BotonBrowseCifrar.setEnabled(false);
                     TextoInput.setEnabled(true);
                     TextoInput.setText("");
 
                 break;
-            case 1: BotonBrowseCifrar.setEnabled(false);
+            case 1: ModoEjecucion.setEnabled(true);
+                    BotonBrowseCifrar.setEnabled(false);
                     TextoInput.setEnabled(true);
                     TextoInput.setText("");
 
@@ -513,6 +517,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             case 2: BotonBrowseCifrar.setEnabled(true);
                     TextoInput.setEnabled(false);
                     TextoInput.setText("");
+                    if (selectedIndex2==2) ModoEjecucion.setEnabled(false);
                 break;
         }
 
@@ -523,19 +528,24 @@ public class MainDescifrarUI extends javax.swing.JFrame {
          
 
          int selectedIndex = ComboBoxOutputCifrar.getSelectedIndex();
+         int selectedIndex2 = ComboBoxInputCifrar.getSelectedIndex();
         switch (selectedIndex) {
-            case 0: BotonBrowseCifrarOutput.setEnabled(false);
+            case 0: ModoEjecucion.setEnabled(true);
+                    BotonBrowseCifrarOutput.setEnabled(false);
                     TextoOutput.setText("");
                     TextoOutput.setEnabled(false);
 
                 break;
-            case 1: BotonBrowseCifrarOutput.setEnabled(false);
+            case 1: ModoEjecucion.setEnabled(true);
+                    BotonBrowseCifrarOutput.setEnabled(false);
                     TextoOutput.setText("");
                     TextoOutput.setEnabled(false);
 
                 break;
             case 2: BotonBrowseCifrarOutput.setEnabled(true);
                     TextoOutput.setEnabled(true);
+                    if (selectedIndex2==2) ModoEjecucion.setEnabled(false);
+
 
                 break;
         }
@@ -722,8 +732,17 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             tamano = 256;
         }
 
+    if (opcion1==2 && opcion3==2){
+        procesodescifradoarchivos = new ProcesoDescifrarArchivosUI (wpadre,TextoInput.getText(),
+               TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
+               op_block,tamano);
+       procesodescifradoarchivos.setLocationRelativeTo(this);
+       procesodescifradoarchivos.setVisible(true);
+       wpadre.newchild(procesodescifradoarchivos);
+    }
 
-    if (opcionejecucion==0 && ComprobarDatos() ){
+
+       else if (opcionejecucion==0 && ComprobarDatos() ){
        procesodescifrado = new ProcesoDescifrarUI (wpadre,TextoInput.getText(),
                TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
                op_block, tamano);
@@ -733,7 +752,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
       }
 
-     if (opcionejecucion==1 && ComprobarDatos() ){
+       else if (opcionejecucion==1 && ComprobarDatos() ){
        procesodescifradodir = new ProcesoDescifrarDirectoUI (wpadre,
                TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),
                opcion1,opcion2,opcion3,op_block,tamano);

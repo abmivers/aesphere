@@ -9,8 +9,7 @@
  * Created on 05-may-2010, 16:25:19
  */
 package aesphere;
-
-import javax.swing.ImageIcon;
+//import java.net.*;
 
 /**
  *
@@ -64,8 +63,13 @@ public class MainUI extends javax.swing.JFrame {
         BotonInfo = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
+        Salir = new javax.swing.JMenuItem();
         mainMenuEditar = new javax.swing.JMenu();
         mainMenuOperaciones = new javax.swing.JMenu();
+        Cifrar = new javax.swing.JMenuItem();
+        Descifrar = new javax.swing.JMenuItem();
+        SimularAtaques = new javax.swing.JMenuItem();
+        Herramientas = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -203,12 +207,54 @@ public class MainUI extends javax.swing.JFrame {
         MainScrollPane.setViewportView(MainPanel);
 
         mainMenuArchivo.setText("Archivo");
+
+        Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
+        mainMenuArchivo.add(Salir);
+
         mainMenuBar.add(mainMenuArchivo);
 
         mainMenuEditar.setText("Editar");
         mainMenuBar.add(mainMenuEditar);
 
         mainMenuOperaciones.setText("Operaciones");
+
+        Cifrar.setText("Cifrar");
+        Cifrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CifrarActionPerformed(evt);
+            }
+        });
+        mainMenuOperaciones.add(Cifrar);
+
+        Descifrar.setText("Descifrar");
+        Descifrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DescifrarActionPerformed(evt);
+            }
+        });
+        mainMenuOperaciones.add(Descifrar);
+
+        SimularAtaques.setText("Simular Ataques");
+        SimularAtaques.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SimularAtaquesActionPerformed(evt);
+            }
+        });
+        mainMenuOperaciones.add(SimularAtaques);
+
+        Herramientas.setText("Herramientas");
+        Herramientas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HerramientasActionPerformed(evt);
+            }
+        });
+        mainMenuOperaciones.add(Herramientas);
+
         mainMenuBar.add(mainMenuOperaciones);
 
         mainMenuAyuda.setText("Ayuda");
@@ -284,6 +330,48 @@ public class MainUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BotonHerramientasMouseReleased
 
+    private void CifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CifrarActionPerformed
+
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new MainCifrarUI(this);
+            hijoActual.setLocationRelativeTo(this);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
+}//GEN-LAST:event_CifrarActionPerformed
+
+    private void DescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescifrarActionPerformed
+
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new MainDescifrarUI(this);
+            hijoActual.setLocationRelativeTo(this);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
+
+}//GEN-LAST:event_DescifrarActionPerformed
+
+    private void HerramientasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HerramientasActionPerformed
+
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new MainHerramientasUI(this);
+            hijoActual.setLocationRelativeTo(this);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
+
+}//GEN-LAST:event_HerramientasActionPerformed
+
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
+}//GEN-LAST:event_SalirActionPerformed
+
+    private void SimularAtaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimularAtaquesActionPerformed
+    }//GEN-LAST:event_SimularAtaquesActionPerformed
+
     public void wclosed (javax.swing.JFrame hijo){
         if (hijoActual.equals(hijo)) {
             hijoActual.dispose();
@@ -311,11 +399,16 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton BotonDescifrar;
     private javax.swing.JButton BotonHerramientas;
     private javax.swing.JButton BotonInfo;
+    private javax.swing.JMenuItem Cifrar;
     private javax.swing.JLabel CifrarLabel;
+    private javax.swing.JMenuItem Descifrar;
     private javax.swing.JLabel DescifrarLabel;
+    private javax.swing.JMenuItem Herramientas;
     private javax.swing.JLabel HerramientasLabel;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JScrollPane MainScrollPane;
+    private javax.swing.JMenuItem Salir;
+    private javax.swing.JMenuItem SimularAtaques;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
