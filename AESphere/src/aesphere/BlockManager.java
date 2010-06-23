@@ -14,23 +14,57 @@ public class BlockManager {
     private byte [] key;
     private int keySize;
     private int blockSize;
-    private String resultado = "";
+    private String resultado;
     private byte [] IV;
     private boolean paso;
-    
+    public static int ECB = 0;
+    public static int CBC = 1;
+
+    /**
+     * Constructor used for the ECB mode.
+     * @param clave Key used for the AES ciphering
+     * @param claveTam Key size in bytes
+     * @param bloqueTam Block size in bytes
+     * @param step Whether an step by step log is being created and stored. It
+     * can be retrieved with the function getResultado()
+     */
     public BlockManager (byte [] clave, int claveTam, int bloqueTam, 
             boolean step) {
         this.paso = step;
         key = clave;
         keySize = claveTam;
         blockSize = bloqueTam;
-        IV = new byte[blockSize];
-        for (int i =0; i < blockSize; i++)
-            IV[i] = Conversor.hexPairToByte("ff", 0);
+    }
+
+    /**
+     * Constructor used for the CBC mode.
+     * @param clave Key used for the AES ciphering
+     * @param claveTam Key size in bytes
+     * @param bloqueTam Block size in bytes
+     * @param step Whether an step by step log is being created and stored. It
+     * can be retrieved with the function getResultado()
+     * @param initVector The IV that is going to be used in the CBC algorithm.
+     * For automatic IV generation
+     */
+    public BlockManager (byte [] clave, int claveTam, int bloqueTam,
+            boolean step, byte [] initVector) {
+        this.paso = step;
+        key = clave;
+        keySize = claveTam;
+        blockSize = bloqueTam;
+        if (initVector == null) setIV();
+        else IV = initVector;
     }
 
     public String getResultado () {
         return resultado;
+    }
+
+    private void setIV () {
+        java.util.Random generador = new java.util.Random(System.nanoTime());
+        IV = new byte [blockSize];
+        generador.nextBytes(IV);
+        System.out.println("IV: " + IV);
     }
 
     /**
