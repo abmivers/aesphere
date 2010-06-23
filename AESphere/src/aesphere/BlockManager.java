@@ -17,8 +17,6 @@ public class BlockManager {
     private String resultado;
     private byte [] IV;
     private boolean paso;
-    public static int ECB = 0;
-    public static int CBC = 1;
 
     /**
      * Constructor used for the ECB mode.
@@ -61,10 +59,12 @@ public class BlockManager {
     }
 
     private void setIV () {
-        java.util.Random generador = new java.util.Random(System.nanoTime());
         IV = new byte [blockSize];
+        /*java.util.Random generador = new java.util.Random(System.nanoTime());
         generador.nextBytes(IV);
-        System.out.println("IV: " + IV);
+        System.out.println("IV: " + IV);*/
+        for (int i = 0; i < IV.length; i++)
+            IV[i] = 0;
     }
 
     /**

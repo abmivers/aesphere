@@ -27,11 +27,12 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
     private MainUI wpadre;
     private int tamanoclave;
     private int blockMode;
+    private byte [] IV = null;
 
     /** Creates new form ProcesoDescifrarUI */
     public ProcesoDescifrarDirectoUI(MainUI padre,String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
-            int modoBloque, int tamano) {
+            int modoBloque, int tamano, boolean manualIV) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
@@ -43,6 +44,10 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         this.setSize(550, 300);
 
         //Comenzamos el descifrado
+        if (manualIV) {
+            String strIV = JOptionPane.showInputDialog("Introduzca el IV:");
+            IV = Conversor.hexStringToByte(strIV);
+        }
         byte [] in = getIn (opcionentrada);
         byte [] key = getKey (opcionkey);
 
@@ -51,15 +56,18 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         if (key.length != numBytes) key = Conversor.pad(key, numBytes);
 
-        BlockManager aesenc = new BlockManager(key, numWords, 16, false);
+        BlockManager aesenc = null;
+        byte[] salida = null;
+        if (blockMode == 0) {
+            aesenc = new BlockManager(key, numWords, 16, false);
+            salida = aesenc.ECB(in, false);
+        }
+        else if (blockMode == 1) {
+            aesenc = new BlockManager(key, numWords, 16, false, IV);
+            salida = aesenc.CBC(in, false);
+        }        
 
-        byte[] out = null;
-        if (blockMode == 0) out = aesenc.ECB(in, false);
-        else if (blockMode == 1) out = aesenc.CBC(in, false);
-
-        TextoSalida1.setText(Conversor.byteToHexString(in));
-
-        byte [] salida = Conversor.unpad(out, 16);
+        salida = Conversor.unpad(salida, 16);
 
         if (salida == null) {
             this.setVisible(false);
@@ -79,6 +87,14 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
         }
+
+        if ( (opcionentrada == 2) && (opcionsalida == 2) ) {
+            JOptionPane.showMessageDialog(null, "La operación se realizó correctamente",
+                    "AESphere - Proceso Descifrado",
+                    JOptionPane.INFORMATION_MESSAGE,
+                new javax.swing.ImageIcon(getClass().getResource("/resources/ok.png")));
+        } else
+            TextoSalida1.setText(Conversor.byteToHexString(in));
     }
 
     private byte [] getBytesArchivo (String ruta) {
