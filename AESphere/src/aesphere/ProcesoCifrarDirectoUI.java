@@ -12,6 +12,7 @@
 package aesphere;
 
 import java.io.File;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -27,6 +28,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     private MainUI wpadre;
     private int tamanoclave;
     private int blockMode;
+    private byte [] IV = null;
 
     /** Creates new form ProcesoCifrarUI */
 
@@ -36,7 +38,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
 
     public ProcesoCifrarDirectoUI(MainUI padre,String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
-            int modoBloque, int tamano) {
+            int modoBloque, int tamano, boolean manualIV) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
@@ -47,59 +49,92 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
 
         this.setSize(550, 300);
 
-        byte[] salida = new byte[16];
-
-        if (opcionentrada==2 & opcionkey==2){
-            salida=cifrarArchivoArchivo();
+        //Comenzamos el cifrado
+        if (manualIV) {
+            String strIV = JOptionPane.showInputDialog("Introduzca el IV:");
+            IV = Conversor.hexStringToByte(strIV);
         }
 
-         if (opcionentrada==1 & opcionkey==1){
-            salida=cifrarHexaHexa();
-        }
+        byte [] in = getIn (opcionentrada);
+        byte [] key = getKey (opcionkey);
 
-         if (opcionentrada==2 & opcionkey==1){
-            salida=cifrarArchivoHexa();
-        }
+        int numBytes = tamanoclave / 8;
+        int numWords = tamanoclave / 32;
 
-         if (opcionentrada==1 & opcionkey==2){
-            salida=cifrarHexaArchivo();
-        }
+        in= Conversor.pad(in, 16);
+        if (key.length != numBytes) key = Conversor.pad(key, numBytes);
 
-         if (opcionentrada==0 & opcionkey==0){
-            salida=cifrarTextoTexto();
+        BlockManager aesenc = null;
+        byte[] salida = null;
+        if (blockMode == 0) {
+            aesenc = new BlockManager(key, numWords, 16, false);
+            salida = aesenc.ECB(in, true);
         }
+        else if (blockMode == 1) {
+            aesenc = new BlockManager(key, numWords, 16, false, IV);
+            salida = aesenc.CBC(in, true);
+        }        
 
-         if (opcionentrada==0 & opcionkey==1){
-            salida=cifrarTextoHexa();
-        }
-
-         if (opcionentrada==0 & opcionkey==2){
-            salida=cifrarTextoArchivo();
-        }
-
-         if (opcionentrada==1 & opcionkey==0){
-            salida=cifrarHexaTexto();
-        }
-
-         if (opcionentrada==2 & opcionkey==0){
-            salida=cifrarArchivoTexto();
-        }
-
-        
-        
-        if (opcionsalida==0) {
-          jTextArea3.setText(Conversor.byteToTextString(salida));
-            
-        } else if (opcionsalida == 1){
+        switch (opcionsalida) {
+            case 0:
+                jTextArea3.setText(Conversor.byteToTextString(salida));
+                break;
+            case 1:
                 jTextArea3.setText(Conversor.byteToHexString(salida));
-               }
-        else if (opcionsalida==2){
-            Conversor.byteToFile(salida,cadenaOutput) ;
-            //jTextArea3.setText(Conversor.byteToHexString(salida));
-            
+                break;
+            case 2:
+                Conversor.byteToFile(salida,cadenaOutput);
         }
 
+        if ( (opcionentrada == 2) && (opcionsalida == 2) ) {
+            JOptionPane.showMessageDialog(null, "La operación se realizó correctamente",
+                    "AESphere - Proceso Cifrado",
+                    JOptionPane.INFORMATION_MESSAGE,
+                new javax.swing.ImageIcon(getClass().getResource("/resources/ok.png")));
+        } else
+            Plaintextfield.setText(Conversor.byteToHexString(in));
+    }
 
+    private byte [] getBytesArchivo (String ruta) {
+        byte [] aux = null;
+        try {
+         aux = ReadFileIntoByteArray.getBytesFromFile(new File(ruta));
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al" +
+                    "abrir el archivo");
+        }
+        return aux;
+    }
+
+    private byte [] getIn (int opcion) {
+        byte [] aux = null;
+        switch(opcion) {
+            case 0:
+                aux = Conversor.stringToASCII(cadenaInput);
+                break;
+            case 1:
+                aux = Conversor.hexStringToByte(cadenaInput);
+                break;
+            case 2:
+               aux = getBytesArchivo(cadenaInput);
+        }
+        return aux;
+    }
+
+    private byte [] getKey (int opcion) {
+        byte [] aux = null;
+        switch(opcion) {
+            case 0:
+                aux = Conversor.stringToASCII(cadenaKey);
+                break;
+            case 1:
+                aux = Conversor.hexStringToByte(cadenaKey);
+                break;
+            case 2:
+               aux = getBytesArchivo(cadenaKey);
+        }
+        return aux;
     }
 
     /** This method is called from within the constructor to
@@ -211,426 +246,6 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         wpadre.requestFocus();
         wpadre.wclosed(this);       
     }//GEN-LAST:event_formWindowClosing
-
-
-    private byte [] cifrarArchivoTexto (){
-
-        int a1 = 0;
-        int a2 = 0;
-        int a3 = 0;
-
-        switch (tamanoclave) {
-
-            case 128: {
-                a1 = 16;
-                a2 = 16;
-                a3 = 4;
-                break;
-                }
-
-            case 192: {
-                a1 = 16;
-                a2 = 24;
-                a3 = 6;
-                break;
-                }
-
-            case 256: {
-                a1 = 16;
-                a2 = 32;
-                a3 = 8;
-                break;
-                }
-
-        }
-
-        byte [] in = null;
-
-        try {
-         in = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        in= Conversor.pad(in, 16);
-
-        byte[] key = Conversor.stringToASCII(cadenaKey);
-        //Para las claves sólo hay que rellenar si no son del tamaño necesario
-        if (key.length != a2) key = Conversor.pad(key, a2);
-        //BlockManager se encargará de cifrar
-        BlockManager aes = new BlockManager(key, a3, 16, false);
-
-        byte[] out = null;
-        if (blockMode == 0) out = aes.ECB(in, true);
-        else if (blockMode == 1) out = aes.CBC(in, true);
-        
-        //Plaintextfield.setText(Conversor.byteToHexString(in));
-        return out;
-    }
-
-    private byte[] cifrarHexaTexto (){
-
-        int a = 0;
-      int b = 0;
-
-      if (tamanoclave == 128) {
-           a=16;
-           b=4;
-      }
-
-      if (tamanoclave == 192) {
-           a=24;
-           b=6;
-      }
-
-      if (tamanoclave == 256) {
-           a=32;
-           b=8;
-      }
-
-      byte[] in = Conversor.hexStringToByte(cadenaInput);
-      in = Conversor.pad(in, 16);
-      byte[] key = Conversor.stringToASCII(cadenaKey);
-      if (key.length != a) key = Conversor.pad(key, a);
-
-      BlockManager aes = new BlockManager(key, b, 16, false);
-
-      byte[] out = null;
-      if (blockMode == 0) out = aes.ECB(in, true);
-      else if (blockMode == 1) out = aes.CBC(in, true);
-      
-      Plaintextfield.setText(Conversor.byteToHexString(in));
-
-      return out;
-    }
-
-    private byte[] cifrarTextoArchivo (){
-
-        int a1 = 0;
-        int a2 = 0;
-        int a3 = 0;
-
-        switch (tamanoclave) {
-
-            case 128: {
-                a1 = 16;
-                a2 = 16;
-                a3 = 4;
-                break;
-                }
-
-            case 192: {
-                a1 = 16;
-                a2 = 24;
-                a3 = 6;
-                break;
-                }
-
-            case 256: {
-                a1 = 16;
-                a2 = 32;
-                a3 = 8;
-                break;
-                }
-
-        }
-
-        byte[] in = Conversor.stringToASCII(cadenaInput);
-        in = Conversor.pad(in, 16);
-
-        byte[] key = null;
-        try {
-         key = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        if (key.length != a2) key = Conversor.pad(key, a2);
-
-        BlockManager aes = new BlockManager(key, a3, 16, false);
-
-        byte[] out = null;
-        if (blockMode == 0) out = aes.ECB(in, true);
-        else if (blockMode == 1) out = aes.CBC(in, true);
-        Plaintextfield.setText(Conversor.byteToHexString(in));
-        return out;
-    }
-
-    private byte[] cifrarTextoHexa (){
-      int a = 0;
-      int b = 0;
-
-      if (tamanoclave == 128) {
-           a=16;
-           b=4;
-      }
-
-      if (tamanoclave == 192) {
-           a=24;
-           b=6;
-      }
-
-      if (tamanoclave == 256) {
-           a=32;
-           b=8;
-      }
-
-      byte[] in = Conversor.stringToASCII(cadenaInput);
-      in = Conversor.pad(in, 16);
-      byte[] key = Conversor.hexStringToByte(cadenaKey);
-      if (key.length != a) key = Conversor.pad(key, a);
-
-      BlockManager aes = new BlockManager(key, b, 16, false);
-
-      byte[] out = null;
-      if (blockMode == 0) out = aes.ECB(in, true);
-      else if (blockMode == 1) out = aes.CBC(in, true);
-      Plaintextfield.setText(Conversor.byteToHexString(in));
-      return out;
-    }
-
-    private byte[] cifrarTextoTexto (){
-      int a = 0;
-      int b = 0;
-
-      if (tamanoclave == 128) {
-           a=16;
-           b=4;
-      }
-
-      if (tamanoclave == 192) {
-           a=24;
-           b=6;
-      }
-
-      if (tamanoclave == 256) {
-           a=32;
-           b=8;
-      }
-
-      byte[] in = Conversor.stringToASCII(cadenaInput);
-      in = Conversor.pad(in, 16);
-      byte[] key = Conversor.stringToASCII(cadenaKey);
-      if (key.length != a) key = Conversor.pad(key, a);
-
-      BlockManager aes = new BlockManager(key, b, 16, false);
-
-      byte[] out = null;
-      if (blockMode == 0) out = aes.ECB(in, true);
-      else if (blockMode == 1) out = aes.CBC(in, true);
-      Plaintextfield.setText(Conversor.byteToHexString(in));
-
-      return out;
-    }
-
-
-
-    private byte[] cifrarHexaArchivo(){
-
-        int a1 = 0;
-        int a2 = 0;
-        int a3 = 0;
-
-        switch (tamanoclave) {
-
-            case 128: {
-                a1 = 16;
-                a2 = 16;
-                a3 = 4;
-                break;
-                }
-
-            case 192: {
-                a1 = 16;
-                a2 = 24;
-                a3 = 6;
-                break;
-                }
-
-            case 256: {
-                a1 = 16;
-                a2 = 32;
-                a3 = 8;
-                break;
-                }
-
-        }
-
-        byte[] in = Conversor.hexStringToByte(cadenaInput);
-        in = Conversor.pad(in, 16);
-
-        byte [] key = null;
-        try {
-         key = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        if (key.length != a2) key = Conversor.pad(key, a2);
-
-        BlockManager aes = new BlockManager(key, a3, 16, false);
-
-        byte[] out = null;
-        if (blockMode == 0) out = aes.ECB(in, true);
-        else if (blockMode == 1) out = aes.CBC(in, true);
-        Plaintextfield.setText(Conversor.byteToHexString(in));
-        return out;
-    }
-
-    private byte[] cifrarArchivoHexa (){
-
-        int a1 = 0;
-        int a2 = 0;
-        int a3 = 0;
-
-        switch (tamanoclave) {
-
-            case 128: {
-                a1 = 16;
-                a2 = 16;
-                a3 = 4;
-                break;
-                }
-
-            case 192: {
-                a1 = 16;
-                a2 = 24;
-                a3 = 6;
-                break;
-                }
-
-            case 256: {
-                a1 = 16;
-                a2 = 32;
-                a3 = 8;
-                break;
-                }
-
-        }
-
-        byte [] in = null;
-        try {
-         in = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        in= Conversor.pad(in, 16);
-
-        byte[] key = Conversor.hexStringToByte(cadenaKey);
-        if (key.length != a2) key = Conversor.pad(key, a2);
-
-        BlockManager aes = new BlockManager(key, a3, 16, false);
-
-        byte[] out = null;
-        if (blockMode == 0) out = aes.ECB(in, true);
-        else if (blockMode == 1) out = aes.CBC(in, true);
-        Plaintextfield.setText(Conversor.byteToHexString(in));
-        return out;
-    }
-
-
-    private byte[] cifrarHexaHexa (){
-
-      //hay que hacer algo con el tema del tamaño de clave
-      //rellenar con c0 hasta tamaño de clave o con ceros?
-      int a = 0;
-      int b = 0;
-
-      if (tamanoclave == 128) {
-           a=16;
-           b=4;
-      }
-
-      if (tamanoclave == 192) {
-           a=24;
-           b=6;
-      }
-
-      if (tamanoclave == 256) {
-           a=32;
-           b=8;
-      }
-
-      byte[] in = Conversor.hexStringToByte(cadenaInput);
-      in = Conversor.pad(in, 16);
-      byte[] key = Conversor.hexStringToByte(cadenaKey);
-      if (key.length != a) key = Conversor.pad(key, a);
-
-      BlockManager aes = new BlockManager(key, b, 16, false);
-      
-      byte[] out = null;
-      if (blockMode == 0) out = aes.ECB(in, true);
-      else if (blockMode == 1) out = aes.CBC(in, true);
-      Plaintextfield.setText(Conversor.byteToHexString(in));
-      return out;
-    }
-
-
-
-
-    private byte[] cifrarArchivoArchivo (){
-
-        int a1 = 0;
-        int a2 = 0;
-        int a3 = 0;
-
-        switch (tamanoclave) {
-
-            case 128: {
-                a1 = 16;
-                a2 = 16;
-                a3 = 4;
-                break;
-                }
-
-            case 192: {
-                a1 = 16;
-                a2 = 24;
-                a3 = 6;
-                break;
-                }
-
-            case 256: {
-                a1 = 16;
-                a2 = 32;
-                a3 = 8;
-                break;
-                }
-
-        }
-
-        byte [] in = null;
-        byte [] key = null;
-
-
-        try {
-         in = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaInput));
-         key = ReadFileIntoByteArray.getBytesFromFile(new File(cadenaKey));
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        in = Conversor.pad(in, 16);
-        key = Conversor.pad(key, a2);
-
-        BlockManager aes = new BlockManager(key, a3, 16, false);
-
-        byte[] out = null;
-        if (blockMode == 0) out = aes.ECB(in, true);
-        else if (blockMode == 1) out = aes.CBC(in, true);
-        Plaintextfield.setText(Conversor.byteToHexString(in));
-        return out;
-    }
-
-
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
