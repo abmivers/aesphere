@@ -588,12 +588,9 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_b23ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
-
         wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);
-
     }//GEN-LAST:event_formWindowClosing
 
     private void CopiarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarInputActionPerformed
