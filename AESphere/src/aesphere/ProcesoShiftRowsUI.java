@@ -82,7 +82,6 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
         CopiarInput = new javax.swing.JMenuItem();
@@ -331,9 +330,6 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
 
         mainMenuArchivoCifrado.setText("Archivo");
 
-        jMenuItem2.setText("jMenuItem2");
-        mainMenuArchivoCifrado.add(jMenuItem2);
-
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,18 +373,18 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(66, 66, 66)
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 260, Short.MAX_VALUE)
                 .add(312, 312, 312))
             .add(layout.createSequentialGroup()
                 .add(333, 333, 333)
                 .add(jButton1)
                 .add(18, 18, 18)
                 .add(AtrasButton)
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addContainerGap(365, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(215, 215, 215)
                 .add(jLabel1)
-                .add(456, 456, 456))
+                .add(487, 487, 487))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -661,7 +657,6 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenu mainMenuArchivoCifrado;
