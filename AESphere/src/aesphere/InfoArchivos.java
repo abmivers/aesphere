@@ -127,7 +127,7 @@ public class InfoArchivos extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ha ocurrido un error al abrir la carpeta");
             } else
-                JOptionPane.showMessageDialog(this, "No se puede llevar a cabo esta acción");
+                JOptionPane.showMessageDialog(this, "Esta acción no está soportada en este entorno");
     }//GEN-LAST:event_AbrirButtonActionPerformed
 
     /**
