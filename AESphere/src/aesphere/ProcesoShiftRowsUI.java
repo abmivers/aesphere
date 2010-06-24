@@ -623,10 +623,6 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
 
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_AtrasButtonActionPerformed
-
-    /**
-    * @param args the command line arguments
-    */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
