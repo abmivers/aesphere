@@ -11,6 +11,11 @@
 
 package aesphere;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.io.File;
 import javax.swing.JOptionPane;
 
@@ -165,7 +170,8 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
-        mainMenuOperacionesCifrado = new javax.swing.JMenu();
+        CopiarPlaintext = new javax.swing.JMenuItem();
+        CopiarCiphertext = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -208,10 +214,24 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         cifradoMenuBarMain.add(mainMenuArchivoCifrado);
 
         mainMenuEditarCifrado.setText("Editar");
-        cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
-        mainMenuOperacionesCifrado.setText("Operaciones");
-        cifradoMenuBarMain.add(mainMenuOperacionesCifrado);
+        CopiarPlaintext.setText("Copiar Plaintext");
+        CopiarPlaintext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarPlaintextActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(CopiarPlaintext);
+
+        CopiarCiphertext.setText("Copiar Ciphertext");
+        CopiarCiphertext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarCiphertextActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(CopiarCiphertext);
+
+        cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
         mainMenuAyudaCifrado.setText("Ayuda");
         cifradoMenuBarMain.add(mainMenuAyudaCifrado);
@@ -261,8 +281,19 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
 }//GEN-LAST:event_SalirActionPerformed
 
     private void PlaintextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaintextfieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_PlaintextfieldActionPerformed
+
+    private void CopiarPlaintextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarPlaintextActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(Plaintextfield.getText());
+        cb.setContents(ss, ss);
+}//GEN-LAST:event_CopiarPlaintextActionPerformed
+
+    private void CopiarCiphertextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarCiphertextActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(jTextArea3.getText());
+        cb.setContents(ss, ss);
+    }//GEN-LAST:event_CopiarCiphertextActionPerformed
 
     /**
     * @param args the command line arguments
@@ -270,6 +301,8 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CopiarCiphertext;
+    private javax.swing.JMenuItem CopiarPlaintext;
     private javax.swing.JTextField Plaintextfield;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JMenuBar cifradoMenuBarMain;
@@ -281,7 +314,6 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
     private javax.swing.JMenu mainMenuEditarCifrado;
-    private javax.swing.JMenu mainMenuOperacionesCifrado;
     // End of variables declaration//GEN-END:variables
 
 }

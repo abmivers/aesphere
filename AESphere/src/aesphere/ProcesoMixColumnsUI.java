@@ -87,7 +87,6 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         mainMenuEditarCifrado = new javax.swing.JMenu();
         CopiarInput = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
-        mainMenuOperacionesCifrado = new javax.swing.JMenu();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -364,9 +363,6 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         mainMenuEditarCifrado.add(CopiarOutput);
 
         cifradoMenuBarMain.add(mainMenuEditarCifrado);
-
-        mainMenuOperacionesCifrado.setText("Operaciones");
-        cifradoMenuBarMain.add(mainMenuOperacionesCifrado);
 
         mainMenuAyudaCifrado.setText("Ayuda");
         cifradoMenuBarMain.add(mainMenuAyudaCifrado);
@@ -668,7 +664,6 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
     private javax.swing.JMenu mainMenuEditarCifrado;
-    private javax.swing.JMenu mainMenuOperacionesCifrado;
     // End of variables declaration//GEN-END:variables
 
 }

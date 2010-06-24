@@ -55,11 +55,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mainMenuOperacionesCifrado">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Operaciones"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="mainMenuAyudaCifrado">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ayuda"/>
@@ -109,7 +104,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel3" min="-2" pref="231" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

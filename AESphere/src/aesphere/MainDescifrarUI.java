@@ -10,6 +10,11 @@
  */
 package aesphere;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.io.File;
 import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
@@ -106,10 +111,14 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         Cancelar = new javax.swing.JButton();
         cifrarMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        AbrirClave = new javax.swing.JMenuItem();
+        GuardarClave = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditar = new javax.swing.JMenu();
-        mainMenuOperaciones = new javax.swing.JMenu();
+        CopiarInput = new javax.swing.JMenuItem();
+        PegarInput = new javax.swing.JMenuItem();
+        CopiarKey = new javax.swing.JMenuItem();
+        PegarKey = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -177,10 +186,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(ComboBoxKey, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                         .addComponent(BotonBrowseCifrarKey, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(RadioButton128)
@@ -269,7 +278,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         cifrarPanelInputLayout.setVerticalGroup(
             cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,32 +327,36 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(manualIV)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGroup(cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70))
+                    .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(manualIV)
+                        .addContainerGap(489, Short.MAX_VALUE))))
         );
         cifrarPanelAdvOptionsLayout.setVerticalGroup(
             cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
-                .addGroup(cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(manualIV)))
-                    .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelAdvOptionsLayout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(manualIV)
+                .addGap(17, 17, 17))
         );
 
         cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " OUTPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
@@ -384,7 +397,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BotonBrowseCifrarOutput)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         cifrarPanelOutputLayout.setVerticalGroup(
             cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,7 +410,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                             .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonBrowseCifrarOutput)))
                     .addComponent(jLabel1))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         BotonInfoCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
@@ -446,9 +459,9 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cifrarPanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -463,8 +476,21 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
         mainMenuArchivo.setText("Archivo");
 
-        jMenuItem2.setText("jMenuItem2");
-        mainMenuArchivo.add(jMenuItem2);
+        AbrirClave.setText("Abrir Clave");
+        AbrirClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirClaveActionPerformed(evt);
+            }
+        });
+        mainMenuArchivo.add(AbrirClave);
+
+        GuardarClave.setText("Guardar Clave");
+        GuardarClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarClaveActionPerformed(evt);
+            }
+        });
+        mainMenuArchivo.add(GuardarClave);
 
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -477,10 +503,40 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         cifrarMenuBarMain.add(mainMenuArchivo);
 
         mainMenuEditar.setText("Editar");
-        cifrarMenuBarMain.add(mainMenuEditar);
 
-        mainMenuOperaciones.setText("Operaciones");
-        cifrarMenuBarMain.add(mainMenuOperaciones);
+        CopiarInput.setText("Copiar Input");
+        CopiarInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarInputActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(CopiarInput);
+
+        PegarInput.setText("Pegar Input");
+        PegarInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PegarInputActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(PegarInput);
+
+        CopiarKey.setText("Copiar Key");
+        CopiarKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarKeyActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(CopiarKey);
+
+        PegarKey.setText("Pegar Key");
+        PegarKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PegarKeyActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(PegarKey);
+
+        cifrarMenuBarMain.add(mainMenuEditar);
 
         mainMenuAyuda.setText("Ayuda");
         mainMenuAyuda.setComponentPopupMenu(jPopupMenu1);
@@ -531,7 +587,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             case 2: BotonBrowseCifrar.setEnabled(true);
                     TextoInput.setEnabled(false);
                     TextoInput.setText("");
-                    if (selectedIndex2==2) ModoEjecucion.setEnabled(false);
+                    if (selectedIndex2==2) {
+                        ModoEjecucion.setSelectedIndex(1);
+                        ModoEjecucion.setEnabled(false);
+                    };
                 break;
         }
 
@@ -558,7 +617,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 break;
             case 2: BotonBrowseCifrarOutput.setEnabled(true);
                     TextoOutput.setEnabled(true);
-                    if (selectedIndex2==2) ModoEjecucion.setEnabled(false);
+                    if (selectedIndex2==2) {
+                        ModoEjecucion.setSelectedIndex(1);
+                        ModoEjecucion.setEnabled(false);
+                    };
 
 
                 break;
@@ -811,6 +873,67 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ModoCifradoActionPerformed
 
+    private void CopiarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarInputActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(TextoInput.getText());
+        cb.setContents(ss, ss);
+}//GEN-LAST:event_CopiarInputActionPerformed
+
+    private void PegarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PegarInputActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable t = cb.getContents(this);
+
+
+        try{
+            DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
+            if (t.isDataFlavorSupported(dataFlavorStringJava)) {
+                String texto = (String) t.getTransferData(dataFlavorStringJava);
+                TextoInput.setText(texto);}
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al intentar pegar el contenido del Portapapeles");
+
+        }
+}//GEN-LAST:event_PegarInputActionPerformed
+
+    private void CopiarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarKeyActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(TextoKey.getText());
+        cb.setContents(ss, ss);
+}//GEN-LAST:event_CopiarKeyActionPerformed
+
+    private void PegarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PegarKeyActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable t = cb.getContents(this);
+
+
+        try{
+            DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
+            if (t.isDataFlavorSupported(dataFlavorStringJava)) {
+                String texto = (String) t.getTransferData(dataFlavorStringJava);
+                TextoKey.setText(texto);}
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al intentar pegar el contenido del Portapapeles");
+
+        }
+}//GEN-LAST:event_PegarKeyActionPerformed
+
+    private void AbrirClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirClaveActionPerformed
+
+        int resul = archivos.showOpenDialog(null);
+        File archi= archivos.getSelectedFile();
+        ComboBoxKey.setSelectedIndex(2);
+        if (resul == archivos.APPROVE_OPTION) this.TextoKey.setText(archi.getPath());
+
+    }//GEN-LAST:event_AbrirClaveActionPerformed
+
+    private void GuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarClaveActionPerformed
+
+        int resul = archivos.showSaveDialog(null);
+        File archi= archivos.getSelectedFile();
+        if (resul == archivos.APPROVE_OPTION)
+            Conversor.byteToFile(Conversor.stringToASCII(TextoKey.getText()), archi.getPath());
+}//GEN-LAST:event_GuardarClaveActionPerformed
+
 
 
 
@@ -820,6 +943,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AbrirClave;
     private javax.swing.JButton BotonBrowseCifrar;
     private javax.swing.JButton BotonBrowseCifrarKey;
     private javax.swing.JButton BotonBrowseCifrarOutput;
@@ -829,8 +953,13 @@ public class MainDescifrarUI extends javax.swing.JFrame {
     private javax.swing.JComboBox ComboBoxInputCifrar;
     private javax.swing.JComboBox ComboBoxKey;
     private javax.swing.JComboBox ComboBoxOutputCifrar;
+    private javax.swing.JMenuItem CopiarInput;
+    private javax.swing.JMenuItem CopiarKey;
+    private javax.swing.JMenuItem GuardarClave;
     private javax.swing.JComboBox ModoCifrado;
     private javax.swing.JComboBox ModoEjecucion;
+    private javax.swing.JMenuItem PegarInput;
+    private javax.swing.JMenuItem PegarKey;
     private javax.swing.JRadioButton RadioButton128;
     private javax.swing.JRadioButton RadioButton192;
     private javax.swing.JRadioButton RadioButton256;
@@ -850,7 +979,6 @@ public class MainDescifrarUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -862,7 +990,6 @@ public class MainDescifrarUI extends javax.swing.JFrame {
     private javax.swing.JMenu mainMenuArchivo;
     private javax.swing.JMenu mainMenuAyuda;
     private javax.swing.JMenu mainMenuEditar;
-    private javax.swing.JMenu mainMenuOperaciones;
     private javax.swing.JCheckBox manualIV;
     // End of variables declaration//GEN-END:variables
 
