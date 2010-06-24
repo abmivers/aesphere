@@ -62,6 +62,8 @@ public class MainUI extends javax.swing.JFrame {
         BotonCifrar = new javax.swing.JButton();
         BotonInfo = new javax.swing.JButton();
         CifradoBasico = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -159,12 +161,16 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/spanish.png"))); // NOI18N
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/english.png"))); // NOI18N
+
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addGap(152, 152, 152)
+                .addGap(163, 163, 163)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainPanelLayout.createSequentialGroup()
                         .addComponent(BotonAtaques)
@@ -182,9 +188,13 @@ public class MainUI extends javax.swing.JFrame {
                         .addComponent(BotonHerramientas)
                         .addGap(50, 50, 50)
                         .addComponent(HerramientasLabel)))
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addGap(749, 749, 749)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel2)
+                .addGap(680, 680, 680)
                 .addComponent(BotonInfo)
                 .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
@@ -194,7 +204,7 @@ public class MainUI extends javax.swing.JFrame {
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(CifradoBasico)
                 .addGap(0, 0, 0)
@@ -214,8 +224,11 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(BotonHerramientas, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(26, 26, 26)
-                .addComponent(BotonInfo)
-                .addGap(26, 26, 26))
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonInfo)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(12, 12, 12))
         );
 
         MainScrollPane.setViewportView(MainPanel);
@@ -432,6 +445,8 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane MainScrollPane;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JMenuItem SimularAtaques;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
