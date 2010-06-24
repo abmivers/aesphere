@@ -105,7 +105,6 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         CopiarInput = new javax.swing.JMenuItem();
         CopiarKey = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
-        mainMenuOperacionesCifrado = new javax.swing.JMenu();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -483,9 +482,6 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
         cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
-        mainMenuOperacionesCifrado.setText("Operaciones");
-        cifradoMenuBarMain.add(mainMenuOperacionesCifrado);
-
         mainMenuAyudaCifrado.setText("Ayuda");
         cifradoMenuBarMain.add(mainMenuAyudaCifrado);
 
@@ -509,7 +505,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
                             .add(layout.createSequentialGroup()
                                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(44, 44, 44)
-                                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 231, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                     .add(layout.createSequentialGroup()
                         .add(211, 211, 211)
                         .add(jLabel1)))
@@ -906,7 +902,6 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
     private javax.swing.JMenu mainMenuEditarCifrado;
-    private javax.swing.JMenu mainMenuOperacionesCifrado;
     // End of variables declaration//GEN-END:variables
 
 }
