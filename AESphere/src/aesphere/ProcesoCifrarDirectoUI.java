@@ -48,6 +48,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         blockMode = modoBloque;
 
         this.setSize(550, 300);
+        wpadre.newchild(this);
 
         //Comenzamos el cifrado
         if (manualIV) {
@@ -84,15 +85,23 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
                 break;
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
+                if (opcionentrada == 2) {
+                    //Mostramos una ventana de información
+                    JOptionPane.showMessageDialog(null, "La operación se realizó correctamente",
+                        "AESphere - Proceso Descifrado", JOptionPane.INFORMATION_MESSAGE,
+                        new javax.swing.ImageIcon(getClass().getResource("/resources/ok.png")));
+                    //Cerramos este form
+                    this.dispatchEvent(new java.awt.event.WindowEvent(this,
+                            java.awt.event.WindowEvent.WINDOW_CLOSING));
+                }
         }
 
-        if ( (opcionentrada == 2) && (opcionsalida == 2) ) {
-            JOptionPane.showMessageDialog(null, "La operación se realizó correctamente",
-                    "AESphere - Proceso Cifrado",
-                    JOptionPane.INFORMATION_MESSAGE,
-                new javax.swing.ImageIcon(getClass().getResource("/resources/ok.png")));
-        } else
+        if ( (opcionsalida != 2) || (opcionentrada != 2) ) {
             Plaintextfield.setText(Conversor.byteToHexString(in));
+
+            this.setLocationRelativeTo(wpadre);
+            this.setVisible(true);
+        }
     }
 
     private byte [] getBytesArchivo (String ruta) {

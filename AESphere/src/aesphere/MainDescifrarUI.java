@@ -21,9 +21,6 @@ import javax.swing.JOptionPane;
  */
 public class MainDescifrarUI extends javax.swing.JFrame {
 
-    private ProcesoDescifrarUI procesodescifrado;
-    private ProcesoDescifrarDirectoUI procesodescifradodir;
-    private ProcesoDescifrarArchivosUI procesodescifradoarchivos;
     private MainUI wpadre;
 
     /** Creates new form Main */
@@ -572,7 +569,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
          
         int resul = archivos.showOpenDialog(null);
         File arch= archivos.getSelectedFile();
-        if (resul == archivos.APPROVE_OPTION) this.TextoInput.setText(arch.getPath());
+        if (resul == JFileChooser.APPROVE_OPTION) this.TextoInput.setText(arch.getPath());
   
     }//GEN-LAST:event_BotonBrowseCifrarActionPerformed
 
@@ -580,7 +577,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
          
         int resul = archivos.showSaveDialog(null);
         File archi= archivos.getSelectedFile();
-        if (resul == archivos.APPROVE_OPTION) this.TextoOutput.setText(archi.getPath());
+        if (resul == JFileChooser.APPROVE_OPTION) this.TextoOutput.setText(archi.getPath());
     }//GEN-LAST:event_BotonBrowseCifrarOutputActionPerformed
 
     private void ComboBoxKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxKeyActionPerformed
@@ -609,7 +606,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
          
         int resul = archivos.showOpenDialog(null);
         File archi= archivos.getSelectedFile();
-        if (resul == archivos.APPROVE_OPTION) this.TextoKey.setText(archi.getPath());
+        if (resul == JFileChooser.APPROVE_OPTION) this.TextoKey.setText(archi.getPath());
 
     }//GEN-LAST:event_BotonBrowseCifrarKeyActionPerformed
 
@@ -749,35 +746,14 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             tamano = 256;
         }
 
-    /*if (opcion1==2 && opcion3==2){
-        procesodescifradoarchivos = new ProcesoDescifrarArchivosUI (wpadre,TextoInput.getText(),
-               TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
-               op_block,tamano);
-       procesodescifradoarchivos.setLocationRelativeTo(this);
-       procesodescifradoarchivos.setVisible(true);
-       wpadre.newchild(procesodescifradoarchivos);
-    }
-
-
-       else*/ if (opcionejecucion==0 && ComprobarDatos() ){
-       procesodescifrado = new ProcesoDescifrarUI (wpadre,TextoInput.getText(),
-               TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
-               op_block, tamano, manualIV.isSelected());
-       procesodescifrado.setLocationRelativeTo(this);
-       procesodescifrado.setVisible(true);
-       wpadre.newchild(procesodescifrado);
-
-      }
-
-       else if (opcionejecucion==1 && ComprobarDatos() ){
-       procesodescifradodir = new ProcesoDescifrarDirectoUI (wpadre,
-               TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),
-               opcion1,opcion2,opcion3,op_block,tamano, manualIV.isSelected());
-       procesodescifradodir.setLocationRelativeTo(this);
-       procesodescifradodir.setVisible(true);
-       wpadre.newchild(procesodescifradodir);
-
-      }
+        if ( (opcionejecucion == 0) && ComprobarDatos() )
+            new ProcesoDescifrarUI (wpadre,TextoInput.getText(),
+                TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
+                op_block, tamano, manualIV.isSelected());
+        else if ( (opcionejecucion == 1) && ComprobarDatos() )
+            new ProcesoDescifrarDirectoUI (wpadre,
+                TextoInput.getText(),TextoKey.getText(),TextoOutput.getText(),
+                opcion1,opcion2,opcion3,op_block,tamano, manualIV.isSelected());
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
     private void BotonInfoCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoCifrarActionPerformed
