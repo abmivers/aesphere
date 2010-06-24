@@ -82,7 +82,6 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
         CopiarInput = new javax.swing.JMenuItem();
@@ -330,9 +329,6 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         jLabel1.setText("Proceso de MixColumns");
 
         mainMenuArchivoCifrado.setText("Archivo");
-
-        jMenuItem2.setText("jMenuItem2");
-        mainMenuArchivoCifrado.add(jMenuItem2);
 
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -658,7 +654,6 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenu mainMenuArchivoCifrado;

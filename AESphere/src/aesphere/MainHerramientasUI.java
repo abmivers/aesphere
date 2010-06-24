@@ -40,10 +40,12 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
-        mainMenuEditarCifrado = new javax.swing.JMenu();
         mainMenuOperacionesCifrado = new javax.swing.JMenu();
+        SubBytes = new javax.swing.JMenuItem();
+        ShiftRows = new javax.swing.JMenuItem();
+        MixColumns = new javax.swing.JMenuItem();
+        AddRoundKey = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -83,9 +85,6 @@ public class MainHerramientasUI extends javax.swing.JFrame {
 
         mainMenuArchivoCifrado.setText("Archivo");
 
-        jMenuItem2.setText("jMenuItem2");
-        mainMenuArchivoCifrado.add(jMenuItem2);
-
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,10 +95,40 @@ public class MainHerramientasUI extends javax.swing.JFrame {
 
         cifradoMenuBarMain.add(mainMenuArchivoCifrado);
 
-        mainMenuEditarCifrado.setText("Editar");
-        cifradoMenuBarMain.add(mainMenuEditarCifrado);
-
         mainMenuOperacionesCifrado.setText("Operaciones");
+
+        SubBytes.setText("SubBytes");
+        SubBytes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubBytesActionPerformed(evt);
+            }
+        });
+        mainMenuOperacionesCifrado.add(SubBytes);
+
+        ShiftRows.setText("ShiftRows");
+        ShiftRows.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShiftRowsActionPerformed(evt);
+            }
+        });
+        mainMenuOperacionesCifrado.add(ShiftRows);
+
+        MixColumns.setText("MixColumns");
+        MixColumns.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MixColumnsActionPerformed(evt);
+            }
+        });
+        mainMenuOperacionesCifrado.add(MixColumns);
+
+        AddRoundKey.setText("AddRoundKey");
+        AddRoundKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddRoundKeyActionPerformed(evt);
+            }
+        });
+        mainMenuOperacionesCifrado.add(AddRoundKey);
+
         cifradoMenuBarMain.add(mainMenuOperacionesCifrado);
 
         mainMenuAyudaCifrado.setText("Ayuda");
@@ -204,19 +233,61 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing
 
+    private void SubBytesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubBytesActionPerformed
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new ProcesoSubBytesUI(this);
+            hijoActual.setLocationRelativeTo(null);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
+    }//GEN-LAST:event_SubBytesActionPerformed
+
+    private void ShiftRowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShiftRowsActionPerformed
+       this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new ProcesoShiftRowsUI(this);
+            hijoActual.setLocationRelativeTo(null);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
+    }//GEN-LAST:event_ShiftRowsActionPerformed
+
+    private void MixColumnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MixColumnsActionPerformed
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new ProcesoMixColumnsUI(this);
+            hijoActual.setLocationRelativeTo(null);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
+    }//GEN-LAST:event_MixColumnsActionPerformed
+
+    private void AddRoundKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRoundKeyActionPerformed
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new ProcesoAddRoundKeyUI(this);
+            hijoActual.setLocationRelativeTo(null);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
+    }//GEN-LAST:event_AddRoundKeyActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AddRoundKey;
+    private javax.swing.JMenuItem MixColumns;
     private javax.swing.JMenuItem Salir;
+    private javax.swing.JMenuItem ShiftRows;
+    private javax.swing.JMenuItem SubBytes;
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
-    private javax.swing.JMenu mainMenuEditarCifrado;
     private javax.swing.JMenu mainMenuOperacionesCifrado;
     // End of variables declaration//GEN-END:variables
 

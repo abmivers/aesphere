@@ -82,7 +82,6 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         AtrasButton = new javax.swing.JButton();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
         CopiarInput = new javax.swing.JMenuItem();
@@ -349,9 +348,6 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
 
         mainMenuArchivoCifrado.setText("Archivo");
 
-        jMenuItem2.setText("jMenuItem2");
-        mainMenuArchivoCifrado.add(jMenuItem2);
-
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,13 +392,13 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(57, 57, 57)
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(189, 189, 189)
                 .add(jLabel1)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(351, Short.MAX_VALUE)
+                .addContainerGap(387, Short.MAX_VALUE)
                 .add(jButton1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(AtrasButton)
@@ -686,7 +682,6 @@ private void AtrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenu mainMenuArchivoCifrado;
