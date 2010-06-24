@@ -21,7 +21,6 @@ import java.io.PrintWriter;
 import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JProgressBar;
 
 /**
  *
@@ -29,11 +28,7 @@ import javax.swing.JProgressBar;
  */
 public class MainCifrarUI extends javax.swing.JFrame {
 
-    private ProcesoCifrarUI procesocifrado;
-    private ProcesoCifrarDirectoUI procesocifradodir;
-    private ProcesoCifrarArchivosUI procesocifradoarchivos;
     private MainUI wpadre;
-    private JProgressBar mibar;
 
     /** Creates new form Main */
     public MainCifrarUI(MainUI padre) {
@@ -49,14 +44,6 @@ public class MainCifrarUI extends javax.swing.JFrame {
         group.add(RadioButton128);
         group.add(RadioButton192);
         group.add(RadioButton256);
-
-        
-        mibar=new JProgressBar(0,500);
-        mibar.setValue(220);
-        mibar.setStringPainted(true);
-
-
-
     }
 
 
@@ -639,7 +626,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
          
         int resul = archivos.showOpenDialog(null);
         File arch= archivos.getSelectedFile(); 
-        if (resul == archivos.APPROVE_OPTION) this.TextoInput.setText(arch.getPath());
+        if (resul == JFileChooser.APPROVE_OPTION) this.TextoInput.setText(arch.getPath());
   
     }//GEN-LAST:event_BotonBrowseCifrarActionPerformed
 
@@ -647,7 +634,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
          
         int resul = archivos.showSaveDialog(null);
         File archi= archivos.getSelectedFile();
-        if (resul == archivos.APPROVE_OPTION) this.TextoOutput.setText(archi.getPath());
+        if (resul == JFileChooser.APPROVE_OPTION) this.TextoOutput.setText(archi.getPath());
         
     }//GEN-LAST:event_BotonBrowseCifrarOutputActionPerformed
 
@@ -677,7 +664,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
          
         int resul = archivos.showOpenDialog(null);
         File archi= archivos.getSelectedFile();        
-        if (resul == archivos.APPROVE_OPTION) this.TextoKey.setText(archi.getPath());
+        if (resul == JFileChooser.APPROVE_OPTION) this.TextoKey.setText(archi.getPath());
 
     }//GEN-LAST:event_BotonBrowseCifrarKeyActionPerformed
 
@@ -844,37 +831,15 @@ public class MainCifrarUI extends javax.swing.JFrame {
             tamano = 256;
         }
 
-    /*if (opcion1==2 && opcion3==2){
-        procesocifradoarchivos = new ProcesoCifrarArchivosUI (wpadre,TextoInput.getText(),
-               TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
-               op_block,tamano);
-       procesocifradoarchivos.setLocationRelativeTo(this);
-       procesocifradoarchivos.setVisible(true);
-       wpadre.newchild(procesocifradoarchivos);
-    }
-    
-
-
-       else*/ if (opcionejecucion==0 && ComprobarDatos() ){
-       procesocifrado = new ProcesoCifrarUI (wpadre,TextoInput.getText(),
-               TextoKey.getText(),TextoOutput.getText(),opcion1,opcion2,opcion3,
-               op_block,tamano, manualIV.isSelected());
-       procesocifrado.setLocationRelativeTo(this);
-       procesocifrado.setVisible(true);                
-       wpadre.newchild(procesocifrado);
-       
-      }
-
-        else if (opcionejecucion==1 && ComprobarDatos() ){
-       procesocifradodir = new ProcesoCifrarDirectoUI
-               (wpadre,TextoInput.getText(),TextoKey.getText(),
-               TextoOutput.getText(),opcion1,opcion2,opcion3,op_block,tamano,
-               manualIV.isSelected());
-       procesocifradodir.setLocationRelativeTo(this);
-       procesocifradodir.setVisible(true);
-       wpadre.newchild(procesocifradodir);
-
-      }
+        if ( (opcionejecucion == 0) && ComprobarDatos() )
+            new ProcesoCifrarUI (wpadre,TextoInput.getText(), TextoKey.getText(),
+                TextoOutput.getText(), opcion1, opcion2, opcion3, op_block,
+                tamano, manualIV.isSelected());
+        else if ( (opcionejecucion == 1) && ComprobarDatos() )
+            new ProcesoCifrarDirectoUI
+                (wpadre,TextoInput.getText(),TextoKey.getText(),
+                TextoOutput.getText(), opcion1, opcion2, opcion3, op_block,
+                tamano, manualIV.isSelected());
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
 
@@ -934,7 +899,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         int resul = archivos.showOpenDialog(null);
         File archi= archivos.getSelectedFile(); 
         ComboBoxKey.setSelectedIndex(2);
-        if (resul == archivos.APPROVE_OPTION) this.TextoKey.setText(archi.getPath());
+        if (resul == JFileChooser.APPROVE_OPTION) this.TextoKey.setText(archi.getPath());
 
 
     }//GEN-LAST:event_AbrirClaveActionPerformed
@@ -966,7 +931,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         int resul = archivos.showSaveDialog(null);
         File archi= archivos.getSelectedFile();
-        if (resul == archivos.APPROVE_OPTION)
+        if (resul == JFileChooser.APPROVE_OPTION)
             Conversor.byteToFile(Conversor.stringToASCII(TextoKey.getText()), archi.getPath());
     }//GEN-LAST:event_GuardarClaveActionPerformed
 
