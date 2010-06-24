@@ -167,7 +167,6 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
         CopiarPlaintext = new javax.swing.JMenuItem();
@@ -199,9 +198,6 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         jLabel3.setText("Ciphertext:");
 
         mainMenuArchivoCifrado.setText("Archivo");
-
-        jMenuItem2.setText("jMenuItem2");
-        mainMenuArchivoCifrado.add(jMenuItem2);
 
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -308,7 +304,6 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JMenu mainMenuArchivoCifrado;
