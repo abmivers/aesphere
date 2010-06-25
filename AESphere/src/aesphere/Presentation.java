@@ -70,6 +70,8 @@ public class Presentation extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(pres, exc);
                 }
 
+                Entorno obj = new Entorno();
+
                 MainUI ventana = new MainUI();
                 ventana.setLocationRelativeTo(null);
                 ventana.setVisible(true);

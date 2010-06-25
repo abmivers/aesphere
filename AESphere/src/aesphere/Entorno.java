@@ -11,6 +11,15 @@ package aesphere;
  * @author admin
  */
 public class Entorno {
-    public static String lang = "ES";
+    public static String lang;
+
+
+    public Entorno () {
+      //Obtener el valor de lang de un ini o un properties
+        this.lang="EN";
+    }
+
+
 
 }
+
