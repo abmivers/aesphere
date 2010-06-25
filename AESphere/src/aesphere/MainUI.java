@@ -425,12 +425,18 @@ public class MainUI extends javax.swing.JFrame {
     private void SpanishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpanishButtonActionPerformed
         int resul = JOptionPane.showConfirmDialog(this, "¿Desea cambiar el idioma a Español?");
 
-        if (resul == 0) Entorno.lang="ES";
+        if (resul == 0) {
+            Entorno.lang="ES";
+            setLangLabels();
+        }
     }//GEN-LAST:event_SpanishButtonActionPerformed
 
     private void EnglishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnglishButtonActionPerformed
         int resul = JOptionPane.showConfirmDialog(this, "¿Do you want to change to English language?");
-        if (resul == 0) Entorno.lang="EN";
+        if (resul == 0) {
+            Entorno.lang="EN";
+            setLangLabels();
+        }
     }//GEN-LAST:event_EnglishButtonActionPerformed
 
     public void wclosed (javax.swing.JFrame hijo){
