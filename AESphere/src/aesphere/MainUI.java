@@ -11,7 +11,15 @@
 package aesphere;
 //import java.net.*;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.File;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
+
+
 
 
 /**
@@ -26,7 +34,28 @@ public class MainUI extends javax.swing.JFrame {
     public MainUI() {
         initComponents();
         setLangLabels();
-        
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = getSize();
+         
+        try {
+
+        File fichero = new File("./help/help_set.hs");
+        URL hsURL = fichero.toURI().toURL();
+        HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+        HelpBroker hb = helpset.createHelpBroker();
+        hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+                                (pantalla.height - ventana.height) / 2));
+        hb.setSize(new java.awt.Dimension(800, 622));
+        hb.enableHelpOnButton(Contenidos, "aplicacion", helpset);
+        hb.enableHelpOnButton(BotonInfo, "aplicacion", helpset);
+        }
+
+        catch (Exception e) {
+             System.out.println("Ha ocurrido un error al cargar la ayuda de la aplicación");
+
+        }
+
+
     }
 
 
@@ -76,6 +105,7 @@ public class MainUI extends javax.swing.JFrame {
         SimularAtaques = new javax.swing.JMenuItem();
         Herramientas = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
+        Contenidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -298,6 +328,15 @@ public class MainUI extends javax.swing.JFrame {
 
         mainMenuAyuda.setText("Ayuda");
         mainMenuAyuda.setComponentPopupMenu(jPopupMenu1);
+
+        Contenidos.setText("Contenido");
+        Contenidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContenidosActionPerformed(evt);
+            }
+        });
+        mainMenuAyuda.add(Contenidos);
+
         mainMenuBar.add(mainMenuAyuda);
 
         setJMenuBar(mainMenuBar);
@@ -439,6 +478,10 @@ public class MainUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EnglishButtonActionPerformed
 
+    private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
+
+    }//GEN-LAST:event_ContenidosActionPerformed
+
     public void wclosed (javax.swing.JFrame hijo){
         if (hijoActual.equals(hijo)) {
             hijoActual.dispose();
@@ -469,6 +512,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton CifradoBasico;
     private javax.swing.JMenuItem Cifrar;
     private javax.swing.JLabel CifrarLabel;
+    private javax.swing.JMenuItem Contenidos;
     private javax.swing.JMenuItem Descifrar;
     private javax.swing.JLabel DescifrarLabel;
     private javax.swing.JButton EnglishButton;
