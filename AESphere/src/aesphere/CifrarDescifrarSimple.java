@@ -11,6 +11,11 @@
 
 package aesphere;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,6 +62,8 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditar = new javax.swing.JMenu();
+        CopiarCiphertext = new javax.swing.JMenuItem();
+        PegarCiphertext = new javax.swing.JMenuItem();
         mainMenuOperaciones = new javax.swing.JMenu();
         CifrarItem = new javax.swing.JMenuItem();
         DescifrarItem = new javax.swing.JMenuItem();
@@ -132,6 +139,23 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         mainMenuBar.add(mainMenuArchivo);
 
         mainMenuEditar.setText("Editar");
+
+        CopiarCiphertext.setText("Copiar Ciphertext");
+        CopiarCiphertext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarCiphertextActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(CopiarCiphertext);
+
+        PegarCiphertext.setText("Pegar Ciphertext");
+        PegarCiphertext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PegarCiphertextActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(PegarCiphertext);
+
         mainMenuBar.add(mainMenuEditar);
 
         mainMenuOperaciones.setText("Operaciones");
@@ -470,6 +494,28 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
       }
     }//GEN-LAST:event_DescifrarItemActionPerformed
 
+    private void CopiarCiphertextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarCiphertextActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(Ciphertext.getText());
+        cb.setContents(ss, ss);
+}//GEN-LAST:event_CopiarCiphertextActionPerformed
+
+    private void PegarCiphertextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PegarCiphertextActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable t = cb.getContents(this);
+
+
+        try{
+            DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
+            if (t.isDataFlavorSupported(dataFlavorStringJava)) {
+                String texto = (String) t.getTransferData(dataFlavorStringJava);
+                CiphertextD.setText(texto);}
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al intentar pegar el contenido del Portapapeles");
+
+        }
+}//GEN-LAST:event_PegarCiphertextActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -490,9 +536,11 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
     private javax.swing.JMenuItem CifrarItem;
     private javax.swing.JTextField Ciphertext;
     private javax.swing.JTextField CiphertextD;
+    private javax.swing.JMenuItem CopiarCiphertext;
     private javax.swing.JMenuItem DescifrarItem;
     private javax.swing.JTextField Key;
     private javax.swing.JTextField KeyD;
+    private javax.swing.JMenuItem PegarCiphertext;
     private javax.swing.JTextField Plaintext;
     private javax.swing.JTextField PlaintextD;
     private javax.swing.JMenuItem Salir;
