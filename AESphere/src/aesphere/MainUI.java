@@ -61,10 +61,10 @@ public class MainUI extends javax.swing.JFrame {
 
     /** Sets all the titles of the interface elements */
     private void setLangLabels () {
-        if (Entorno.lang.equals("ES")) {
+        if (Entorno.getProperty("language").equals("ES")) {
             this.setTitle("AESphere - Ventana Principal");
         }
-        else if (Entorno.lang.equals("EN")) {
+        else if (Entorno.getProperty("language").equals("EN")) {
             this.setTitle("AESphere - Main Window");
         }
     }
@@ -481,19 +481,26 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CifradoBasicoActionPerformed
 
     private void SpanishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpanishButtonActionPerformed
-        int resul = JOptionPane.showConfirmDialog(this, "¿Desea cambiar el idioma a Español?");
-
-        if (resul == 0) {
-            Entorno.lang="ES";
-            setLangLabels();
+        if (!Entorno.getProperty("language").equals("ES")) {
+            int resul = JOptionPane.showConfirmDialog(this,
+                    "¿Está seguro de que desea cambiar el idioma a Español?",
+                    "Aviso", JOptionPane.OK_CANCEL_OPTION);
+            if (resul == 0) {
+                Entorno.setProperty("language", "ES");
+                setLangLabels();
+            }
         }
     }//GEN-LAST:event_SpanishButtonActionPerformed
 
     private void EnglishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnglishButtonActionPerformed
-        int resul = JOptionPane.showConfirmDialog(this, "¿Do you want to change to English language?");
-        if (resul == 0) {
-            Entorno.lang="EN";
-            setLangLabels();
+        if (!Entorno.getProperty("language").equals("EN")) {
+            int resul = JOptionPane.showConfirmDialog(this,
+                    "Are you sure that you want to change language to English?",
+                    "Warning", JOptionPane.OK_CANCEL_OPTION);
+            if (resul == 0) {
+                Entorno.setProperty("language","EN");
+                setLangLabels();
+            }
         }
     }//GEN-LAST:event_EnglishButtonActionPerformed
 
