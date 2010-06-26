@@ -121,17 +121,19 @@ public class MainUI extends javax.swing.JFrame {
         BotonHerramientas.setBorder(null);
         BotonHerramientas.setBorderPainted(false);
         BotonHerramientas.setContentAreaFilled(false);
-        BotonHerramientas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonHerramientasActionPerformed(evt);
-            }
-        });
+        BotonHerramientas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonHerramientas.setFocusPainted(false);
         BotonHerramientas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 BotonHerramientasMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 BotonHerramientasMouseReleased(evt);
+            }
+        });
+        BotonHerramientas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonHerramientasActionPerformed(evt);
             }
         });
 
@@ -143,6 +145,8 @@ public class MainUI extends javax.swing.JFrame {
         BotonAtaques.setBorder(null);
         BotonAtaques.setBorderPainted(false);
         BotonAtaques.setContentAreaFilled(false);
+        BotonAtaques.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonAtaques.setFocusPainted(false);
         BotonAtaques.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonAtaquesActionPerformed(evt);
@@ -157,6 +161,8 @@ public class MainUI extends javax.swing.JFrame {
         BotonDescifrar.setBorder(null);
         BotonDescifrar.setBorderPainted(false);
         BotonDescifrar.setContentAreaFilled(false);
+        BotonDescifrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonDescifrar.setFocusPainted(false);
         BotonDescifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonDescifrarActionPerformed(evt);
@@ -171,6 +177,8 @@ public class MainUI extends javax.swing.JFrame {
         BotonCifrar.setBorder(null);
         BotonCifrar.setBorderPainted(false);
         BotonCifrar.setContentAreaFilled(false);
+        BotonCifrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonCifrar.setFocusPainted(false);
         BotonCifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonCifrarActionPerformed(evt);
@@ -179,7 +187,10 @@ public class MainUI extends javax.swing.JFrame {
 
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
+        BotonInfo.setBorderPainted(false);
         BotonInfo.setContentAreaFilled(false);
+        BotonInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonInfo.setFocusPainted(false);
         BotonInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonInfoActionPerformed(evt);
@@ -195,7 +206,11 @@ public class MainUI extends javax.swing.JFrame {
         });
 
         EnglishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/english.png"))); // NOI18N
+        EnglishButton.setBorder(null);
         EnglishButton.setBorderPainted(false);
+        EnglishButton.setContentAreaFilled(false);
+        EnglishButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        EnglishButton.setFocusPainted(false);
         EnglishButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EnglishButtonActionPerformed(evt);
@@ -203,7 +218,11 @@ public class MainUI extends javax.swing.JFrame {
         });
 
         SpanishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/spanish.png"))); // NOI18N
+        SpanishButton.setBorder(null);
         SpanishButton.setBorderPainted(false);
+        SpanishButton.setContentAreaFilled(false);
+        SpanishButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SpanishButton.setFocusPainted(false);
         SpanishButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SpanishButtonActionPerformed(evt);
@@ -233,17 +252,17 @@ public class MainUI extends javax.swing.JFrame {
                         .addComponent(BotonHerramientas)
                         .addGap(50, 50, 50)
                         .addComponent(HerramientasLabel)))
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(SpanishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(EnglishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 705, Short.MAX_VALUE)
                 .addComponent(BotonInfo)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addContainerGap(645, Short.MAX_VALUE)
+                .addContainerGap(640, Short.MAX_VALUE)
                 .addComponent(CifradoBasico)
                 .addGap(9, 9, 9))
         );
@@ -254,19 +273,19 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(CifradoBasico)
                 .addGap(0, 0, 0)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                    .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                    .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                     .addComponent(BotonDescifrar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 12, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                     .addComponent(BotonAtaques, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 22, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                     .addComponent(BotonHerramientas, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(26, 26, 26)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

@@ -93,15 +93,6 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
                 if (opcionentrada == 2) {  
                     //Mostramos una ventana de información
                     new InfoArchivos (wpadre, cadenaOutput);
-                    /*JOptionPane.showMessageDialog(null,
-                            "La operación se realizó correctamente",
-                            "AESphere - Proceso Descifrado",
-                            JOptionPane.INFORMATION_MESSAGE,
-                            new javax.swing.ImageIcon(getClass().getResource("/resources/ok.png")));                  
-
-                    //Cerramos este form
-                    this.dispatchEvent(new java.awt.event.WindowEvent(this,
-                            java.awt.event.WindowEvent.WINDOW_CLOSING));*/
                 }
         }
 
