@@ -29,6 +29,8 @@ import javax.swing.JOptionPane;
 public class MainUI extends javax.swing.JFrame {
 
     private javax.swing.JFrame hijoActual;
+    private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
+    private String helpErrTitle = "Ayuda - Aviso";
 
     /** Creates new form Main */
     public MainUI() {
@@ -51,8 +53,8 @@ public class MainUI extends javax.swing.JFrame {
         }
 
         catch (Exception e) {
-             System.out.println("Ha ocurrido un error al cargar la ayuda de la aplicación");
-
+             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
+                     JOptionPane.ERROR_MESSAGE);
         }
 
 
@@ -63,9 +65,41 @@ public class MainUI extends javax.swing.JFrame {
     private void setLangLabels () {
         if (Entorno.getProperty("language").equals("ES")) {
             this.setTitle("AESphere - Ventana Principal");
+            CifrarLabel.setText("CIFRAR");
+            DescifrarLabel.setText("DESCIFRAR");
+            AtaquesLabel.setText("SIMULAR ATAQUES");
+            HerramientasLabel.setText("HERRAMIENTAS");
+            CifradoBasico.setText("Cifrado básico");
+            mainMenuArchivo.setText("Archivo");
+            Salir.setText("Salir");
+            mainMenuOperaciones.setText("Operaciones");
+            mainMenuAyuda.setText("Ayuda");
+            Cifrar.setText("Cifrar");
+            Descifrar.setText("Descifrar");
+            SimularAtaques.setText("Simular ataques");
+            Herramientas.setText("Herramientas");
+            Contenidos.setText("Contenido");
+            helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
+            helpErrTitle = "Ayuda - Aviso";
         }
         else if (Entorno.getProperty("language").equals("EN")) {
             this.setTitle("AESphere - Main Window");
+            CifrarLabel.setText("ENCRYPT");
+            DescifrarLabel.setText("DECRYPT");
+            AtaquesLabel.setText("SIMULATE ATTACKS");
+            HerramientasLabel.setText("TOOLS");
+            CifradoBasico.setText("Basic encryption");
+            mainMenuArchivo.setText("File");
+            Salir.setText("Exit");
+            mainMenuOperaciones.setText("Actions");
+            mainMenuAyuda.setText("Help");
+            Cifrar.setText("Encrypt");
+            Descifrar.setText("Decrypt");
+            SimularAtaques.setText("Simulate attacks");
+            Herramientas.setText("Tools");
+            Contenidos.setText("Contents");
+            helpErrMsg = "An error has occurred while loading program help";
+            helpErrTitle = "Help - Warning";
         }
     }
 
@@ -484,7 +518,7 @@ public class MainUI extends javax.swing.JFrame {
         if (!Entorno.getProperty("language").equals("ES")) {
             int resul = JOptionPane.showConfirmDialog(this,
                     "¿Está seguro de que desea cambiar el idioma a Español?",
-                    "Aviso", JOptionPane.OK_CANCEL_OPTION);
+                    "Idioma - Aviso", JOptionPane.OK_CANCEL_OPTION);
             if (resul == 0) {
                 Entorno.setProperty("language", "ES");
                 setLangLabels();
@@ -496,7 +530,7 @@ public class MainUI extends javax.swing.JFrame {
         if (!Entorno.getProperty("language").equals("EN")) {
             int resul = JOptionPane.showConfirmDialog(this,
                     "Are you sure that you want to change language to English?",
-                    "Warning", JOptionPane.OK_CANCEL_OPTION);
+                    "Language - Warning", JOptionPane.OK_CANCEL_OPTION);
             if (resul == 0) {
                 Entorno.setProperty("language","EN");
                 setLangLabels();
