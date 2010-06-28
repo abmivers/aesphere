@@ -118,7 +118,9 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         byte [] aux = null;
         switch(opcion) {
             case 0:
-                aux = Conversor.stringToASCII(cadenaInput);
+                //aux = Conversor.stringToASCII(cadenaInput);
+                aux = Base64.decode(cadenaInput);
+                System.out.println("Tamaño de la entrada: " + aux.length);
                 break;
             case 1:
                 aux = Conversor.hexStringToByte(cadenaInput);

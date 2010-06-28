@@ -22,7 +22,7 @@ public class Servidor extends JFrame {
 
       // crear objeto DatagramSocket para enviar y recibir paquetes
       try {
-         socket = new DatagramSocket( 5000 );
+         socket = new DatagramSocket( 3000 );
       }
 
       // procesar los problemas que pueden ocurrir al crear el objeto DatagramSocket
