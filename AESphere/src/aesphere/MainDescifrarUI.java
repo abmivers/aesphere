@@ -728,10 +728,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             aux=false;
             }
 
-        if (aux && (selectedIndex1==0 && contenido2.length() < 16 )) {
+        /*if (aux && (selectedIndex1==0 && contenido2.length() < 16 )) {
             JOptionPane.showMessageDialog(this, "El número de caracteres ASCII de la entrada no puede ser inferior a 16");
             aux=false;
-            }
+            }*/
 
 
         if (aux &&  (selectedIndex1==1 && contenido2.length() % 32 != 0)) {
@@ -739,10 +739,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             aux=false;
             }
 
-        if (aux && (selectedIndex1==0 && (contenido2.length() % 16 != 0  ))) {
+        /*if (aux && (selectedIndex1==0 && (contenido2.length() % 16 != 0  ))) {
             JOptionPane.showMessageDialog(this, "El número de caracteres ASCII de la entrada debe ser múltiplo de 16");
             aux=false;
-            }
+            }*/
 
 
         if (aux && RadioButton256.isSelected()) {

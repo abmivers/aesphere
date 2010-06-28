@@ -9,6 +9,8 @@ public class Cliente extends JFrame {
    private JTextField campoIntroducir;
    private JTextArea areaPantalla;
    private DatagramSocket socket;
+   //INTRODUCIR AQUÍ IP DEL SERVIDOR
+   private String servIP = "127.0.0.1";
 
    // configurar GUI y DatagramSocket
    public Cliente()
@@ -17,7 +19,7 @@ public class Cliente extends JFrame {
 
       Container contenedor = getContentPane();
 
-      campoIntroducir = new JTextField( "Escriba aqu� el mensaje" );
+      campoIntroducir = new JTextField( "Escriba aquí el mensaje" );
       campoIntroducir.addActionListener(
          new ActionListener() { 
             public void actionPerformed( ActionEvent evento )
@@ -30,10 +32,10 @@ public class Cliente extends JFrame {
                   // obtener mensaje del campo de texto y convertirlo en arreglo byte
                   String mensaje = evento.getActionCommand();
                   byte datos[] = mensaje.getBytes();
-         
+
                   // crear enviarPaquete
                   DatagramPacket enviarPaquete = new DatagramPacket( datos, 
-                     datos.length, InetAddress.getLocalHost(), 5000 );
+                     datos.length, InetAddress.getByName(servIP), 3000);
 
                   socket.send( enviarPaquete ); // enviar paquete
                   areaPantalla.append( "Paquete enviado\n" );

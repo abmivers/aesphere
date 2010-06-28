@@ -83,7 +83,8 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
 
         switch (opcionsalida) {
             case 0:
-                jTextArea3.setText(Conversor.byteToTextString(salida));
+                //jTextArea3.setText(Conversor.byteToTextString(salida));
+                jTextArea3.setText(Base64.encodeToString(salida, true));
                 break;
             case 1:
                 jTextArea3.setText(Conversor.byteToHexString(salida));
