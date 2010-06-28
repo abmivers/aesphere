@@ -83,6 +83,7 @@ public class AESencrypt {
       AddRoundKey(state); // xor with expanded key
       if (paso) cadena = cadena + Print.printArray("After AddRoundKey:\t", state);
       Copy.copy(out, state);
+      if (paso) cadena = cadena + "\n";
 
    }
 
