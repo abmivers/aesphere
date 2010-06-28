@@ -55,12 +55,26 @@ public class MainCifrarUI extends javax.swing.JFrame {
             cifrarPanelInput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " ENTRADA ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
             cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " SALIDA ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
             cifrarPanelAdvOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " OPCIONES AVANZADAS ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
+            ComboBoxInputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto ASCII", "Hexadecimal", "Archivo" }));
+            BotonBrowseCifrar.setText("Buscar");
+            jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Clave"));
+            ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII", "Hexadecimal", "Archivo" }));
+            BotonBrowseCifrarKey.setText("Buscar");
+            ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto ASCII", "Hexadecimal", "Archivo" }));
+            BotonBrowseCifrarOutput.setText("Buscar");
         }
         else if (Entorno.getProperty("language").equals("EN")) {
             this.setTitle("AESphere - Cipher");
             cifrarPanelInput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " INPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
             cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " OUTPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
             cifrarPanelAdvOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " ADVANCED OPTIONS ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
+            ComboBoxInputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII text", "Hexadecimal", "File" }));
+            BotonBrowseCifrar.setText("Browse");
+            jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Key"));
+            ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII", "Hexadecimal", "File" }));
+            BotonBrowseCifrarKey.setText("Browse");
+            ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"ASCII text", "Hexadecimal", "File"}));
+            BotonBrowseCifrarOutput.setText("Browse");
         }
     }
 
