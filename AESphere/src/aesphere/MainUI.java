@@ -47,7 +47,7 @@ public class MainUI extends javax.swing.JFrame {
         HelpBroker hb = helpset.createHelpBroker();
         hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
                                 (pantalla.height - ventana.height) / 2));
-        hb.setSize(new java.awt.Dimension(800, 622));
+        hb.setSize(new java.awt.Dimension(800, 628));
         hb.enableHelpOnButton(Contenidos, "aplicacion", helpset);
         hb.enableHelpOnButton(BotonInfo, "aplicacion", helpset);
         }
