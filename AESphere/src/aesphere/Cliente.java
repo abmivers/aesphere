@@ -8,160 +8,112 @@ import javax.swing.*;
 public class Cliente extends JFrame {
    private JTextField campoIntroducir;
    private JTextArea areaPantalla;
-   private ObjectOutputStream salida;
-   private ObjectInputStream entrada;
-   private String mensaje = "";
-   private String servidorChat;
-   private Socket cliente;
+   private DatagramSocket socket;
 
-   // inicializar servidorChat y configurar GUI
-   public Cliente( String host )
+   // configurar GUI y DatagramSocket
+   public Cliente()
    {
       super( "Cliente" );
 
-      servidorChat = host; // establecer el servidor al que se va a conectar este cliente
-
       Container contenedor = getContentPane();
 
-      // crear campoIntroducir y registrar componente de escucha
-      campoIntroducir = new JTextField();
-      campoIntroducir.setEditable( false );
+      campoIntroducir = new JTextField( "Escriba aqu� el mensaje" );
       campoIntroducir.addActionListener(
-         new ActionListener() {
-
-            // enviar mensaje al servidor
+         new ActionListener() { 
             public void actionPerformed( ActionEvent evento )
             {
-               enviarDatos( evento.getActionCommand() );
-               campoIntroducir.setText( "" );
-            }
-         }  
-      ); 
+               // crear y enviar el paquete
+               try {
+                  areaPantalla.append( "\nEnviando paquete que contiene: " +
+                     evento.getActionCommand() + "\n" );
+
+                  // obtener mensaje del campo de texto y convertirlo en arreglo byte
+                  String mensaje = evento.getActionCommand();
+                  byte datos[] = mensaje.getBytes();
+         
+                  // crear enviarPaquete
+                  DatagramPacket enviarPaquete = new DatagramPacket( datos, 
+                     datos.length, InetAddress.getLocalHost(), 5000 );
+
+                  socket.send( enviarPaquete ); // enviar paquete
+                  areaPantalla.append( "Paquete enviado\n" );
+                  areaPantalla.setCaretPosition( 
+                     areaPantalla.getText().length() );
+               }
+
+               // procesar los problemas que pueden ocurrir al crear o enviar el paquete
+               catch ( IOException excepcionES ) {
+                  mostrarMensaje( excepcionES.toString() + "\n" );
+                  excepcionES.printStackTrace();
+               }
+
+            } // fin de actionPerformed
+
+         } // fin de la clase interna
+
+      ); // fin de la llamada a addActionListener
 
       contenedor.add( campoIntroducir, BorderLayout.NORTH );
 
-      // crear areaPantalla
       areaPantalla = new JTextArea();
       contenedor.add( new JScrollPane( areaPantalla ),
          BorderLayout.CENTER );
 
-      setSize( 300, 150 );
+      setSize( 400, 300 );
       setVisible( true );
+
+      // crear objeto DatagramSocket para enviar y recibir paquetes
+      try {
+         socket = new DatagramSocket();
+      }
+
+      // atrapar los problemas que pueden ocurrir al crear objeto DatagramSocket
+      catch( SocketException excepcionSocket ) {
+         excepcionSocket.printStackTrace();
+         System.exit( 1 );
+      }
 
    } // fin del constructor de Cliente
 
-   // conectarse al servidor y procesar mensajes del servidor
-   private void ejecutarCliente() 
+   // esperar a que lleguen los paquetes del Servidor, mostrar el contenido de los paquetes
+   private void esperarPaquetes()
    {
-      // conectarse al servidor, obtener flujos, procesar la conexi�n
-      try {
-         conectarAServidor(); // Paso 1: crear un socket para realizar la conexi�n
-         obtenerFlujos();      // Paso 2: obtener los flujos de entrada y salida
-         procesarConexion(); // Paso 3: procesar la conexi�n
-      }
+      while ( true ) { // iterar infinitamente
 
-      // el servidor cerr� la conexi�n
-      catch ( EOFException excepcionEOF ) {
-         System.err.println( "El cliente termino la conexi�n" );
-      }
-
-      // procesar los problemas que pueden ocurrir al comunicarse con el servidor
-      catch ( IOException excepcionES ) {
-         excepcionES.printStackTrace();
-      }
-
-      finally {
-         cerrarConexion(); // Paso 4: cerrar la conexi�n
-      }
-
-   } // fin del m�todo ejecutarCliente
-
-   // conectarse al servidor
-   private void conectarAServidor() throws IOException
-   {      
-      mostrarMensaje( "Intentando realizar conexi�n\n" );
-
-      // crear Socket para realizar la conexi�n con el servidor
-      cliente = new Socket( InetAddress.getByName( servidorChat ), 12345 );
-
-      // mostrar la informaci�n de la conexi�n
-      mostrarMensaje( "Conectado a: " + 
-         cliente.getInetAddress().getHostName() );
-   }
-
-   // obtener flujos para enviar y recibir datos
-   private void obtenerFlujos() throws IOException
-   {
-      // establecer flujo de salida para los objetos
-      salida = new ObjectOutputStream( cliente.getOutputStream() );      
-      salida.flush(); // vac�ar b�fer de salida para enviar informaci�n de encabezado
-
-      // establecer flujo de entrada para los objetos
-      entrada = new ObjectInputStream( cliente.getInputStream() );
-
-      mostrarMensaje( "\nSe recibieron los flujos de E/S\n" );
-   }
-
-   // procesar la conexi�n con el servidor
-   private void procesarConexion() throws IOException
-   {
-      // habilitar campoIntroducir para que el usuario del cliente pueda enviar mensajes
-      establecerCampoTextoEditable( true );
-
-      do { // procesar mensajes enviados del servidor
-
-         // leer mensaje y mostrarlo en pantalla
+         // recibir el paquete y mostrar su contenido
          try {
-            mensaje = ( String ) entrada.readObject();
-            mostrarMensaje( "\n" + mensaje );
+
+            // establecer el paquete
+            byte datos[] = new byte[ 100 ];
+            DatagramPacket recibirPaquete = new DatagramPacket( 
+               datos, datos.length );
+
+            socket.receive( recibirPaquete ); // esperar un paquete
+
+            // mostrar el contenido del paquete
+            mostrarMensaje( "\nPaquete recibido:" + 
+               "\nDel host: " + recibirPaquete.getAddress() + 
+               "\nPuerto del host: " + recibirPaquete.getPort() + 
+               "\nLongitud: " + recibirPaquete.getLength() + 
+               "\nContenido:\n\t" + new String( recibirPaquete.getData(), 
+                  0, recibirPaquete.getLength() ) );
+         }
+ 
+         // procesar los problemas que pueden ocurrir al recibir o mostrar el paquete
+         catch( IOException excepcion ) {
+            mostrarMensaje( excepcion.toString() + "\n" );
+            excepcion.printStackTrace();
          }
 
-         // atrapar los problemas que pueden ocurrir al leer del servidor
-         catch ( ClassNotFoundException excepcionClaseNoEncontrada ) {
-            mostrarMensaje( "\nSe recibi� un objeto de tipo desconocido" );
-         }
+      } // fin de instrucci�n while
 
-      } while ( !mensaje.equals( "SERVIDOR>>> TERMINAR" ) );
+   } // fin del m�todo esperarPaquetes
 
-   } // fin del m�todo procesarConexion
-
-   // cerrar flujos y socket
-   private void cerrarConexion() 
-   {
-      mostrarMensaje( "\nCerrando conexi�n" );
-      establecerCampoTextoEditable( false ); // deshabilitar campoIntroducir
-
-      try {
-         salida.close();
-         entrada.close();
-         cliente.close();
-      }
-      catch( IOException excepcionES ) {
-         excepcionES.printStackTrace();
-      }
-   }
-
-   // enviar mensaje al servidor
-   private void enviarDatos( String mensaje )
-   {
-      // enviar objeto al servidor
-      try {
-         salida.writeObject( "CLIENTE>>> " + mensaje );
-         salida.flush();
-         mostrarMensaje( "\nCLIENTE>>> " + mensaje );
-      }
-
-      // procesar los problemas que pueden ocurrir al enviar el objeto
-      catch ( IOException excepcionES ) {
-         areaPantalla.append( "\nError al escribir el objeto" );
-      }
-   }
-
-   // m�todo utilitario que es llamado desde otros subprocesos para manipular a 
+   // m�todo utilitario que es llamado desde otros subprocesos para manipular a
    // areaPantalla en el subproceso despachador de eventos
    private void mostrarMensaje( final String mensajeAMostrar )
    {
-      // mostrar mensaje del subproceso de ejecuci�n de la GUI
+      // mostrar mensaje del subproceso de ejecuci�n despachador de eventos
       SwingUtilities.invokeLater(
          new Runnable() {  // clase interna para asegurar que la GUI se actualice apropiadamente
 
@@ -177,36 +129,11 @@ public class Cliente extends JFrame {
       ); // fin de la llamada a SwingUtilities.invokeLater
    }
 
-   // m�todo utilitario que es llamado desde otros subprocesos para manipular a 
-   // campoIntroducir en el subproceso despachador de eventos
-   private void establecerCampoTextoEditable( final boolean editable )
-   {
-      // mostrar mensaje del subproceso de ejecuci�n de la GUI
-      SwingUtilities.invokeLater(
-         new Runnable() {  // clase interna para asegurar que la GUI se actualice apropiadamente
-
-            public void run()  // establece la capacidad de modificar campoIntroducir
-            {
-               campoIntroducir.setEditable( editable );
-            }
-
-         }  // fin de la clase interna
-
-      ); // fin de la llamada a SwingUtilities.invokeLater
-   }
-
    public static void main( String args[] )
    {
-      JFrame.setDefaultLookAndFeelDecorated(true);
-      Cliente aplicacion;
-
-      if ( args.length == 0 )
-         aplicacion = new Cliente( "127.0.0.1" );
-      else
-         aplicacion = new Cliente( args[ 0 ] );
-
+      Cliente aplicacion = new Cliente();
       aplicacion.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-      aplicacion.ejecutarCliente();
+      aplicacion.esperarPaquetes();
    }
 
-} // fin de la clase Cliente
+}  // fin de la clase Cliente
