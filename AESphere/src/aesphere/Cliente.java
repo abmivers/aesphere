@@ -78,7 +78,7 @@ public class Cliente extends JFrame {
    } // fin del constructor de Cliente
 
    // esperar a que lleguen los paquetes del Servidor, mostrar el contenido de los paquetes
-   private void esperarPaquetes()
+   public void esperarPaquetes()
    {
       while ( true ) { // iterar infinitamente
 
@@ -113,7 +113,7 @@ public class Cliente extends JFrame {
 
    // m�todo utilitario que es llamado desde otros subprocesos para manipular a
    // areaPantalla en el subproceso despachador de eventos
-   private void mostrarMensaje( final String mensajeAMostrar )
+   public void mostrarMensaje( final String mensajeAMostrar )
    {
       // mostrar mensaje del subproceso de ejecuci�n despachador de eventos
       SwingUtilities.invokeLater(
