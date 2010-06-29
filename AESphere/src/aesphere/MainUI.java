@@ -69,7 +69,6 @@ public class MainUI extends javax.swing.JFrame {
             DescifrarLabel.setText("DESCIFRAR");
             AtaquesLabel.setText("SIMULAR ATAQUES");
             HerramientasLabel.setText("HERRAMIENTAS");
-            CifradoBasico.setText("Cifrado básico");
             mainMenuArchivo.setText("Archivo");
             Salir.setText("Salir");
             mainMenuOperaciones.setText("Operaciones");
@@ -88,7 +87,6 @@ public class MainUI extends javax.swing.JFrame {
             DescifrarLabel.setText("DECRYPT");
             AtaquesLabel.setText("SIMULATE ATTACKS");
             HerramientasLabel.setText("TOOLS");
-            CifradoBasico.setText("Basic encryption");
             mainMenuArchivo.setText("File");
             Salir.setText("Exit");
             mainMenuOperaciones.setText("Actions");
@@ -127,7 +125,6 @@ public class MainUI extends javax.swing.JFrame {
         CifrarLabel = new javax.swing.JLabel();
         BotonCifrar = new javax.swing.JButton();
         BotonInfo = new javax.swing.JButton();
-        CifradoBasico = new javax.swing.JButton();
         EnglishButton = new javax.swing.JButton();
         SpanishButton = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
@@ -136,6 +133,7 @@ public class MainUI extends javax.swing.JFrame {
         mainMenuOperaciones = new javax.swing.JMenu();
         Cifrar = new javax.swing.JMenuItem();
         Descifrar = new javax.swing.JMenuItem();
+        ComprobarVectores = new javax.swing.JMenuItem();
         SimularAtaques = new javax.swing.JMenuItem();
         Herramientas = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
@@ -231,14 +229,6 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        CifradoBasico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/basico.png"))); // NOI18N
-        CifradoBasico.setText("Cifrado Básico");
-        CifradoBasico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CifradoBasicoActionPerformed(evt);
-            }
-        });
-
         EnglishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/english.png"))); // NOI18N
         EnglishButton.setBorder(null);
         EnglishButton.setBorderPainted(false);
@@ -286,40 +276,34 @@ public class MainUI extends javax.swing.JFrame {
                         .addComponent(BotonHerramientas)
                         .addGap(50, 50, 50)
                         .addComponent(HerramientasLabel)))
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(SpanishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(EnglishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 705, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
                 .addComponent(BotonInfo)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addContainerGap(640, Short.MAX_VALUE)
-                .addComponent(CifradoBasico)
-                .addGap(9, 9, 9))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(CifradoBasico)
-                .addGap(0, 0, 0)
+                .addGap(72, 72, 72)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                    .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
+                    .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                    .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(BotonDescifrar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                    .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                     .addComponent(BotonAtaques, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 22, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(BotonHerramientas, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(26, 26, 26)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -360,6 +344,14 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
         mainMenuOperaciones.add(Descifrar);
+
+        ComprobarVectores.setText("Comprobar Vectores");
+        ComprobarVectores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComprobarVectoresActionPerformed(evt);
+            }
+        });
+        mainMenuOperaciones.add(ComprobarVectores);
 
         SimularAtaques.setText("Simular Ataques");
         SimularAtaques.addActionListener(new java.awt.event.ActionListener() {
@@ -510,16 +502,6 @@ public class MainUI extends javax.swing.JFrame {
     private void SimularAtaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimularAtaquesActionPerformed
     }//GEN-LAST:event_SimularAtaquesActionPerformed
 
-    private void CifradoBasicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CifradoBasicoActionPerformed
-        this.setEnabled(false);
-        if (hijoActual == null) {
-            hijoActual = new CifrarDescifrarSimple(this);
-            hijoActual.setLocationRelativeTo(this);
-            hijoActual.setVisible(true);
-        }
-        else hijoActual.requestFocus();
-    }//GEN-LAST:event_CifradoBasicoActionPerformed
-
     private void SpanishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpanishButtonActionPerformed
         if (!Entorno.getProperty("language").equals("ES")) {
             int resul = JOptionPane.showConfirmDialog(this,
@@ -548,6 +530,16 @@ public class MainUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ContenidosActionPerformed
 
+    private void ComprobarVectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarVectoresActionPerformed
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new CifrarDescifrarSimple(this);
+            hijoActual.setLocationRelativeTo(this);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
+    }//GEN-LAST:event_ComprobarVectoresActionPerformed
+
     public void wclosed (javax.swing.JFrame hijo){
         if (hijoActual.equals(hijo)) {
             hijoActual.dispose();
@@ -575,9 +567,9 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton BotonDescifrar;
     private javax.swing.JButton BotonHerramientas;
     private javax.swing.JButton BotonInfo;
-    private javax.swing.JButton CifradoBasico;
     private javax.swing.JMenuItem Cifrar;
     private javax.swing.JLabel CifrarLabel;
+    private javax.swing.JMenuItem ComprobarVectores;
     private javax.swing.JMenuItem Contenidos;
     private javax.swing.JMenuItem Descifrar;
     private javax.swing.JLabel DescifrarLabel;
