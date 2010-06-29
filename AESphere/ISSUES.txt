@@ -1,0 +1,2 @@
+- (FIXED) no se hacen comprobaciones de contenido cuando la clave se mete como archivo
+- no se comprueba que el IV sea un campo hexadecimal de exactamente 16 bytes

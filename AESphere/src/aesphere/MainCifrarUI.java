@@ -29,6 +29,7 @@ import javax.swing.JOptionPane;
 public class MainCifrarUI extends javax.swing.JFrame {
 
     private MainUI wpadre;
+    private String key;
 
     /** Creates new form Main */
     public MainCifrarUI(MainUI padre) {
@@ -58,9 +59,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
             ComboBoxInputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto ASCII", "Hexadecimal", "Archivo" }));
             BotonBrowseCifrar.setText("Buscar");
             jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Clave"));
-            ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII", "Hexadecimal", "Archivo" }));
+            ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII", "Hexadecimal", "Archivo (Base64)" }));
             BotonBrowseCifrarKey.setText("Buscar");
-            ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto ASCII", "Hexadecimal", "Archivo" }));
+            ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Base64", "Hexadecimal", "Archivo" }));
             BotonBrowseCifrarOutput.setText("Buscar");
         }
         else if (Entorno.getProperty("language").equals("EN")) {
@@ -71,9 +72,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
             ComboBoxInputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII text", "Hexadecimal", "File" }));
             BotonBrowseCifrar.setText("Browse");
             jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Key"));
-            ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII", "Hexadecimal", "File" }));
+            ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII", "Hexadecimal", "File (Base64)" }));
             BotonBrowseCifrarKey.setText("Browse");
-            ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"ASCII text", "Hexadecimal", "File"}));
+            ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Base64", "Hexadecimal", "File"}));
             BotonBrowseCifrarOutput.setText("Browse");
         }
     }
@@ -151,7 +152,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Key"));
 
-        ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII", "Hexadecimal", "Archivo" }));
+        ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ASCII", "Hexadecimal", "Archivo (Base64)" }));
         ComboBoxKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxKeyActionPerformed(evt);
@@ -200,10 +201,10 @@ public class MainCifrarUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(ComboBoxKey, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                         .addComponent(BotonBrowseCifrarKey, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(RadioButton128)
@@ -291,7 +292,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         cifrarPanelInputLayout.setVerticalGroup(
             cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,7 +351,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,8 +380,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef2.png"))); // NOI18N
 
-        ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto ASCII", "Hexadecimal", "Archivo" }));
-        ComboBoxOutputCifrar.setSelectedIndex(1);
+        ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Base64", "Hexadecimal", "Archivo" }));
         ComboBoxOutputCifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxOutputCifrarActionPerformed(evt);
@@ -414,7 +414,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BotonBrowseCifrarOutput)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         cifrarPanelOutputLayout.setVerticalGroup(
             cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,7 +427,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                             .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonBrowseCifrarOutput)))
                     .addComponent(jLabel1))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         BotonInfoCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
@@ -476,9 +476,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cifrarPanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -493,7 +493,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         mainMenuArchivo.setText("Archivo");
 
-        AbrirClave.setText("Abrir Clave");
+        AbrirClave.setText("Abrir Clave (Base64)");
         AbrirClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AbrirClaveActionPerformed(evt);
@@ -501,7 +501,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         });
         mainMenuArchivo.add(AbrirClave);
 
-        GuardarClave.setText("Guardar Clave");
+        GuardarClave.setText("Guardar Clave (Base64)");
         GuardarClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarClaveActionPerformed(evt);
@@ -703,9 +703,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     for (int i = 0; i < cadena.length() ; i++){
 
-      if ( ((cadena.charAt(i) >= 'A') & (cadena.charAt(i) <= 'F')) ||
-          ((cadena.charAt(i) >= 'a') & (cadena.charAt(i) <= 'f')) ||
-          ((cadena.charAt(i) >= '0') & (cadena.charAt(i) <= '9')));
+      if ( ((cadena.charAt(i) >= 'A') && (cadena.charAt(i) <= 'F')) ||
+          ((cadena.charAt(i) >= 'a') && (cadena.charAt(i) <= 'f')) ||
+          ((cadena.charAt(i) >= '0') && (cadena.charAt(i) <= '9')));
       else {
           resul=false;
       }
@@ -716,44 +716,69 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     }
 
-        public boolean comprobarRuta (String ruta) {
+    private boolean comprobarBase64 (String base64) {
+        boolean aux = true;
+        int len = base64.length();
+        //llevamos un contador para comprobar la longitud del string sin '/n' ni '/r'
+        int count = 0;
+        for (int i = 0; aux && (i < len); i++) {
+            char letra = base64.charAt(i);
 
-        FileWriter fichero = null;
-        PrintWriter pw = null;
-        boolean resul = true;
-
-        try
-        {
-            fichero = new FileWriter(ruta);
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            resul=false;
-
-        } finally {
-           try {
-
-           if (null != fichero)
-              fichero.close();
-           } catch (Exception e2) {
-              e2.printStackTrace();
-
-           }
+            if ( ((letra >= 'A') && (letra <= 'Z')) ||
+                    ((letra >= 'a') && (letra <= 'z')) ||
+                    ((letra >= '0') && (letra <= '9')) ||
+                    (letra == '=') || (letra == '/') || (letra == '+') );
+            else {
+                if ( (letra == '\r') || (letra == '\n') ) //Si es salto de línea aumentamos el contador
+                    count++;
+                else aux = false;
+            }
         }
 
+        //si el número de caracteres (excluyendo salto de línea) no es múltiplo de 4, no es correcto
+        if (aux && ((len - count) % 4 != 0) ) aux = false;
+
+        return aux;
+    }
+
+    private boolean comprobarArchivo (int numChar) {
+        boolean resul = true;
+
+        try {
+            //leemos el archivo, actualmente en key se encuentra la ruta
+            byte[] keyAux = ReadFileIntoByteArray.getBytesFromFile(new File(key));
+
+            //transformamos la clave a String para realizar la comprobación de Base64
+            //key pasa a contener la clave en Base64
+            key = Conversor.byteToTextString(keyAux);
+
+            //comprobamos si la longitud es correcta
+            if (key.length() != numChar) {
+                JOptionPane.showMessageDialog(this, "La longitud de la clave" +
+                        " en Base64 del archivo seleccionado debe ser de " +
+                        Integer.toString(numChar) + " caracteres.");
+                resul = false;
+            }
+            //comprobamos si el formato es correcto
+            if (resul && !comprobarBase64(key)) {
+                JOptionPane.showMessageDialog(this, "El formato de la clave " +
+                        "en Base64 del archivo seleccionado es incorrecto.");
+                resul = false;
+            }
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al" +
+                    "abrir el archivo de clave");
+            resul = false;
+        }
         return resul;
     }
 
-
     private boolean ComprobarDatos () {
-        int selectedIndex1 = ComboBoxInputCifrar.getSelectedIndex();
-        int selectedIndex2 = ComboBoxKey.getSelectedIndex();
-        int selectedIndex3 = ComboBoxOutputCifrar.getSelectedIndex();
+        int indexIn = ComboBoxInputCifrar.getSelectedIndex();
+        int indexKey = ComboBoxKey.getSelectedIndex();
+        int indexOut = ComboBoxOutputCifrar.getSelectedIndex();
         String contenido = TextoKey.getText();
-        String contenido2 = TextoInput.getText();
-        String contenido3 = TextoOutput.getText();
 
         boolean aux=true;
 
@@ -762,76 +787,68 @@ public class MainCifrarUI extends javax.swing.JFrame {
            aux=false;
         }
 
-        if ( aux && (selectedIndex3==2) && TextoOutput.getText().isEmpty() ){
+        if ( aux && (indexOut==2) && TextoOutput.getText().isEmpty() ){
            JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
            aux=false;
         }
 
-        if ( aux && (selectedIndex1==1) && !ComprobarHexadecimal(TextoInput.getText()) )
+        if ( aux && (indexIn==1) && !ComprobarHexadecimal(TextoInput.getText()) )
              {
                  JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo INPUT.");
                  aux=false;
              }
-        if ( aux && (selectedIndex2==1) && !ComprobarHexadecimal(TextoKey.getText()) )
+        if ( aux && (indexKey==1) && !ComprobarHexadecimal(TextoKey.getText()) )
              {
             JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo KEY.");
             aux=false;
             }
 
-        /*if ( aux && (selectedIndex1==0) && (contenido2.length() > 16) ) {
-            JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 16 caracteres ASCII");
-            aux=false;
+        if (aux && RadioButton256.isSelected()) {
+
+            if ( (indexKey == 0) && (contenido.length() != 32) )  {
+                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 32 caracteres ASCII");
+                aux=false;
             }
 
-        if ( aux && (selectedIndex1==1) && (contenido2.length() > 32) ) {
-            JOptionPane.showMessageDialog(this, "El tamaño de la entrada no puede superar los 32 dígitos hexadecimales");
-            aux=false;
-            }*/
-
-        if (aux && (selectedIndex3 == 2) && !comprobarRuta(contenido3) ) {
-            JOptionPane.showMessageDialog(this, "Error en la ruta del archivo");
-            aux=false;
+            if ( (indexKey == 1) && (contenido.length() != 64) ) {
+                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 64 dígitos hexadecimales");
+                aux=false;
             }
 
-
-
-        if (aux && RadioButton256.isSelected() ) {
-
-            if ( aux && (selectedIndex2==0) && (contenido.length() > 32) ) {
-            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 32 caracteres ASCII");
-            aux=false;
-            }
-
-            if ( aux && (selectedIndex2==1) && (contenido.length() > 64) ) {
-            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 64 dígitos hexadecimales");
-            aux=false;
-            }
+            if ( (indexKey == 2) && !comprobarArchivo(44) )
+                aux=false;
         }
 
         if (aux && RadioButton192.isSelected() ) {
 
-            if ( aux && (selectedIndex2==0) && (contenido.length() > 24)  ) {
-            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 24 caracteres ASCII");
-            aux=false;
+            if ( (indexKey == 0) && (contenido.length() != 24) ) {
+                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 24 caracteres ASCII");
+                aux=false;
             }
 
-            if ( aux && (selectedIndex2==1) && (contenido.length() > 48) ) {
-            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 48 dígitos hexadecimales");
-            aux=false;
+            if ( (indexKey == 1) && (contenido.length() != 48) ) {
+                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 48 dígitos hexadecimales");
+                aux=false;
             }
+
+            if ( (indexKey == 2) && !comprobarArchivo(32) )
+                aux=false;
         }
 
-        if ( aux && RadioButton128.isSelected() ) {
+        if (aux && RadioButton128.isSelected()) {
 
-            if ( aux && (selectedIndex2==0) && (contenido.length() > 16)  ) {
-            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 16 caracteres ASCII");
-            aux=false;
+            if ( (indexKey == 0) && (contenido.length() != 16) ) {
+                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 16 caracteres ASCII");
+                aux=false;
             }
 
-            if ( aux && (selectedIndex2==1) && (contenido.length() > 32) ) {
-            JOptionPane.showMessageDialog(this, "El tamaño de la clave no puede superar los 32 dígitos hexadecimales");
-            aux=false;
+            if ( (indexKey == 1) && (contenido.length() != 32) ) {
+                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 32 dígitos hexadecimales");
+                aux=false;
             }
+
+            if ( (indexKey == 2) && !comprobarArchivo(24) )
+                aux=false;
         }
 
         return aux;
@@ -840,9 +857,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private void BotonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiguienteActionPerformed
     
-        int opcion1 = ComboBoxInputCifrar.getSelectedIndex();
-        int opcion2 = ComboBoxKey.getSelectedIndex();
-        int opcion3 = ComboBoxOutputCifrar.getSelectedIndex();
+        int opcionIn = ComboBoxInputCifrar.getSelectedIndex();
+        int opcionKey = ComboBoxKey.getSelectedIndex();
+        int opcionOut = ComboBoxOutputCifrar.getSelectedIndex();
         int op_block = ModoCifrado.getSelectedIndex();
         int opcionejecucion = ModoEjecucion.getSelectedIndex();
 
@@ -858,14 +875,18 @@ public class MainCifrarUI extends javax.swing.JFrame {
             tamano = 256;
         }
 
+        //damos valor a key
+        //este valor cambiará en ComprobarDatos si la entrada es por archivo y contendrá la clave en Base64
+        key = TextoKey.getText();
+
         if ( (opcionejecucion == 0) && ComprobarDatos() )
-            new ProcesoCifrarUI (wpadre,TextoInput.getText(), TextoKey.getText(),
-                TextoOutput.getText(), opcion1, opcion2, opcion3, op_block,
+            new ProcesoCifrarUI (wpadre,TextoInput.getText(), key,
+                TextoOutput.getText(), opcionIn, opcionKey, opcionOut, op_block,
                 tamano, manualIV.isSelected());
         else if ( (opcionejecucion == 1) && ComprobarDatos() )
             new ProcesoCifrarDirectoUI
-                (wpadre,TextoInput.getText(),TextoKey.getText(),
-                TextoOutput.getText(), opcion1, opcion2, opcion3, op_block,
+                (wpadre,TextoInput.getText(), key,
+                TextoOutput.getText(), opcionIn, opcionKey, opcionOut, op_block,
                 tamano, manualIV.isSelected());
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
@@ -958,8 +979,17 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         int resul = archivos.showSaveDialog(null);
         File archi= archivos.getSelectedFile();
+        byte [] aux = null;
         if (resul == JFileChooser.APPROVE_OPTION)
-            Conversor.byteToFile(Conversor.stringToASCII(TextoKey.getText()), archi.getPath());
+            switch (ComboBoxKey.getSelectedIndex()) {
+                case 0:
+                    aux = Conversor.stringToASCII(TextoKey.getText());
+                    Conversor.byteToFile(Base64.encodeToByte(aux, true), archi.getPath());
+                    break;
+                case 1:
+                    aux = Conversor.hexStringToByte(TextoKey.getText());
+                    Conversor.byteToFile(Base64.encodeToByte(aux, true), archi.getPath());
+            }
     }//GEN-LAST:event_GuardarClaveActionPerformed
 
     private void CopiarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarKeyActionPerformed

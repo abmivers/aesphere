@@ -119,7 +119,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         byte [] aux = null;
         switch(opcion) {
             case 0:
-                aux = Conversor.stringToASCII(cadenaInput);
+                aux = Base64.decode(cadenaInput);
                 break;
             case 1:
                 aux = Conversor.hexStringToByte(cadenaInput);
@@ -140,7 +140,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
                 aux = Conversor.hexStringToByte(cadenaKey);
                 break;
             case 2:
-               aux = getBytesArchivo(cadenaKey);
+               aux = Base64.decode(cadenaKey);
         }
         return aux;
     }

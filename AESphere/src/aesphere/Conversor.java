@@ -34,6 +34,8 @@ public class Conversor {
     }
 
     public static byte[] unpad (byte [] padArray, int tam) {
+        //comprobamos que el array de entrada no sea nulo
+        if (padArray == null) return null;
         //almacenamos el byte de relleno
         byte relleno = padArray[padArray.length - 1];
         int rellenoInt = byteToInt(relleno);

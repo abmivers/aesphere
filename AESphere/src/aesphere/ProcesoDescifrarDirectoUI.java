@@ -62,11 +62,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         BlockManager aesenc = null;
         byte[] salida = null;
-        if (blockMode == 0) {
+        if ( (in != null) && (blockMode == 0) ) {
             aesenc = new BlockManager(key, numWords, 16, false);
             salida = aesenc.ECB(in, false);
         }
-        else if (blockMode == 1) {
+        else if ( (in!= null) && (blockMode == 1) ) {
             aesenc = new BlockManager(key, numWords, 16, false, IV);
             salida = aesenc.CBC(in, false);
         }        
@@ -118,9 +118,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         byte [] aux = null;
         switch(opcion) {
             case 0:
-                //aux = Conversor.stringToASCII(cadenaInput);
                 aux = Base64.decode(cadenaInput);
-                System.out.println("Tamaño de la entrada: " + aux.length);
                 break;
             case 1:
                 aux = Conversor.hexStringToByte(cadenaInput);
@@ -141,7 +139,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
                 aux = Conversor.hexStringToByte(cadenaKey);
                 break;
             case 2:
-               aux = getBytesArchivo(cadenaKey);
+               aux = Base64.decode(cadenaKey);
         }
         return aux;
     }
