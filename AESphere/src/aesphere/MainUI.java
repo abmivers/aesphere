@@ -420,7 +420,13 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonDescifrarActionPerformed
 
     private void BotonAtaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAtaquesActionPerformed
-         
+        this.setEnabled(false);
+        if (hijoActual == null) {
+            hijoActual = new MainAtaquesUI(this);
+            hijoActual.setLocationRelativeTo(this);
+            hijoActual.setVisible(true);
+        }
+        else hijoActual.requestFocus();
     }//GEN-LAST:event_BotonAtaquesActionPerformed
 
     private void BotonCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCifrarActionPerformed
