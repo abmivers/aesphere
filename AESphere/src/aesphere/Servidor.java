@@ -34,7 +34,7 @@ public class Servidor extends JFrame {
    } // fin del constructor de Servidor
 
    // esperar a que lleguen los paquetes, mostrar los datos y repetir el paquete al cliente
-   private void esperarPaquetes()
+   public void esperarPaquetes()
    {
       while ( true ) { // iterar infinitamente
 
@@ -70,7 +70,7 @@ public class Servidor extends JFrame {
    } // fin del m�todo esperarPaquetes
 
    // repetir el paquete al cliente
-   private void enviarPaqueteACliente( DatagramPacket recibirPaquete ) 
+   public void enviarPaqueteACliente( DatagramPacket recibirPaquete )
       throws IOException
    {
       mostrarMensaje( "\n\nRepitiendo datos al cliente..." );
