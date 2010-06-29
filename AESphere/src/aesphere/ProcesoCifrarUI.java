@@ -80,7 +80,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         switch (opcionsalida) {
             case 0:
-                jTextArea3.setText(Conversor.byteToTextString(salida));
+                jTextArea3.setText(Base64.encodeToString(salida, true));
                 break;
             case 1:
                 jTextArea3.setText(Conversor.byteToHexString(salida));
@@ -138,7 +138,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
                 aux = Conversor.hexStringToByte(cadenaKey);
                 break;
             case 2:
-               aux = getBytesArchivo(cadenaKey);
+               aux = Base64.decode(cadenaKey);
         }
         return aux;
     }
