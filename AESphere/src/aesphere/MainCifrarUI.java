@@ -63,6 +63,16 @@ public class MainCifrarUI extends javax.swing.JFrame {
             BotonBrowseCifrarKey.setText("Buscar");
             ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Base64", "Hexadecimal", "Archivo" }));
             BotonBrowseCifrarOutput.setText("Buscar");
+            jLabel4.setText("Método de cifrado:");
+            ModoCifrado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modo ECB", "Modo CBC" }));
+            manualIV.setText("Introducir IV manualmente");
+            jLabel5.setText("Modo de ejecución:");
+            ModoEjecucion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Paso a Paso", "Directo" }));
+            Cancelar.setText("Cancelar");
+            BotonSiguiente.setText("Siguiente");
+            mainMenuArchivo.setText("Archivo");
+            AbrirClave.setText("Abrir clave (Base64)");
+            GuardarClave.setText("Guardar clave (Base64)");
         }
         else if (Entorno.getProperty("language").equals("EN")) {
             this.setTitle("AESphere - Cipher");
@@ -76,6 +86,16 @@ public class MainCifrarUI extends javax.swing.JFrame {
             BotonBrowseCifrarKey.setText("Browse");
             ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Base64", "Hexadecimal", "File"}));
             BotonBrowseCifrarOutput.setText("Browse");
+            jLabel4.setText("Encryption mode:");
+            ModoCifrado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ECB mode", "CBC mode" }));
+            manualIV.setText("Introduce IV manually");
+            jLabel5.setText("Execution mode:");
+            ModoEjecucion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Step by step", "Direct" }));
+            Cancelar.setText("Cancel");
+            BotonSiguiente.setText("Next");
+            mainMenuArchivo.setText("File");
+            AbrirClave.setText("Open key (Base64)");
+            GuardarClave.setText("Save key (Base64)");
         }
     }
 
