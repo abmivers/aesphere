@@ -64,6 +64,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DescifrarActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ComprobarVectores">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Comprobar Vectores"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComprobarVectoresActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="SimularAtaques">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Simular Ataques"/>
@@ -178,47 +186,40 @@
                               <Component id="HerramientasLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="252" max="32767" attributes="0"/>
+                      <EmptySpace pref="250" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="SpanishButton" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                       <Component id="EnglishButton" min="-2" pref="23" max="-2" attributes="0"/>
-                      <EmptySpace pref="705" max="32767" attributes="0"/>
+                      <EmptySpace pref="707" max="32767" attributes="0"/>
                       <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="640" max="32767" attributes="0"/>
-                      <Component id="CifradoBasico" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Component id="CifradoBasico" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="CifrarLabel" pref="99" max="32767" attributes="1"/>
-                          <Component id="BotonCifrar" alignment="0" pref="99" max="32767" attributes="1"/>
+                          <Component id="CifrarLabel" pref="98" max="32767" attributes="1"/>
+                          <Component id="BotonCifrar" alignment="0" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="DescifrarLabel" pref="101" max="32767" attributes="1"/>
+                          <Component id="DescifrarLabel" pref="100" max="32767" attributes="1"/>
                           <Component id="BotonDescifrar" alignment="1" min="-2" max="-2" attributes="1"/>
                       </Group>
-                      <EmptySpace type="unrelated" pref="12" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="AtaquesLabel" pref="99" max="32767" attributes="1"/>
+                          <Component id="AtaquesLabel" pref="98" max="32767" attributes="1"/>
                           <Component id="BotonAtaques" alignment="1" min="-2" max="-2" attributes="1"/>
                       </Group>
-                      <EmptySpace type="separate" pref="22" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="HerramientasLabel" pref="101" max="32767" attributes="1"/>
+                          <Component id="HerramientasLabel" pref="100" max="32767" attributes="1"/>
                           <Component id="BotonHerramientas" alignment="1" min="-2" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -364,17 +365,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonInfoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="CifradoBasico">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/resources/basico.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Cifrado B&#xe1;sico"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CifradoBasicoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="EnglishButton">
