@@ -55,10 +55,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         byte [] in = getIn (opcionentrada);
         byte [] key = getKey (opcionkey);
 
-        int numBytes = tamanoclave / 8;
         int numWords = tamanoclave / 32;
-
-        if (key.length != numBytes) key = Conversor.pad(key, numBytes);
 
         BlockManager aesenc = null;
         byte[] salida = null;
