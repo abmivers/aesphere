@@ -2,7 +2,7 @@
 package aesphere;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -333,6 +333,35 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean ComprobarDatos () {
+
+        boolean aux = true;
+
+        if ( aux && (PlainTextArea.getText().isEmpty() || CipherTextArea.getText().isEmpty()) ){
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           aux=false;
+        }
+
+        if ( aux && (ServidorRadioButton.isSelected() && NumeroClientesTextField.getText().isEmpty() )){
+           JOptionPane.showMessageDialog(this, "Tiene que introducir el número de clientes.");
+           aux=false;
+        }
+
+        if ( aux && (ClienteRadioButton.isSelected() && IPTextField.getText().isEmpty() )){
+           JOptionPane.showMessageDialog(this, "Tiene que introducir la dirección IP del Servidor.");
+           aux=false;
+        }
+
+        if ( aux && (ClaveInicialTextField.getText().isEmpty() || ClaveFinalTextField.getText().isEmpty()) ){
+           JOptionPane.showMessageDialog(this, "Tiene que establecer un rango para delimitar el espacio de claves.");
+           aux=false;
+        }
+       
+        return aux;
+    }
+
+
+
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
 
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
@@ -368,6 +397,18 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ClienteRadioButtonActionPerformed
 
     private void EjecutarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecutarButtonActionPerformed
+      
+      if (ComprobarDatos()) {
+
+       if (ServidorRadioButton.isSelected()) {
+
+       }
+
+       else if (ClienteRadioButton.isSelected()) {
+
+       }
+
+      }
 
 
     }//GEN-LAST:event_EjecutarButtonActionPerformed
