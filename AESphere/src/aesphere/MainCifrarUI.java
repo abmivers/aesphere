@@ -36,9 +36,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         initComponents();
         setLangLabels();
         wpadre = padre;
-        BotonBrowseCifrar.setEnabled(false);
-        BotonBrowseCifrarKey.setEnabled(false);
-        BotonBrowseCifrarOutput.setEnabled(false);
+
         archivos = new JFileChooser();
 
         ButtonGroup group = new ButtonGroup();
@@ -186,6 +184,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         jScrollPane3.setViewportView(TextoKey);
 
         BotonBrowseCifrarKey.setText("Buscar");
+        BotonBrowseCifrarKey.setEnabled(false);
         BotonBrowseCifrarKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBrowseCifrarKeyActionPerformed(evt);
@@ -257,6 +256,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TextoInput);
 
         BotonBrowseCifrar.setText("Buscar");
+        BotonBrowseCifrar.setEnabled(false);
         BotonBrowseCifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBrowseCifrarActionPerformed(evt);
@@ -408,6 +408,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         });
 
         BotonBrowseCifrarOutput.setText("Buscar");
+        BotonBrowseCifrarOutput.setEnabled(false);
         BotonBrowseCifrarOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBrowseCifrarOutputActionPerformed(evt);

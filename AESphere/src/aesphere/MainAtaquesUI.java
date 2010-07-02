@@ -20,8 +20,6 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         group.add(ClienteRadioButton);
         group.add(ServidorRadioButton);
         this.setSize(800, 622);
-        IPTextField.setEnabled(false);
-        IPLabel.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -99,11 +97,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel3)
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 265, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 94, Short.MAX_VALUE)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel4)
                     .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -112,7 +110,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     .add(jLabel2)
                     .add(jLabel4)
                     .add(jLabel3))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                 .add(34, 34, 34)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
@@ -134,7 +132,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         });
 
         IPLabel.setText("Introduce la dirección IP del Servidor:");
+        IPLabel.setEnabled(false);
 
+        IPTextField.setEnabled(false);
         IPTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IPTextFieldActionPerformed(evt);
@@ -174,7 +174,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(NumeroClientesTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -194,7 +194,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             .add(ClienteRadioButton)
                             .add(IPLabel)
                             .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         BotonInfoCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
@@ -256,9 +256,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel3Layout.createSequentialGroup()
                 .add(jLabel9)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel7)
                     .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -296,22 +296,16 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .add(layout.createSequentialGroup()
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(layout.createSequentialGroup()
-                                .add(Cancelar)
-                                .add(18, 18, 18)
-                                .add(EjecutarButton)
-                                .add(36, 36, 36)
-                                .add(BotonInfoCifrar))
-                            .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .add(Cancelar)
+                        .add(18, 18, 18)
+                        .add(EjecutarButton)
+                        .add(36, 36, 36)
+                        .add(BotonInfoCifrar))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -319,9 +313,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 170, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 162, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 128, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(EjecutarButton)
@@ -397,20 +391,26 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ClienteRadioButtonActionPerformed
 
     private void EjecutarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecutarButtonActionPerformed
-      
-      if (ComprobarDatos()) {
-
-       if (ServidorRadioButton.isSelected()) {
-
-       }
-
-       else if (ClienteRadioButton.isSelected()) {
-
-       }
-
-      }
-
-
+        
+        if (ServidorRadioButton.isSelected() && ComprobarDatos()) {
+            Thread servThread = new Thread(new Runnable() {
+                public void run() {
+                    new ServUI(wpadre);
+                }
+            });
+            wpadre.newThread(servThread);
+            servThread.start();
+        } else if (ClienteRadioButton.isSelected() && ComprobarDatos()) {
+            Thread clientThread = new Thread(new Runnable() {
+                public void run() {
+                    Cliente aplicacion = new Cliente();
+                    aplicacion.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+                    aplicacion.esperarPaquetes();
+                }
+            });
+            wpadre.newThread(clientThread);
+            clientThread.start();
+        }
     }//GEN-LAST:event_EjecutarButtonActionPerformed
 
     private void ClaveInicialTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClaveInicialTextFieldActionPerformed

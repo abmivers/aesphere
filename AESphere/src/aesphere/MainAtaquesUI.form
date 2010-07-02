@@ -81,9 +81,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" pref="170" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jPanel2" min="-2" pref="162" max="-2" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jPanel3" min="-2" pref="128" max="-2" attributes="0"/>
+              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="EjecutarButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -118,12 +118,12 @@
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="265" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="55" max="32767" attributes="0"/>
+                  <EmptySpace pref="94" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="121" max="32767" attributes="0"/>
+                  <EmptySpace pref="160" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -135,7 +135,7 @@
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="91" max="32767" attributes="0"/>
+                  <EmptySpace pref="89" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -235,7 +235,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="126" max="32767" attributes="0"/>
+                  <EmptySpace pref="198" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -261,7 +261,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -284,9 +284,13 @@
         <Component class="javax.swing.JLabel" name="IPLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Introduce la direcci&#xf3;n IP del Servidor:"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="IPTextField">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IPTextFieldActionPerformed"/>
           </Events>
@@ -377,10 +381,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="49" max="32767" attributes="0"/>
+                  <EmptySpace pref="47" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ClaveInicialTextField" alignment="3" min="-2" max="-2" attributes="0"/>

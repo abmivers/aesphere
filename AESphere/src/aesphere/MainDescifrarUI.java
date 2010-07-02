@@ -34,16 +34,13 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         initComponents();
         setLangLabels();
         wpadre = padre;
-        BotonBrowseCifrar.setEnabled(false);
-        BotonBrowseCifrarKey.setEnabled(false);
-        BotonBrowseCifrarOutput.setEnabled(false);
+
         archivos = new JFileChooser();
 
         ButtonGroup group = new ButtonGroup();
         group.add(RadioButton128);
         group.add(RadioButton192);
         group.add(RadioButton256);
-
     }
 
 
@@ -152,6 +149,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         jScrollPane3.setViewportView(TextoKey);
 
         BotonBrowseCifrarKey.setText("Buscar");
+        BotonBrowseCifrarKey.setEnabled(false);
         BotonBrowseCifrarKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBrowseCifrarKeyActionPerformed(evt);
@@ -223,6 +221,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TextoInput);
 
         BotonBrowseCifrar.setText("Buscar");
+        BotonBrowseCifrar.setEnabled(false);
         BotonBrowseCifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBrowseCifrarActionPerformed(evt);
@@ -232,7 +231,6 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef1.png"))); // NOI18N
 
         ComboBoxInputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Base64", "Hexadecimal", "Archivo" }));
-        ComboBoxInputCifrar.setSelectedIndex(0);
         ComboBoxInputCifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxInputCifrarActionPerformed(evt);
@@ -372,6 +370,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         });
 
         BotonBrowseCifrarOutput.setText("Buscar");
+        BotonBrowseCifrarOutput.setEnabled(false);
         BotonBrowseCifrarOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBrowseCifrarOutputActionPerformed(evt);
