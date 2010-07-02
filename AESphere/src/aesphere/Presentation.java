@@ -11,7 +11,6 @@
 
 package aesphere;
 
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +21,8 @@ public class Presentation extends javax.swing.JFrame {
     /** Creates new form Presentation */
     public Presentation() {
         initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -57,29 +58,17 @@ public class Presentation extends javax.swing.JFrame {
 
 
     public static void main(String args[]) {
-        //java.awt.EventQueue.invokeLater(new Runnable() {
-            //public void run() {
-                Presentation pres = new Presentation();
-                pres.setLocationRelativeTo(null);
-                pres.setVisible(true);
+        Presentation pres = new Presentation();
+        new Entorno();
 
-                try {
-                    Thread.sleep(2200);
-                } catch(Exception exc) {
-                    JOptionPane.showMessageDialog(pres, exc);
-                }
+        try {
+            Thread.sleep(2200);
+        } catch(Exception exc) {}
+        
+        new MainUI();
 
-                Entorno obj = new Entorno();
-
-                MainUI ventana = new MainUI();
-                ventana.setLocationRelativeTo(null);
-                ventana.setVisible(true);
-
-                pres.dispose();
-                pres=null;
-                
-            //}
-       // });
+        pres.dispose();        
+        pres=null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

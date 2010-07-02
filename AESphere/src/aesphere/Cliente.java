@@ -72,7 +72,7 @@ public class Cliente extends JFrame {
       // atrapar los problemas que pueden ocurrir al crear objeto DatagramSocket
       catch( SocketException excepcionSocket ) {
          excepcionSocket.printStackTrace();
-         System.exit( 1 );
+         System.exit(1);
       }
 
    } // fin del constructor de Cliente
@@ -80,7 +80,7 @@ public class Cliente extends JFrame {
    // esperar a que lleguen los paquetes del Servidor, mostrar el contenido de los paquetes
    public void esperarPaquetes()
    {
-      while ( true ) { // iterar infinitamente
+      while (true) { // iterar infinitamente
 
          // recibir el paquete y mostrar su contenido
          try {
@@ -134,7 +134,7 @@ public class Cliente extends JFrame {
    public static void main( String args[] )
    {
       Cliente aplicacion = new Cliente();
-      aplicacion.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+      aplicacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       aplicacion.esperarPaquetes();
    }
 

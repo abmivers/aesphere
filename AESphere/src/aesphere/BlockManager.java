@@ -58,13 +58,14 @@ public class BlockManager {
         return resultado;
     }
 
+    public byte[] getIV () {
+        return IV;
+    }
+
     private void setIV () {
         IV = new byte [blockSize];
-        /*java.util.Random generador = new java.util.Random(System.nanoTime());
+        java.util.Random generador = new java.util.Random();
         generador.nextBytes(IV);
-        System.out.println("IV: " + IV);*/
-        for (int i = 0; i < IV.length; i++)
-            IV[i] = 0;
     }
 
     /**

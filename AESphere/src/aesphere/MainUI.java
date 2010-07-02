@@ -28,7 +28,9 @@ import javax.swing.JOptionPane;
  */
 public class MainUI extends javax.swing.JFrame {
 
-    private javax.swing.JFrame hijoActual;
+    private javax.swing.JFrame hijoActual = null;
+    private Thread hijoThread = null;
+
     private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
     private String helpErrTitle = "Ayuda - Aviso";
 
@@ -57,7 +59,8 @@ public class MainUI extends javax.swing.JFrame {
                      JOptionPane.ERROR_MESSAGE);
         }
 
-
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
 
@@ -542,8 +545,12 @@ public class MainUI extends javax.swing.JFrame {
 
     public void wclosed (javax.swing.JFrame hijo){
         if (hijoActual.equals(hijo)) {
+            if (hijoThread != null) {
+                hijoThread.interrupt();                
+                hijoThread = null;
+            }
             hijoActual.dispose();
-            hijoActual = null;            
+            hijoActual = null;
         }        
     }
 
@@ -552,6 +559,15 @@ public class MainUI extends javax.swing.JFrame {
         else {
             hijoActual.dispose();
             hijoActual = newhijo;
+        }
+    }
+
+    public void newThread (Thread newexec) {
+        if (hijoThread == null)
+            hijoThread = newexec;
+        else {
+            hijoThread.interrupt();
+            hijoThread = newexec;
         }
     }
 
