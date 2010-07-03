@@ -8,8 +8,8 @@ package aesphere;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +19,7 @@ public class ServUI extends javax.swing.JFrame {
 
     private DatagramSocket socket;
     private MainUI wpadre;
+    private int numclientes;
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -90,10 +91,11 @@ public class ServUI extends javax.swing.JFrame {
         setVisible(true);
     }
 
-    public ServUI(MainUI padre) {
+    public ServUI(MainUI padre, String plaintext, String ciphertext, String numeroclientes, String claveinicial, String clavefinal) {
         initComponents();
         wpadre = padre;
         wpadre.newchild(this);
+        numclientes = Integer.parseInt(numeroclientes);
         setSize(400, 400);
 
         try {
@@ -116,17 +118,37 @@ public class ServUI extends javax.swing.JFrame {
             try {
                 // establecer el paquete
                 byte datos[] = new byte[100];
+                InetAddress clientes [] = new InetAddress [numclientes];
+                int posicion;
+
                 DatagramPacket recibirPaquete = new DatagramPacket(datos, datos.length);
 
                 socket.receive(recibirPaquete); // esperar el paquete               
+                
+                String mensajerecibido = new String( recibirPaquete.getData(),
+                    0, recibirPaquete.getLength() );
+                
+                if (mensajerecibido.equals("ClientHello")) {
+                   
+                    InetAddress ipcliente=recibirPaquete.getAddress();
+                    if (!esta (clientes,ipcliente)) {
+                       posicion = devolverposicion (clientes);
+                       clientes [posicion] = ipcliente;
+                        System.out.println("posicion"+posicion+" "+clientes[posicion].toString());
+                        System.out.println(clientes.length);
 
+                    }
+                mostrarMensaje ("Conexión establecida con el cliente " + recibirPaquete.getAddress());
+                    
+                }
+                
                 // mostrar la informacion del paquete recibido
                 mostrarMensaje( "\nPaquete recibido:" +
                     "\nDel host: " + recibirPaquete.getAddress() +
                     "\nPuerto del host: " + recibirPaquete.getPort() +
                     "\nLongitud: " + recibirPaquete.getLength() +
-                    "\nContenido:\n\t" + new String( recibirPaquete.getData(),
-                    0, recibirPaquete.getLength() ) );
+                    "\nContenido:\n\t" + mensajerecibido );
+
 
                 enviarPaqueteACliente( recibirPaquete ); // enviar paquete al cliente
             } catch( IOException excepcionES ) {
@@ -150,6 +172,35 @@ public class ServUI extends javax.swing.JFrame {
         mostrarMensaje( "Paquete enviado\n" );
     }
 
+
+     private void dividirespacioclaves () {
+
+     }
+
+     private int devolverposicion (InetAddress clientes []) {
+         
+         int i=0;
+         
+         while (clientes [i] != null) {
+             i++;
+         }
+         
+         return i;
+     }  
+    
+    private boolean esta (InetAddress clientes [] , InetAddress ipcliente) {
+
+        boolean resul = false;
+
+        for (int i = 0; i < numclientes ; i++ ){
+          if (ipcliente == clientes [i]) {
+              resul = true;
+          }
+        }
+
+        return resul;
+
+    }
 
     private void mostrarMensaje(final String mensajeAMostrar) {
         jTextArea1.append(mensajeAMostrar);
