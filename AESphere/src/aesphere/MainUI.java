@@ -38,31 +38,7 @@ public class MainUI extends javax.swing.JFrame {
     public MainUI() {
         initComponents();
         setLangLabels();
-        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension ventana = getSize();
-         
-        try {
-
-        File fichero = null;
-
-        if (Entorno.getProperty("language").equals("ES"))
-                fichero = new File("help/es/help_set.hs");
-        else if (Entorno.getProperty("language").equals("EN"))
-            fichero = new File("help/en/help_set.hs");
-        URL hsURL = fichero.toURI().toURL();
-        HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
-        HelpBroker hb = helpset.createHelpBroker();
-        hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
-                                (pantalla.height - ventana.height) / 2));
-        hb.setSize(new java.awt.Dimension(800, 628));
-        hb.enableHelpOnButton(Contenidos, "aplicacion", helpset);
-        hb.enableHelpOnButton(BotonInfo, "aplicacion", helpset);
-        }
-
-        catch (Exception e) {
-             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
-                     JOptionPane.ERROR_MESSAGE);
-        }
+        setHelp();
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -106,6 +82,34 @@ public class MainUI extends javax.swing.JFrame {
             Contenidos.setText("Contents");
             helpErrMsg = "An error has occurred while loading program help";
             helpErrTitle = "Help - Warning";
+        }
+    }
+
+    private void setHelp () {
+
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = getSize();
+
+        try {
+            File fichero = null;
+
+            if (Entorno.getProperty("language").equals("ES"))
+                fichero = new File("help/es/help_set.hs");
+            else if (Entorno.getProperty("language").equals("EN"))
+                fichero = new File("help/en/help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+                                (pantalla.height - ventana.height) / 2));
+            hb.setSize(new java.awt.Dimension(800, 628));
+            hb.enableHelpOnButton(Contenidos, "aplicacion", helpset);
+            hb.enableHelpOnButton(BotonInfo, "aplicacion", helpset);
+        }
+
+        catch (Exception e) {
+             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
+                     JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -518,6 +522,7 @@ public class MainUI extends javax.swing.JFrame {
             if (resul == 0) {
                 Entorno.setProperty("language", "ES");
                 setLangLabels();
+                setHelp();
             }
         }
     }//GEN-LAST:event_SpanishButtonActionPerformed
@@ -530,6 +535,7 @@ public class MainUI extends javax.swing.JFrame {
             if (resul == 0) {
                 Entorno.setProperty("language","EN");
                 setLangLabels();
+                setHelp();
             }
         }
     }//GEN-LAST:event_EnglishButtonActionPerformed
