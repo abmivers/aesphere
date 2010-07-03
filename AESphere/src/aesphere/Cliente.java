@@ -7,19 +7,35 @@ import javax.swing.*;
 
 public class Cliente extends JFrame {
    private JTextField campoIntroducir;
+   private javax.swing.JButton HelloButton;
    private JTextArea areaPantalla;
    private DatagramSocket socket;
    //INTRODUCIR AQUÍ IP DEL SERVIDOR
-   private String servIP = "127.0.0.1";
+   private String servIP;
 
    // configurar GUI y DatagramSocket
-   public Cliente()
+   public Cliente(String plaintext, String ciphertext, String dirIP, String claveinicial, String clavefinal )
    {
       super( "Cliente" );
+      
+
+
+      servIP = dirIP;
 
       Container contenedor = getContentPane();
 
       campoIntroducir = new JTextField( "Escriba aquí el mensaje" );
+      HelloButton = new JButton();
+
+       HelloButton.setText("Saludar");
+       HelloButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HelloButtonActionPerformed(evt);
+            }
+        });
+
+
+      
       campoIntroducir.addActionListener(
          new ActionListener() { 
             public void actionPerformed( ActionEvent evento )
@@ -56,6 +72,7 @@ public class Cliente extends JFrame {
       ); // fin de la llamada a addActionListener
 
       contenedor.add( campoIntroducir, BorderLayout.NORTH );
+      contenedor.add( HelloButton, BorderLayout.SOUTH);
 
       areaPantalla = new JTextArea();
       contenedor.add( new JScrollPane( areaPantalla ),
@@ -63,6 +80,7 @@ public class Cliente extends JFrame {
 
       setSize( 400, 300 );
       setVisible( true );
+
 
       // crear objeto DatagramSocket para enviar y recibir paquetes
       try {
@@ -76,6 +94,23 @@ public class Cliente extends JFrame {
       }
 
    } // fin del constructor de Cliente
+   
+   private void HelloButtonActionPerformed(java.awt.event.ActionEvent evt) {
+       String mensaje = "ClientHello";
+       byte datos[] = mensaje.getBytes();
+
+       try {
+       DatagramPacket enviarPaquete = new DatagramPacket( datos,
+       datos.length, InetAddress.getByName(servIP), 3000);
+
+       socket.send( enviarPaquete );
+       }
+
+       catch (Exception e) {
+           e.printStackTrace();
+       }
+   }
+
 
    // esperar a que lleguen los paquetes del Servidor, mostrar el contenido de los paquetes
    public void esperarPaquetes()
@@ -92,13 +127,22 @@ public class Cliente extends JFrame {
 
             socket.receive( recibirPaquete ); // esperar un paquete
 
+            String mensajerecibido = new String( recibirPaquete.getData(),
+                  0, recibirPaquete.getLength() );
+
+            if (mensajerecibido.equals("ClientHello")) {
+               mostrarMensaje ("Conexión establecida");
+               HelloButton.setEnabled(false);
+            }
+
+            else {
             // mostrar el contenido del paquete
             mostrarMensaje( "\nPaquete recibido:" + 
                "\nDel host: " + recibirPaquete.getAddress() + 
                "\nPuerto del host: " + recibirPaquete.getPort() + 
                "\nLongitud: " + recibirPaquete.getLength() + 
-               "\nContenido:\n\t" + new String( recibirPaquete.getData(), 
-                  0, recibirPaquete.getLength() ) );
+               "\nContenido:\n\t" + mensajerecibido );
+            }
          }
  
          // procesar los problemas que pueden ocurrir al recibir o mostrar el paquete
@@ -123,7 +167,7 @@ public class Cliente extends JFrame {
             {
                areaPantalla.append( mensajeAMostrar );
                areaPantalla.setCaretPosition( 
-                  areaPantalla.getText().length() );
+               areaPantalla.getText().length() );
             }
 
          }  // fin de la clase interna
@@ -131,11 +175,11 @@ public class Cliente extends JFrame {
       ); // fin de la llamada a SwingUtilities.invokeLater
    }
 
-   public static void main( String args[] )
+   /*public static void main( String args[] )
    {
       Cliente aplicacion = new Cliente();
       aplicacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       aplicacion.esperarPaquetes();
-   }
+   }*/
 
 }  // fin de la clase Cliente
