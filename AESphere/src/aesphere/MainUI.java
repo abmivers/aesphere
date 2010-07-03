@@ -43,7 +43,12 @@ public class MainUI extends javax.swing.JFrame {
          
         try {
 
-        File fichero = new File("./help/help_set.hs");
+        File fichero = null;
+
+        if (Entorno.getProperty("language").equals("ES"))
+                fichero = new File("help/es/help_set.hs");
+        else if (Entorno.getProperty("language").equals("EN"))
+            fichero = new File("help/en/help_set.hs");
         URL hsURL = fichero.toURI().toURL();
         HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
         HelpBroker hb = helpset.createHelpBroker();
