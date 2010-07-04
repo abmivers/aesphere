@@ -14,7 +14,7 @@ public class Cliente extends JFrame {
    private String servIP;
 
    // configurar GUI y DatagramSocket
-   public Cliente(String plaintext, String ciphertext, String dirIP, String claveinicial, String clavefinal )
+   public Cliente(String plaintext, String ciphertext, String dirIP, byte[] claveinicial, byte[] clavefinal )
    {
       super( "Cliente" );
       
