@@ -21,6 +21,55 @@ public class ServUI extends javax.swing.JFrame {
     private MainUI wpadre;
     private int numclientes;
 
+    /** Creates new form ServUI */
+    public ServUI(MainUI padre, String plaintext, String ciphertext, String numeroclientes, byte [] claveinicial, byte[] clavefinal) {
+        initComponents();
+        wpadre = padre;
+        wpadre.newchild(this);
+        numclientes = Integer.parseInt(numeroclientes);
+        setSize(400, 400);
+
+        try {
+            socket = new DatagramSocket(3000);
+        } catch (SocketException excepcionSocket) {
+            excepcionSocket.printStackTrace();
+            System.exit(1);
+        }
+
+        setLocationRelativeTo(wpadre);
+        setVisible(true);
+
+        //declaramos el array con el número de claves que cada cliente deberá probar
+        long [] clavesPorCliente = new long [numclientes];
+        //obtenemos el número de claves a probar en total
+        long numClaves = getKeysToTry(claveinicial, clavefinal);
+        debugArea.append("\n" + Long.toString(numClaves) + " claves a probar\n");
+        //calculamos el número de claves a probar por cada cliente
+        long clavesCliente = numClaves / numclientes;
+        //si la división no es exacta, no todos los clientes probarán el mismo número de claves
+        numClaves -= clavesCliente * numclientes;
+        //rellenamos el array de claves a probar por cada cliente
+        int extra = 0;
+        debugArea.append("\n");
+        for (int i = 0; i < numclientes; i++, extra++) {
+            if (extra < numClaves) clavesPorCliente[i] = clavesCliente + 1;
+            else clavesPorCliente[i] = clavesCliente;
+            debugArea.append("Cliente " + i + ": " + clavesPorCliente[i] + " claves\n");
+        }
+
+        //generamos la clave inicial para cada cliente
+        long acum = 0;
+        debugArea.append("\n");
+        byte [] auxClave = null;
+        for (int i=0; i < numclientes; i++) {
+            auxClave = getClientKey(claveinicial, acum);
+            debugArea.append("Clave " + i + ": " + Conversor.byteToHexString(auxClave) + "\n");
+            acum += clavesPorCliente[i];
+        }
+
+        //esperarPaquetes();
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -31,7 +80,7 @@ public class ServUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        debugArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -40,10 +89,11 @@ public class ServUI extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Esperando conexión...");
-        jScrollPane1.setViewportView(jTextArea1);
+        debugArea.setColumns(20);
+        debugArea.setRows(5);
+        debugArea.setText("Esperando conexión...\n");
+        debugArea.setEditable(false);
+        jScrollPane1.setViewportView(debugArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,55 +115,19 @@ public class ServUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+
+
+
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
-        socket.close();
-        //ESTE IF SE QUITARÁ CUANDO SE QUITE EL MAIN DE ESTA CLASE
-        if (wpadre != null) {
-            wpadre.setEnabled(true);
-            wpadre.requestFocus();
-            wpadre.wclosed(this);
-        }
-    }
-
-    //CONSTRUCTOR PARA BORRAR, PARA USO DESDE EL MAIN DE SERVUI
-    public ServUI() {
-        initComponents();
-        setSize(400, 400);
-
-        try {
-            socket = new DatagramSocket(3000);
-        } catch (SocketException excepcionSocket) {
-            excepcionSocket.printStackTrace();
-            System.exit(1);
-        }
-
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
-
-    public ServUI(MainUI padre, String plaintext, String ciphertext, String numeroclientes, byte [] claveinicial, byte[] clavefinal) {
-        initComponents();
-        wpadre = padre;
-        wpadre.newchild(this);
-        numclientes = Integer.parseInt(numeroclientes);
-        setSize(400, 400);
-
-        try {
-            socket = new DatagramSocket(3000);
-        } catch (SocketException excepcionSocket) {
-            excepcionSocket.printStackTrace();
-            System.exit(1);
-        }
-
-        setLocationRelativeTo(wpadre);
-        setVisible(true);
-
-        esperarPaquetes();
+        socket.close();        
+        wpadre.setEnabled(true);
+        wpadre.requestFocus();
+        wpadre.wclosed(this);        
     }
 
     // esperar a que lleguen los paquetes, mostrar los datos y repetir el paquete al cliente
     public void esperarPaquetes() {
-        while (/*!Thread.currentThread().isInterrupted()*/true) {
+        while (!Thread.currentThread().isInterrupted()) {
             // recibir paquete, mostrar su contenido, devolver copia al cliente
             try {
                 // establecer el paquete
@@ -131,7 +145,7 @@ public class ServUI extends javax.swing.JFrame {
                 if (mensajerecibido.equals("ClientHello")) {
                    
                     InetAddress ipcliente=recibirPaquete.getAddress();
-                    if (!esta (clientes,ipcliente)) {
+                    if (!esta(clientes,ipcliente)) {
                        posicion = devolverposicion (clientes);
                        clientes [posicion] = ipcliente;
                         System.out.println("posicion"+posicion+" "+clientes[posicion].toString());
@@ -157,37 +171,6 @@ public class ServUI extends javax.swing.JFrame {
             }
         }
     }
-
-    private byte [] getNextKey (byte [] clave)
-            throws java.lang.IndexOutOfBoundsException {
-        int lastIndex = clave.length - 1;
-        /*
-         * si en la última posición del array (donde se encuentra el byte de
-         * menor peso) hemos alcanzado el valor máximo (-1),
-         * la ponemos a 0 (sumando 1) y aumentamos en uno el valor del byte de
-         * peso inmediatamente mayor.
-         */
-        if (clave[lastIndex] == -1) {
-            int i;
-            /*
-             * mientras el byte de peso inmediatamente mayor haya alcanzado
-             * también su valor máximo, recorremos el array reiniciando a 0
-             * todos los bytes hasta encontrar el primero en el que podamos
-             * incrementar su valor
-             */
-            for (i = lastIndex; (i >= 0) && (clave[i] == -1); i--)
-                clave[i]++;
-
-            if (i < 0)
-                throw new java.lang.IndexOutOfBoundsException("Last key possible reached");
-            else
-                clave[i]++;
-        } else
-            clave[lastIndex]++;
-
-        return clave;
-    }
-
     
     // repetir el paquete al cliente
     public void enviarPaqueteACliente(DatagramPacket recibirPaquete)
@@ -204,21 +187,50 @@ public class ServUI extends javax.swing.JFrame {
     }
 
 
-     private void dividirespacioclaves () {
+     private long getKeysToTry (byte [] iniClave, byte [] finClave) {
+         int len = iniClave.length;
+         long numKeys = 0;
 
+         for (int i = 0; i < len; i++) {
+             numKeys <<= 8;
+             numKeys += (Conversor.byteToInt(finClave[i]) - Conversor.byteToInt(iniClave[i]));
+         }
+
+         return numKeys;
+     }
+
+     private byte[] getClientKey (byte [] iniClave, long offset) {
+         int len = iniClave.length;
+         byte [] aux = new byte [len];
+
+         boolean acarreo = false;
+         int byteSum;
+         for (int i = len - 1; i>=0; i--) {
+            byteSum = 0;
+            if (acarreo) byteSum++;
+
+            byteSum += Conversor.byteToInt(iniClave[i]) + Conversor.byteToInt((byte) offset);
+            aux[i] = (byte) byteSum;
+
+            if ((0xff00 & byteSum) != 0) acarreo = true;
+
+            offset >>= 8;
+         }
+
+         return aux;
      }
 
      private int devolverposicion (InetAddress clientes []) {
-         
+
          int i=0;
-         
+
          while (clientes [i] != null) {
              i++;
          }
-         
+
          return i;
-     }  
-    
+     }
+
     private boolean esta (InetAddress clientes [] , InetAddress ipcliente) {
 
         boolean resul = false;
@@ -234,18 +246,12 @@ public class ServUI extends javax.swing.JFrame {
     }
 
     private void mostrarMensaje(final String mensajeAMostrar) {
-        jTextArea1.append(mensajeAMostrar);
-    }
-
-    public static void main(String args[]) {
-        ServUI aplicacion = new ServUI();
-        aplicacion.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        aplicacion.esperarPaquetes();
+        debugArea.append(mensajeAMostrar);
     }
 
     // Variables declaration - do not modify
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea debugArea;
     // End of variables declaration
 
 }
