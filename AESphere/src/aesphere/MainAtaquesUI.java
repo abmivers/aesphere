@@ -392,10 +392,14 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
     private void EjecutarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecutarButtonActionPerformed
         
+        final byte [] claveini = Conversor.hexStringToByte(ClaveInicialTextField.getText());
+        final byte [] clavefin = Conversor.hexStringToByte(ClaveFinalTextField.getText());
+
+
         if (ServidorRadioButton.isSelected() && ComprobarDatos()) {
             Thread servThread = new Thread(new Runnable() {
                 public void run() {
-                    new ServUI(wpadre,PlainTextArea.getText(),CipherTextArea.getText(),NumeroClientesTextField.getText(),ClaveInicialTextField.getText(),ClaveFinalTextField.getText());
+                    new ServUI(wpadre,PlainTextArea.getText(),CipherTextArea.getText(),NumeroClientesTextField.getText(),claveini,clavefin);
                 }
             });
             wpadre.newThread(servThread);
@@ -403,7 +407,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         } else if (ClienteRadioButton.isSelected() && ComprobarDatos()) {
             Thread clientThread = new Thread(new Runnable() {
                 public void run() {
-                    Cliente aplicacion = new Cliente(PlainTextArea.getText(),CipherTextArea.getText(),IPTextField.getText(),ClaveInicialTextField.getText(),ClaveFinalTextField.getText());
+                    Cliente aplicacion = new Cliente(PlainTextArea.getText(),CipherTextArea.getText(),IPTextField.getText(),claveini,clavefin);
                     aplicacion.setLocationRelativeTo(null);
                     aplicacion.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
                     aplicacion.esperarPaquetes();
