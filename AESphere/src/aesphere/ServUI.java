@@ -67,6 +67,19 @@ public class ServUI extends javax.swing.JFrame {
             acum += clavesPorCliente[i];
         }
 
+        //generamos la clave final para comprobar si está bien
+        auxClave = getClientKey(claveinicial, acum);
+        //comprobamos si la última clave generada y la clave final son iguales
+        int len = clavefinal.length;
+        boolean iguales = true;
+        for (int i = 0; iguales && (i < len); i++)
+            if (auxClave[i] != clavefinal[i]) iguales = false;
+
+        if (iguales)
+            debugArea.append("\nGeneración de claves finalizada correctamente\n");
+        else
+            debugArea.append("\nHubo un error en la generación de claves\n");
+
         //esperarPaquetes();
     }
 
@@ -213,6 +226,7 @@ public class ServUI extends javax.swing.JFrame {
             aux[i] = (byte) byteSum;
 
             if ((0xff00 & byteSum) != 0) acarreo = true;
+            else acarreo = false;
 
             offset >>= 8;
          }
