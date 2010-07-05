@@ -8,5 +8,13 @@
         <indexitem text="Cifrado"    target="ventana_cifrar"/>
 
         <indexitem text="Descifrado"    target="ventana_descifrar"/>
+        
+        <indexitem text="ShiftRows"    target="ventana_shiftrows"/>
+        
+        <indexitem text="MixColumns"    target="ventana_mixcolumns"/>
+        
+        <indexitem text="SubBytes"    target="ventana_subbytes"/>
+        
+        <indexitem text="AddRoundKey"    target="ventana_addroundkey"/>
 
 </index>
