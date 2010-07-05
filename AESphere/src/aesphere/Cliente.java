@@ -93,6 +93,9 @@ public class Cliente extends JFrame {
          System.exit(1);
       }
 
+      esperarClientHello();
+      esperarClave();
+
    } // fin del constructor de Cliente
    
    private void HelloButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,9 +116,10 @@ public class Cliente extends JFrame {
 
 
    // esperar a que lleguen los paquetes del Servidor, mostrar el contenido de los paquetes
-   public void esperarPaquetes()
+   public void esperarClientHello()
    {
-      while (true) { // iterar infinitamente
+      boolean encontrado = false;
+      while (!Thread.currentThread().isInterrupted() && !encontrado) {
 
          // recibir el paquete y mostrar su contenido
          try {
@@ -131,9 +135,11 @@ public class Cliente extends JFrame {
                   0, recibirPaquete.getLength() );
 
             if (mensajerecibido.equals("ClientHello")) {
-               mostrarMensaje ("Conexión establecida");
-               HelloButton.setEnabled(false);
+                encontrado = true;
+                mostrarMensaje ("Conexión establecida");
+                HelloButton.setEnabled(false);
             }
+
 
             else {
             // mostrar el contenido del paquete
@@ -143,6 +149,8 @@ public class Cliente extends JFrame {
                "\nLongitud: " + recibirPaquete.getLength() + 
                "\nContenido:\n\t" + mensajerecibido );
             }
+
+
          }
  
          // procesar los problemas que pueden ocurrir al recibir o mostrar el paquete
@@ -151,12 +159,58 @@ public class Cliente extends JFrame {
             excepcion.printStackTrace();
          }
 
-      } // fin de instrucci�n while
+      } 
 
-   } // fin del m�todo esperarPaquetes
+   } 
 
-   // m�todo utilitario que es llamado desde otros subprocesos para manipular a
-   // areaPantalla en el subproceso despachador de eventos
+
+   public void esperarClave()
+   {
+      boolean encontrado = false;
+      while (!Thread.currentThread().isInterrupted() && !encontrado) {
+
+         // recibir el paquete y mostrar su contenido
+         try {
+
+            // establecer el paquete
+            byte datos[] = new byte[ 100 ];
+            DatagramPacket recibirPaquete = new DatagramPacket(
+               datos, datos.length );
+
+            socket.receive( recibirPaquete ); // esperar un paquete
+
+            String mensajerecibido = new String( recibirPaquete.getData(),
+                  0, recibirPaquete.getLength() );
+
+            if (mensajerecibido.equals("ClientHello")) {
+                encontrado = true;
+                mostrarMensaje ("Conexión establecida");
+                HelloButton.setEnabled(false);
+            }
+
+
+            else {
+            // mostrar el contenido del paquete
+            mostrarMensaje( "\nPaquete recibido:" +
+               "\nDel host: " + recibirPaquete.getAddress() +
+               "\nPuerto del host: " + recibirPaquete.getPort() +
+               "\nLongitud: " + recibirPaquete.getLength() +
+               "\nContenido:\n\t" + mensajerecibido );
+            }
+
+
+         }
+
+         // procesar los problemas que pueden ocurrir al recibir o mostrar el paquete
+         catch( IOException excepcion ) {
+            mostrarMensaje( excepcion.toString() + "\n" );
+            excepcion.printStackTrace();
+         }
+
+      }
+
+   }
+  
 
 
    private byte [] getNextKey (byte [] clave)
