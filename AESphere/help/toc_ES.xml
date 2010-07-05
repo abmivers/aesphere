@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<toc version="1.0"> <!--  categoryclosedimage="FolderClosed" categoryopenimage="FolderOpened"  
+topicimage="ItemIco"-->
+           <tocitem text="Ayuda de AESphere"    target="aplicacion">
+           <tocitem text="Cifrado"    target="ventana_cifrar"/>
+           <tocitem text="Descifrado"    target="ventana_descifrar"/>
+           <tocitem text="ShiftRows"    target="ventana_shiftrows"/>
+           <tocitem text="MixColumns"    target="ventana_mixcolumns"/>
+           <tocitem text="SubBytes"    target="ventana_subbytes"/>
+           <tocitem text="AddRoundKey"    target="ventana_addroundkey"/>
+        </tocitem>
+</toc>

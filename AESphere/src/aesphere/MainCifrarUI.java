@@ -647,31 +647,22 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private void ComboBoxInputCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxInputCifrarActionPerformed
          
 
-       int selectedIndex = ComboBoxInputCifrar.getSelectedIndex();
-       int selectedIndex2 = ComboBoxOutputCifrar.getSelectedIndex();
+       int selectedIndex = ComboBoxInputCifrar.getSelectedIndex();     
 
         switch (selectedIndex) {
-            case 0: ModoEjecucion.setEnabled(true);
-                    BotonBrowseCifrar.setEnabled(false);
-                    TextoInput.setEnabled(true);
+            case 0: BotonBrowseCifrar.setEnabled(false);
+                    TextoInput.setEditable(true);
                     TextoInput.setText("");
 
                 break;
-            case 1: ModoEjecucion.setEnabled(true);
-                    BotonBrowseCifrar.setEnabled(false);
-                    TextoInput.setEnabled(true);
+            case 1: BotonBrowseCifrar.setEnabled(false);
+                    TextoInput.setEditable(true);
                     TextoInput.setText("");
 
                 break;
             case 2: BotonBrowseCifrar.setEnabled(true);
-                    TextoInput.setEnabled(false);
+                    TextoInput.setEditable(false);
                     TextoInput.setText("");
-                    if (selectedIndex2==2) {
-                        ModoEjecucion.setSelectedIndex(1);
-                        ModoEjecucion.setEnabled(false);
-                    }
-
-                break;
         }
 
 
@@ -732,19 +723,18 @@ public class MainCifrarUI extends javax.swing.JFrame {
          int selectedIndex = ComboBoxKey.getSelectedIndex();
         switch (selectedIndex) {
             case 0: BotonBrowseCifrarKey.setEnabled(false);
-                    TextoKey.setEnabled(true);
+                    TextoKey.setEditable(true);
                     TextoKey.setText("");
 
                 break;
             case 1: BotonBrowseCifrarKey.setEnabled(false);
-                    TextoKey.setEnabled(true);
+                    TextoKey.setEditable(true);
                     TextoKey.setText("");
 
                 break;
             case 2: BotonBrowseCifrarKey.setEnabled(true);
-                    TextoKey.setEnabled(false);
+                    TextoKey.setEditable(false);
                     TextoKey.setText("");
-                break;
         }
     }//GEN-LAST:event_ComboBoxKeyActionPerformed
 
