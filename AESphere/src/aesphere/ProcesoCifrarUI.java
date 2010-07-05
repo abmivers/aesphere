@@ -35,10 +35,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
     /** Creates new form ProcesoCifrarUI */
 
-    public ProcesoCifrarUI () {
-
-    }
-
     public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
             int modoBloque, int tamano, boolean manualIV) {

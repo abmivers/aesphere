@@ -615,30 +615,22 @@ public class MainDescifrarUI extends javax.swing.JFrame {
          
 
        int selectedIndex = ComboBoxInputCifrar.getSelectedIndex();
-       int selectedIndex2 = ComboBoxOutputCifrar.getSelectedIndex();
+       
         switch (selectedIndex) {
-            case 0: ModoEjecucion.setEnabled(true);
-                    BotonBrowseCifrar.setEnabled(false);
-                    TextoInput.setEnabled(true);
+            case 0: BotonBrowseCifrar.setEnabled(false);
+                    TextoInput.setEnabled(false);
                     TextoInput.setText("");
 
                 break;
-            case 1: ModoEjecucion.setEnabled(true);
-                    BotonBrowseCifrar.setEnabled(false);
-                    TextoInput.setEnabled(true);
+            case 1: BotonBrowseCifrar.setEnabled(false);
+                    TextoInput.setEnabled(false);
                     TextoInput.setText("");
 
                 break;
             case 2: BotonBrowseCifrar.setEnabled(true);
-                    TextoInput.setEnabled(false);
-                    TextoInput.setText("");
-                    if (selectedIndex2==2) {
-                        ModoEjecucion.setSelectedIndex(1);
-                        ModoEjecucion.setEnabled(false);
-                    };
-                break;
+                    TextoInput.setEnabled(true);
+                    TextoInput.setText("");                    
         }
-
 
     }//GEN-LAST:event_ComboBoxInputCifrarActionPerformed
 
@@ -646,29 +638,20 @@ public class MainDescifrarUI extends javax.swing.JFrame {
          
 
          int selectedIndex = ComboBoxOutputCifrar.getSelectedIndex();
-         int selectedIndex2 = ComboBoxInputCifrar.getSelectedIndex();
+         
         switch (selectedIndex) {
-            case 0: ModoEjecucion.setEnabled(true);
-                    BotonBrowseCifrarOutput.setEnabled(false);
+            case 0: BotonBrowseCifrarOutput.setEnabled(false);
                     TextoOutput.setText("");
-                    TextoOutput.setEnabled(false);
+                    TextoOutput.setEditable(false);
 
                 break;
-            case 1: ModoEjecucion.setEnabled(true);
-                    BotonBrowseCifrarOutput.setEnabled(false);
+            case 1: BotonBrowseCifrarOutput.setEnabled(false);
                     TextoOutput.setText("");
-                    TextoOutput.setEnabled(false);
+                    TextoOutput.setEditable(false);
 
                 break;
             case 2: BotonBrowseCifrarOutput.setEnabled(true);
-                    TextoOutput.setEnabled(true);
-                    if (selectedIndex2==2) {
-                        ModoEjecucion.setSelectedIndex(1);
-                        ModoEjecucion.setEnabled(false);
-                    };
-
-
-                break;
+                    TextoOutput.setEditable(true);
         }
     }//GEN-LAST:event_ComboBoxOutputCifrarActionPerformed
 
@@ -693,17 +676,17 @@ public class MainDescifrarUI extends javax.swing.JFrame {
          int selectedIndex = ComboBoxKey.getSelectedIndex();
         switch (selectedIndex) {
             case 0: BotonBrowseCifrarKey.setEnabled(false);
-                    TextoKey.setEnabled(true);
+                    TextoKey.setEditable(true);
                     TextoKey.setText("");
 
                 break;
             case 1: BotonBrowseCifrarKey.setEnabled(false);
-                    TextoKey.setEnabled(true);
+                    TextoKey.setEditable(true);
                     TextoKey.setText("");
 
                 break;
             case 2: BotonBrowseCifrarKey.setEnabled(true);
-                    TextoKey.setEnabled(false);
+                    TextoKey.setEditable(false);
                     TextoKey.setText("");
                 break;
         }
