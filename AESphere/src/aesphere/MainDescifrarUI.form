@@ -107,6 +107,16 @@
               <ComponentRef name="jPopupMenu1"/>
             </Property>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="ContenidosDescifrar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Contenidos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ContenidosDescifrarActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -175,7 +185,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="BotonSiguiente" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="BotonInfoCifrar" min="-2" max="-2" attributes="0"/>
+                              <Component id="BotonInfoDescifrar" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="cifrarPanelOutput" alignment="0" max="32767" attributes="1"/>
                           <Component id="cifrarPanelInput" alignment="1" max="32767" attributes="1"/>
@@ -189,9 +199,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="cifrarPanelInput" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="11" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="cifrarPanelOutput" max="32767" attributes="0"/>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="cifrarPanelAdvOptions" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -199,7 +209,7 @@
                               <Component id="BotonSiguiente" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="BotonInfoCifrar" min="-2" max="-2" attributes="0"/>
+                          <Component id="BotonInfoDescifrar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -228,7 +238,7 @@
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel1" max="32767" attributes="0"/>
-                          <EmptySpace pref="25" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -260,10 +270,10 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane3" alignment="0" pref="310" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane3" alignment="0" pref="295" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="ComboBoxKey" min="-2" pref="154" max="-2" attributes="0"/>
-                                      <EmptySpace pref="66" max="32767" attributes="0"/>
+                                      <EmptySpace pref="51" max="32767" attributes="0"/>
                                       <Component id="BotonBrowseCifrarKey" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -487,7 +497,7 @@
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="ModoCifrado" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="207" max="32767" attributes="0"/>
+                                  <EmptySpace pref="95" max="32767" attributes="0"/>
                                   <Component id="jLabel5" min="-2" pref="127" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="ModoEjecucion" min="-2" max="-2" attributes="0"/>
@@ -496,7 +506,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Component id="manualIV" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="528" max="32767" attributes="0"/>
+                                  <EmptySpace pref="489" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -604,7 +614,7 @@
                           <Component id="TextoOutput" min="-2" pref="415" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="BotonBrowseCifrarOutput" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="30" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -622,7 +632,7 @@
                               </Group>
                               <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="25" max="32767" attributes="0"/>
+                          <EmptySpace pref="20" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -668,7 +678,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="BotonInfoCifrar">
+            <Component class="javax.swing.JButton" name="BotonInfoDescifrar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/info.png"/>
@@ -679,7 +689,7 @@
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonInfoCifrarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonInfoDescifrarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="BotonSiguiente">

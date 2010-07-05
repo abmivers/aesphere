@@ -10,12 +10,16 @@
  */
 package aesphere;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.io.File;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -28,11 +32,14 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
     private MainUI wpadre;
     private String key; //para almacenar la clave cuando se introduce desde archivo
+    private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
+    private String helpErrTitle = "Ayuda - Aviso";
 
     /** Creates new form Main */
     public MainDescifrarUI(MainUI padre) {
         initComponents();
         setLangLabels();
+        setHelp();
         wpadre = padre;
 
         archivos = new JFileChooser();
@@ -58,6 +65,34 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             cifrarPanelInput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " INPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
             cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " OUTPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
             cifrarPanelAdvOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " ADVANCED OPTIONS ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
+        }
+    }
+
+    private void setHelp () {
+
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = getSize();
+
+        try {
+            File fichero = null;
+
+            if (Entorno.getProperty("language").equals("ES"))
+                fichero = new File("help/es/help_set.hs");
+            else if (Entorno.getProperty("language").equals("EN"))
+                fichero = new File("help/en/help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+                                (pantalla.height - ventana.height) / 2));
+            hb.setSize(new java.awt.Dimension(800, 628));
+            hb.enableHelpOnButton(ContenidosDescifrar, "ventana_descifrar", helpset);
+            hb.enableHelpOnButton(BotonInfoDescifrar, "ventana_descifrar", helpset);
+        }
+
+        catch (Exception e) {
+             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
+                     JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -104,7 +139,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         ComboBoxOutputCifrar = new javax.swing.JComboBox();
         BotonBrowseCifrarOutput = new javax.swing.JButton();
         TextoOutput = new javax.swing.JTextField();
-        BotonInfoCifrar = new javax.swing.JButton();
+        BotonInfoDescifrar = new javax.swing.JButton();
         BotonSiguiente = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
         cifrarMenuBarMain = new javax.swing.JMenuBar();
@@ -118,6 +153,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         CopiarKey = new javax.swing.JMenuItem();
         PegarKey = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
+        ContenidosDescifrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - Descifrar");
@@ -185,10 +221,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(ComboBoxKey, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                         .addComponent(BotonBrowseCifrarKey, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(RadioButton128)
@@ -277,7 +313,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         cifrarPanelInputLayout.setVerticalGroup(
             cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,7 +368,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -340,7 +376,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                     .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(manualIV)
-                        .addContainerGap(528, Short.MAX_VALUE))))
+                        .addContainerGap(489, Short.MAX_VALUE))))
         );
         cifrarPanelAdvOptionsLayout.setVerticalGroup(
             cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,7 +433,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BotonBrowseCifrarOutput)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         cifrarPanelOutputLayout.setVerticalGroup(
             cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,15 +446,15 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                             .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonBrowseCifrarOutput)))
                     .addComponent(jLabel1))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        BotonInfoCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
-        BotonInfoCifrar.setBorder(null);
-        BotonInfoCifrar.setContentAreaFilled(false);
-        BotonInfoCifrar.addActionListener(new java.awt.event.ActionListener() {
+        BotonInfoDescifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfoDescifrar.setBorder(null);
+        BotonInfoDescifrar.setContentAreaFilled(false);
+        BotonInfoDescifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonInfoCifrarActionPerformed(evt);
+                BotonInfoDescifrarActionPerformed(evt);
             }
         });
 
@@ -449,7 +485,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(BotonSiguiente)
                         .addGap(65, 65, 65)
-                        .addComponent(BotonInfoCifrar))
+                        .addComponent(BotonInfoDescifrar))
                     .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cifrarPanelInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -459,16 +495,16 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cifrarPanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(BotonSiguiente)
                         .addComponent(Cancelar))
-                    .addComponent(BotonInfoCifrar))
+                    .addComponent(BotonInfoDescifrar))
                 .addContainerGap())
         );
 
@@ -540,6 +576,15 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
         mainMenuAyuda.setText("Ayuda");
         mainMenuAyuda.setComponentPopupMenu(jPopupMenu1);
+
+        ContenidosDescifrar.setText("Contenidos");
+        ContenidosDescifrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContenidosDescifrarActionPerformed(evt);
+            }
+        });
+        mainMenuAyuda.add(ContenidosDescifrar);
+
         cifrarMenuBarMain.add(mainMenuAyuda);
 
         setJMenuBar(cifrarMenuBarMain);
@@ -907,10 +952,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                     op_block, tamano, manualIV.isSelected());
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
-    private void BotonInfoCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoCifrarActionPerformed
+    private void BotonInfoDescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoDescifrarActionPerformed
          
 
-    }//GEN-LAST:event_BotonInfoCifrarActionPerformed
+    }//GEN-LAST:event_BotonInfoDescifrarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
          
@@ -1032,6 +1077,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             }
 }//GEN-LAST:event_GuardarClaveActionPerformed
 
+    private void ContenidosDescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosDescifrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContenidosDescifrarActionPerformed
+
 
 
 
@@ -1045,12 +1094,13 @@ public class MainDescifrarUI extends javax.swing.JFrame {
     private javax.swing.JButton BotonBrowseCifrar;
     private javax.swing.JButton BotonBrowseCifrarKey;
     private javax.swing.JButton BotonBrowseCifrarOutput;
-    private javax.swing.JButton BotonInfoCifrar;
+    private javax.swing.JButton BotonInfoDescifrar;
     private javax.swing.JButton BotonSiguiente;
     private javax.swing.JButton Cancelar;
     private javax.swing.JComboBox ComboBoxInputCifrar;
     private javax.swing.JComboBox ComboBoxKey;
     private javax.swing.JComboBox ComboBoxOutputCifrar;
+    private javax.swing.JMenuItem ContenidosDescifrar;
     private javax.swing.JMenuItem CopiarInput;
     private javax.swing.JMenuItem CopiarKey;
     private javax.swing.JMenuItem GuardarClave;

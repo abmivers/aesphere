@@ -157,6 +157,40 @@ public class Cliente extends JFrame {
 
    // m�todo utilitario que es llamado desde otros subprocesos para manipular a
    // areaPantalla en el subproceso despachador de eventos
+
+
+   private byte [] getNextKey (byte [] clave)
+   throws java.lang.IndexOutOfBoundsException {
+        int lastIndex = clave.length - 1;
+        /*
+         * si en la última posición del array (donde se encuentra el byte de
+         * menor peso) hemos alcanzado el valor máximo (-1),
+         * la ponemos a 0 (sumando 1) y aumentamos en uno el valor del byte de
+         * peso inmediatamente mayor.
+         */
+        if (clave[lastIndex] == -1) {
+            int i;
+            /*
+             * mientras el byte de peso inmediatamente mayor haya alcanzado
+             * también su valor máximo, recorremos el array reiniciando a 0
+             * todos los bytes hasta encontrar el primero en el que podamos
+             * incrementar su valor
+             */
+            for (i = lastIndex; (i >= 0) && (clave[i] == -1); i--)
+                clave[i]++;
+
+            if (i < 0)
+                throw new java.lang.IndexOutOfBoundsException("Last key possible reached");
+            else
+                clave[i]++;
+        } else
+            clave[lastIndex]++;
+
+        return clave;
+   }
+
+
+
    public void mostrarMensaje( final String mensajeAMostrar )
    {
       // mostrar mensaje del subproceso de ejecuci�n despachador de eventos
