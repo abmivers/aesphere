@@ -410,7 +410,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     Cliente aplicacion = new Cliente(PlainTextArea.getText(),CipherTextArea.getText(),IPTextField.getText(),claveini,clavefin);
                     aplicacion.setLocationRelativeTo(null);
                     aplicacion.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-                    aplicacion.esperarPaquetes();
+                    
                 }
             });
             wpadre.newThread(clientThread);

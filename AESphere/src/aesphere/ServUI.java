@@ -20,6 +20,7 @@ public class ServUI extends javax.swing.JFrame {
     private DatagramSocket socket;
     private MainUI wpadre;
     private int numclientes;
+    private InetAddress [] clientes;
 
     /** Creates new form ServUI */
     public ServUI(MainUI padre, String plaintext, String ciphertext, String numeroclientes, byte [] claveinicial, byte[] clavefinal) {
@@ -27,6 +28,7 @@ public class ServUI extends javax.swing.JFrame {
         wpadre = padre;
         wpadre.newchild(this);
         numclientes = Integer.parseInt(numeroclientes);
+        clientes = new InetAddress [numclientes];
         setSize(400, 400);
 
         try {
@@ -57,6 +59,8 @@ public class ServUI extends javax.swing.JFrame {
             debugArea.append("Cliente " + i + ": " + clavesPorCliente[i] + " claves\n");
         }
 
+        detectarClientes();
+
         //generamos la clave inicial para cada cliente
         long acum = 0;
         debugArea.append("\n");
@@ -64,7 +68,9 @@ public class ServUI extends javax.swing.JFrame {
         for (int i=0; i < numclientes; i++) {
             auxClave = getClientKey(claveinicial, acum);
             debugArea.append("Clave " + i + ": " + Conversor.byteToHexString(auxClave) + "\n");
+            enviarClaveCliente (auxClave,clavesPorCliente[i],i);
             acum += clavesPorCliente[i];
+
         }
 
         //generamos la clave final para comprobar si está bien
@@ -79,9 +85,11 @@ public class ServUI extends javax.swing.JFrame {
             debugArea.append("\nGeneración de claves finalizada correctamente\n");
         else
             debugArea.append("\nHubo un error en la generación de claves\n");
-
+        
         //esperarPaquetes();
     }
+
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -138,6 +146,24 @@ public class ServUI extends javax.swing.JFrame {
         wpadre.wclosed(this);        
     }
 
+    public void enviarClaveCliente (byte [] auxClave, long clavesAprobar, int num) {
+        byte longitud[] = new byte[100];
+        
+        try {
+            DatagramPacket paquete = new DatagramPacket (auxClave, auxClave.length, clientes[num], 3000 );
+            socket.send(paquete);
+            byte paco [] = Conversor.longToByte(clavesAprobar);
+            paquete.setData(paco,0,paco.length );
+            socket.send(paquete);
+            mostrarMensaje( "Clave enviada al cliente " +num +"\n" );
+        }
+        
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     // esperar a que lleguen los paquetes, mostrar los datos y repetir el paquete al cliente
     public void esperarPaquetes() {
         while (!Thread.currentThread().isInterrupted()) {
@@ -145,7 +171,6 @@ public class ServUI extends javax.swing.JFrame {
             try {
                 // establecer el paquete
                 byte datos[] = new byte[100];
-                InetAddress clientes [] = new InetAddress [numclientes];
                 int posicion;
 
                 DatagramPacket recibirPaquete = new DatagramPacket(datos, datos.length);
@@ -155,19 +180,6 @@ public class ServUI extends javax.swing.JFrame {
                 String mensajerecibido = new String( recibirPaquete.getData(),
                     0, recibirPaquete.getLength() );
                 
-                if (mensajerecibido.equals("ClientHello")) {
-                   
-                    InetAddress ipcliente=recibirPaquete.getAddress();
-                    if (!esta(clientes,ipcliente)) {
-                       posicion = devolverposicion (clientes);
-                       clientes [posicion] = ipcliente;
-                        System.out.println("posicion"+posicion+" "+clientes[posicion].toString());
-                        System.out.println(clientes.length);
-
-                    }
-                mostrarMensaje ("Conexión establecida con el cliente " + recibirPaquete.getAddress());
-                    
-                }
                 
                 // mostrar la informacion del paquete recibido
                 mostrarMensaje( "\nPaquete recibido:" +
@@ -176,6 +188,47 @@ public class ServUI extends javax.swing.JFrame {
                     "\nLongitud: " + recibirPaquete.getLength() +
                     "\nContenido:\n\t" + mensajerecibido );
 
+
+                enviarPaqueteACliente( recibirPaquete ); // enviar paquete al cliente
+            } catch( IOException excepcionES ) {
+                mostrarMensaje( excepcionES.toString() + "\n" );
+                excepcionES.printStackTrace();
+            }
+        }
+    }
+
+    public void detectarClientes() {
+        int numeroclientes = 0;
+        while (!Thread.currentThread().isInterrupted() && numeroclientes < numclientes) {
+
+            // recibir paquete, mostrar su contenido, devolver copia al cliente
+            try {
+                // establecer el paquete
+                byte datos[] = new byte[100];
+
+                int posicion;
+
+                DatagramPacket recibirPaquete = new DatagramPacket(datos, datos.length);
+
+                socket.receive(recibirPaquete); // esperar el paquete
+
+                String mensajerecibido = new String( recibirPaquete.getData(),
+                    0, recibirPaquete.getLength() );
+
+                if (mensajerecibido.equals("ClientHello")) {
+
+                    InetAddress ipcliente=recibirPaquete.getAddress();
+                    if (!esta(clientes,ipcliente)) {
+                       posicion = devolverposicion (clientes);
+                       clientes [posicion] = ipcliente;
+                       numeroclientes +=1;
+                        System.out.println("posicion"+posicion+" "+clientes[posicion].toString());
+                        System.out.println(clientes.length);
+
+                    }
+                mostrarMensaje ("Conexión establecida con el cliente " + recibirPaquete.getAddress());
+
+                }
 
                 enviarPaqueteACliente( recibirPaquete ); // enviar paquete al cliente
             } catch( IOException excepcionES ) {
