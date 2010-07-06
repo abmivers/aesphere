@@ -164,8 +164,7 @@ public class Cliente extends JFrame {
    } 
 
 
-   public void esperarClave()
-   {
+   public void esperarClave() {
       boolean encontrado = false;
       while (!Thread.currentThread().isInterrupted() && !encontrado) {
 
