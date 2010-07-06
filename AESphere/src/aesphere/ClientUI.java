@@ -11,36 +11,43 @@
 
 package aesphere;
 
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+
 /**
  *
  * @author admin
  */
 public class ClientUI extends javax.swing.JFrame {
 
+    private DatagramSocket socket;
+    private String servIP;
+
     /** Creates new form ClientUI */
-    public ClientUI() {
+    public ClientUI(String plaintext, String ciphertext, String dirIP, byte[] claveinicial, byte[] clavefinal) {
         initComponents();
+        servIP = dirIP;
         setSize(400, 400);
         setLocationRelativeTo(null);
         setVisible(true);
 
-        String claveIni = "00000000";
-        byte [] key = Conversor.hexStringToByte(claveIni);
-
-        jTextArea1.append("[" + java.util.Calendar.getInstance().getTime() + "]\n");
-        jTextArea1.append("Empieza\n");
-
-        long i = 0;
+        // crear objeto DatagramSocket para enviar y recibir paquetes
         try {
-            for(;;i++) {
-                key = getNextKey(key);
-            }
-        } catch (Exception e) {
-            jTextArea1.append("\n[" + java.util.Calendar.getInstance().getTime() + "]\n");
-            jTextArea1.append("Termina\n");
+            socket = new DatagramSocket();
         }
 
-        jTextArea1.append("\n" + Long.toString(i) + " claves generadas\n");
+        // atrapar los problemas que pueden ocurrir al crear objeto DatagramSocket
+        catch( SocketException excepcionSocket ) {
+            excepcionSocket.printStackTrace();
+            System.exit(1);
+        }
+
+        esperarClientHello();
+        esperarClave();
+        
     }
 
     /** This method is called from within the constructor to
@@ -53,42 +60,155 @@ public class ClientUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        areaPantalla = new javax.swing.JTextArea();
+        HelloButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setEditable(false);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        areaPantalla.setColumns(20);
+        areaPantalla.setEditable(false);
+        areaPantalla.setLineWrap(true);
+        areaPantalla.setRows(5);
+        jScrollPane1.setViewportView(areaPantalla);
+
+        HelloButton.setText("jButton1");
+        HelloButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HelloButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(HelloButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HelloButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        new ClientUI();
-    }
+    private void HelloButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HelloButtonActionPerformed
+       String mensaje = "ClientHello";
+       byte datos[] = mensaje.getBytes();
+
+       try {
+       DatagramPacket enviarPaquete = new DatagramPacket( datos,
+       datos.length, InetAddress.getByName(servIP), 3000);
+
+       socket.send( enviarPaquete );
+       }
+
+       catch (Exception e) {
+           e.printStackTrace();
+       }
+    }//GEN-LAST:event_HelloButtonActionPerformed
+
+   // esperar a que lleguen los paquetes del Servidor, mostrar el contenido de los paquetes
+   public void esperarClientHello() {
+      boolean encontrado = false;
+      while (!Thread.currentThread().isInterrupted() && !encontrado) {
+
+         // recibir el paquete y mostrar su contenido
+         try {
+
+            // establecer el paquete
+            byte datos[] = new byte[ 100 ];
+            DatagramPacket recibirPaquete = new DatagramPacket(
+               datos, datos.length );
+
+            socket.receive( recibirPaquete ); // esperar un paquete
+
+            String mensajerecibido = new String( recibirPaquete.getData(),
+                  0, recibirPaquete.getLength() );
+
+            if (mensajerecibido.equals("ClientHello")) {
+                encontrado = true;
+                mostrarMensaje ("Conexión establecida");
+                HelloButton.setEnabled(false);
+            }
+
+
+            else {
+            // mostrar el contenido del paquete
+            mostrarMensaje( "\nPaquete recibido:" +
+               "\nDel host: " + recibirPaquete.getAddress() +
+               "\nPuerto del host: " + recibirPaquete.getPort() +
+               "\nLongitud: " + recibirPaquete.getLength() +
+               "\nContenido:\n\t" + mensajerecibido );
+            }
+
+
+         }
+
+         // procesar los problemas que pueden ocurrir al recibir o mostrar el paquete
+         catch( IOException excepcion ) {
+            mostrarMensaje( excepcion.toString() + "\n" );
+            excepcion.printStackTrace();
+         }
+
+      }
+
+   }
+
+    public void esperarClave() {
+      boolean encontrado = false;
+      while (!Thread.currentThread().isInterrupted() && !encontrado) {
+
+         // recibir el paquete y mostrar su contenido
+         try {
+
+            // establecer el paquete
+            byte datos[] = new byte[ 100 ];
+            DatagramPacket recibirPaquete = new DatagramPacket(
+               datos, datos.length );
+
+            socket.receive( recibirPaquete ); // esperar un paquete
+
+            String mensajerecibido = new String( recibirPaquete.getData(),
+                  0, recibirPaquete.getLength() );
+
+            if (mensajerecibido.equals("ClientHello")) {
+                encontrado = true;
+                mostrarMensaje ("Conexión establecida");
+                HelloButton.setEnabled(false);
+            }
+
+
+            else {
+            // mostrar el contenido del paquete
+            mostrarMensaje( "\nPaquete recibido:" +
+               "\nDel host: " + recibirPaquete.getAddress() +
+               "\nPuerto del host: " + recibirPaquete.getPort() +
+               "\nLongitud: " + recibirPaquete.getLength() +
+               "\nContenido:\n\t" + mensajerecibido );
+            }
+
+
+         }
+
+         // procesar los problemas que pueden ocurrir al recibir o mostrar el paquete
+         catch( IOException excepcion ) {
+            mostrarMensaje( excepcion.toString() + "\n" );
+            excepcion.printStackTrace();
+         }
+
+      }
+
+   }
 
     private byte [] getNextKey (byte [] clave) 
             throws java.lang.IndexOutOfBoundsException {
@@ -119,9 +239,15 @@ public class ClientUI extends javax.swing.JFrame {
 
         return clave;
     }
+
+    public void mostrarMensaje( final String mensajeAMostrar ) {
+        areaPantalla.append( mensajeAMostrar );
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton HelloButton;
+    private javax.swing.JTextArea areaPantalla;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 
 }

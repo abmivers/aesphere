@@ -407,7 +407,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         } else if (ClienteRadioButton.isSelected() && ComprobarDatos()) {
             Thread clientThread = new Thread(new Runnable() {
                 public void run() {
-                    Cliente aplicacion = new Cliente(PlainTextArea.getText(),CipherTextArea.getText(),IPTextField.getText(),claveini,clavefin);
+                    ClientUI aplicacion = new ClientUI(PlainTextArea.getText(),CipherTextArea.getText(),IPTextField.getText(),claveini,clavefin);
                     aplicacion.setLocationRelativeTo(null);
                     aplicacion.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
                     
