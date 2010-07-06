@@ -77,17 +77,17 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             File fichero = null;
 
             if (Entorno.getProperty("language").equals("ES"))
-                fichero = new File("help/es/help_set.hs");
+                fichero = new File("help/help_set_ES.hs");
             else if (Entorno.getProperty("language").equals("EN"))
-                fichero = new File("help/en/help_set.hs");
+                fichero = new File("help/help_set_EN.hs");
             URL hsURL = fichero.toURI().toURL();
             HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
             HelpBroker hb = helpset.createHelpBroker();
             hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
                                 (pantalla.height - ventana.height) / 2));
             hb.setSize(new java.awt.Dimension(800, 628));
-            hb.enableHelpOnButton(ContenidosDescifrar, "ventana_descifrar", helpset);
-            hb.enableHelpOnButton(BotonInfoDescifrar, "ventana_descifrar", helpset);
+            hb.enableHelpOnButton(ContenidosDescifrar, "ventana_descifrado", helpset);
+            hb.enableHelpOnButton(BotonInfoDescifrar, "ventana_descifrado", helpset);
         }
 
         catch (Exception e) {

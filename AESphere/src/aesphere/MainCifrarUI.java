@@ -112,17 +112,17 @@ public class MainCifrarUI extends javax.swing.JFrame {
             File fichero = null;
 
             if (Entorno.getProperty("language").equals("ES"))
-                fichero = new File("help/es/help_set.hs");
+                fichero = new File("help/help_set_ES.hs");
             else if (Entorno.getProperty("language").equals("EN"))
-                fichero = new File("help/en/help_set.hs");
+                fichero = new File("help/help_set_EN.hs");
             URL hsURL = fichero.toURI().toURL();
             HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
             HelpBroker hb = helpset.createHelpBroker();
             hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
                                 (pantalla.height - ventana.height) / 2));
             hb.setSize(new java.awt.Dimension(800, 628));
-            hb.enableHelpOnButton(ContenidosCifrar, "ventana_cifrar", helpset);
-            hb.enableHelpOnButton(BotonInfoCifrar, "ventana_cifrar", helpset);
+            hb.enableHelpOnButton(ContenidosCifrar, "ventana_cifrado", helpset);
+            hb.enableHelpOnButton(BotonInfoCifrar, "ventana_cifrado", helpset);
         }
 
         catch (Exception e) {
