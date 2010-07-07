@@ -154,9 +154,12 @@ public class ServUI extends javax.swing.JFrame {
 
     private void enviarClaveCliente (byte [] auxClave, long clavesAprobar, int num) {
         try {
+            InetAddress ip = clientesIP[num];
+            int port = clientesPort[num];
+
             //enviamos la clave
             DatagramPacket keyPacket = new DatagramPacket(auxClave, auxClave.length, 
-                    clientesIP[num], clientesPort[num]);
+                    ip, port);
             socket.send(keyPacket);
             System.out.println("SERVIDOR: Clave enviada");
             
@@ -166,8 +169,10 @@ public class ServUI extends javax.swing.JFrame {
                         
             //enviamos el número de claves a probar
             byte[] numClaves = Conversor.longToByte(clavesAprobar);
-            keyPacket.setData(numClaves);
-            socket.send(keyPacket);
+            DatagramPacket longPacket = new DatagramPacket(numClaves, numClaves.length,
+                    ip, port);
+
+            socket.send(longPacket);
             System.out.println("SERVIDOR: Long enviado");
             
             //esperamos la confirmación del cliente LongOK
