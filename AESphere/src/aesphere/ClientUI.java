@@ -138,19 +138,11 @@ public class ClientUI extends javax.swing.JFrame {
             enviarMensaje("ClientHello");
             System.out.println("CLIENTE: ClientHello enviado");
 
-            //el mensaje ServerHello ocupa 11 bytes
-            DatagramPacket helloPacket = new DatagramPacket(new byte[11], 11);
-
-            socket.receive(helloPacket);
-            System.out.println("CLIENTE: ServerHello recibido");
-
-            String hello = new String(helloPacket.getData(), 0, helloPacket.getLength());
-
-            if (hello.equals("ServerHello")) {                    
-                debugArea.append("Conexión establecida\n");
-                helloButton.setEnabled(false);
-            } else throw new Exception("Se recibió otro mensaje cuando se esperaba ServerHello");
-
+            //esperamos ServerHello
+            esperarMensaje("ServerHello");
+            System.out.println("CLIENTE: ServerHello recibido");                               
+            debugArea.append("Conexión establecida\n");               
+            
         } catch(Exception excepcion) {
             debugArea.append("Error al conectar con el servidor\n");
             excepcion.printStackTrace();
@@ -203,6 +195,18 @@ public class ClientUI extends javax.swing.JFrame {
                 servIP, 3000);
 
         socket.send(toSend);
+    }
+
+    private void esperarMensaje (String mensaje) throws Exception {
+        int len = mensaje.length();
+        DatagramPacket received = new DatagramPacket(new byte[len],len);
+
+        socket.receive(received);
+
+        String aux = new String(received.getData(), 0, received.getLength());
+        if (!aux.equals(mensaje))
+            throw new Exception("Se ha recibido " + aux + " cuando se esperaba " + mensaje);
+        else System.out.println("SERVIDOR:" + mensaje + "recibido");
     }
 
     private byte [] getNextKey (byte [] clave) 
