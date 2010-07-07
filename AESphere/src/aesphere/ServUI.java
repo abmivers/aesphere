@@ -43,11 +43,6 @@ public class ServUI extends javax.swing.JFrame {
         setLocationRelativeTo(wpadre);
         setVisible(true);
 
-        /*long prev = java.util.Calendar.getInstance().getTimeInMillis();
-        long act = 0;
-        while (act < (prev + 10000))
-            act = java.util.Calendar.getInstance().getTimeInMillis();*/
-
         //declaramos el array con el número de claves que cada cliente deberá probar
         long [] clavesPorCliente = new long [numclientes];
         //obtenemos el número de claves a probar en total
@@ -66,6 +61,12 @@ public class ServUI extends javax.swing.JFrame {
             debugArea.append("Cliente " + i + ": " + clavesPorCliente[i] + " claves\n");
         }
 
+        //declaramos el array con el texto en claro
+        byte [] plainBytes = Conversor.hexStringToByte(plaintext);
+        byte [] cipherBytes = Conversor.hexStringToByte(ciphertext);
+        debugArea.append("\nTexto en claro: " + Conversor.byteToHexString(plainBytes) +
+                "\nTexto cifrado: " + Conversor.byteToHexString(cipherBytes) + "\n");
+
         System.out.println("SERVIDOR: Detectando clientes");
         detectarClientes();
 
@@ -79,6 +80,8 @@ public class ServUI extends javax.swing.JFrame {
             debugArea.append("Enviando clave... ");
             System.out.println("SERVIDOR: Enviando clave " + i);
             enviarClaveCliente(auxClave,clavesPorCliente[i],i);
+            debugArea.append("Enviando texto... ");
+            enviarTextoCliente(plainBytes, cipherBytes, i);
             acum += clavesPorCliente[i];
         }
 
@@ -94,6 +97,10 @@ public class ServUI extends javax.swing.JFrame {
             debugArea.append("\nGeneración de claves finalizada correctamente\n");
         else
             debugArea.append("\nHubo un error en la generación de claves\n");
+
+        //debugArea.append("\nComenzando cifrado en clientes\n");
+        //esperarClaves();
+
     }
 
 
@@ -188,6 +195,40 @@ public class ServUI extends javax.swing.JFrame {
         }
     }
 
+    private void enviarTextoCliente(byte [] claro, byte [] cifrado, int num) {
+        try {
+            InetAddress ip = clientesIP[num];
+            int port = clientesPort[num];
+
+            //enviamos el texto en claro
+            DatagramPacket claroPacket = new DatagramPacket(claro, claro.length,
+                    ip, port);
+            socket.send(claroPacket);
+            System.out.println("SERVIDOR: Texto en claro enviado");
+
+            //esperamos confirmación del cliente ClaroOK
+            esperarMensaje("ClaroOK");
+            System.out.println("SERVIDOR: ClaroOK recibido");
+
+            //enviamos el texto cifrado
+            DatagramPacket cifradoPacket = new DatagramPacket(cifrado, cifrado.length,
+                    ip, port);
+            socket.send(cifradoPacket);
+            System.out.println("SERVIDOR: Texto cifrado enviado");
+
+            //esperamos la confirmación del cliente CifradoOK
+            esperarMensaje("CifradoOK");
+            System.out.println("SERVIDOR: CifradoOK recibido");
+
+            debugArea.append("Texto enviado\n");
+        }
+
+        catch (Exception e) {
+            debugArea.append("Error al enviar el texto\n");
+            e.printStackTrace();
+        }
+    }
+
     private void detectarClientes() {
         debugArea.append("\nEsperando conexión...\n");
         int numCliente = 0;
@@ -211,7 +252,7 @@ public class ServUI extends javax.swing.JFrame {
                 System.out.println("SERVIDOR: ServerHello enviado");
 
                 //esperamos a que el cliente nos deje continuar
-                //esperarMensaje("OK");
+                esperarMensaje("OK");
                 System.out.println("SERVIDOR: Cliente " + numCliente + " detectado");
 
                 numCliente++;
@@ -222,6 +263,10 @@ public class ServUI extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void esperarClaves() {
+        //TODO
     }
 
     private DatagramPacket esperarMensaje (String mensaje) throws Exception {

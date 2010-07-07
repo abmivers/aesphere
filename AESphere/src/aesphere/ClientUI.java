@@ -28,13 +28,17 @@ public class ClientUI extends javax.swing.JFrame {
     private InetAddress servIP;
     private byte [] claveInicial;
     private long numClaves;
+    private byte [] plaintext;
+    private byte [] ciphertext;
 
     /** Creates new form ClientUI */
-    public ClientUI(MainUI padre, String plaintext, String ciphertext, InetAddress dirIP, byte[] claveinicial, byte[] clavefinal) {
+    public ClientUI(MainUI padre, InetAddress dirIP) {
         initComponents();
         wpadre = padre;
         //wpadre.newchild(this);
         servIP = dirIP;
+        plaintext = new byte[16];
+        ciphertext = new byte[16];
         setSize(400, 400);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -53,6 +57,10 @@ public class ClientUI extends javax.swing.JFrame {
         debugArea.append("Clave inicial: " + Conversor.byteToHexString(claveInicial) +
                 "\nNúmero de claves a probar: " + Long.toString(numClaves) + "\n");
 
+        esperarTexto();
+        debugArea.append("Texo en claro: " + Conversor.byteToHexString(plaintext) +
+                "\nTexto cifrado: " + Conversor.byteToHexString(ciphertext) + "\n");
+
         debugArea.append("\nFin del proceso\n");
     }
 
@@ -67,7 +75,6 @@ public class ClientUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         debugArea = new javax.swing.JTextArea();
-        helloButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -82,47 +89,25 @@ public class ClientUI extends javax.swing.JFrame {
         debugArea.setRows(5);
         jScrollPane1.setViewportView(debugArea);
 
-        helloButton.setText("Comenzar proceso");
-        helloButton.setEnabled(false);
-        helloButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                helloButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addComponent(helloButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(helloButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                .addGap(11, 11, 11))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void helloButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helloButtonActionPerformed
-        clientHello();
-        
-        esperarClave();
-        debugArea.append("Clave inicial: " + Conversor.byteToHexString(claveInicial) +
-                "\nNúmero de claves a probar: " + Long.toString(numClaves) + "\n");
-
-        debugArea.append("\nFin del proceso\n");
-    }//GEN-LAST:event_helloButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         socket.close();
@@ -156,8 +141,8 @@ public class ClientUI extends javax.swing.JFrame {
             //clave de 128 bits
             DatagramPacket clavePacket = new DatagramPacket(new byte[16],16);
             //desbloqueamos al servidor antes de recibir
-            //enviarMensaje("OK");
-            //System.out.println("CLIENTE: OK enviado");
+            enviarMensaje("OK");
+            System.out.println("CLIENTE: OK enviado");
             socket.receive(clavePacket);
             System.out.println("CLIENTE: Clave recibida");
 
@@ -186,6 +171,39 @@ public class ClientUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
+    }
+
+    private void esperarTexto () {
+        debugArea.append("\nRecibiendo texto... ");
+        try {
+            //creamos un DatagramPacket para recibir el texto en claro
+            DatagramPacket claroPacket = new DatagramPacket(new byte[16],16);
+            socket.receive(claroPacket);
+            System.out.println("CLIENTE: Texto en claro recibido");
+
+            plaintext = claroPacket.getData();
+
+            //mandamos un mensaje de confirmación de recepción de clave al servidor
+            enviarMensaje("ClaroOK");
+            System.out.println("CLIENTE: ClaroOK enviado");
+
+            //recibimos el texto cifrado
+            DatagramPacket cifradoPacket = new DatagramPacket(new byte[16],16);
+            socket.receive(cifradoPacket);
+            System.out.println("CLIENTE: Texto cifrado recibido");
+
+            ciphertext = cifradoPacket.getData();
+
+            //mandamos un mensaje de confirmación de recepción de número de claves al servidor
+            enviarMensaje("CifradoOK");
+            System.out.println("CLIENTE: CifradoOK enviado");
+
+            debugArea.append("Texto recibido\n");
+
+        } catch (Exception e) {
+            debugArea.append("Error al recibir el texto");
+            e.printStackTrace();
+        }
     }
 
     private void enviarMensaje(String mensaje)
@@ -241,7 +259,6 @@ public class ClientUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea debugArea;
-    private javax.swing.JButton helloButton;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
