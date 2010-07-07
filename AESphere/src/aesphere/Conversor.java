@@ -144,7 +144,7 @@ public class Conversor {
             aux[i] = (byte) num;
             if (num != 0) num >>= 8;
         }
-
+        
         return aux;
     }
 
@@ -153,8 +153,8 @@ public class Conversor {
 
         int len = num.length;
         for (int i = 0; i < len; i++) {
-            aux += num[i];
             aux <<= 8;
+            aux += (long) (0x00ff & num[i]);            
         }
 
         return aux;

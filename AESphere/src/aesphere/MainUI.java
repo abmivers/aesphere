@@ -557,7 +557,7 @@ public class MainUI extends javax.swing.JFrame {
     public void wclosed (javax.swing.JFrame hijo){
         if (hijoActual.equals(hijo)) {
             if (hijoThread != null) {
-                hijoThread.interrupt();                
+                hijoThread.interrupt();
                 hijoThread = null;
             }
             hijoActual.dispose();
