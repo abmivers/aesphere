@@ -160,15 +160,10 @@ public class ServUI extends javax.swing.JFrame {
             socket.send(keyPacket);
             System.out.println("SERVIDOR: Clave enviada");
             
-            //esperamos la confirmación del cliente ClaveOK            
-            DatagramPacket claveOKPacket = new DatagramPacket(new byte[7], 7);
-            socket.receive(claveOKPacket);
+            //esperamos confirmación del cliente ClaveOK
+            esperarMensaje("ClaveOK");
             System.out.println("SERVIDOR: ClaveOK recibido");
-            
-            String claveOK = new String (claveOKPacket.getData(), 0, claveOKPacket.getLength());
-            if (!claveOK.equals("ClaveOK"))
-                throw new Exception("Se recibió otro mensaje cuando se esperaba ClaveOK");
-
+                        
             //enviamos el número de claves a probar
             byte[] numClaves = Conversor.longToByte(clavesAprobar);
             keyPacket.setData(numClaves);
@@ -176,14 +171,9 @@ public class ServUI extends javax.swing.JFrame {
             System.out.println("SERVIDOR: Long enviado");
             
             //esperamos la confirmación del cliente LongOK
-            DatagramPacket longOKPacket = new DatagramPacket(new byte[6], 6);
-            socket.receive(longOKPacket);
-            System.out.println("SERVIDOR: LongOK recibido");
-            
-            String longOK = new String(longOKPacket.getData(), 0, longOKPacket.getLength());
-            if(!longOK.equals("LongOK"))
-                throw new Exception("Se recibió otro mensaje cuando se esperaba LongOK");
-            
+            esperarMensaje("LongOK");
+            System.out.println("SERVIDOR: LongOK recibido");            
+                       
             debugArea.append("Clave enviada\n");
         }
         
@@ -199,31 +189,25 @@ public class ServUI extends javax.swing.JFrame {
         while (!Thread.currentThread().isInterrupted() && numCliente < numclientes) {
             try {
                 System.out.println("SERVIDOR: Detectando cliente " + numCliente);
-                //el mensaje ClientHello ocupa 11 bytes
-                DatagramPacket helloPacket = new DatagramPacket(new byte[11], 11);
-
-                socket.receive(helloPacket); 
-
-                String hello = new String(helloPacket.getData(), 0, helloPacket.getLength());
-                System.out.println("SERVIDOR: " + hello + " recibido");
-
-                if (hello.equals("ClientHello")) {
-                    InetAddress ipcliente = helloPacket.getAddress();
-                    if (!esta(clientesIP,ipcliente)) {
-                       clientesIP[numCliente] = ipcliente;
-                       clientesPort[numCliente] = helloPacket.getPort();
-                       System.out.println("SERVIDOR: Almacenado cliente " + clientesIP[numCliente].toString());
-                    }
+                //controlamos el paquete que devuelve la función
+                //en otras llamadas no haría falta almacenar el paquete que la función devuelve
+                DatagramPacket helloPacket = esperarMensaje("ClientHello");
+                 
+                InetAddress ipcliente = helloPacket.getAddress();
+                if (!esta(clientesIP,ipcliente)) {
+                    clientesIP[numCliente] = ipcliente;
+                    clientesPort[numCliente] = helloPacket.getPort();
+                    System.out.println("SERVIDOR: Almacenado cliente " + clientesIP[numCliente].toString());
                     debugArea.append("Conexión establecida con el cliente " + ipcliente.toString() + "\n");
-                } else throw new Exception("Se esperaba ClientHello y se ha recibido otro paquete");
+                }
 
                 //generamos un ServerHello de confirmación de recepción del ClientHello                
                 enviarMensaje(numCliente, "ServerHello");
                 System.out.println("SERVIDOR: ServerHello enviado");
 
                 //esperamos a que el cliente nos deje continuar
-                //esperarOK(numCliente);
-                System.out.println("SERVIDOR: Detectado cliente " + numCliente);
+                //esperarMensaje("OK");
+                System.out.println("SERVIDOR: Cliente " + numCliente + " detectado");
 
                 numCliente++;
                 
@@ -235,19 +219,18 @@ public class ServUI extends javax.swing.JFrame {
         }
     }
 
-    private void esperarOK (int nCliente) {
-        String ok = "";
-        DatagramPacket okPacket = new DatagramPacket(new byte[2],2);
-        InetAddress clienteAct = clientesIP[nCliente];
-        while (!Thread.currentThread().isInterrupted() && !clienteAct.equals(okPacket.getAddress())
-                && !ok.equals("OK")) {
-            try {
-                socket.receive(okPacket);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("SERVIDOR: OK recibido");
+    private DatagramPacket esperarMensaje (String mensaje) throws Exception {
+        int len = mensaje.length();
+        DatagramPacket received = new DatagramPacket(new byte[len],len);
+        
+        socket.receive(received);
+                
+        String aux = new String(received.getData(), 0, received.getLength());
+        if (!aux.equals(mensaje)) 
+            throw new Exception("Se ha recibido " + aux + " cuando se esperaba " + mensaje);
+        else System.out.println("SERVIDOR:" + mensaje + "recibido");
+
+        return received;
     }
 
     private void enviarMensaje(int nclient, String mensaje)
