@@ -407,10 +407,13 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         } else if (ClienteRadioButton.isSelected() && ComprobarDatos()) {
             Thread clientThread = new Thread(new Runnable() {
                 public void run() {
-                    ClientUI aplicacion = new ClientUI(PlainTextArea.getText(),CipherTextArea.getText(),IPTextField.getText(),claveini,clavefin);
-                    aplicacion.setLocationRelativeTo(null);
-                    aplicacion.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-                    
+                    try {
+                        new ClientUI(wpadre, PlainTextArea.getText(),CipherTextArea.getText(),
+                                java.net.InetAddress.getByName(IPTextField.getText()),
+                                claveini,clavefin);
+                    } catch (java.net.UnknownHostException e) {
+                        JOptionPane.showMessageDialog(null, "Error en la IP del servidor");
+                    }
                 }
             });
             wpadre.newThread(clientThread);

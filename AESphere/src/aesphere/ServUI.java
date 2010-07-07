@@ -20,15 +20,17 @@ public class ServUI extends javax.swing.JFrame {
     private DatagramSocket socket;
     private MainUI wpadre;
     private int numclientes;
-    private InetAddress [] clientes;
+    private InetAddress [] clientesIP;
+    private int [] clientesPort;
 
     /** Creates new form ServUI */
     public ServUI(MainUI padre, String plaintext, String ciphertext, String numeroclientes, byte [] claveinicial, byte[] clavefinal) {
         initComponents();
         wpadre = padre;
-        wpadre.newchild(this);
+        //wpadre.newchild(this);
         numclientes = Integer.parseInt(numeroclientes);
-        clientes = new InetAddress [numclientes];
+        clientesIP = new InetAddress [numclientes];
+        clientesPort = new int [numclientes];
         setSize(400, 400);
 
         try {
@@ -41,14 +43,19 @@ public class ServUI extends javax.swing.JFrame {
         setLocationRelativeTo(wpadre);
         setVisible(true);
 
+        /*long prev = java.util.Calendar.getInstance().getTimeInMillis();
+        long act = 0;
+        while (act < (prev + 10000))
+            act = java.util.Calendar.getInstance().getTimeInMillis();*/
+
         //declaramos el array con el número de claves que cada cliente deberá probar
         long [] clavesPorCliente = new long [numclientes];
         //obtenemos el número de claves a probar en total
         long numClaves = getKeysToTry(claveinicial, clavefinal);
-        debugArea.append("\n" + Long.toString(numClaves) + " claves a probar\n");
+        debugArea.append(Long.toString(numClaves) + " claves a probar\n");
         //calculamos el número de claves a probar por cada cliente
         long clavesCliente = numClaves / numclientes;
-        //si la división no es exacta, no todos los clientes probarán el mismo número de claves
+        //si la división no es exacta, no todos los clientesIP probarán el mismo número de claves
         numClaves -= clavesCliente * numclientes;
         //rellenamos el array de claves a probar por cada cliente
         int extra = 0;
@@ -59,6 +66,7 @@ public class ServUI extends javax.swing.JFrame {
             debugArea.append("Cliente " + i + ": " + clavesPorCliente[i] + " claves\n");
         }
 
+        System.out.println("SERVIDOR: Detectando clientes");
         detectarClientes();
 
         //generamos la clave inicial para cada cliente
@@ -68,9 +76,10 @@ public class ServUI extends javax.swing.JFrame {
         for (int i=0; i < numclientes; i++) {
             auxClave = getClientKey(claveinicial, acum);
             debugArea.append("Clave " + i + ": " + Conversor.byteToHexString(auxClave) + "\n");
-            enviarClaveCliente (auxClave,clavesPorCliente[i],i);
+            debugArea.append("Enviando clave... ");
+            System.out.println("SERVIDOR: Enviando clave " + i);
+            enviarClaveCliente(auxClave,clavesPorCliente[i],i);
             acum += clavesPorCliente[i];
-
         }
 
         //generamos la clave final para comprobar si está bien
@@ -85,8 +94,6 @@ public class ServUI extends javax.swing.JFrame {
             debugArea.append("\nGeneración de claves finalizada correctamente\n");
         else
             debugArea.append("\nHubo un error en la generación de claves\n");
-        
-        //esperarPaquetes();
     }
 
 
@@ -112,7 +119,6 @@ public class ServUI extends javax.swing.JFrame {
 
         debugArea.setColumns(20);
         debugArea.setRows(5);
-        debugArea.setText("Esperando conexión...\n");
         debugArea.setEditable(false);
         jScrollPane1.setViewportView(debugArea);
 
@@ -146,110 +152,111 @@ public class ServUI extends javax.swing.JFrame {
         wpadre.wclosed(this);        
     }
 
-    public void enviarClaveCliente (byte [] auxClave, long clavesAprobar, int num) {
-        byte longitud[] = new byte[100];
-        
+    private void enviarClaveCliente (byte [] auxClave, long clavesAprobar, int num) {
         try {
-            DatagramPacket paquete = new DatagramPacket (auxClave, auxClave.length, clientes[num], 3000 );
-            socket.send(paquete);
-            byte paco [] = Conversor.longToByte(clavesAprobar);
-            paquete.setData(paco,0,paco.length );
-            socket.send(paquete);
-            mostrarMensaje( "Clave enviada al cliente " +num +"\n" );
+            //enviamos la clave
+            DatagramPacket keyPacket = new DatagramPacket(auxClave, auxClave.length, 
+                    clientesIP[num], clientesPort[num]);
+            socket.send(keyPacket);
+            System.out.println("SERVIDOR: Clave enviada");
+            
+            //esperamos la confirmación del cliente ClaveOK            
+            DatagramPacket claveOKPacket = new DatagramPacket(new byte[7], 7);
+            socket.receive(claveOKPacket);
+            System.out.println("SERVIDOR: ClaveOK recibido");
+            
+            String claveOK = new String (claveOKPacket.getData(), 0, claveOKPacket.getLength());
+            if (!claveOK.equals("ClaveOK"))
+                throw new Exception("Se recibió otro mensaje cuando se esperaba ClaveOK");
+
+            //enviamos el número de claves a probar
+            byte[] numClaves = Conversor.longToByte(clavesAprobar);
+            keyPacket.setData(numClaves);
+            socket.send(keyPacket);
+            System.out.println("SERVIDOR: Long enviado");
+            
+            //esperamos la confirmación del cliente LongOK
+            DatagramPacket longOKPacket = new DatagramPacket(new byte[6], 6);
+            socket.receive(longOKPacket);
+            System.out.println("SERVIDOR: LongOK recibido");
+            
+            String longOK = new String(longOKPacket.getData(), 0, longOKPacket.getLength());
+            if(!longOK.equals("LongOK"))
+                throw new Exception("Se recibió otro mensaje cuando se esperaba LongOK");
+            
+            debugArea.append("Clave enviada\n");
         }
         
         catch (Exception e) {
+            debugArea.append("Error al enviar la clave\n");
             e.printStackTrace();
         }
     }
 
-
-    // esperar a que lleguen los paquetes, mostrar los datos y repetir el paquete al cliente
-    public void esperarPaquetes() {
-        while (!Thread.currentThread().isInterrupted()) {
-            // recibir paquete, mostrar su contenido, devolver copia al cliente
+    private void detectarClientes() {
+        debugArea.append("\nEsperando conexión...\n");
+        int numCliente = 0;
+        while (!Thread.currentThread().isInterrupted() && numCliente < numclientes) {
             try {
-                // establecer el paquete
-                byte datos[] = new byte[100];
-                int posicion;
+                System.out.println("SERVIDOR: Detectando cliente " + numCliente);
+                //el mensaje ClientHello ocupa 11 bytes
+                DatagramPacket helloPacket = new DatagramPacket(new byte[11], 11);
 
-                DatagramPacket recibirPaquete = new DatagramPacket(datos, datos.length);
+                socket.receive(helloPacket); 
 
-                socket.receive(recibirPaquete); // esperar el paquete               
-                
-                String mensajerecibido = new String( recibirPaquete.getData(),
-                    0, recibirPaquete.getLength() );
-                
-                
-                // mostrar la informacion del paquete recibido
-                mostrarMensaje( "\nPaquete recibido:" +
-                    "\nDel host: " + recibirPaquete.getAddress() +
-                    "\nPuerto del host: " + recibirPaquete.getPort() +
-                    "\nLongitud: " + recibirPaquete.getLength() +
-                    "\nContenido:\n\t" + mensajerecibido );
+                String hello = new String(helloPacket.getData(), 0, helloPacket.getLength());
+                System.out.println("SERVIDOR: " + hello + " recibido");
 
-
-                enviarPaqueteACliente( recibirPaquete ); // enviar paquete al cliente
-            } catch( IOException excepcionES ) {
-                mostrarMensaje( excepcionES.toString() + "\n" );
-                excepcionES.printStackTrace();
-            }
-        }
-    }
-
-    public void detectarClientes() {
-        int numeroclientes = 0;
-        while (!Thread.currentThread().isInterrupted() && numeroclientes < numclientes) {
-
-            // recibir paquete, mostrar su contenido, devolver copia al cliente
-            try {
-                // establecer el paquete
-                byte datos[] = new byte[100];
-
-                int posicion;
-
-                DatagramPacket recibirPaquete = new DatagramPacket(datos, datos.length);
-
-                socket.receive(recibirPaquete); // esperar el paquete
-
-                String mensajerecibido = new String( recibirPaquete.getData(),
-                    0, recibirPaquete.getLength() );
-
-                if (mensajerecibido.equals("ClientHello")) {
-
-                    InetAddress ipcliente=recibirPaquete.getAddress();
-                    if (!esta(clientes,ipcliente)) {
-                       posicion = devolverposicion (clientes);
-                       clientes [posicion] = ipcliente;
-                       numeroclientes +=1;
-                        System.out.println("posicion"+posicion+" "+clientes[posicion].toString());
-                        System.out.println(clientes.length);
-
+                if (hello.equals("ClientHello")) {
+                    InetAddress ipcliente = helloPacket.getAddress();
+                    if (!esta(clientesIP,ipcliente)) {
+                       clientesIP[numCliente] = ipcliente;
+                       clientesPort[numCliente] = helloPacket.getPort();
+                       System.out.println("SERVIDOR: Almacenado cliente " + clientesIP[numCliente].toString());
                     }
-                mostrarMensaje ("Conexión establecida con el cliente " + recibirPaquete.getAddress());
+                    debugArea.append("Conexión establecida con el cliente " + ipcliente.toString() + "\n");
+                } else throw new Exception("Se esperaba ClientHello y se ha recibido otro paquete");
 
-                }
+                //generamos un ServerHello de confirmación de recepción del ClientHello                
+                enviarMensaje(numCliente, "ServerHello");
+                System.out.println("SERVIDOR: ServerHello enviado");
 
-                enviarPaqueteACliente( recibirPaquete ); // enviar paquete al cliente
-            } catch( IOException excepcionES ) {
-                mostrarMensaje( excepcionES.toString() + "\n" );
-                excepcionES.printStackTrace();
+                //esperamos a que el cliente nos deje continuar
+                //esperarOK(numCliente);
+                System.out.println("SERVIDOR: Detectado cliente " + numCliente);
+
+                numCliente++;
+                
+            } catch( Exception e ) {
+                debugArea.append("\n" + e.toString() + "\n");
+                System.out.println("");
+                e.printStackTrace();
             }
         }
     }
-    
-    // repetir el paquete al cliente
-    public void enviarPaqueteACliente(DatagramPacket recibirPaquete)
+
+    private void esperarOK (int nCliente) {
+        String ok = "";
+        DatagramPacket okPacket = new DatagramPacket(new byte[2],2);
+        InetAddress clienteAct = clientesIP[nCliente];
+        while (!Thread.currentThread().isInterrupted() && !clienteAct.equals(okPacket.getAddress())
+                && !ok.equals("OK")) {
+            try {
+                socket.receive(okPacket);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("SERVIDOR: OK recibido");
+    }
+
+    private void enviarMensaje(int nclient, String mensaje)
             throws IOException {
-        mostrarMensaje( "\n\nRepitiendo datos al cliente..." );
+        //generamos el datagrama con el mensaje a enviar
+        DatagramPacket toSend = new DatagramPacket(mensaje.getBytes(), mensaje.length(),
+                clientesIP[nclient], clientesPort[nclient]);
 
-        // crear paquete a enviar
-        DatagramPacket enviarPaquete = new DatagramPacket(
-                recibirPaquete.getData(),recibirPaquete.getLength(),
-                recibirPaquete.getAddress(), recibirPaquete.getPort() );
-
-        socket.send( enviarPaquete ); // enviar el paquete
-        mostrarMensaje( "Paquete enviado\n" );
+        socket.send(toSend);
     }
 
 
@@ -288,7 +295,6 @@ public class ServUI extends javax.swing.JFrame {
      }
 
      private int devolverposicion (InetAddress clientes []) {
-
          int i=0;
 
          while (clientes [i] != null) {
@@ -299,7 +305,6 @@ public class ServUI extends javax.swing.JFrame {
      }
 
     private boolean esta (InetAddress clientes [] , InetAddress ipcliente) {
-
         boolean resul = false;
 
         for (int i = 0; i < numclientes ; i++ ){
@@ -309,11 +314,6 @@ public class ServUI extends javax.swing.JFrame {
         }
 
         return resul;
-
-    }
-
-    private void mostrarMensaje(final String mensajeAMostrar) {
-        debugArea.append(mensajeAMostrar);
     }
 
     // Variables declaration - do not modify
