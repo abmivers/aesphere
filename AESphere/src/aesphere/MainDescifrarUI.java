@@ -618,17 +618,17 @@ public class MainDescifrarUI extends javax.swing.JFrame {
        
         switch (selectedIndex) {
             case 0: BotonBrowseCifrar.setEnabled(false);
-                    TextoInput.setEnabled(false);
+                    TextoInput.setEnabled(true);
                     TextoInput.setText("");
 
                 break;
             case 1: BotonBrowseCifrar.setEnabled(false);
-                    TextoInput.setEnabled(false);
+                    TextoInput.setEditable(true);
                     TextoInput.setText("");
 
                 break;
             case 2: BotonBrowseCifrar.setEnabled(true);
-                    TextoInput.setEnabled(true);
+                    TextoInput.setEditable(false);
                     TextoInput.setText("");                    
         }
 
@@ -642,16 +642,16 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         switch (selectedIndex) {
             case 0: BotonBrowseCifrarOutput.setEnabled(false);
                     TextoOutput.setText("");
-                    TextoOutput.setEditable(false);
+                    TextoOutput.setEnabled(false);
 
                 break;
             case 1: BotonBrowseCifrarOutput.setEnabled(false);
                     TextoOutput.setText("");
-                    TextoOutput.setEditable(false);
+                    TextoOutput.setEnabled(false);
 
                 break;
             case 2: BotonBrowseCifrarOutput.setEnabled(true);
-                    TextoOutput.setEditable(true);
+                    TextoOutput.setEnabled(true);
         }
     }//GEN-LAST:event_ComboBoxOutputCifrarActionPerformed
 

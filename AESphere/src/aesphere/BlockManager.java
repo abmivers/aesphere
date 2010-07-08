@@ -21,7 +21,7 @@ public class BlockManager {
     /**
      * Constructor used for the ECB mode.
      * @param clave Key used for the AES ciphering
-     * @param claveTam Key size in bytes
+     * @param claveTam Key size in words
      * @param bloqueTam Block size in bytes
      * @param step Whether an step by step log is being created and stored. It
      * can be retrieved with the function getResultado()
@@ -37,7 +37,7 @@ public class BlockManager {
     /**
      * Constructor used for the CBC mode.
      * @param clave Key used for the AES ciphering
-     * @param claveTam Key size in bytes
+     * @param claveTam Key size in words
      * @param bloqueTam Block size in bytes
      * @param step Whether an step by step log is being created and stored. It
      * can be retrieved with the function getResultado()
@@ -87,8 +87,6 @@ public class BlockManager {
         byte [] inBlock = null;
 
         if (cifrando) {
-            System.out.println("[" + java.util.Calendar.getInstance().getTime() + "]");
-            System.out.println("Cifrando");
             AESencrypt cifrador = new AESencrypt(key, keySize, paso);
             
             for (int i = 0; i < numBlocks; i++) {
@@ -97,14 +95,9 @@ public class BlockManager {
                 out = addBlock (out, outBlock, i);
             }
 
-            System.out.println("[" + java.util.Calendar.getInstance().getTime() + "]");
-            System.out.println("Cifrado\n");
             resultado = cifrador.getCadena();
-            if (!resultado.equals("")) System.out.println("Paso a paso:\n" +
-                    resultado + "\n");
+
         } else {
-            System.out.println("[" + java.util.Calendar.getInstance().getTime() + "]");
-            System.out.println("Descifrando");
             AESdecrypt descifrador = new AESdecrypt(key,keySize, paso);
 
             for (int i = 0; i < numBlocks; i++) {
@@ -113,11 +106,7 @@ public class BlockManager {
                 out = addBlock (out, outBlock, i);
             }
 
-            System.out.println("[" + java.util.Calendar.getInstance().getTime() + "]");
-            System.out.println("Descifrado\n");
             resultado = descifrador.getCadena();
-            if (!resultado.equals("")) System.out.println("Paso a paso:\n" +
-                    resultado + "\n");
         }
 
         return out;
@@ -152,8 +141,6 @@ public class BlockManager {
         byte [] inBlock = null;
 
         if (cifrando) {
-            System.out.println("[" + java.util.Calendar.getInstance().getTime() + "]");
-            System.out.println("Cifrando");
             AESencrypt cifrador = new AESencrypt(key, keySize,paso);
 
             for (int i = 0; i < numBlocks; i++) {
@@ -166,14 +153,9 @@ public class BlockManager {
                 out = addBlock (out, outBlock, i);
             }
 
-            System.out.println("[" + java.util.Calendar.getInstance().getTime() + "]");
-            System.out.println("Cifrado\n");
             resultado = cifrador.getCadena();
-            if (!resultado.equals("")) System.out.println("Paso a paso:\n" +
-                    resultado + "\n");
+
         } else {
-            System.out.println("[" + java.util.Calendar.getInstance().getTime() + "]");
-            System.out.println("Descifrando");
             AESdecrypt descifrador = new AESdecrypt(key,keySize,paso);
             byte [] preBlock = null;
 
@@ -188,11 +170,7 @@ public class BlockManager {
                 out = addBlock (out, outBlock, i);
             }
 
-            System.out.println("[" + java.util.Calendar.getInstance().getTime() + "]");
-            System.out.println("Descifrado\n");
             resultado = descifrador.getCadena();
-            if (!resultado.equals("")) System.out.println("Paso a paso:\n" +
-                    resultado + "\n");
         }
 
         return out;

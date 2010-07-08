@@ -10,6 +10,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.Arrays;
 
 /**
  *
@@ -87,20 +88,16 @@ public class ServUI extends javax.swing.JFrame {
 
         //generamos la clave final para comprobar si está bien
         auxClave = getClientKey(claveinicial, acum);
-        //comprobamos si la última clave generada y la clave final son iguales
-        int len = clavefinal.length;
-        boolean iguales = true;
-        for (int i = 0; iguales && (i < len); i++)
-            if (auxClave[i] != clavefinal[i]) iguales = false;
-
-        if (iguales)
+        //comprobamos si la última clave generada y la clave final son iguales     
+        if (Arrays.equals(auxClave, clavefinal))
             debugArea.append("\nGeneración de claves finalizada correctamente\n");
         else
             debugArea.append("\nHubo un error en la generación de claves\n");
 
-        //debugArea.append("\nComenzando cifrado en clientes\n");
-        //esperarClaves();
+        debugArea.append("\nComenzando cifrado en clientes\n");
+        esperarClaves();
 
+        debugArea.append("\nFin del proceso\n");
     }
 
 
@@ -248,8 +245,7 @@ public class ServUI extends javax.swing.JFrame {
                 }
 
                 //generamos un ServerHello de confirmación de recepción del ClientHello                
-                enviarMensaje(numCliente, "ServerHello");
-                System.out.println("SERVIDOR: ServerHello enviado");
+                enviarMensaje( "ServerHello", numCliente);                
 
                 //esperamos a que el cliente nos deje continuar
                 esperarMensaje("OK");
@@ -266,7 +262,39 @@ public class ServUI extends javax.swing.JFrame {
     }
 
     private void esperarClaves() {
-        //TODO
+        debugArea.append("\nBuscando claves...\n");
+        try {
+            //enviamos un mensaje a todos los clientes para que comiencen a cifrar
+            for(int i = 0; i < numclientes; i++)
+                enviarMensaje("START", i);
+
+            //nos quedamos esperando claves
+            DatagramPacket clave = new DatagramPacket(new byte[16],16);
+            int numfin = 0;
+            long numClaves = 0;
+            while (numfin < numclientes) {
+                socket.receive(clave);
+
+                String end = new String(clave.getData(), 0, 3);
+                InetAddress clientAddress = clave.getAddress();
+                if (end.equals("END")) {
+                    debugArea.append("\nEl cliente " + clientAddress.toString() + " ha terminado\n");
+                    numfin++;
+                } else {
+                    debugArea.append("\nCliente: " + clientAddress.toString() +
+                            "\nClave encontrada: " + Conversor.byteToHexString(clave.getData()) + "\n");
+                    enviarMensaje("NEXT", clientAddress, clave.getPort());
+                    numClaves++;
+                }
+            }
+
+            debugArea.append("\nBúsqueda de claves finalizada\n" +
+                    Long.toString(numClaves) + " claves encontradas\n");
+
+        } catch (Exception e) {
+            debugArea.append("Error en la búsqueda de claves\n");
+            e.printStackTrace();
+        }
     }
 
     private DatagramPacket esperarMensaje (String mensaje) throws Exception {
@@ -278,18 +306,29 @@ public class ServUI extends javax.swing.JFrame {
         String aux = new String(received.getData(), 0, received.getLength());
         if (!aux.equals(mensaje)) 
             throw new Exception("Se ha recibido " + aux + " cuando se esperaba " + mensaje);
-        else System.out.println("SERVIDOR:" + mensaje + "recibido");
+        else System.out.println("SERVIDOR: " + mensaje + " recibido");
 
         return received;
     }
 
-    private void enviarMensaje(int nclient, String mensaje)
+    private void enviarMensaje(String mensaje, int nclient)
             throws IOException {
         //generamos el datagrama con el mensaje a enviar
         DatagramPacket toSend = new DatagramPacket(mensaje.getBytes(), mensaje.length(),
                 clientesIP[nclient], clientesPort[nclient]);
 
         socket.send(toSend);
+        System.out.println("SERVIDOR: " + mensaje + " enviado");
+    }
+
+    private void enviarMensaje(String mensaje, InetAddress client, int port)
+            throws IOException {
+        //generamos el datagrama con el mensaje a enviar
+        DatagramPacket toSend = new DatagramPacket(mensaje.getBytes(), mensaje.length(),
+                client, port);
+
+        socket.send(toSend);
+        System.out.println("SERVIDOR: " + mensaje + " enviado");
     }
 
 
@@ -325,16 +364,6 @@ public class ServUI extends javax.swing.JFrame {
          }
 
          return aux;
-     }
-
-     private int devolverposicion (InetAddress clientes []) {
-         int i=0;
-
-         while (clientes [i] != null) {
-             i++;
-         }
-
-         return i;
      }
 
     private boolean esta (InetAddress clientes [] , InetAddress ipcliente) {
