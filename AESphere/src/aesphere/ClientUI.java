@@ -36,7 +36,7 @@ public class ClientUI extends javax.swing.JFrame {
     public ClientUI(MainUI padre, InetAddress dirIP) {
         initComponents();
         wpadre = padre;
-        //wpadre.newchild(this);
+        wpadre.newchild(this);
         servIP = dirIP;
         plaintext = new byte[16];
         ciphertext = new byte[16];
@@ -221,8 +221,8 @@ public class ClientUI extends javax.swing.JFrame {
                 else claveAct = getNextKey(claveAct);
 
                 //realizamos el descifrado
-                BlockManager decipher = new BlockManager(claveAct,numWords,16,false);
-                out = decipher.ECB(ciphertext, false);
+                AESdecrypt decipher = new AESdecrypt(claveAct,numWords, false);
+                decipher.InvCipher(plaintext, out);
 
                 if (Arrays.equals(out, plaintext)) {
                     //enviamos la clave
@@ -263,7 +263,7 @@ public class ClientUI extends javax.swing.JFrame {
         String aux = new String(received.getData(), 0, received.getLength());
         if (!aux.equals(mensaje))
             throw new Exception("Se ha recibido " + aux + " cuando se esperaba " + mensaje);
-        else System.out.println("SERVIDOR:" + mensaje + "recibido");
+        else System.out.println("CLIENTE: " + mensaje + " recibido");
     }
 
     private byte [] getNextKey (byte [] clave) 

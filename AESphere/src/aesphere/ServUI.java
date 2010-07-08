@@ -28,7 +28,7 @@ public class ServUI extends javax.swing.JFrame {
     public ServUI(MainUI padre, String plaintext, String ciphertext, String numeroclientes, byte [] claveinicial, byte[] clavefinal) {
         initComponents();
         wpadre = padre;
-        //wpadre.newchild(this);
+        wpadre.newchild(this);
         numclientes = Integer.parseInt(numeroclientes);
         clientesIP = new InetAddress [numclientes];
         clientesPort = new int [numclientes];
@@ -254,8 +254,7 @@ public class ServUI extends javax.swing.JFrame {
                 numCliente++;
                 
             } catch( Exception e ) {
-                debugArea.append("\n" + e.toString() + "\n");
-                System.out.println("");
+                debugArea.append("Error al conectar con los clientes\n");
                 e.printStackTrace();
             }
         }
@@ -278,6 +277,7 @@ public class ServUI extends javax.swing.JFrame {
                 String end = new String(clave.getData(), 0, 3);
                 InetAddress clientAddress = clave.getAddress();
                 if (end.equals("END")) {
+                    System.out.println("SERVIDOR: END recibido");
                     debugArea.append("\nEl cliente " + clientAddress.toString() + " ha terminado\n");
                     numfin++;
                 } else {
