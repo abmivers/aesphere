@@ -103,8 +103,9 @@ public class MainUI extends javax.swing.JFrame {
             hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
                                 (pantalla.height - ventana.height) / 2));
             hb.setSize(new java.awt.Dimension(800, 628));
-            hb.enableHelpOnButton(Contenidos, "aplicacion", helpset);
-            hb.enableHelpOnButton(BotonInfo, "aplicacion", helpset);
+            hb.enableHelpOnButton(acercade, "aplicacion", helpset);
+            hb.enableHelpOnButton(Contenidos, "ventana_main", helpset);
+            hb.enableHelpOnButton(BotonInfo, "ventana_main", helpset);
         }
 
         catch (Exception e) {
@@ -150,6 +151,7 @@ public class MainUI extends javax.swing.JFrame {
         Herramientas = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
         Contenidos = new javax.swing.JMenuItem();
+        acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -269,33 +271,34 @@ public class MainUI extends javax.swing.JFrame {
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addGap(163, 163, 163)
+            .addGroup(MainPanelLayout.createSequentialGroup()
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addComponent(BotonAtaques)
-                        .addGap(50, 50, 50)
-                        .addComponent(AtaquesLabel))
+                        .addGap(163, 163, 163)
+                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addComponent(BotonAtaques)
+                                .addGap(50, 50, 50)
+                                .addComponent(AtaquesLabel))
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addComponent(BotonDescifrar)
+                                .addGap(50, 50, 50)
+                                .addComponent(DescifrarLabel))
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addComponent(BotonCifrar)
+                                .addGap(50, 50, 50)
+                                .addComponent(CifrarLabel))
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addComponent(BotonHerramientas)
+                                .addGap(50, 50, 50)
+                                .addComponent(HerramientasLabel))))
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addComponent(BotonDescifrar)
-                        .addGap(50, 50, 50)
-                        .addComponent(DescifrarLabel))
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addComponent(BotonCifrar)
-                        .addGap(50, 50, 50)
-                        .addComponent(CifrarLabel))
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addComponent(BotonHerramientas)
-                        .addGap(50, 50, 50)
-                        .addComponent(HerramientasLabel)))
-                .addContainerGap(250, Short.MAX_VALUE))
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SpanishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(EnglishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
-                .addComponent(BotonInfo)
+                        .addContainerGap()
+                        .addComponent(SpanishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(EnglishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
+                        .addComponent(BotonInfo)))
                 .addContainerGap())
         );
         MainPanelLayout.setVerticalGroup(
@@ -393,6 +396,9 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
         mainMenuAyuda.add(Contenidos);
+
+        acercade.setText("Acerca de");
+        mainMenuAyuda.add(acercade);
 
         mainMenuBar.add(mainMenuAyuda);
 
@@ -608,6 +614,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem Salir;
     private javax.swing.JMenuItem SimularAtaques;
     private javax.swing.JButton SpanishButton;
+    private javax.swing.JMenuItem acercade;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;

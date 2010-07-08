@@ -80,6 +80,7 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         b44 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         AtrasButton = new javax.swing.JButton();
+        BotonInfo = new javax.swing.JButton();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -87,6 +88,7 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         CopiarInput = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
+        Contenidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - SubBytes");
@@ -346,6 +348,10 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
             }
         });
 
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
+
         mainMenuArchivoCifrado.setText("Archivo");
 
         Salir.setText("Salir");
@@ -379,6 +385,15 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
         mainMenuAyudaCifrado.setText("Ayuda");
+
+        Contenidos.setText("Contenido");
+        Contenidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContenidosActionPerformed(evt);
+            }
+        });
+        mainMenuAyudaCifrado.add(Contenidos);
+
         cifradoMenuBarMain.add(mainMenuAyudaCifrado);
 
         setJMenuBar(cifradoMenuBarMain);
@@ -388,21 +403,22 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(57, 57, 57)
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
                 .add(189, 189, 189)
                 .add(jLabel1)
                 .addContainerGap(258, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(387, Short.MAX_VALUE)
-                .add(jButton1)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(AtrasButton)
-                .add(60, 60, 60))
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(BotonInfo)
+                    .add(layout.createSequentialGroup()
+                        .add(jButton1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(AtrasButton))
+                    .add(layout.createSequentialGroup()
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(57, 57, 57)
+                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -413,11 +429,13 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 211, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(57, 57, 57)
+                .add(24, 24, 24)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton1)
-                    .add(AtrasButton))
-                .add(68, 68, 68))
+                    .add(AtrasButton)
+                    .add(jButton1))
+                .add(10, 10, 10)
+                .add(BotonInfo)
+                .add(66, 66, 66))
         );
 
         pack();
@@ -637,6 +655,10 @@ private void AtrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
 }//GEN-LAST:event_AtrasButtonActionPerformed
 
+private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
+
+}//GEN-LAST:event_ContenidosActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -644,6 +666,8 @@ private void AtrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasButton;
+    private javax.swing.JButton BotonInfo;
+    private javax.swing.JMenuItem Contenidos;
     private javax.swing.JMenuItem CopiarInput;
     private javax.swing.JMenuItem CopiarOutput;
     private javax.swing.JMenuItem Salir;

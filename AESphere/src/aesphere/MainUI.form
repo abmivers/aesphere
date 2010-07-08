@@ -106,6 +106,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ContenidosActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="acercade">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Acerca de"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>
@@ -194,7 +199,7 @@
                               <Component id="SpanishButton" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                               <Component id="EnglishButton" min="-2" pref="23" max="-2" attributes="0"/>
-                              <EmptySpace pref="705" max="32767" attributes="0"/>
+                              <EmptySpace pref="707" max="32767" attributes="0"/>
                               <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -215,7 +220,7 @@
                           <Component id="DescifrarLabel" pref="100" max="32767" attributes="1"/>
                           <Component id="BotonDescifrar" alignment="1" min="-2" max="-2" attributes="1"/>
                       </Group>
-                      <EmptySpace type="unrelated" pref="16" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="AtaquesLabel" pref="98" max="32767" attributes="1"/>
                           <Component id="BotonAtaques" alignment="1" min="-2" max="-2" attributes="1"/>
