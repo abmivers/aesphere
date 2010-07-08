@@ -43,6 +43,7 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        BotonInfo = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         a43 = new javax.swing.JTextField();
@@ -87,6 +88,7 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         CopiarInput = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
+        Contenidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - ShiftRows");
@@ -95,6 +97,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
+
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
 
         jButton1.setText("Ejecutar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -361,6 +367,15 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
         mainMenuAyudaCifrado.setText("Ayuda");
+
+        Contenidos.setText("Contenido");
+        Contenidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContenidosActionPerformed(evt);
+            }
+        });
+        mainMenuAyudaCifrado.add(Contenidos);
+
         cifradoMenuBarMain.add(mainMenuAyudaCifrado);
 
         setJMenuBar(cifradoMenuBarMain);
@@ -369,40 +384,43 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(layout.createSequentialGroup()
+                        .add(501, 501, 501)
+                        .add(BotonInfo))
+                    .add(layout.createSequentialGroup()
+                        .add(32, 32, 32)
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(36, 36, 36)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(layout.createSequentialGroup()
+                                .add(jButton1)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(AtrasButton))
+                            .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .add(554, 554, 554))
             .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(66, 66, 66)
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 260, Short.MAX_VALUE)
-                .add(312, 312, 312))
-            .add(layout.createSequentialGroup()
-                .add(333, 333, 333)
-                .add(jButton1)
-                .add(18, 18, 18)
-                .add(AtrasButton)
-                .addContainerGap(365, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
-                .add(215, 215, 215)
+                .add(193, 193, 193)
                 .add(jLabel1)
-                .add(487, 487, 487))
+                .addContainerGap(702, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap()
+                .add(23, 23, 23)
                 .add(jLabel1)
-                .add(33, 33, 33)
+                .add(30, 30, 30)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(34, 34, 34)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jButton1)
-                            .add(AtrasButton))
-                        .addContainerGap())
-                    .add(layout.createSequentialGroup()
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(18, 18, 18)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(AtrasButton)
+                    .add(jButton1))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 6, Short.MAX_VALUE)
+                .add(BotonInfo)
+                .addContainerGap())
         );
 
         pack();
@@ -615,10 +633,16 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
 
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_AtrasButtonActionPerformed
+
+    private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
+
+}//GEN-LAST:event_ContenidosActionPerformed
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasButton;
+    private javax.swing.JButton BotonInfo;
+    private javax.swing.JMenuItem Contenidos;
     private javax.swing.JMenuItem CopiarInput;
     private javax.swing.JMenuItem CopiarOutput;
     private javax.swing.JMenuItem Salir;

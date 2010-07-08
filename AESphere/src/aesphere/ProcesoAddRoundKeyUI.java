@@ -97,6 +97,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         c22 = new javax.swing.JTextField();
         AtrasButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        BotonInfo = new javax.swing.JButton();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -105,6 +106,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         CopiarKey = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
+        Contenidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - AddRoundKey");
@@ -438,6 +440,15 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         jLabel1.setText("Proceso de AddRoundKey");
 
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
+        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInfoActionPerformed(evt);
+            }
+        });
+
         mainMenuArchivoCifrado.setText("Archivo");
 
         Salir.setText("Salir");
@@ -479,6 +490,15 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
         mainMenuAyudaCifrado.setText("Ayuda");
+
+        Contenidos.setText("Contenido");
+        Contenidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContenidosActionPerformed(evt);
+            }
+        });
+        mainMenuAyudaCifrado.add(Contenidos);
+
         cifradoMenuBarMain.add(mainMenuAyudaCifrado);
 
         setJMenuBar(cifradoMenuBarMain);
@@ -506,6 +526,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
                         .add(211, 211, 211)
                         .add(jLabel1)))
                 .addContainerGap(85, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(599, Short.MAX_VALUE)
+                .add(BotonInfo)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -530,7 +554,9 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 10, Short.MAX_VALUE)
+                .add(BotonInfo)
+                .addContainerGap())
         );
 
         pack();
@@ -829,6 +855,14 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_AtrasButtonActionPerformed
 
+    private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
+
+    }//GEN-LAST:event_BotonInfoActionPerformed
+
+    private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
+
+}//GEN-LAST:event_ContenidosActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -836,6 +870,8 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasButton;
+    private javax.swing.JButton BotonInfo;
+    private javax.swing.JMenuItem Contenidos;
     private javax.swing.JMenuItem CopiarInput;
     private javax.swing.JMenuItem CopiarKey;
     private javax.swing.JMenuItem CopiarOutput;

@@ -11,6 +11,14 @@
 
 package aesphere;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.File;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author antonio
@@ -19,10 +27,13 @@ public class MainHerramientasUI extends javax.swing.JFrame {
 
     private javax.swing.JFrame hijoActual;
     private MainUI wpadre;
+    private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
+    private String helpErrTitle = "Ayuda - Aviso";
 
     public MainHerramientasUI(MainUI padre) {
         initComponents();
         wpadre=padre;
+
     }
 
     /** This method is called from within the constructor to
@@ -39,7 +50,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
-        BotonInfoCifrar = new javax.swing.JButton();
+        BotonInfo = new javax.swing.JButton();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -49,6 +60,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         MixColumns = new javax.swing.JMenuItem();
         AddRoundKey = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
+        Contenidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -92,12 +104,12 @@ public class MainHerramientasUI extends javax.swing.JFrame {
             }
         });
 
-        BotonInfoCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
-        BotonInfoCifrar.setBorder(null);
-        BotonInfoCifrar.setContentAreaFilled(false);
-        BotonInfoCifrar.addActionListener(new java.awt.event.ActionListener() {
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
+        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonInfoCifrarActionPerformed(evt);
+                BotonInfoActionPerformed(evt);
             }
         });
 
@@ -150,6 +162,15 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         cifradoMenuBarMain.add(mainMenuOperacionesCifrado);
 
         mainMenuAyudaCifrado.setText("Ayuda");
+
+        Contenidos.setText("Contenido");
+        Contenidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContenidosActionPerformed(evt);
+            }
+        });
+        mainMenuAyudaCifrado.add(Contenidos);
+
         cifradoMenuBarMain.add(mainMenuAyudaCifrado);
 
         setJMenuBar(cifradoMenuBarMain);
@@ -172,7 +193,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
                 .addContainerGap(638, Short.MAX_VALUE)
                 .add(Cancelar)
                 .add(32, 32, 32)
-                .add(BotonInfoCifrar)
+                .add(BotonInfo)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,7 +209,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
                     .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 219, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 52, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(BotonInfoCifrar)
+                    .add(BotonInfo)
                     .add(Cancelar))
                 .addContainerGap())
         );
@@ -199,6 +220,34 @@ public class MainHerramientasUI extends javax.swing.JFrame {
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
 }//GEN-LAST:event_SalirActionPerformed
+
+private void setHelp () {
+
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = getSize();
+
+        try {
+            File fichero = null;
+
+            if (Entorno.getProperty("language").equals("ES"))
+                fichero = new File("help/help_set_ES.hs");
+            else if (Entorno.getProperty("language").equals("EN"))
+                fichero = new File("help/help_set_EN.hs");
+            URL hsURL = fichero.toURI().toURL();
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+                                (pantalla.height - ventana.height) / 2));
+            hb.setSize(new java.awt.Dimension(800, 628));
+            hb.enableHelpOnButton(Contenidos, "ventana_herramientas", helpset);
+            hb.enableHelpOnButton(BotonInfo, "ventana_herramientas", helpset);
+        }
+
+        catch (Exception e) {
+             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
+                     JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     public void wclosed (javax.swing.JFrame hijo){
         if (hijoActual.equals(hijo)) {
@@ -306,16 +355,21 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
 }//GEN-LAST:event_CancelarActionPerformed
 
-    private void BotonInfoCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoCifrarActionPerformed
+    private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
 
-    }//GEN-LAST:event_BotonInfoCifrarActionPerformed
+    }//GEN-LAST:event_BotonInfoActionPerformed
+
+    private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
+
+}//GEN-LAST:event_ContenidosActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AddRoundKey;
-    private javax.swing.JButton BotonInfoCifrar;
+    private javax.swing.JButton BotonInfo;
     private javax.swing.JButton Cancelar;
+    private javax.swing.JMenuItem Contenidos;
     private javax.swing.JMenuItem MixColumns;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JMenuItem ShiftRows;

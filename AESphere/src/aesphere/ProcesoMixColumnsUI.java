@@ -80,6 +80,7 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         b43 = new javax.swing.JTextField();
         AtrasButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        BotonInfo = new javax.swing.JButton();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -87,6 +88,7 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         CopiarInput = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
+        Contenidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - MixColumns");
@@ -328,6 +330,10 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         jLabel1.setText("Proceso de MixColumns");
 
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
+
         mainMenuArchivoCifrado.setText("Archivo");
 
         Salir.setText("Salir");
@@ -361,6 +367,15 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
         mainMenuAyudaCifrado.setText("Ayuda");
+
+        Contenidos.setText("Contenido");
+        Contenidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContenidosActionPerformed(evt);
+            }
+        });
+        mainMenuAyudaCifrado.add(Contenidos);
+
         cifradoMenuBarMain.add(mainMenuAyudaCifrado);
 
         setJMenuBar(cifradoMenuBarMain);
@@ -374,35 +389,37 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
                 .add(jLabel1)
                 .addContainerGap(385, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(33, 33, 33)
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(44, 44, 44)
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(260, 260, 260))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(345, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(33, 33, 33)
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(44, 44, 44)
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(11, 11, 11))
+                    .add(BotonInfo)
                     .add(layout.createSequentialGroup()
-                        .addContainerGap()
                         .add(jButton1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(AtrasButton)
-                        .add(6, 6, 6)))
-                .add(249, 249, 249))
+                        .add(18, 18, 18)
+                        .add(AtrasButton)))
+                .add(259, 259, 259))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+            .add(layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .add(jLabel1)
                 .add(45, 45, 45)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(28, 28, 28)
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(AtrasButton)
-                    .add(jButton1))
-                .add(57, 57, 57))
+                    .add(jButton1)
+                    .add(AtrasButton))
+                .add(10, 10, 10)
+                .add(BotonInfo)
+                .add(197, 197, 197))
         );
 
         pack();
@@ -609,6 +626,10 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
        this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_AtrasButtonActionPerformed
 
+    private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
+
+}//GEN-LAST:event_ContenidosActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -616,6 +637,8 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasButton;
+    private javax.swing.JButton BotonInfo;
+    private javax.swing.JMenuItem Contenidos;
     private javax.swing.JMenuItem CopiarInput;
     private javax.swing.JMenuItem CopiarOutput;
     private javax.swing.JMenuItem Salir;

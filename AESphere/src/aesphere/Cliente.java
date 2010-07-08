@@ -94,7 +94,7 @@ public class Cliente extends JFrame {
       }
 
       esperarClientHello();
-      esperarClave();
+      //esperarClave();
 
    } // fin del constructor de Cliente
    
