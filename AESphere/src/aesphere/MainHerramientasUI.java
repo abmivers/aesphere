@@ -61,6 +61,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         AddRoundKey = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
         Contenidos = new javax.swing.JMenuItem();
+        acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -170,6 +171,9 @@ public class MainHerramientasUI extends javax.swing.JFrame {
             }
         });
         mainMenuAyudaCifrado.add(Contenidos);
+
+        acercade.setText("Acerca de");
+        mainMenuAyudaCifrado.add(acercade);
 
         cifradoMenuBarMain.add(mainMenuAyudaCifrado);
 
@@ -374,6 +378,7 @@ private void setHelp () {
     private javax.swing.JMenuItem Salir;
     private javax.swing.JMenuItem ShiftRows;
     private javax.swing.JMenuItem SubBytes;
+    private javax.swing.JMenuItem acercade;
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

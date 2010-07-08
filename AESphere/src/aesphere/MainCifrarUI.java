@@ -190,6 +190,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         PegarKey = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
         ContenidosCifrar = new javax.swing.JMenuItem();
+        acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -617,6 +618,9 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         ContenidosCifrar.setText("Contenidos");
         mainMenuAyuda.add(ContenidosCifrar);
+
+        acercade.setText("Acerca de");
+        mainMenuAyuda.add(acercade);
 
         cifrarMenuBarMain.add(mainMenuAyuda);
 
@@ -1098,6 +1102,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private javax.swing.JTextArea TextoInput;
     private javax.swing.JTextArea TextoKey;
     private javax.swing.JTextField TextoOutput;
+    private javax.swing.JMenuItem acercade;
     private javax.swing.JFileChooser archivos;
     private javax.swing.JMenuBar cifrarMenuBarMain;
     private javax.swing.JPanel cifrarPanelAdvOptions;

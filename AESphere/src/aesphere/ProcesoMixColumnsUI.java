@@ -89,6 +89,7 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         CopiarOutput = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
         Contenidos = new javax.swing.JMenuItem();
+        acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - MixColumns");
@@ -376,6 +377,9 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
         });
         mainMenuAyudaCifrado.add(Contenidos);
 
+        acercade.setText("Acerca de");
+        mainMenuAyudaCifrado.add(acercade);
+
         cifradoMenuBarMain.add(mainMenuAyudaCifrado);
 
         setJMenuBar(cifradoMenuBarMain);
@@ -658,6 +662,7 @@ public class ProcesoMixColumnsUI extends javax.swing.JFrame {
     private javax.swing.JTextField a42;
     private javax.swing.JTextField a43;
     private javax.swing.JTextField a44;
+    private javax.swing.JMenuItem acercade;
     private javax.swing.JTextField b11;
     private javax.swing.JTextField b12;
     private javax.swing.JTextField b13;
