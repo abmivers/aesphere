@@ -404,7 +404,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             });
             wpadre.newThread(servThread);
             servThread.start();
-        } else if (ClienteRadioButton.isSelected() && ComprobarDatos()) {
+        } else if (ClienteRadioButton.isSelected()) {
             Thread clientThread = new Thread(new Runnable() {
                 public void run() {
                     try {
