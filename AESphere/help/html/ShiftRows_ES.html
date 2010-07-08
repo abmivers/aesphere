@@ -1,0 +1,21 @@
+<meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
+<html>
+<head>
+	<title>ShiftRows</title>
+</head>
+<body>
+	<h1>ShiftRows</h1>
+	<p>Durante este paso, se rotan de manera cíclica los bytes de cada fila de la matriz sobre la que opera AES (state). Es una sencilla pero necesaria operación en la que se desplazan los bytes de las filas de la siguiente manera: <br>
+	La primera fila no se desplaza, queda inalterada. <br>
+	Cada byte de la segunda fila es rotado una posición a la izquierda.<br>
+	En la tercera fila, los bytes se desplazan dos posiciones a la izquierda. <br>
+	Y por último, cada byte de la cuarta y última fila sufre un desplazamiento de tres posiciones</p>
+	
+	Gracias a esta transformación, la matriz resultante contiene los mismos bytes que la matriz original, lo cual será necesario para otros pasos del proceso. <br>
+	
+	Este proceso puede observarse claramente en la siguiente imagen: <br><br>
+	
+	<img style="border-width: 0px;" src="resources/shiftrows.png" width="350" height="130" />
+	
+</body>
+</html>

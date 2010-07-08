@@ -16,6 +16,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.Arrays;
 
 /**
  *
@@ -60,6 +61,10 @@ public class ClientUI extends javax.swing.JFrame {
         esperarTexto();
         debugArea.append("Texo en claro: " + Conversor.byteToHexString(plaintext) +
                 "\nTexto cifrado: " + Conversor.byteToHexString(ciphertext) + "\n");
+
+        try {probarClaves();} catch (IOException e) {
+            debugArea.append("Hubo un problema al comunicar al servidor que este cliente ha acabado");
+        }
 
         debugArea.append("\nFin del proceso\n");
     }
@@ -141,16 +146,14 @@ public class ClientUI extends javax.swing.JFrame {
             //clave de 128 bits
             DatagramPacket clavePacket = new DatagramPacket(new byte[16],16);
             //desbloqueamos al servidor antes de recibir
-            enviarMensaje("OK");
-            System.out.println("CLIENTE: OK enviado");
+            enviarMensaje("OK");            
             socket.receive(clavePacket);
             System.out.println("CLIENTE: Clave recibida");
 
             claveInicial = clavePacket.getData();
 
             //mandamos un mensaje de confirmación de recepción de clave al servidor
-            enviarMensaje("ClaveOK");
-            System.out.println("CLIENTE: ClaveOK enviado");
+            enviarMensaje("ClaveOK");            
 
             //creamos un DatagramPacket para recibir el número de claves
             int len = Long.SIZE/8;
@@ -161,8 +164,7 @@ public class ClientUI extends javax.swing.JFrame {
             numClaves = Conversor.byteToLong(longPacket.getData());
 
             //mandamos un mensaje de confirmación de recepción de número de claves al servidor
-            enviarMensaje("LongOK");
-            System.out.println("CLIENTE: LongOK enviado");
+            enviarMensaje("LongOK");            
 
             debugArea.append("Clave recibida\n");
 
@@ -184,8 +186,7 @@ public class ClientUI extends javax.swing.JFrame {
             plaintext = claroPacket.getData();
 
             //mandamos un mensaje de confirmación de recepción de clave al servidor
-            enviarMensaje("ClaroOK");
-            System.out.println("CLIENTE: ClaroOK enviado");
+            enviarMensaje("ClaroOK");            
 
             //recibimos el texto cifrado
             DatagramPacket cifradoPacket = new DatagramPacket(new byte[16],16);
@@ -195,8 +196,7 @@ public class ClientUI extends javax.swing.JFrame {
             ciphertext = cifradoPacket.getData();
 
             //mandamos un mensaje de confirmación de recepción de número de claves al servidor
-            enviarMensaje("CifradoOK");
-            System.out.println("CLIENTE: CifradoOK enviado");
+            enviarMensaje("CifradoOK");            
 
             debugArea.append("Texto recibido\n");
 
@@ -206,6 +206,44 @@ public class ClientUI extends javax.swing.JFrame {
         }
     }
 
+    private void probarClaves () throws IOException {
+        debugArea.append("\nComenzando la prueba de claves...\n");
+        try {
+            //esperamos a que el servidor nos ordene comenzar
+            esperarMensaje("START");
+
+            byte [] claveAct = null;
+            byte [] out = null;
+            int numWords = claveInicial.length / 4;
+            for(int i = 0; i < numClaves; i++) {
+                //obtenemos la siguiente clave a probar
+                if (i == 0) claveAct = claveInicial;
+                else claveAct = getNextKey(claveAct);
+
+                //realizamos el descifrado
+                BlockManager decipher = new BlockManager(claveAct,numWords,16,false);
+                out = decipher.ECB(ciphertext, false);
+
+                if (Arrays.equals(out, plaintext)) {
+                    //enviamos la clave
+                    DatagramPacket clave = new DatagramPacket (claveAct, claveAct.length,
+                            servIP, 3000);
+                    socket.send(clave);
+                    debugArea.append("Clave encontrada: " + Conversor.byteToHexString(claveAct) + "\n");
+                    //esperamos a que el cliente nos deje continuar
+                    esperarMensaje("NEXT");
+                }
+            }
+
+            debugArea.append("\nPrueba de claves finalizada\n");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            debugArea.append("Hubo un error al probar las claves");
+        }
+        enviarMensaje("END");
+    }
+
     private void enviarMensaje(String mensaje)
             throws IOException {
         //generamos el datagrama con el mensaje a enviar
@@ -213,6 +251,7 @@ public class ClientUI extends javax.swing.JFrame {
                 servIP, 3000);
 
         socket.send(toSend);
+        System.out.println("CLIENTE: " + mensaje + " enviado");
     }
 
     private void esperarMensaje (String mensaje) throws Exception {

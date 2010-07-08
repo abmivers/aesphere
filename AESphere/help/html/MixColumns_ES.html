@@ -1,0 +1,25 @@
+
+<head>
+	<title>MixColumns</title>
+</head>
+<body>
+	<h1>MixColumns</h1>
+	
+	<p>Se trata de la transformaci&oacute;n siguiente a ShiftRow. Durante el proceso de MixColumns, los cuatro bytes de cada columna del state se combinan usando una transformaci&oacute;n lineal que es inversible (para poder realizar luego el descifrado). La funci&oacute;n MixColumns toma como entrada cuatro bytes y devuelve otros cuatro. Cabe destacar que cualquier cambio en los bytes de entrada, influir&iacute;a en el resto de las salidas de 4 bytes.<br>
+	MixColumns junto con ShiftRows proporcionan la fase de difusi&oacute;n del cifrado AES.<br>
+	<p>Veamos como funciona en detalle el proceso de MixColumns:<br>
+	MixColumns opera columna por columna de la matriz, tomando a cada una como un polinomio de grado tres. Es decir, que las columnas son consideradas como polinomios en el campo GF(2<sup>8</sup>) (Campo de Galois) y cada una es multiplicada m&oacute;dulo x<sup>4</sup>+1 con un polinomio fijo c(x), dado por: <br>
+	
+	c(x)= {03}x<sup>3</sup> + {01}x&sup2; + {01}x + {02}<br><br>
+	Puede verse mejor en esta imagen: 	
+	<p><img style="border-width: 0px;" src="resources/matriz2.png" width="356" height="174" /></p>
+	<p>Esta matriz fue elejida cuidadosamente, apoy&aacute;ndose en la teor&iacute;a de c&oacute;digos de correcci&oacute;n de errores.</p>
+	
+	<p><img style="border-width: 0px;" src="resources/mixcolumns.png" width="300" height="159" />
+	
+	
+	
+	
+
+</body>
+</html>
