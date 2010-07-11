@@ -11,9 +11,16 @@
 
 package aesphere;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.io.File;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,13 +29,15 @@ import javax.swing.JOptionPane;
  */
 public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private MainHerramientasUI wpadre;
-    
+    private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
+    private String helpErrTitle = "Ayuda - Aviso";
 
 
     public ProcesoAddRoundKeyUI(MainHerramientasUI padre) {
         initComponents();
         wpadre=padre;
         CopiarOutput.setEnabled(false);
+        setHelp();
 
     }
 
@@ -98,6 +107,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         AtrasButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         BotonInfo = new javax.swing.JButton();
+        RandomButton = new javax.swing.JButton();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -105,6 +115,8 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         CopiarInput = new javax.swing.JMenuItem();
         CopiarKey = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
+        pegarInput = new javax.swing.JMenuItem();
+        pegarKey = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
         Contenidos = new javax.swing.JMenuItem();
         acercade = new javax.swing.JMenuItem();
@@ -450,6 +462,13 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
             }
         });
 
+        RandomButton.setText("Random");
+        RandomButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RandomButtonActionPerformed(evt);
+            }
+        });
+
         mainMenuArchivoCifrado.setText("Archivo");
 
         Salir.setText("Salir");
@@ -488,6 +507,22 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         });
         mainMenuEditarCifrado.add(CopiarOutput);
 
+        pegarInput.setText("Pegar Input");
+        pegarInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pegarInputActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(pegarInput);
+
+        pegarKey.setText("Pegar Key");
+        pegarKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pegarKeyActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(pegarKey);
+
         cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
         mainMenuAyudaCifrado.setText("Ayuda");
@@ -518,10 +553,15 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
                                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(56, 56, 56)
-                                .add(EjecutarButton)
-                                .add(18, 18, 18)
-                                .add(AtrasButton))
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(56, 56, 56)
+                                        .add(EjecutarButton)
+                                        .add(18, 18, 18)
+                                        .add(AtrasButton))
+                                    .add(layout.createSequentialGroup()
+                                        .add(111, 111, 111)
+                                        .add(RandomButton))))
                             .add(layout.createSequentialGroup()
                                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(44, 44, 44)
@@ -549,12 +589,14 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
                         .add(60, 60, 60)
                         .add(jPanel3, 0, 204, Short.MAX_VALUE)
                         .add(18, 18, 18)))
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(layout.createSequentialGroup()
                         .add(95, 95, 95)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(EjecutarButton)
-                            .add(AtrasButton)))
+                            .add(AtrasButton))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(RandomButton))
                     .add(layout.createSequentialGroup()
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
@@ -565,6 +607,36 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+
+    private void setHelp () {
+
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = getSize();
+
+        try {
+            File fichero = null;
+
+            if (Entorno.getProperty("language").equals("ES"))
+                fichero = new File("help/help_set_ES.hs");
+            else if (Entorno.getProperty("language").equals("EN"))
+                fichero = new File("help/help_set_EN.hs");
+            URL hsURL = fichero.toURI().toURL();
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+                                (pantalla.height - ventana.height) / 2));
+            hb.setSize(new java.awt.Dimension(800, 628));
+            hb.enableHelpOnButton(Contenidos, "ventana_addroundkey", helpset);
+            hb.enableHelpOnButton(BotonInfo, "ventana_addroundkey", helpset);
+            hb.enableHelpOnButton(acercade, "aplicacion", helpset);
+        }
+
+        catch (Exception e) {
+             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
+                     JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
 
     private byte [][] rellenarmatriz () {
@@ -656,7 +728,77 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
     }
 
-    
+
+    private boolean ComprobarDatosInput (){
+        boolean aux=true;
+
+       if (aux && (a11.getText().isEmpty() || a12.getText().isEmpty() || a13.getText().isEmpty() || a14.getText().isEmpty()
+                || a21.getText().isEmpty() || a22.getText().isEmpty() || a23.getText().isEmpty() || a24.getText().isEmpty()
+                || a31.getText().isEmpty() || a32.getText().isEmpty() || a33.getText().isEmpty() || a34.getText().isEmpty()
+                || a41.getText().isEmpty() || a42.getText().isEmpty() || a43.getText().isEmpty() || a44.getText().isEmpty())){
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           aux=false;
+
+        }
+
+
+        if (aux && (!ComprobarHexadecimal (a11.getText()) || !ComprobarHexadecimal (a12.getText()) || !ComprobarHexadecimal (a13.getText()) || !ComprobarHexadecimal (a14.getText())
+                 || !ComprobarHexadecimal (a21.getText()) || !ComprobarHexadecimal (a22.getText()) || !ComprobarHexadecimal (a23.getText()) || !ComprobarHexadecimal (a24.getText())
+                 || !ComprobarHexadecimal (a31.getText()) || !ComprobarHexadecimal (a32.getText()) || !ComprobarHexadecimal (a33.getText()) || !ComprobarHexadecimal (a34.getText())
+                 || !ComprobarHexadecimal (a41.getText()) || !ComprobarHexadecimal (a42.getText()) || !ComprobarHexadecimal (a43.getText()) || !ComprobarHexadecimal (a44.getText()))) {
+           JOptionPane.showMessageDialog(this, "Debe introducir únicamente parejas de valores hexadecimales.");
+           aux=false;
+        }
+
+
+        if (aux && (a11.getText().length()!=2 || a12.getText().length()!=2 || a13.getText().length()!=2 || a14.getText().length()!=2
+                 || a21.getText().length()!=2 || a22.getText().length()!=2 || a23.getText().length()!=2 || a24.getText().length()!=2
+                 || a31.getText().length()!=2 || a32.getText().length()!=2 || a33.getText().length()!=2 || a34.getText().length()!=2
+                 || a41.getText().length()!=2 || a42.getText().length()!=2 || a43.getText().length()!=2 || a44.getText().length()!=2 )) {
+
+           JOptionPane.showMessageDialog(this, "Debe introducir únicamente parejas de valores hexadecimales.");
+           aux=false;
+        }
+
+
+        return aux;
+    }
+
+
+    private boolean ComprobarDatosKey (){
+        boolean aux=true;
+
+        if (aux && (b11.getText().isEmpty() || b12.getText().isEmpty() || b13.getText().isEmpty() || b14.getText().isEmpty()
+                || b21.getText().isEmpty() || b22.getText().isEmpty() || b23.getText().isEmpty() || b24.getText().isEmpty()
+                || b31.getText().isEmpty() || b32.getText().isEmpty() || b33.getText().isEmpty() || b34.getText().isEmpty()
+                || b41.getText().isEmpty() || b42.getText().isEmpty() || b43.getText().isEmpty() || b44.getText().isEmpty())){
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           aux=false;
+
+        }
+
+
+        if (aux && (!ComprobarHexadecimal (b11.getText()) || !ComprobarHexadecimal (b12.getText()) || !ComprobarHexadecimal (b13.getText()) || !ComprobarHexadecimal (b14.getText())
+                 || !ComprobarHexadecimal (b21.getText()) || !ComprobarHexadecimal (b22.getText()) || !ComprobarHexadecimal (b23.getText()) || !ComprobarHexadecimal (b24.getText())
+                 || !ComprobarHexadecimal (b31.getText()) || !ComprobarHexadecimal (b32.getText()) || !ComprobarHexadecimal (b33.getText()) || !ComprobarHexadecimal (b34.getText())
+                 || !ComprobarHexadecimal (b41.getText()) || !ComprobarHexadecimal (b42.getText()) || !ComprobarHexadecimal (b43.getText()) || !ComprobarHexadecimal (b44.getText()))) {
+           JOptionPane.showMessageDialog(this, "Debe introducir únicamente parejas de valores hexadecimales.");
+           aux=false;
+        }
+
+
+        if (aux && (b11.getText().length()!=2 || b12.getText().length()!=2 || b13.getText().length()!=2 || b14.getText().length()!=2
+                 || b21.getText().length()!=2 || b22.getText().length()!=2 || b23.getText().length()!=2 || b24.getText().length()!=2
+                 || b31.getText().length()!=2 || b32.getText().length()!=2 || b33.getText().length()!=2 || b34.getText().length()!=2
+                 || b41.getText().length()!=2 || b42.getText().length()!=2 || b43.getText().length()!=2 || b44.getText().length()!=2 )) {
+
+           JOptionPane.showMessageDialog(this, "Debe introducir únicamente parejas de valores hexadecimales.");
+           aux=false;
+        }
+
+        return aux;
+    }
+
     private boolean ComprobarDatos (){
         boolean aux=true;
 
@@ -781,7 +923,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
     private void CopiarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarInputActionPerformed
 
-        if (ComprobarDatos()) {
+        if (ComprobarDatosInput()) {
 
         String cadena = new String();
         byte [][] matriz = rellenarmatriz();
@@ -799,7 +941,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
     private void CopiarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarKeyActionPerformed
       
-        if (ComprobarDatos()) {
+        if (ComprobarDatosKey()) {
 
         String cadena = new String();
         byte [][] matriz = rellenarclave();
@@ -867,6 +1009,200 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
 }//GEN-LAST:event_ContenidosActionPerformed
 
+    private void pegarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pegarInputActionPerformed
+      Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+      Transferable t = cb.getContents(this);
+
+
+       try{
+           DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
+           if (t.isDataFlavorSupported(dataFlavorStringJava)) {
+           String texto = (String) t.getTransferData(dataFlavorStringJava);
+           a11.setText(texto.substring(0, 2));
+           a12.setText(texto.substring(2, 4));
+           a13.setText(texto.substring(4, 6));
+           a14.setText(texto.substring(6, 8));
+           a21.setText(texto.substring(8, 10));
+           a22.setText(texto.substring(10, 12));
+           a23.setText(texto.substring(12, 14));
+           a24.setText(texto.substring(14, 16));
+           a31.setText(texto.substring(16, 18));
+           a32.setText(texto.substring(18, 20));
+           a33.setText(texto.substring(20, 22));
+           a34.setText(texto.substring(22, 24));
+           a41.setText(texto.substring(24, 26));
+           a42.setText(texto.substring(26, 28));
+           a43.setText(texto.substring(28, 30));
+           a44.setText(texto.substring(30, 32));
+           }
+       }
+       catch (Exception e){
+        e.printStackTrace();
+       }
+    }//GEN-LAST:event_pegarInputActionPerformed
+
+    private void pegarKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pegarKeyActionPerformed
+      Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+      Transferable t = cb.getContents(this);
+
+
+       try{
+           DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
+           if (t.isDataFlavorSupported(dataFlavorStringJava)) {
+           String texto = (String) t.getTransferData(dataFlavorStringJava);
+           b11.setText(texto.substring(0, 2));
+           b12.setText(texto.substring(2, 4));
+           b13.setText(texto.substring(4, 6));
+           b14.setText(texto.substring(6, 8));
+           b21.setText(texto.substring(8, 10));
+           b22.setText(texto.substring(10, 12));
+           b23.setText(texto.substring(12, 14));
+           b24.setText(texto.substring(14, 16));
+           b31.setText(texto.substring(16, 18));
+           b32.setText(texto.substring(18, 20));
+           b33.setText(texto.substring(20, 22));
+           b34.setText(texto.substring(22, 24));
+           b41.setText(texto.substring(24, 26));
+           b42.setText(texto.substring(26, 28));
+           b43.setText(texto.substring(28, 30));
+           b44.setText(texto.substring(30, 32));
+           }
+       }
+       catch (Exception e){
+        e.printStackTrace();
+       }
+    }//GEN-LAST:event_pegarKeyActionPerformed
+
+    private void RandomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomButtonActionPerformed
+        int x = new Double(Math.random() * 100).intValue()+16;
+        String a = java.lang.Integer.toHexString(x);
+        a11.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a12.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a13.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a14.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a21.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a22.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a23.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a24.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a31.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a32.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a33.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a34.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a41.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a42.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a43.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a44.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b11.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b12.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b13.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b14.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b21.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b22.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b23.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b24.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b31.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b32.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b33.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b34.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b41.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b42.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b43.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        b44.setText(a);
+    }//GEN-LAST:event_RandomButtonActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -880,6 +1216,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem CopiarKey;
     private javax.swing.JMenuItem CopiarOutput;
     private javax.swing.JButton EjecutarButton;
+    private javax.swing.JButton RandomButton;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JTextField a11;
     private javax.swing.JTextField a12;
@@ -938,6 +1275,8 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
     private javax.swing.JMenu mainMenuEditarCifrado;
+    private javax.swing.JMenuItem pegarInput;
+    private javax.swing.JMenuItem pegarKey;
     // End of variables declaration//GEN-END:variables
 
 }

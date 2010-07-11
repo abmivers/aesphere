@@ -33,6 +33,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
     public MainHerramientasUI(MainUI padre) {
         initComponents();
         wpadre=padre;
+        setHelp();
 
     }
 
@@ -245,6 +246,7 @@ private void setHelp () {
             hb.setSize(new java.awt.Dimension(800, 628));
             hb.enableHelpOnButton(Contenidos, "ventana_herramientas", helpset);
             hb.enableHelpOnButton(BotonInfo, "ventana_herramientas", helpset);
+            hb.enableHelpOnButton(acercade, "aplicacion", helpset);
         }
 
         catch (Exception e) {

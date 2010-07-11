@@ -11,9 +11,16 @@
 
 package aesphere;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.io.File;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +29,8 @@ import javax.swing.JOptionPane;
  */
 public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private MainHerramientasUI wpadre;
+    private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
+    private String helpErrTitle = "Ayuda - Aviso";
     
 
     
@@ -30,6 +39,7 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         wpadre=padre;
         this.setSize(555, 430);
         CopiarOutput.setEnabled(false);
+        setHelp();
     }
 
     /** This method is called from within the constructor to
@@ -81,12 +91,14 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         b43 = new javax.swing.JTextField();
         AtrasButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        RandomButton = new javax.swing.JButton();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
         CopiarInput = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
+        pegarInput = new javax.swing.JMenuItem();
         mainMenuAyudaCifrado = new javax.swing.JMenu();
         Contenidos = new javax.swing.JMenuItem();
         acercade = new javax.swing.JMenuItem();
@@ -335,6 +347,13 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         jLabel1.setText("Proceso de ShiftRows");
 
+        RandomButton.setText("Random");
+        RandomButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RandomButtonActionPerformed(evt);
+            }
+        });
+
         mainMenuArchivoCifrado.setText("Archivo");
 
         Salir.setText("Salir");
@@ -365,6 +384,14 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         });
         mainMenuEditarCifrado.add(CopiarOutput);
 
+        pegarInput.setText("Pegar Input");
+        pegarInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pegarInputActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(pegarInput);
+
         cifradoMenuBarMain.add(mainMenuEditarCifrado);
 
         mainMenuAyudaCifrado.setText("Ayuda");
@@ -389,13 +416,15 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(32, 32, 32)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(BotonInfo)
                     .add(layout.createSequentialGroup()
-                        .add(501, 501, 501)
-                        .add(BotonInfo))
-                    .add(layout.createSequentialGroup()
-                        .add(32, 32, 32)
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(layout.createSequentialGroup()
+                                .add(67, 67, 67)
+                                .add(RandomButton)))
                         .add(36, 36, 36)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(layout.createSequentialGroup()
@@ -419,17 +448,49 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(AtrasButton)
-                    .add(jButton1))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 6, Short.MAX_VALUE)
-                .add(BotonInfo)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(AtrasButton)
+                            .add(jButton1))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 6, Short.MAX_VALUE)
+                        .add(BotonInfo))
+                    .add(RandomButton))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    private void setHelp () {
+
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = getSize();
+
+        try {
+            File fichero = null;
+
+            if (Entorno.getProperty("language").equals("ES"))
+                fichero = new File("help/help_set_ES.hs");
+            else if (Entorno.getProperty("language").equals("EN"))
+                fichero = new File("help/help_set_EN.hs");
+            URL hsURL = fichero.toURI().toURL();
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+                                (pantalla.height - ventana.height) / 2));
+            hb.setSize(new java.awt.Dimension(800, 628));
+            hb.enableHelpOnButton(Contenidos, "ventana_shiftrows", helpset);
+            hb.enableHelpOnButton(BotonInfo, "ventana_shiftrows", helpset);
+            hb.enableHelpOnButton(acercade, "aplicacion", helpset);
+        }
+
+        catch (Exception e) {
+             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
+                     JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private byte [][] rellenarmatriz () {
         byte[][] matriz = new byte[4][4];
@@ -641,6 +702,104 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
 
 }//GEN-LAST:event_ContenidosActionPerformed
+
+    private void pegarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pegarInputActionPerformed
+       Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+       Transferable t = cb.getContents(this);
+
+
+       try{
+           DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
+           if (t.isDataFlavorSupported(dataFlavorStringJava)) {
+           String texto = (String) t.getTransferData(dataFlavorStringJava);
+           a11.setText(texto.substring(0, 2));
+           a12.setText(texto.substring(2, 4));
+           a13.setText(texto.substring(4, 6));
+           a14.setText(texto.substring(6, 8));
+           a21.setText(texto.substring(8, 10));
+           a22.setText(texto.substring(10, 12));
+           a23.setText(texto.substring(12, 14));
+           a24.setText(texto.substring(14, 16));
+           a31.setText(texto.substring(16, 18));
+           a32.setText(texto.substring(18, 20));
+           a33.setText(texto.substring(20, 22));
+           a34.setText(texto.substring(22, 24));
+           a41.setText(texto.substring(24, 26));
+           a42.setText(texto.substring(26, 28));
+           a43.setText(texto.substring(28, 30));
+           a44.setText(texto.substring(30, 32));
+           }
+       }
+       catch (Exception e){
+        e.printStackTrace();
+       }
+    }//GEN-LAST:event_pegarInputActionPerformed
+
+    private void RandomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomButtonActionPerformed
+        int x = new Double(Math.random() * 100).intValue()+16;
+        String a = java.lang.Integer.toHexString(x);
+        a11.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a12.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a13.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a14.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a21.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a22.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a23.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a24.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a31.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a32.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a33.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a34.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a41.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a42.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a43.setText(a);
+
+        x = new Double(Math.random() * 100).intValue()+16;
+        a = java.lang.Integer.toHexString(x);
+        a44.setText(a);
+    }//GEN-LAST:event_RandomButtonActionPerformed
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -649,6 +808,7 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem Contenidos;
     private javax.swing.JMenuItem CopiarInput;
     private javax.swing.JMenuItem CopiarOutput;
+    private javax.swing.JButton RandomButton;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JTextField a11;
     private javax.swing.JTextField a12;
@@ -691,6 +851,7 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
     private javax.swing.JMenu mainMenuEditarCifrado;
+    private javax.swing.JMenuItem pegarInput;
     // End of variables declaration//GEN-END:variables
 
 }
