@@ -11,11 +11,16 @@
 
 package aesphere;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.io.File;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,11 +31,14 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
 
     private javax.swing.JFrame hijoActual;
     private MainUI wpadre;
+    private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
+    private String helpErrTitle = "Ayuda - Aviso";
 
     /** Creates new form CifrarDescifrarSimple */
     public CifrarDescifrarSimple(MainUI padre) {
         initComponents();
         wpadre=padre;
+        setHelp();
     }
 
     /** This method is called from within the constructor to
@@ -58,6 +66,7 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        BotonInfo = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -68,6 +77,8 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         CifrarItem = new javax.swing.JMenuItem();
         DescifrarItem = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
+        Contenidos = new javax.swing.JMenuItem();
+        acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Comprobar Vectores");
@@ -127,6 +138,15 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
             }
         });
 
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
+        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInfoActionPerformed(evt);
+            }
+        });
+
         mainMenuArchivo.setText("Archivo");
 
         Salir.setText("Salir");
@@ -180,6 +200,18 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         mainMenuBar.add(mainMenuOperaciones);
 
         mainMenuAyuda.setText("Ayuda");
+
+        Contenidos.setText("Contenidos");
+        Contenidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContenidosActionPerformed(evt);
+            }
+        });
+        mainMenuAyuda.add(Contenidos);
+
+        acercade.setText("Acerca de");
+        mainMenuAyuda.add(acercade);
+
         mainMenuBar.add(mainMenuAyuda);
 
         setJMenuBar(mainMenuBar);
@@ -213,7 +245,11 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(35, 35, 35)
                         .add(jButton2)))
-                .add(40, 40, 40))
+                .add(47, 47, 47))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(733, Short.MAX_VALUE)
+                .add(BotonInfo)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -244,12 +280,42 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(PlaintextD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel4))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 41, Short.MAX_VALUE)
+                .add(BotonInfo)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setHelp () {
+
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = getSize();
+
+        try {
+            File fichero = null;
+
+            if (Entorno.getProperty("language").equals("ES"))
+                fichero = new File("help/help_set_ES.hs");
+            else if (Entorno.getProperty("language").equals("EN"))
+                fichero = new File("help/help_set_EN.hs");
+            URL hsURL = fichero.toURI().toURL();
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+                                (pantalla.height - ventana.height) / 2));
+            hb.setSize(new java.awt.Dimension(800, 628));
+            hb.enableHelpOnButton(Contenidos, "explicacion_subbytes", helpset);
+            hb.enableHelpOnButton(BotonInfo, "explicacion_subbytes", helpset);
+            hb.enableHelpOnButton(acercade, "aplicacion", helpset);
+        }
+
+        catch (Exception e) {
+             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
+                     JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     public void wclosed (javax.swing.JFrame hijo){
         if (hijoActual.equals(hijo)) {
@@ -517,6 +583,14 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         }
 }//GEN-LAST:event_PegarCiphertextActionPerformed
 
+    private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_ContenidosActionPerformed
+
+    private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
+
+}//GEN-LAST:event_BotonInfoActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -534,9 +608,11 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonInfo;
     private javax.swing.JMenuItem CifrarItem;
     private javax.swing.JTextField Ciphertext;
     private javax.swing.JTextField CiphertextD;
+    private javax.swing.JMenuItem Contenidos;
     private javax.swing.JMenuItem CopiarCiphertext;
     private javax.swing.JMenuItem DescifrarItem;
     private javax.swing.JTextField Key;
@@ -545,6 +621,7 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
     private javax.swing.JTextField Plaintext;
     private javax.swing.JTextField PlaintextD;
     private javax.swing.JMenuItem Salir;
+    private javax.swing.JMenuItem acercade;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

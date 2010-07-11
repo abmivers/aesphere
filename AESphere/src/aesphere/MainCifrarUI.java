@@ -123,6 +123,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
             hb.setSize(new java.awt.Dimension(800, 628));
             hb.enableHelpOnButton(ContenidosCifrar, "ventana_cifrado", helpset);
             hb.enableHelpOnButton(BotonInfoCifrar, "ventana_cifrado", helpset);
+            hb.enableHelpOnButton(acercade, "aplicacion", helpset);
         }
 
         catch (Exception e) {

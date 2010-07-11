@@ -48,7 +48,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         NumeroClientesTextField = new javax.swing.JTextField();
-        BotonInfoCifrar = new javax.swing.JButton();
+        BotonInfo = new javax.swing.JButton();
         EjecutarButton = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -62,6 +62,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         Salir = new javax.swing.JMenuItem();
         mainMenuEditar = new javax.swing.JMenu();
         mainMenuAyuda = new javax.swing.JMenu();
+        Contenidos = new javax.swing.JMenuItem();
+        acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -110,7 +112,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     .add(jLabel2)
                     .add(jLabel4)
                     .add(jLabel3))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                 .add(34, 34, 34)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
@@ -174,7 +176,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(NumeroClientesTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(311, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -197,9 +199,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        BotonInfoCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
-        BotonInfoCifrar.setBorder(null);
-        BotonInfoCifrar.setContentAreaFilled(false);
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
 
         EjecutarButton.setText("Ejecutar");
         EjecutarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -250,13 +252,13 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addContainerGap(475, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel3Layout.createSequentialGroup()
                 .add(jLabel9)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(47, Short.MAX_VALUE)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -285,6 +287,18 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         cifrarMenuBarMain.add(mainMenuEditar);
 
         mainMenuAyuda.setText("Ayuda");
+
+        Contenidos.setText("Contenidos");
+        Contenidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContenidosActionPerformed(evt);
+            }
+        });
+        mainMenuAyuda.add(Contenidos);
+
+        acercade.setText("Acerca de");
+        mainMenuAyuda.add(acercade);
+
         cifrarMenuBarMain.add(mainMenuAyuda);
 
         setJMenuBar(cifrarMenuBarMain);
@@ -303,7 +317,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(18, 18, 18)
                         .add(EjecutarButton)
                         .add(36, 36, 36)
-                        .add(BotonInfoCifrar))
+                        .add(BotonInfo))
                     .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -320,7 +334,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(Cancelar)
                     .add(EjecutarButton)
-                    .add(BotonInfoCifrar))
+                    .add(BotonInfo))
                 .add(115, 115, 115))
         );
 
@@ -427,18 +441,23 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ClaveFinalTextFieldActionPerformed
 
+    private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_ContenidosActionPerformed
+
     /**
     * @param args the command line arguments
     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonInfoCifrar;
+    private javax.swing.JButton BotonInfo;
     private javax.swing.JButton Cancelar;
     private javax.swing.JTextArea CipherTextArea;
     private javax.swing.JTextField ClaveFinalTextField;
     private javax.swing.JTextField ClaveInicialTextField;
     private javax.swing.JRadioButton ClienteRadioButton;
+    private javax.swing.JMenuItem Contenidos;
     private javax.swing.JButton EjecutarButton;
     private javax.swing.JLabel IPLabel;
     private javax.swing.JTextField IPTextField;
@@ -446,6 +465,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private javax.swing.JTextArea PlainTextArea;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JRadioButton ServidorRadioButton;
+    private javax.swing.JMenuItem acercade;
     private javax.swing.JMenuBar cifrarMenuBarMain;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
