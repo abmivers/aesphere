@@ -303,8 +303,8 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
             URL hsURL = fichero.toURI().toURL();
             HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
             HelpBroker hb = helpset.createHelpBroker();
-            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
-                                (pantalla.height - ventana.height) / 2));
+            //hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+            //                    (pantalla.height - ventana.height) / 2));
             hb.setSize(new java.awt.Dimension(800, 628));
             hb.enableHelpOnButton(Contenidos, "explicacion_subbytes", helpset);
             hb.enableHelpOnButton(BotonInfo, "explicacion_subbytes", helpset);
