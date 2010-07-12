@@ -215,7 +215,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="CipherTextArea">
+                    <Component class="javax.swing.JTextArea" name="cipherTextArea">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -230,7 +230,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="PlainTextArea">
+                    <Component class="javax.swing.JTextArea" name="plainTextArea">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -258,6 +258,9 @@
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plainComboBoxActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="plainBrowseButton">
                   <Properties>
@@ -275,6 +278,9 @@
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cipherComboBoxActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="cipherBrowseButton">
                   <Properties>
@@ -432,6 +438,9 @@
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modoComboBoxActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
@@ -488,11 +497,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ClaveInicialTextField" pref="303" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="formatoClavesLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="clavesComboBox" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="claveSizeComboBox" min="-2" pref="90" max="-2" attributes="0"/>
                               </Group>
                               <Component id="ClaveFinalTextField" alignment="0" pref="303" max="32767" attributes="0"/>
                               <Component id="ivTextField" alignment="1" pref="303" max="32767" attributes="0"/>
@@ -507,9 +516,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="formatoClavesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="clavesComboBox" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <Component id="jComboBox1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="claveSizeComboBox" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -563,6 +572,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="ivTextField">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ivTextFieldActionPerformed"/>
                   </Events>
@@ -580,14 +592,15 @@
                 <Component class="javax.swing.JLabel" name="ivLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Vector de inicializaci&#xf3;n (Hex):"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel3">
+                <Component class="javax.swing.JLabel" name="formatoClavesLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Formato de claves:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="claveSizeComboBox">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">

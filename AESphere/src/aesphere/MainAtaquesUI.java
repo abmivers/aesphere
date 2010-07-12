@@ -35,9 +35,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         entradaPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        CipherTextArea = new javax.swing.JTextArea();
+        cipherTextArea = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
-        PlainTextArea = new javax.swing.JTextArea();
+        plainTextArea = new javax.swing.JTextArea();
         plainLabel = new javax.swing.JLabel();
         cipherLabel = new javax.swing.JLabel();
         plainComboBox = new javax.swing.JComboBox();
@@ -68,8 +68,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         ivTextField = new javax.swing.JTextField();
         clavesComboBox = new javax.swing.JComboBox();
         ivLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        formatoClavesLabel = new javax.swing.JLabel();
+        claveSizeComboBox = new javax.swing.JComboBox();
         cifrarMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -87,24 +87,34 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         entradaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ENTRADA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
-        CipherTextArea.setColumns(20);
-        CipherTextArea.setRows(5);
-        jScrollPane2.setViewportView(CipherTextArea);
+        cipherTextArea.setColumns(20);
+        cipherTextArea.setRows(5);
+        jScrollPane2.setViewportView(cipherTextArea);
 
-        PlainTextArea.setColumns(20);
-        PlainTextArea.setRows(5);
-        jScrollPane1.setViewportView(PlainTextArea);
+        plainTextArea.setColumns(20);
+        plainTextArea.setRows(5);
+        jScrollPane1.setViewportView(plainTextArea);
 
         plainLabel.setText("Texto en claro: ");
 
         cipherLabel.setText("Texto cifrado: ");
 
         plainComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto ASCII", "Hexadecimal", "Archivo" }));
+        plainComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plainComboBoxActionPerformed(evt);
+            }
+        });
 
         plainBrowseButton.setText("Browse");
         plainBrowseButton.setEnabled(false);
 
         cipherComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Base64", "Hexadecimal", "Archivo" }));
+        cipherComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cipherComboBoxActionPerformed(evt);
+            }
+        });
 
         cipherBrowseButton.setText("Browse");
         cipherBrowseButton.setEnabled(false);
@@ -200,6 +210,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         modoLabel.setText("Selecciona el modo de cifrado:");
 
         modoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ECB", "CBC" }));
+        modoComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modoComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef1.png"))); // NOI18N
 
@@ -285,6 +300,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef3.png"))); // NOI18N
 
+        ivTextField.setEnabled(false);
         ivTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ivTextFieldActionPerformed(evt);
@@ -294,10 +310,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         clavesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hexadecimal", "ASCII" }));
 
         ivLabel.setText("Vector de inicialización (Hex):");
+        ivLabel.setEnabled(false);
 
-        jLabel3.setText("Formato de claves:");
+        formatoClavesLabel.setText("Formato de claves:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "128 bits", "192 bits", "256 bits" }));
+        claveSizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "128 bits", "192 bits", "256 bits" }));
 
         org.jdesktop.layout.GroupLayout clavesPanelLayout = new org.jdesktop.layout.GroupLayout(clavesPanel);
         clavesPanel.setLayout(clavesPanelLayout);
@@ -315,11 +332,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                     .add(clavesPanelLayout.createSequentialGroup()
-                        .add(jLabel3)
+                        .add(formatoClavesLabel)
                         .add(18, 18, 18)
                         .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
-                        .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(claveSizeComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ivTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
                 .add(148, 148, 148))
@@ -330,9 +347,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(clavesPanelLayout.createSequentialGroup()
                         .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel3)
+                            .add(formatoClavesLabel)
                             .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(claveSizeComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -439,7 +456,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         boolean aux = true;
 
-        if ( aux && (PlainTextArea.getText().isEmpty() || CipherTextArea.getText().isEmpty()) ){
+        if ( aux && (plainTextArea.getText().isEmpty() || cipherTextArea.getText().isEmpty()) ){
            JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
            aux=false;
         }
@@ -480,10 +497,10 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         IPLabel.setEnabled(false);
         clavesPanel.setEnabled(true);
         entradaPanel.setEnabled(true);
-        CipherTextArea.setEnabled(true);
+        cipherTextArea.setEnabled(true);
         ClaveFinalTextField.setEnabled(true);
         ClaveInicialTextField.setEnabled(true);
-        PlainTextArea.setEnabled(true);
+        plainTextArea.setEnabled(true);
         cipherComboBox.setEnabled(true);
         cipherLabel.setEnabled(true);
         claveFinalLabel.setEnabled(true);
@@ -495,6 +512,12 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         ivTextField.setEnabled(false);
         NumeroClientesTextField.setEnabled(true);
         clientesLabel.setEnabled(true);
+        modoComboBox.setEnabled(true);
+        modoLabel.setEnabled(true);        
+        plainComboBox.setEnabled(true);
+        plainLabel.setEnabled(true);
+        claveSizeComboBox.setEnabled(true);
+        formatoClavesLabel.setEnabled(true);
         plainComboBox.setSelectedIndex(0);
         cipherComboBox.setSelectedIndex(0);
         modoComboBox.setSelectedIndex(0);
@@ -514,8 +537,29 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         IPLabel.setEnabled(true);
         clavesPanel.setEnabled(false);
         entradaPanel.setEnabled(false);
+        cipherTextArea.setEnabled(false);
+        ClaveFinalTextField.setEnabled(false);
+        ClaveInicialTextField.setEnabled(false);
+        plainTextArea.setEnabled(false);
+        cipherComboBox.setEnabled(false);
+        cipherLabel.setEnabled(false);
+        claveFinalLabel.setEnabled(false);
+        claveInicialLabel.setEnabled(false);
+        clavesComboBox.setEnabled(false);
+        clavesPanel.setEnabled(false);
+        entradaPanel.setEnabled(false);
+        ivLabel.setEnabled(false);
+        ivTextField.setEnabled(false);
         NumeroClientesTextField.setEnabled(false);
         clientesLabel.setEnabled(false);
+        modoComboBox.setEnabled(false);
+        modoLabel.setEnabled(false);
+        plainBrowseButton.setEnabled(false);
+        cipherBrowseButton.setEnabled(false);
+        plainComboBox.setEnabled(false);
+        plainLabel.setEnabled(false);
+        claveSizeComboBox.setEnabled(false);
+        formatoClavesLabel.setEnabled(false);
     }//GEN-LAST:event_ClienteRadioButtonActionPerformed
 
     private void EjecutarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecutarButtonActionPerformed
@@ -527,7 +571,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         if (ServidorRadioButton.isSelected() && ComprobarDatos()) {
             Thread servThread = new Thread(new Runnable() {
                 public void run() {
-                    new ServUI(wpadre,PlainTextArea.getText(),CipherTextArea.getText(),
+                    new ServUI(wpadre,plainTextArea.getText(),cipherTextArea.getText(),
                             NumeroClientesTextField.getText(),claveini,clavefin,
                             modoComboBox.getSelectedIndex(),ivTextField.getText());
                 }
@@ -565,6 +609,56 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ivTextFieldActionPerformed
 
+    private void modoComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modoComboBoxActionPerformed
+        switch (modoComboBox.getSelectedIndex()) {
+
+            case 0: ivLabel.setEnabled(false);
+                    ivTextField.setEnabled(false);
+                    break;
+
+            case 1: ivLabel.setEnabled(true);
+                    ivTextField.setEnabled(true);
+        }
+    }//GEN-LAST:event_modoComboBoxActionPerformed
+
+    private void plainComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plainComboBoxActionPerformed
+        switch (plainComboBox.getSelectedIndex()) {
+
+            case 0:plainTextArea.setEditable(true);
+                   plainTextArea.setText("");
+                   plainBrowseButton.setEnabled(false);
+                   break;
+
+            case 1:plainTextArea.setEditable(true);
+                   plainTextArea.setText("");
+                   plainBrowseButton.setEnabled(false);
+                   break;
+
+            case 2:plainTextArea.setEditable(false);
+                   plainTextArea.setText("");
+                   plainBrowseButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_plainComboBoxActionPerformed
+
+    private void cipherComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cipherComboBoxActionPerformed
+        switch (cipherComboBox.getSelectedIndex()) {
+
+            case 0:cipherTextArea.setEditable(true);
+                   cipherTextArea.setText("");
+                   cipherBrowseButton.setEnabled(false);
+                   break;
+
+            case 1:cipherTextArea.setEditable(true);
+                   cipherTextArea.setText("");
+                   cipherBrowseButton.setEnabled(false);
+                   break;
+
+            case 2:cipherTextArea.setEditable(false);
+                   cipherTextArea.setText("");
+                   cipherBrowseButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_cipherComboBoxActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -573,7 +667,6 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonInfo;
     private javax.swing.JButton Cancelar;
-    private javax.swing.JTextArea CipherTextArea;
     private javax.swing.JTextField ClaveFinalTextField;
     private javax.swing.JTextField ClaveInicialTextField;
     private javax.swing.JRadioButton ClienteRadioButton;
@@ -582,7 +675,6 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private javax.swing.JLabel IPLabel;
     private javax.swing.JTextField IPTextField;
     private javax.swing.JTextField NumeroClientesTextField;
-    private javax.swing.JTextArea PlainTextArea;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JRadioButton ServidorRadioButton;
     private javax.swing.JMenuItem acercade;
@@ -590,19 +682,20 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private javax.swing.JButton cipherBrowseButton;
     private javax.swing.JComboBox cipherComboBox;
     private javax.swing.JLabel cipherLabel;
+    private javax.swing.JTextArea cipherTextArea;
     private javax.swing.JLabel claveFinalLabel;
     private javax.swing.JLabel claveInicialLabel;
+    private javax.swing.JComboBox claveSizeComboBox;
     private javax.swing.JComboBox clavesComboBox;
     private javax.swing.JPanel clavesPanel;
     private javax.swing.JLabel clientesLabel;
     private javax.swing.JPanel entradaPanel;
+    private javax.swing.JLabel formatoClavesLabel;
     private javax.swing.JPanel funcionamientoPanel;
     private javax.swing.JLabel ivLabel;
     private javax.swing.JTextField ivTextField;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -617,6 +710,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private javax.swing.JButton plainBrowseButton;
     private javax.swing.JComboBox plainComboBox;
     private javax.swing.JLabel plainLabel;
+    private javax.swing.JTextArea plainTextArea;
     // End of variables declaration//GEN-END:variables
 
 }
