@@ -478,12 +478,26 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private void ServidorRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServidorRadioButtonActionPerformed
         IPTextField.setEnabled(false);
         IPLabel.setEnabled(false);
+        clavesPanel.setEnabled(true);
+        entradaPanel.setEnabled(true);
         CipherTextArea.setEnabled(true);
         ClaveFinalTextField.setEnabled(true);
         ClaveInicialTextField.setEnabled(true);
-        
+        PlainTextArea.setEnabled(true);
+        cipherComboBox.setEnabled(true);
+        cipherLabel.setEnabled(true);
+        claveFinalLabel.setEnabled(true);
+        claveInicialLabel.setEnabled(true);
+        clavesComboBox.setEnabled(true);
+        clavesPanel.setEnabled(true);
+        entradaPanel.setEnabled(true);
+        ivLabel.setEnabled(false);
+        ivTextField.setEnabled(false);
         NumeroClientesTextField.setEnabled(true);
         clientesLabel.setEnabled(true);
+        plainComboBox.setSelectedIndex(0);
+        cipherComboBox.setSelectedIndex(0);
+        modoComboBox.setSelectedIndex(0);
     }//GEN-LAST:event_ServidorRadioButtonActionPerformed
 
     private void IPTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IPTextFieldActionPerformed
@@ -498,6 +512,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private void ClienteRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteRadioButtonActionPerformed
         IPTextField.setEnabled(true);
         IPLabel.setEnabled(true);
+        clavesPanel.setEnabled(false);
+        entradaPanel.setEnabled(false);
         NumeroClientesTextField.setEnabled(false);
         clientesLabel.setEnabled(false);
     }//GEN-LAST:event_ClienteRadioButtonActionPerformed
