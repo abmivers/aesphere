@@ -240,7 +240,7 @@ public class ServUI extends javax.swing.JFrame {
                 if (!esta(clientesIP,ipcliente)) {
                     clientesIP[numCliente] = ipcliente;
                     clientesPort[numCliente] = helloPacket.getPort();
-                    System.out.println("SERVIDOR: Almacenado cliente " + clientesIP[numCliente].toString());
+                    System.out.println("SERVIDOR: Almacenado cliente " + clientesIP[numCliente].toString() + ":" + clientesPort[numCliente]);
                     debugArea.append("Conexión establecida con el cliente " + ipcliente.toString() + "\n");
                 }
 
@@ -248,7 +248,7 @@ public class ServUI extends javax.swing.JFrame {
                 enviarMensaje( "ServerHello", numCliente);                
 
                 //esperamos a que el cliente nos deje continuar
-                esperarMensaje("OK");
+                recibirIgnorar("OK", numCliente);
                 System.out.println("SERVIDOR: Cliente " + numCliente + " detectado");
 
                 numCliente++;
@@ -297,6 +297,31 @@ public class ServUI extends javax.swing.JFrame {
         }
     }
 
+    private void recibirIgnorar(String mensaje, int nclient) throws Exception {
+        int len = mensaje.length();
+        DatagramPacket received = new DatagramPacket (new byte[len],len);
+        //variable para almacenar el número de reintentos cuando la recepción falla
+        int reintentos = 10;
+        String msg = "";
+
+        do {            
+
+            try {
+                socket.receive(received);                
+                msg = new String(received.getData(), 0, received.getLength());
+                System.out.println( "SERVIDOR: Recibido " + msg + "\nCliente " +
+                        received.getAddress().toString() + ":" + received.getPort() );
+            } catch (Exception e) {
+                if (--reintentos == 0)
+                    throw e;
+            }
+
+        } while ( !Thread.currentThread().isInterrupted() &&
+                    !( msg.equals(mensaje) &&
+                       (received.getAddress().equals(clientesIP[nclient])) &&
+                       (received.getPort() == clientesPort[nclient])) );
+    }
+
     private DatagramPacket esperarMensaje (String mensaje) throws Exception {
         int len = mensaje.length();
         DatagramPacket received = new DatagramPacket(new byte[len],len);
@@ -340,6 +365,9 @@ public class ServUI extends javax.swing.JFrame {
              numKeys <<= 8;
              numKeys += (Conversor.byteToInt(finClave[i]) - Conversor.byteToInt(iniClave[i]));
          }
+
+         //como incluimos en la prueba la clave inicial y final, hay que sumar uno al resultado
+         numKeys++;
 
          return numKeys;
      }

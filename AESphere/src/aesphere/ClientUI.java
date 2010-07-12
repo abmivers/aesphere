@@ -41,7 +41,7 @@ public class ClientUI extends javax.swing.JFrame {
         plaintext = new byte[16];
         ciphertext = new byte[16];
         setSize(400, 400);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(wpadre);
         setVisible(true);
 
         // crear objeto DatagramSocket para enviar y recibir paquetes
@@ -52,20 +52,20 @@ public class ClientUI extends javax.swing.JFrame {
             System.exit(1);
         }
 
-        clientHello();
+        try {
+            clientHello();
 
-        esperarClave();
-        debugArea.append("Clave inicial: " + Conversor.byteToHexString(claveInicial) +
-                "\nNúmero de claves a probar: " + Long.toString(numClaves) + "\n");
+            esperarClave();
+            debugArea.append("Clave inicial: " + Conversor.byteToHexString(claveInicial) +
+                    "\nNúmero de claves a probar: " + Long.toString(numClaves) + "\n");
 
-        esperarTexto();
-        debugArea.append("Texo en claro: " + Conversor.byteToHexString(plaintext) +
-                "\nTexto cifrado: " + Conversor.byteToHexString(ciphertext) + "\n");
+            esperarTexto();
+            debugArea.append("Texo en claro: " + Conversor.byteToHexString(plaintext) +
+                    "\nTexto cifrado: " + Conversor.byteToHexString(ciphertext) + "\n");
 
-        try {probarClaves();} catch (IOException e) {
-            debugArea.append("Hubo un problema al comunicar al servidor que este cliente ha acabado");
-        }
-
+            probarClaves();
+        } catch (Exception e) {}
+                
         debugArea.append("\nFin del proceso\n");
     }
 
@@ -122,24 +122,39 @@ public class ClientUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     // esperar a que lleguen los paquetes del Servidor, mostrar el contenido de los paquetes
-    private void clientHello() {
+    private void clientHello() throws Exception {
+        boolean recibido = false;
+        int reintentos = 100;
         debugArea.append("Conectando con el servidor... ");
         try {
-            enviarMensaje("ClientHello");
-            System.out.println("CLIENTE: ClientHello enviado");
+            socket.setSoTimeout(3000);
+            do {
+                try {
+                    enviarMensaje("ClientHello");
+                    System.out.println("CLIENTE: ClientHello enviado");
 
-            //esperamos ServerHello
-            esperarMensaje("ServerHello");
-            System.out.println("CLIENTE: ServerHello recibido");                               
-            debugArea.append("Conexión establecida\n");               
-            
+                    //esperamos ServerHello
+                    esperarMensaje("ServerHello");
+                    System.out.println("CLIENTE: ServerHello recibido");
+                    recibido = true;
+                    debugArea.append("Conexión establecida\n");
+                } catch (Exception e) {
+                    if (--reintentos == 0)
+                        throw e;
+                }
+
+            } while (!Thread.currentThread().isInterrupted() && !recibido);
+
+            socket.setSoTimeout(0);
         } catch(Exception excepcion) {
-            debugArea.append("Error al conectar con el servidor\n");
-            excepcion.printStackTrace();
+                debugArea.append("Error al conectar con el servidor\n");
+                excepcion.printStackTrace();
+                throw excepcion;
         }
+
     }
 
-    private void esperarClave() {
+    private void esperarClave() throws Exception {
         debugArea.append("\nRecibiendo clave inicial... ");
         try {
             //creamos un DatagramPacket para recibir la clave
@@ -171,11 +186,12 @@ public class ClientUI extends javax.swing.JFrame {
         } catch (Exception e) {
             debugArea.append("Error al recibir la clave");
             e.printStackTrace();
+            throw e;
         }
 
     }
 
-    private void esperarTexto () {
+    private void esperarTexto () throws Exception {
         debugArea.append("\nRecibiendo texto... ");
         try {
             //creamos un DatagramPacket para recibir el texto en claro
@@ -203,26 +219,29 @@ public class ClientUI extends javax.swing.JFrame {
         } catch (Exception e) {
             debugArea.append("Error al recibir el texto");
             e.printStackTrace();
+            throw e;
         }
     }
 
-    private void probarClaves () throws IOException {
+    private void probarClaves () throws Exception {
         debugArea.append("\nComenzando la prueba de claves...\n");
+        int i = 0;
         try {
             //esperamos a que el servidor nos ordene comenzar
             esperarMensaje("START");
 
             byte [] claveAct = null;
-            byte [] out = null;
+            byte [] out = new byte[16];
             int numWords = claveInicial.length / 4;
-            for(int i = 0; i < numClaves; i++) {
+
+            for(i = 0; i < numClaves; i++) {
                 //obtenemos la siguiente clave a probar
                 if (i == 0) claveAct = claveInicial;
                 else claveAct = getNextKey(claveAct);
 
                 //realizamos el descifrado
                 AESdecrypt decipher = new AESdecrypt(claveAct,numWords, false);
-                decipher.InvCipher(plaintext, out);
+                decipher.InvCipher(ciphertext, out);
 
                 if (Arrays.equals(out, plaintext)) {
                     //enviamos la clave
@@ -235,13 +254,25 @@ public class ClientUI extends javax.swing.JFrame {
                 }
             }
 
+            debugArea.append("\nÚltima clave probada: " + Conversor.byteToHexString(claveAct));
             debugArea.append("\nPrueba de claves finalizada\n");
 
         } catch (Exception e) {
             e.printStackTrace();
             debugArea.append("Hubo un error al probar las claves");
+
+            try {enviarMensaje("END");} catch (IOException ex) {
+                debugArea.append("Hubo un problema al comunicar al servidor que este cliente ha acabado");
+                throw ex;
+            }
+
+            throw e;
         }
-        enviarMensaje("END");
+
+        try {enviarMensaje("END");} catch (IOException e) {
+            debugArea.append("Hubo un problema al comunicar al servidor que este cliente ha acabado");
+            throw e;
+        }
     }
 
     private void enviarMensaje(String mensaje)
