@@ -94,9 +94,8 @@ public class ServUI extends javax.swing.JFrame {
         //generamos la clave final para comprobar si está bien
         auxClave = getClientKey(claveinicial, acum - 1);
         //comprobamos si la última clave generada y la clave final son iguales
-        boolean iguales = true;
-        int len = claveinicial.length;
-        for (int i = 0; iguales && (i < len); i++)
+        boolean iguales = true;        
+        for (int i = claveinicial.length; iguales && (--i >= 0);)
             if (auxClave[i] != clavefinal[i]) iguales = false;
         if (iguales)
             debugArea.append("\nGeneración de claves finalizada correctamente\n");

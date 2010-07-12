@@ -235,37 +235,32 @@ public class ClientUI extends javax.swing.JFrame {
             esperarMensaje("START");
 
             //hacemos las declaraciones antes del for
-            byte [] claveAct = null;
+            byte [] claveAct = claveInicial;
             byte [] out = new byte[16];
             int numWords = claveInicial.length / 4;
-            int len = claveInicial.length;
-            boolean iguales;
-            int j;
-            DatagramPacket clave;
-            AESdecrypt decipher;
+            int len = claveInicial.length;                 
 
-            for(int i = 0; i < numClaves; i++) {
-                //obtenemos la siguiente clave a probar
-                if (i == 0) claveAct = claveInicial;
-                else claveAct = getNextKey(claveAct);
-
-                //realizamos el descifrado
-                decipher = new AESdecrypt(claveAct,numWords, false);
-                decipher.InvCipher(ciphertext, out);
+            for(long i = numClaves; --i >= 0;) {
+                //realizamos el cifrado
+                AESencrypt cipher = new AESencrypt(claveAct,numWords, false);
+                cipher.Cipher(plaintext, out);
 
                 //comprobamos si es una clave válida
-                iguales = true;
-                for (j = 0; iguales && (j < len); j++)
-                    if (out[j] != plaintext[j]) iguales = false;
+                boolean iguales = true;
+                for (int j = len; iguales && (--j >= 0);)
+                    if (out[j] != ciphertext[j]) iguales = false;
                 if (iguales) {
                     //enviamos la clave
-                    clave = new DatagramPacket (claveAct, claveAct.length,
+                    DatagramPacket clave = new DatagramPacket (claveAct, claveAct.length,
                                 servIP, 3000);
                     socket.send(clave);
                     debugArea.append("Clave encontrada: " + Conversor.byteToHexString(claveAct) + "\n");
                     //esperamos a que el cliente nos deje continuar
                     esperarMensaje("NEXT");
                 }
+
+                //obtenemos la siguiente clave a probar
+                claveAct = getNextKey(claveAct);
             }
 
             debugArea.append("\nÚltima clave probada: " + Conversor.byteToHexString(claveAct));
