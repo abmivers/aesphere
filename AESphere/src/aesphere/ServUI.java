@@ -10,7 +10,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,12 +26,12 @@ public class ServUI extends javax.swing.JFrame {
 
     /** Creates new form ServUI */
     public ServUI(MainUI padre, String plaintext, String ciphertext, 
-            String numeroclientes, byte [] claveinicial, byte[] clavefinal,
+            int numeroclientes, byte [] claveinicial, long numClaves,
             int blockMode, String IV) {
         initComponents();
         wpadre = padre;
         wpadre.newchild(this);
-        numclientes = Integer.parseInt(numeroclientes);
+        numclientes = numeroclientes;
         clientesIP = new InetAddress [numclientes];
         clientesPort = new int [numclientes];
         setSize(400, 400);
@@ -51,11 +50,9 @@ public class ServUI extends javax.swing.JFrame {
         setLocationRelativeTo(wpadre);
         setVisible(true);
 
-        //declaramos el array con el número de claves que cada cliente deberá probar
-        long [] clavesPorCliente = new long [numclientes];
-        //obtenemos el número de claves a probar en total
-        long numClaves = getKeysToTry(claveinicial, clavefinal);
         debugArea.append(Long.toString(numClaves) + " claves a probar\n");
+        //declaramos el array con el número de claves que cada cliente deberá probar
+        long [] clavesPorCliente = new long [numclientes];                
         //calculamos el número de claves a probar por cada cliente
         long clavesCliente = numClaves / numclientes;
         //si la división no es exacta, no todos los clientesIP probarán el mismo número de claves
@@ -91,19 +88,9 @@ public class ServUI extends javax.swing.JFrame {
             debugArea.append("Enviando texto... ");
             enviarTextoCliente(plainBytes, cipherBytes, i);
             acum += clavesPorCliente[i];
-        }
-
-        //generamos la clave final para comprobar si está bien
-        auxClave = getClientKey(claveinicial, acum - 1);
-        //comprobamos si la última clave generada y la clave final son iguales
-        boolean iguales = true;        
-        for (int i = claveinicial.length; iguales && (--i >= 0);)
-            if (auxClave[i] != clavefinal[i]) iguales = false;
-        if (iguales)
-            debugArea.append("\nGeneración de claves finalizada correctamente\n");
-        else
-            debugArea.append("\nHubo un error en la generación de claves\n");
-
+        }     
+                      
+        debugArea.append("\nGeneración de claves finalizada correctamente\n");     
         debugArea.append("\nComenzando cifrado en clientes\n");
         System.out.println("\n[" + java.util.Calendar.getInstance().getTime().toString() + "]\n");
         esperarClaves();
@@ -365,22 +352,6 @@ public class ServUI extends javax.swing.JFrame {
         socket.send(toSend);
         System.out.println("SERVIDOR: " + mensaje + " enviado");
     }
-
-
-     private long getKeysToTry (byte [] iniClave, byte [] finClave) {
-         int len = iniClave.length;
-         long numKeys = 0;
-
-         for (int i = 0; i < len; i++) {
-             numKeys <<= 8;
-             numKeys += (Conversor.byteToInt(finClave[i]) - Conversor.byteToInt(iniClave[i]));
-         }
-
-         //como incluimos en la prueba la clave inicial y final, hay que sumar uno al resultado
-         numKeys++;
-
-         return numKeys;
-     }
 
      private byte[] getClientKey (byte [] iniClave, long offset) {
          int len = iniClave.length;

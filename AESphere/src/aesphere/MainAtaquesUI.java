@@ -1,7 +1,9 @@
 
 package aesphere;
 
+import java.io.File;
 import javax.swing.ButtonGroup;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,6 +13,7 @@ import javax.swing.JOptionPane;
 public class MainAtaquesUI extends javax.swing.JFrame {
 
     private MainUI wpadre;
+    private javax.swing.JFileChooser archivos;
 
     /** Creates new form MainAtaquesUI */
     public MainAtaquesUI(MainUI padre) {
@@ -108,6 +111,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         plainBrowseButton.setText("Browse");
         plainBrowseButton.setEnabled(false);
+        plainBrowseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plainBrowseButtonActionPerformed(evt);
+            }
+        });
 
         cipherComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Base64", "Hexadecimal", "Archivo" }));
         cipherComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +126,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         cipherBrowseButton.setText("Browse");
         cipherBrowseButton.setEnabled(false);
+        cipherBrowseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cipherBrowseButtonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef2.png"))); // NOI18N
 
@@ -465,16 +478,6 @@ public class MainAtaquesUI extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, "Tiene que introducir el número de clientes.");
            aux=false;
         }
-
-        if ( aux && (ClienteRadioButton.isSelected() && IPTextField.getText().isEmpty() )){
-           JOptionPane.showMessageDialog(this, "Tiene que introducir la dirección IP del Servidor.");
-           aux=false;
-        }
-
-        if ( aux && (ClaveInicialTextField.getText().isEmpty() || ClaveFinalTextField.getText().isEmpty()) ){
-           JOptionPane.showMessageDialog(this, "Tiene que establecer un rango para delimitar el espacio de claves.");
-           aux=false;
-        }
        
         return aux;
     }
@@ -563,28 +566,62 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ClienteRadioButtonActionPerformed
 
     private void EjecutarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecutarButtonActionPerformed
-        
-        final byte [] claveini = Conversor.hexStringToByte(ClaveInicialTextField.getText());
-        final byte [] clavefin = Conversor.hexStringToByte(ClaveFinalTextField.getText());
-
-
         if (ServidorRadioButton.isSelected() && ComprobarDatos()) {
-            Thread servThread = new Thread(new Runnable() {
-                public void run() {
-                    new ServUI(wpadre,plainTextArea.getText(),cipherTextArea.getText(),
-                            NumeroClientesTextField.getText(),claveini,clavefin,
-                            modoComboBox.getSelectedIndex(),ivTextField.getText());
+            byte [] claveinicial = null;
+            byte [] clavefinal = null;
+            int op = 0;
+            long numClaves = 0;
+            int numClientes = 0;
+
+            if (ComprobarClaves()) {
+                switch (clavesComboBox.getSelectedIndex()) {
+                    case 0: claveinicial = Conversor.hexStringToByte(ClaveInicialTextField.getText());
+                            clavefinal = Conversor.hexStringToByte(ClaveFinalTextField.getText());
+                            break;
+
+                    case 1: claveinicial = Conversor.stringToASCII(ClaveInicialTextField.getText());
+                            clavefinal = Conversor.stringToASCII(ClaveFinalTextField.getText());
                 }
-            });
-            wpadre.newThread(servThread);
-            servThread.start();
-        } else if (ClienteRadioButton.isSelected()) {
+
+                //calculamos aproximadamente el número de claves a probar por cliente para avisar si son demasiadas
+                numClaves = getKeysToTry(claveinicial, clavefinal);
+                numClientes = Integer.parseInt(NumeroClientesTextField.getText());
+
+                if ( (numClaves / numClientes) >= 1000000 ) {
+                    op = JOptionPane.showConfirmDialog(this, "Con el espectro de claves" +
+                            " elegido podrían tardarse más de 10 minutos en terminar el proceso. " +
+                            "\n¿Está seguro de que desea continuar?",
+                            "Ataques - Confirmación", JOptionPane.YES_NO_OPTION);
+                }
+            }
+
+            final int nClientes = numClientes;
+            final byte [] claveini = claveinicial;
+            final long nClaves = numClaves;
+
+            if (op == 0) {
+                Thread servThread = new Thread(new Runnable() {
+                    public void run() {
+                        new ServUI(wpadre, plainTextArea.getText(), cipherTextArea.getText(),
+                                nClientes, claveini, nClaves,
+                                modoComboBox.getSelectedIndex(), ivTextField.getText());
+                    }
+                });
+                wpadre.newThread(servThread);
+                servThread.start();
+            }
+
+        } else if (ClienteRadioButton.isSelected() && IPTextField.getText().isEmpty())
+            JOptionPane.showMessageDialog(this, "Debde rellenar la IP del servidor",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+        else{
             Thread clientThread = new Thread(new Runnable() {
                 public void run() {
                     try {
                         new ClientUI(wpadre, java.net.InetAddress.getByName(IPTextField.getText()));
                     } catch (java.net.UnknownHostException e) {
                         JOptionPane.showMessageDialog(null, "Error en la IP del servidor");
+                        Thread.currentThread().interrupt();
                     }
                 }
             });
@@ -659,10 +696,161 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cipherComboBoxActionPerformed
 
-    /**
-    * @param args the command line arguments
-    */
+    private void plainBrowseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plainBrowseButtonActionPerformed
+        int resul = archivos.showSaveDialog(null);
+        File archi= archivos.getSelectedFile();
+        if (resul == JFileChooser.APPROVE_OPTION) plainTextArea.setText(archi.getPath());
+    }//GEN-LAST:event_plainBrowseButtonActionPerformed
 
+    private void cipherBrowseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cipherBrowseButtonActionPerformed
+        int resul = archivos.showSaveDialog(null);
+        File archi= archivos.getSelectedFile();
+        if (resul == JFileChooser.APPROVE_OPTION) cipherTextArea.setText(archi.getPath());
+    }//GEN-LAST:event_cipherBrowseButtonActionPerformed
+
+    private long getKeysToTry (byte [] iniClave, byte [] finClave) {
+         int len = iniClave.length;
+         long numKeys = 0;
+
+         for (int i = 0; i < len; i++) {
+             numKeys <<= 8;
+             numKeys += (Conversor.byteToInt(finClave[i]) - Conversor.byteToInt(iniClave[i]));
+         }
+
+         //como incluimos en la prueba la clave inicial y final, hay que sumar uno al resultado
+         numKeys++;
+
+         return numKeys;
+     }
+
+    private boolean ComprobarHexadecimal (String cadena){
+
+    boolean resul = true;
+
+    for (int i = 0; i < cadena.length() ; i++){
+
+      if ( ((cadena.charAt(i) >= 'A') && (cadena.charAt(i) <= 'F')) ||
+          ((cadena.charAt(i) >= 'a') && (cadena.charAt(i) <= 'f')) ||
+          ((cadena.charAt(i) >= '0') && (cadena.charAt(i) <= '9')));
+      else {
+          resul=false;
+      }
+    }
+
+    return resul;
+    }
+
+    private boolean ComprobarClaves () {
+        boolean aux = true;
+        int indexFormat = clavesComboBox.getSelectedIndex();
+        int indexSize = claveSizeComboBox.getSelectedIndex();
+
+        if ( aux && ClaveInicialTextField.getText().isEmpty() ) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && ClaveFinalTextField.getText().isEmpty() ) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (indexFormat == 0) && !ComprobarHexadecimal(ClaveInicialTextField.getText() )) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en la clave inicial",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (indexFormat == 0) && !ComprobarHexadecimal(ClaveFinalTextField.getText()) ) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en la clave final",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if (aux && (indexSize == 0) ) {
+
+            if (aux && (indexFormat == 0) && (ClaveInicialTextField.getText().length() != 32) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 32 dígitos hexadecimales en la clave inicial",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if ( aux && (indexFormat == 0) && (ClaveFinalTextField.getText().length() != 32) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 32 dígitos hexadecimales en la clave final",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if (aux && (indexFormat == 1) && (ClaveInicialTextField.getText().length() != 16) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 16 caracteres ASCII en la clave inicial",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if (aux && (indexFormat == 1) && (ClaveFinalTextField.getText().length() != 16) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 16 caracteres ASCII en la clave final",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+
+        if ( aux && (indexSize == 1) ) {
+
+            if (aux && (indexFormat == 0) && (ClaveInicialTextField.getText().length() != 48) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 48 dígitos hexadecimales en la clave inicial",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if ( aux && (indexFormat == 0) && (ClaveFinalTextField.getText().length() != 48) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 48 dígitos hexadecimales en la clave final",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if (aux && (indexFormat == 1) && (ClaveInicialTextField.getText().length() != 24) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 24 caracteres ASCII en la clave inicial",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if (aux && (indexFormat == 1) && (ClaveFinalTextField.getText().length() != 24) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 24 caracteres ASCII en la clave final",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+
+        if ( aux && (indexSize == 2) ) {
+
+            if (aux && (indexFormat == 0) && (ClaveInicialTextField.getText().length() != 64) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 64 dígitos hexadecimales en la clave inicial",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if ( aux && (indexFormat == 0) && (ClaveFinalTextField.getText().length() != 64) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 64 dígitos hexadecimales en la clave final",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if (aux && (indexFormat == 1) && (ClaveInicialTextField.getText().length() != 32) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 32 caracteres ASCII en la clave inicial",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if (aux && (indexFormat == 1) && (ClaveFinalTextField.getText().length() != 32) ) {
+                aux = false;
+                JOptionPane.showMessageDialog(this, "Debe introducir 32 caracteres ASCII en la clave final",
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        return aux;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonInfo;
