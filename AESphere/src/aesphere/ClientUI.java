@@ -17,6 +17,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,8 +49,12 @@ public class ClientUI extends javax.swing.JFrame {
         try {
             socket = new DatagramSocket();
         } catch(SocketException excepcionSocket) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al crear el servidor, compruebe que tiene permisos" +
+                    " para crear un servidor en el puerto 3000", "Servidor - Error",
+                    JOptionPane.ERROR_MESSAGE);
             excepcionSocket.printStackTrace();
-            System.exit(1);
+            this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
         }
 
         try {
@@ -224,29 +229,38 @@ public class ClientUI extends javax.swing.JFrame {
     }
 
     private void probarClaves () throws Exception {
-        debugArea.append("\nComenzando la prueba de claves...\n");
-        int i = 0;
+        debugArea.append("\nComenzando la prueba de claves...\n");        
         try {
             //esperamos a que el servidor nos ordene comenzar
             esperarMensaje("START");
 
+            //hacemos las declaraciones antes del for
             byte [] claveAct = null;
             byte [] out = new byte[16];
             int numWords = claveInicial.length / 4;
+            int len = claveInicial.length;
+            boolean iguales;
+            int j;
+            DatagramPacket clave;
+            AESdecrypt decipher;
 
-            for(i = 0; i < numClaves; i++) {
+            for(int i = 0; i < numClaves; i++) {
                 //obtenemos la siguiente clave a probar
                 if (i == 0) claveAct = claveInicial;
                 else claveAct = getNextKey(claveAct);
 
                 //realizamos el descifrado
-                AESdecrypt decipher = new AESdecrypt(claveAct,numWords, false);
+                decipher = new AESdecrypt(claveAct,numWords, false);
                 decipher.InvCipher(ciphertext, out);
 
-                if (Arrays.equals(out, plaintext)) {
+                //comprobamos si es una clave válida
+                iguales = true;
+                for (j = 0; iguales && (j < len); j++)
+                    if (out[j] != plaintext[j]);
+                if (iguales) {
                     //enviamos la clave
-                    DatagramPacket clave = new DatagramPacket (claveAct, claveAct.length,
-                            servIP, 3000);
+                    clave = new DatagramPacket (claveAct, claveAct.length,
+                                servIP, 3000);
                     socket.send(clave);
                     debugArea.append("Clave encontrada: " + Conversor.byteToHexString(claveAct) + "\n");
                     //esperamos a que el cliente nos deje continuar

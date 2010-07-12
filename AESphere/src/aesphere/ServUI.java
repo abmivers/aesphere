@@ -11,6 +11,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,8 +38,12 @@ public class ServUI extends javax.swing.JFrame {
         try {
             socket = new DatagramSocket(3000);
         } catch (SocketException excepcionSocket) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al crear el servidor, compruebe que tiene permisos" +
+                    " para crear un servidor en el puerto 3000", "Servidor - Error",
+                    JOptionPane.ERROR_MESSAGE);
             excepcionSocket.printStackTrace();
-            System.exit(1);
+            this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
         }
 
         setLocationRelativeTo(wpadre);
@@ -87,15 +92,21 @@ public class ServUI extends javax.swing.JFrame {
         }
 
         //generamos la clave final para comprobar si está bien
-        auxClave = getClientKey(claveinicial, acum);
-        //comprobamos si la última clave generada y la clave final son iguales     
-        if (Arrays.equals(auxClave, clavefinal))
+        auxClave = getClientKey(claveinicial, acum - 1);
+        //comprobamos si la última clave generada y la clave final son iguales
+        boolean iguales = true;
+        int len = claveinicial.length;
+        for (int i = 0; iguales && (i < len); i++)
+            if (auxClave[i] != clavefinal[i]);
+        if (iguales)
             debugArea.append("\nGeneración de claves finalizada correctamente\n");
         else
             debugArea.append("\nHubo un error en la generación de claves\n");
 
         debugArea.append("\nComenzando cifrado en clientes\n");
+        System.out.println("\n[" + java.util.Calendar.getInstance().getTime().toString() + "]\n");
         esperarClaves();
+        System.out.println("\n[" + java.util.Calendar.getInstance().getTime().toString() + "]\n");
 
         debugArea.append("\nFin del proceso\n");
     }
@@ -168,8 +179,7 @@ public class ServUI extends javax.swing.JFrame {
             System.out.println("SERVIDOR: Clave enviada");
             
             //esperamos confirmación del cliente ClaveOK
-            esperarMensaje("ClaveOK");
-            System.out.println("SERVIDOR: ClaveOK recibido");
+            esperarMensaje("ClaveOK");            
                         
             //enviamos el número de claves a probar
             byte[] numClaves = Conversor.longToByte(clavesAprobar);
@@ -180,8 +190,7 @@ public class ServUI extends javax.swing.JFrame {
             System.out.println("SERVIDOR: Long enviado");
             
             //esperamos la confirmación del cliente LongOK
-            esperarMensaje("LongOK");
-            System.out.println("SERVIDOR: LongOK recibido");            
+            esperarMensaje("LongOK");                       
                        
             debugArea.append("Clave enviada\n");
         }
