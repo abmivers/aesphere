@@ -97,7 +97,7 @@ public class ServUI extends javax.swing.JFrame {
         boolean iguales = true;
         int len = claveinicial.length;
         for (int i = 0; iguales && (i < len); i++)
-            if (auxClave[i] != clavefinal[i]);
+            if (auxClave[i] != clavefinal[i]) iguales = false;
         if (iguales)
             debugArea.append("\nGeneración de claves finalizada correctamente\n");
         else

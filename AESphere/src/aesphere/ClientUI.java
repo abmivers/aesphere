@@ -256,7 +256,7 @@ public class ClientUI extends javax.swing.JFrame {
                 //comprobamos si es una clave válida
                 iguales = true;
                 for (j = 0; iguales && (j < len); j++)
-                    if (out[j] != plaintext[j]);
+                    if (out[j] != plaintext[j]) iguales = false;
                 if (iguales) {
                     //enviamos la clave
                     clave = new DatagramPacket (claveAct, claveAct.length,
