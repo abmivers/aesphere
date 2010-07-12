@@ -478,8 +478,8 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
             URL hsURL = fichero.toURI().toURL();
             HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
             HelpBroker hb = helpset.createHelpBroker();
-            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
-                                (pantalla.height - ventana.height) / 2));
+            //hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+            //                    (pantalla.height - ventana.height) / 2));
             hb.setSize(new java.awt.Dimension(800, 628));
             hb.enableHelpOnButton(Contenidos, "ventana_shiftrows", helpset);
             hb.enableHelpOnButton(BotonInfo, "ventana_shiftrows", helpset);
@@ -736,67 +736,67 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_pegarInputActionPerformed
 
     private void RandomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomButtonActionPerformed
-        int x = new Double(Math.random() * 100).intValue()+16;
+        int x = new Double(Math.random() * 239).intValue()+16;
         String a = java.lang.Integer.toHexString(x);
         a11.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a12.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a13.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a14.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a21.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a22.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a23.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a24.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a31.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a32.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a33.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a34.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a41.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a42.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a43.setText(a);
 
-        x = new Double(Math.random() * 100).intValue()+16;
+        x = new Double(Math.random() * 239).intValue()+16;
         a = java.lang.Integer.toHexString(x);
         a44.setText(a);
     }//GEN-LAST:event_RandomButtonActionPerformed
