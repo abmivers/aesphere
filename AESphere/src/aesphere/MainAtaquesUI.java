@@ -19,7 +19,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         ButtonGroup group = new ButtonGroup();
         group.add(ClienteRadioButton);
         group.add(ServidorRadioButton);
-        this.setSize(800, 622);
+        this.setSize(850, 730);
     }
 
     /** This method is called from within the constructor to
@@ -31,32 +31,45 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        entradaPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         CipherTextArea = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         PlainTextArea = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        plainLabel = new javax.swing.JLabel();
+        cipherLabel = new javax.swing.JLabel();
+        plainComboBox = new javax.swing.JComboBox();
+        plainBrowseButton = new javax.swing.JButton();
+        cipherComboBox = new javax.swing.JComboBox();
+        cipherBrowseButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        EjecutarButton = new javax.swing.JButton();
+        funcionamientoPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ServidorRadioButton = new javax.swing.JRadioButton();
         IPLabel = new javax.swing.JLabel();
         IPTextField = new javax.swing.JTextField();
         ClienteRadioButton = new javax.swing.JRadioButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        clientesLabel = new javax.swing.JLabel();
         NumeroClientesTextField = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
+        modoLabel = new javax.swing.JLabel();
+        modoComboBox = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        BotonInfo = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
+        clavesPanel = new javax.swing.JPanel();
         ClaveFinalTextField = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        claveInicialLabel = new javax.swing.JLabel();
+        claveFinalLabel = new javax.swing.JLabel();
         ClaveInicialTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        BotonInfo = new javax.swing.JButton();
-        EjecutarButton = new javax.swing.JButton();
-        Cancelar = new javax.swing.JButton();
+        ivTextField = new javax.swing.JTextField();
+        clavesComboBox = new javax.swing.JComboBox();
+        ivLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
         cifrarMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -72,7 +85,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ENTRADA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 16))); // NOI18N
+        entradaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ENTRADA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         CipherTextArea.setColumns(20);
         CipherTextArea.setRows(5);
@@ -82,47 +95,78 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         PlainTextArea.setRows(5);
         jScrollPane1.setViewportView(PlainTextArea);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef1.png"))); // NOI18N
+        plainLabel.setText("Texto en claro: ");
 
-        jLabel3.setText("Texto en claro: ");
+        cipherLabel.setText("Texto cifrado: ");
 
-        jLabel4.setText("Texto cifrado: ");
+        plainComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto ASCII", "Hexadecimal", "Archivo" }));
 
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(10, 10, 10)
-                .add(jLabel2)
+        plainBrowseButton.setText("Browse");
+        plainBrowseButton.setEnabled(false);
+
+        cipherComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Base64", "Hexadecimal", "Archivo" }));
+
+        cipherBrowseButton.setText("Browse");
+        cipherBrowseButton.setEnabled(false);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef2.png"))); // NOI18N
+
+        org.jdesktop.layout.GroupLayout entradaPanelLayout = new org.jdesktop.layout.GroupLayout(entradaPanel);
+        entradaPanel.setLayout(entradaPanelLayout);
+        entradaPanelLayout.setHorizontalGroup(
+            entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(entradaPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel5)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(entradaPanelLayout.createSequentialGroup()
+                        .add(plainComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(plainBrowseButton))
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(plainLabel))
                 .add(18, 18, 18)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel3)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 265, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(108, 108, 108)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel4)
-                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 282, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                        .add(entradaPanelLayout.createSequentialGroup()
+                            .add(cipherComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 111, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(cipherBrowseButton))
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 286, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(cipherLabel))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel2)
-                    .add(jLabel3))
-                .addContainerGap(89, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .add(2, 2, 2)
-                .add(jLabel4)
-                .add(18, 18, 18)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane2)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(64, 64, 64))
+        entradaPanelLayout.setVerticalGroup(
+            entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(entradaPanelLayout.createSequentialGroup()
+                .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(entradaPanelLayout.createSequentialGroup()
+                        .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(plainLabel)
+                            .add(cipherLabel))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(cipherBrowseButton)
+                            .add(plainComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(plainBrowseButton)
+                            .add(cipherComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 118, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jLabel5))
+                .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FUNCIONAMIENTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 16))); // NOI18N
+        EjecutarButton.setText("Ejecutar");
+        EjecutarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EjecutarButtonActionPerformed(evt);
+            }
+        });
+
+        funcionamientoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FUNCIONAMIENTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jLabel1.setText("Este equipo funcionará como:");
 
@@ -151,56 +195,77 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef2.png"))); // NOI18N
+        clientesLabel.setText("Introduce el número de clientes:");
 
-        jLabel8.setText("Introduce el número de clientes:");
+        modoLabel.setText("Selecciona el modo de cifrado:");
 
-        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(10, 10, 10)
-                .add(jLabel5)
+        modoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ECB", "CBC" }));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef1.png"))); // NOI18N
+
+        org.jdesktop.layout.GroupLayout funcionamientoPanelLayout = new org.jdesktop.layout.GroupLayout(funcionamientoPanel);
+        funcionamientoPanel.setLayout(funcionamientoPanelLayout);
+        funcionamientoPanelLayout.setHorizontalGroup(
+            funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(funcionamientoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel2)
                 .add(33, 33, 33)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 198, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jPanel2Layout.createSequentialGroup()
-                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(ClienteRadioButton)
-                            .add(ServidorRadioButton))
+                    .add(funcionamientoPanelLayout.createSequentialGroup()
+                        .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(ServidorRadioButton)
+                            .add(ClienteRadioButton))
                         .add(37, 37, 37)
-                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(IPLabel)
-                            .add(jLabel8))
+                        .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(clientesLabel)
+                            .add(modoLabel)
+                            .add(IPLabel))
                         .add(35, 35, 35)
-                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(NumeroClientesTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(207, Short.MAX_VALUE))
+                            .add(modoComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 77, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel5)
-                    .add(jPanel2Layout.createSequentialGroup()
+        funcionamientoPanelLayout.setVerticalGroup(
+            funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(funcionamientoPanelLayout.createSequentialGroup()
+                .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(funcionamientoPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(ServidorRadioButton)
-                            .add(jLabel8)
+                            .add(clientesLabel)
                             .add(NumeroClientesTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(ClienteRadioButton)
+                        .add(6, 6, 6)
+                        .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(modoLabel)
+                            .add(modoComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(18, 18, 18)
+                        .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(IPLabel)
-                            .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                            .add(ClienteRadioButton)))
+                    .add(jLabel2))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESPACIO DE CLAVES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 16))); // NOI18N
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
+
+        Cancelar.setLabel("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
+
+        clavesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESPACIO DE CLAVES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         ClaveFinalTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,9 +273,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Clave inicial: ");
+        claveInicialLabel.setText("Clave inicial: ");
 
-        jLabel6.setText("Clave final:  ");
+        claveFinalLabel.setText("Clave final:  ");
 
         ClaveInicialTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,57 +285,109 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef3.png"))); // NOI18N
 
-        org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel3Layout.createSequentialGroup()
-                .add(10, 10, 10)
+        ivTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ivTextFieldActionPerformed(evt);
+            }
+        });
+
+        clavesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hexadecimal", "ASCII" }));
+
+        ivLabel.setText("Vector de inicialización (Hex):");
+
+        jLabel3.setText("Formato de claves:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "128 bits", "192 bits", "256 bits" }));
+
+        org.jdesktop.layout.GroupLayout clavesPanelLayout = new org.jdesktop.layout.GroupLayout(clavesPanel);
+        clavesPanel.setLayout(clavesPanelLayout);
+        clavesPanelLayout.setHorizontalGroup(
+            clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(clavesPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .add(jLabel9)
-                .add(43, 43, 43)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 88, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel6))
-                .add(38, 38, 38)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(299, Short.MAX_VALUE))
+                .add(18, 18, 18)
+                .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(ivLabel)
+                    .add(claveInicialLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 88, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(claveFinalLabel))
+                .add(18, 18, 18)
+                .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                    .add(clavesPanelLayout.createSequentialGroup()
+                        .add(jLabel3)
+                        .add(18, 18, 18)
+                        .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, ivTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
+                .add(148, 148, 148))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel3Layout.createSequentialGroup()
-                .add(jLabel9)
-                .addContainerGap(21, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel7)
-                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel6)
-                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+        clavesPanelLayout.setVerticalGroup(
+            clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(clavesPanelLayout.createSequentialGroup()
+                .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(clavesPanelLayout.createSequentialGroup()
+                        .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel3)
+                            .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(claveInicialLabel))
+                        .add(9, 9, 9)
+                        .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(claveFinalLabel))
+                        .add(18, 18, 18)
+                        .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(ivLabel)
+                            .add(ivTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jLabel9))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(Cancelar)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(EjecutarButton)
+                        .add(14, 14, 14))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, entradaPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, funcionamientoPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, clavesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(4, 4, 4)
+                .add(BotonInfo)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(BotonInfo)
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(funcionamientoPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(11, 11, 11)
+                        .add(entradaPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(11, 11, 11)
+                        .add(clavesPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 14, Short.MAX_VALUE)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(EjecutarButton)
+                            .add(Cancelar))))
                 .addContainerGap())
         );
 
-        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
-        BotonInfo.setBorder(null);
-        BotonInfo.setContentAreaFilled(false);
-
-        EjecutarButton.setText("Ejecutar");
-        EjecutarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EjecutarButtonActionPerformed(evt);
-            }
-        });
-
-        Cancelar.setLabel("Cancelar");
-        Cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarActionPerformed(evt);
-            }
-        });
+        jScrollPane3.setViewportView(jPanel1);
 
         mainMenuArchivo.setText("Archivo");
 
@@ -308,36 +425,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(Cancelar)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(EjecutarButton)
-                        .add(18, 18, 18)
-                        .add(BotonInfo)))
-                .addContainerGap())
+            .add(jScrollPane3)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 170, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(BotonInfo)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(EjecutarButton)
-                        .add(Cancelar)))
-                .addContainerGap())
+            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
         );
 
         pack();
@@ -386,8 +478,12 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private void ServidorRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServidorRadioButtonActionPerformed
         IPTextField.setEnabled(false);
         IPLabel.setEnabled(false);
+        CipherTextArea.setEnabled(true);
+        ClaveFinalTextField.setEnabled(true);
+        ClaveInicialTextField.setEnabled(true);
+        
         NumeroClientesTextField.setEnabled(true);
-        jLabel8.setEnabled(true);
+        clientesLabel.setEnabled(true);
     }//GEN-LAST:event_ServidorRadioButtonActionPerformed
 
     private void IPTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IPTextFieldActionPerformed
@@ -403,7 +499,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         IPTextField.setEnabled(true);
         IPLabel.setEnabled(true);
         NumeroClientesTextField.setEnabled(false);
-        jLabel8.setEnabled(false);
+        clientesLabel.setEnabled(false);
     }//GEN-LAST:event_ClienteRadioButtonActionPerformed
 
     private void EjecutarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecutarButtonActionPerformed
@@ -415,7 +511,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         if (ServidorRadioButton.isSelected() && ComprobarDatos()) {
             Thread servThread = new Thread(new Runnable() {
                 public void run() {
-                    new ServUI(wpadre,PlainTextArea.getText(),CipherTextArea.getText(),NumeroClientesTextField.getText(),claveini,clavefin);
+                    new ServUI(wpadre,PlainTextArea.getText(),CipherTextArea.getText(),
+                            NumeroClientesTextField.getText(),claveini,clavefin,
+                            modoComboBox.getSelectedIndex(),ivTextField.getText());
                 }
             });
             wpadre.newThread(servThread);
@@ -447,6 +545,10 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 }//GEN-LAST:event_ContenidosActionPerformed
 
+    private void ivTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ivTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ivTextFieldActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -469,23 +571,36 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton ServidorRadioButton;
     private javax.swing.JMenuItem acercade;
     private javax.swing.JMenuBar cifrarMenuBarMain;
+    private javax.swing.JButton cipherBrowseButton;
+    private javax.swing.JComboBox cipherComboBox;
+    private javax.swing.JLabel cipherLabel;
+    private javax.swing.JLabel claveFinalLabel;
+    private javax.swing.JLabel claveInicialLabel;
+    private javax.swing.JComboBox clavesComboBox;
+    private javax.swing.JPanel clavesPanel;
+    private javax.swing.JLabel clientesLabel;
+    private javax.swing.JPanel entradaPanel;
+    private javax.swing.JPanel funcionamientoPanel;
+    private javax.swing.JLabel ivLabel;
+    private javax.swing.JTextField ivTextField;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JMenu mainMenuArchivo;
     private javax.swing.JMenu mainMenuAyuda;
     private javax.swing.JMenu mainMenuEditar;
+    private javax.swing.JComboBox modoComboBox;
+    private javax.swing.JLabel modoLabel;
+    private javax.swing.JButton plainBrowseButton;
+    private javax.swing.JComboBox plainComboBox;
+    private javax.swing.JLabel plainLabel;
     // End of variables declaration//GEN-END:variables
 
 }
