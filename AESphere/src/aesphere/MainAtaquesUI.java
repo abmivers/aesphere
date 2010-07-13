@@ -20,9 +20,10 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         initComponents();
         wpadre = padre;
         ButtonGroup group = new ButtonGroup();
+        archivos = new JFileChooser();
         group.add(ClienteRadioButton);
         group.add(ServidorRadioButton);
-        this.setSize(850, 730);
+        this.setSize(800, 622);
     }
 
     /** This method is called from within the constructor to
@@ -68,9 +69,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         claveFinalLabel = new javax.swing.JLabel();
         ClaveInicialTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        ivTextField = new javax.swing.JTextField();
         clavesComboBox = new javax.swing.JComboBox();
-        ivLabel = new javax.swing.JLabel();
         formatoClavesLabel = new javax.swing.JLabel();
         claveSizeComboBox = new javax.swing.JComboBox();
         cifrarMenuBarMain = new javax.swing.JMenuBar();
@@ -91,11 +90,15 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         entradaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ENTRADA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         cipherTextArea.setColumns(20);
+        cipherTextArea.setLineWrap(true);
         cipherTextArea.setRows(5);
+        cipherTextArea.setWrapStyleWord(true);
         jScrollPane2.setViewportView(cipherTextArea);
 
         plainTextArea.setColumns(20);
+        plainTextArea.setLineWrap(true);
         plainTextArea.setRows(5);
+        plainTextArea.setWrapStyleWord(true);
         jScrollPane1.setViewportView(plainTextArea);
 
         plainLabel.setText("Texto en claro: ");
@@ -147,17 +150,16 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(plainComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(plainBrowseButton))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(plainLabel))
+                    .add(plainLabel)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
-                .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(entradaPanelLayout.createSequentialGroup()
-                            .add(cipherComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 111, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(cipherBrowseButton))
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 286, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(cipherLabel))
+                .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(entradaPanelLayout.createSequentialGroup()
+                        .add(cipherComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 111, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(cipherBrowseButton))
+                    .add(cipherLabel)
+                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 286, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         entradaPanelLayout.setVerticalGroup(
@@ -170,16 +172,16 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             .add(cipherLabel))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(cipherBrowseButton)
                             .add(plainComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(plainBrowseButton)
-                            .add(cipherComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(cipherComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(cipherBrowseButton)
+                            .add(plainBrowseButton))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 118, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(jScrollPane2)
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)))
                     .add(jLabel5))
-                .addContainerGap())
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         EjecutarButton.setText("Ejecutar");
@@ -273,7 +275,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(modoLabel)
                             .add(modoComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(18, 18, 18)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(IPLabel)
@@ -313,17 +315,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef3.png"))); // NOI18N
 
-        ivTextField.setEnabled(false);
-        ivTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ivTextFieldActionPerformed(evt);
-            }
-        });
-
         clavesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hexadecimal", "ASCII" }));
-
-        ivLabel.setText("Vector de inicialización (Hex):");
-        ivLabel.setEnabled(false);
 
         formatoClavesLabel.setText("Formato de claves:");
 
@@ -338,21 +330,19 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(jLabel9)
                 .add(18, 18, 18)
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(ivLabel)
                     .add(claveInicialLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 88, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(claveFinalLabel))
-                .add(18, 18, 18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                     .add(clavesPanelLayout.createSequentialGroup()
                         .add(formatoClavesLabel)
-                        .add(18, 18, 18)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 97, Short.MAX_VALUE)
                         .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(claveSizeComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, ivTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
-                .add(148, 148, 148))
+                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         clavesPanelLayout.setVerticalGroup(
             clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -361,20 +351,16 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     .add(clavesPanelLayout.createSequentialGroup()
                         .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(formatoClavesLabel)
-                            .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(claveSizeComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(claveSizeComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(claveInicialLabel))
-                        .add(9, 9, 9)
+                            .add(claveInicialLabel)
+                            .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(12, 12, 12)
                         .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(claveFinalLabel))
-                        .add(18, 18, 18)
-                        .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(ivLabel)
-                            .add(ivTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(claveFinalLabel)
+                            .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(jLabel9))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -385,36 +371,33 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, entradaPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, funcionamientoPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(Cancelar)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(EjecutarButton)
-                        .add(14, 14, 14))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, entradaPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, funcionamientoPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(18, 18, 18)
+                        .add(BotonInfo))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, clavesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .add(4, 4, 4)
-                .add(BotonInfo)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .add(jPanel1Layout.createSequentialGroup()
+                .add(funcionamientoPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(entradaPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(clavesPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(BotonInfo)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(funcionamientoPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(11, 11, 11)
-                        .add(entradaPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(11, 11, 11)
-                        .add(clavesPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 14, Short.MAX_VALUE)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(EjecutarButton)
-                            .add(Cancelar))))
-                .addContainerGap())
+                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(EjecutarButton)
+                        .add(Cancelar))
+                    .add(BotonInfo))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jScrollPane3.setViewportView(jPanel1);
@@ -455,11 +438,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane3)
+            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane3)
+            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
         );
 
         pack();
@@ -467,9 +450,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
     private boolean ComprobarDatos () {
 
-        boolean aux = true;
-        int blockIndex = modoComboBox.getSelectedIndex();
+        boolean aux = true;        
         int plainIndex = plainComboBox.getSelectedIndex();
+        int cipherIndex = cipherComboBox.getSelectedIndex();
 
         if ( aux && (plainTextArea.getText().isEmpty() || cipherTextArea.getText().isEmpty()) ){
            JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos",
@@ -481,13 +464,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, "Tiene que introducir el número de clientes",
                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
            aux=false;
-        }
-
-        if ( aux && (blockIndex == 1) && ivTextField.getText().isEmpty()) {
-            aux = false;
-            JOptionPane.showMessageDialog(this, "Tiene que introducir el vector de inicialización",
-                   "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
-        }
+        }        
 
         if ( aux && !comprobarNumero(NumeroClientesTextField.getText()) ) {
             aux = false;
@@ -498,11 +475,80 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         if ( aux && (plainIndex == 0) && (plainTextArea.getText().length() > 1024) ) {
             aux = false;
             JOptionPane.showMessageDialog(this, "Sólo puede introducir como " +
-                    "máximo 1024 caracteres en la entrada", "Ataques - Aviso",
+                    "máximo 1024 caracteres en el texto en claro", "Ataques - Aviso",
                     JOptionPane.WARNING_MESSAGE);
         }
 
-        if ( aux && (plainIndex == 1) && !ComprobarHexadecimal(plainTextArea.getText()));
+        if ( aux && (plainIndex == 1) && (plainTextArea.getText().length() > 2048)) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Sólo puede introducir como " +
+                    "máximo 2048 dígitos hexadecimales en el texto en claro", "Ataques - Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+        //el texto cifrado será de como máximo 1024 + 16 = 1040 bytes = 1388 caracteres en Base64
+        if ( aux && (cipherIndex == 0) && (cipherTextArea.getText().length() > 1388)) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Sólo puede introducir como " +
+                    "máximo 1388 caracteres en Base64 en el texto cifrado", "Ataques - Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (cipherIndex == 1) && (cipherTextArea.getText().length() > 2080)) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Sólo puede introducir como " +
+                    "máximo 2080 dítigos hexadecimales en el texto cifrado", "Ataques - Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (plainIndex == 1) && !ComprobarHexadecimal(plainTextArea.getText())) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal" +
+                    " en el texto en claro", "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (plainIndex == 2) && !comprobarArchivo(plainTextArea.getText(), 41943040) )
+            aux = false;
+
+        if (aux && (cipherIndex == 0) && !comprobarBase64(cipherTextArea.getText())) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Formato incorrecto del texto cifrado " +
+                    "en Base64", "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (cipherIndex == 1) && !ComprobarHexadecimal(cipherTextArea.getText())) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal" +
+                    " en el texto cifrado", "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (cipherIndex == 2) && !comprobarArchivo(cipherTextArea.getText(), 41943056) )
+            aux = false;
+
+        return aux;
+    }
+
+    private boolean comprobarBase64 (String base64) {
+        boolean aux = true;
+        int len = base64.length();
+        //llevamos un contador para comprobar la longitud del string sin '/n' ni '/r'
+        int count = 0;
+        for (int i = 0; aux && (i < len); i++) {
+            char letra = base64.charAt(i);
+
+            if ( ((letra >= 'A') && (letra <= 'Z')) ||
+                    ((letra >= 'a') && (letra <= 'z')) ||
+                    ((letra >= '0') && (letra <= '9')) ||
+                    (letra == '=') || (letra == '/') || (letra == '+') );
+            else {
+                if ( (letra == '\r') || (letra == '\n') ) //Si es salto de línea aumentamos el contador
+                    count++;
+                else aux = false;
+            }
+        }
+
+        //si el número de caracteres (excluyendo salto de línea) no es múltiplo de 4, no es correcto
+        if (aux && ((len - count) % 4 != 0) ) aux = false;
 
         return aux;
     }
@@ -515,6 +561,30 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             if (c < '0' || c > '9') aux = false;
         }
 
+        return aux;
+    }
+
+    private boolean comprobarArchivo (String ruta, long max) {
+        boolean aux = true;
+        try {
+            File arch = new File (ruta);
+            if (!arch.exists()) {
+                JOptionPane.showMessageDialog(this, "El archivo " + ruta +
+                        " no existe", "Ataques - Error", JOptionPane.ERROR_MESSAGE);
+                aux = false;
+            } else {
+                if (arch.length() > max) {
+                    aux = false;
+                    JOptionPane.showMessageDialog(this, "El archivo " + ruta +
+                        " supera el tamaño máximo permitido\nde 40MBs",
+                        "Ataques - Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al abrir el archivo:\n" +
+                    ruta, "Ataques - Error", JOptionPane.ERROR_MESSAGE);
+            aux = false;
+        }
         return aux;
     }
 
@@ -544,9 +614,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         claveInicialLabel.setEnabled(true);
         clavesComboBox.setEnabled(true);
         clavesPanel.setEnabled(true);
-        entradaPanel.setEnabled(true);
-        ivLabel.setEnabled(false);
-        ivTextField.setEnabled(false);
+        entradaPanel.setEnabled(true);        
         NumeroClientesTextField.setEnabled(true);
         clientesLabel.setEnabled(true);
         modoComboBox.setEnabled(true);
@@ -584,9 +652,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         claveInicialLabel.setEnabled(false);
         clavesComboBox.setEnabled(false);
         clavesPanel.setEnabled(false);
-        entradaPanel.setEnabled(false);
-        ivLabel.setEnabled(false);
-        ivTextField.setEnabled(false);
+        entradaPanel.setEnabled(false);        
         NumeroClientesTextField.setEnabled(false);
         clientesLabel.setEnabled(false);
         modoComboBox.setEnabled(false);
@@ -625,30 +691,35 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             " elegido podrían tardarse más de 10 minutos en terminar el proceso. " +
                             "\n¿Está seguro de que desea continuar?",
                             "Ataques - Confirmación", JOptionPane.YES_NO_OPTION);
-                else if ( clavesCliente <= 0 )
+                else if ( clavesCliente <= 0 ) {
+                    //para que no cree el servidor
+                    op = 1;
                     JOptionPane.showMessageDialog(this, "Espectro de claves " +
                             "incorrecto.\nRevise la clave inicial y final.", 
                             "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                }
                 
-                final byte [] claveini = claveinicial;                
+                final byte [] claveini = claveinicial;
 
-                if (op == 0) {
+                final byte [] iv = pedirIV();
+
+                if (op == 0 && iv != null) {
                     Thread servThread = new Thread(new Runnable() {
                         public void run() {
                             new ServUI(wpadre, plainTextArea.getText(), cipherTextArea.getText(),
                                     numClientes, claveini, numClaves,
-                                    modoComboBox.getSelectedIndex(), ivTextField.getText());
+                                    modoComboBox.getSelectedIndex(), iv);
                         }
                     });
                     wpadre.newThread(servThread);
                     servThread.start();
                 }
             }
-        } else {
-            if (ClienteRadioButton.isSelected() && IPTextField.getText().isEmpty())
+        } else if (ClienteRadioButton.isSelected()) {
+            if (IPTextField.getText().isEmpty())
                 JOptionPane.showMessageDialog(this, "Debde rellenar la IP del servidor",
-                        "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
-            else{
+                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            else {
                 Thread clientThread = new Thread(new Runnable() {
                     public void run() {
                         try {
@@ -677,20 +748,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 }//GEN-LAST:event_ContenidosActionPerformed
 
-    private void ivTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ivTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ivTextFieldActionPerformed
-
     private void modoComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modoComboBoxActionPerformed
-        switch (modoComboBox.getSelectedIndex()) {
-
-            case 0: ivLabel.setEnabled(false);
-                    ivTextField.setEnabled(false);
-                    break;
-
-            case 1: ivLabel.setEnabled(true);
-                    ivTextField.setEnabled(true);
-        }
+       
     }//GEN-LAST:event_modoComboBoxActionPerformed
 
     private void plainComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plainComboBoxActionPerformed
@@ -757,6 +816,46 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
          return numKeys;
      }
+
+    private byte [] pedirIV () {
+        boolean cont = true;
+        String res = "0";
+        while (cont) {
+            res = JOptionPane.showInputDialog(this, "Introduzca el vector de inicialización",
+                    "Ataques - CBC", JOptionPane.QUESTION_MESSAGE);
+            if (res == null)
+                cont = false;
+            else
+                cont = !comprobarIV(res);
+        }
+        if (res == null) return null;
+        return Conversor.hexStringToByte(res);
+    }
+
+    private boolean comprobarIV (String iv) {
+        boolean aux = true;
+
+        if (aux && iv.isEmpty()) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Debe introducir un vector de inicialización",
+                    "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if (aux && (iv.length() != 32)) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "El tamaño del vector de inicialización" +
+                    " debe ser de 32 dígitos hexadecimales", "Ataques - CBC - Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+        if (aux && !ComprobarHexadecimal(iv)) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal"
+                    , "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return aux;
+    }
 
     private boolean ComprobarHexadecimal (String cadena){
 
@@ -915,8 +1014,6 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private javax.swing.JPanel entradaPanel;
     private javax.swing.JLabel formatoClavesLabel;
     private javax.swing.JPanel funcionamientoPanel;
-    private javax.swing.JLabel ivLabel;
-    private javax.swing.JTextField ivTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
