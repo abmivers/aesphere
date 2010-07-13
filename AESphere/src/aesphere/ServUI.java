@@ -68,9 +68,7 @@ public class ServUI extends javax.swing.JFrame {
 
         //declaramos el array con el texto en claro
         byte [] plainBytes = Conversor.hexStringToByte(plaintext);
-        byte [] cipherBytes = Conversor.hexStringToByte(ciphertext);
-        debugArea.append("\nTexto en claro: " + Conversor.byteToHexString(plainBytes) +
-                "\nTexto cifrado: " + Conversor.byteToHexString(cipherBytes) + "\n");
+        byte [] cipherBytes = Conversor.hexStringToByte(ciphertext);        
 
         System.out.println("SERVIDOR: Detectando clientes");
         detectarClientes();

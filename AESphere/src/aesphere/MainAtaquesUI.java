@@ -569,9 +569,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         if (ServidorRadioButton.isSelected() && ComprobarDatos()) {
             byte [] claveinicial = null;
             byte [] clavefinal = null;
-            int op = 0;
-            long numClaves = 0;
-            int numClientes = 0;
+            int op = 0;            
 
             if (ComprobarClaves()) {
                 switch (clavesComboBox.getSelectedIndex()) {
@@ -584,49 +582,52 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 }
 
                 //calculamos aproximadamente el número de claves a probar por cliente para avisar si son demasiadas
-                numClaves = getKeysToTry(claveinicial, clavefinal);
-                numClientes = Integer.parseInt(NumeroClientesTextField.getText());
+                final long numClaves = getKeysToTry(claveinicial, clavefinal);
+                final int numClientes = Integer.parseInt(NumeroClientesTextField.getText());
 
-                if ( (numClaves / numClientes) >= 1000000 ) {
+                long clavesCliente = numClaves / numClientes;
+                if ( clavesCliente >= 900000 )
                     op = JOptionPane.showConfirmDialog(this, "Con el espectro de claves" +
                             " elegido podrían tardarse más de 10 minutos en terminar el proceso. " +
                             "\n¿Está seguro de que desea continuar?",
                             "Ataques - Confirmación", JOptionPane.YES_NO_OPTION);
+                else if ( clavesCliente <= 0 )
+                    JOptionPane.showMessageDialog(this, "Espectro de claves " +
+                            "incorrecto.\nRevise la clave inicial y final.", 
+                            "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                
+                final byte [] claveini = claveinicial;                
+
+                if (op == 0) {
+                    Thread servThread = new Thread(new Runnable() {
+                        public void run() {
+                            new ServUI(wpadre, plainTextArea.getText(), cipherTextArea.getText(),
+                                    numClientes, claveini, numClaves,
+                                    modoComboBox.getSelectedIndex(), ivTextField.getText());
+                        }
+                    });
+                    wpadre.newThread(servThread);
+                    servThread.start();
                 }
             }
-
-            final int nClientes = numClientes;
-            final byte [] claveini = claveinicial;
-            final long nClaves = numClaves;
-
-            if (op == 0) {
-                Thread servThread = new Thread(new Runnable() {
+        } else {
+            if (ClienteRadioButton.isSelected() && IPTextField.getText().isEmpty())
+                JOptionPane.showMessageDialog(this, "Debde rellenar la IP del servidor",
+                        "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            else{
+                Thread clientThread = new Thread(new Runnable() {
                     public void run() {
-                        new ServUI(wpadre, plainTextArea.getText(), cipherTextArea.getText(),
-                                nClientes, claveini, nClaves,
-                                modoComboBox.getSelectedIndex(), ivTextField.getText());
+                        try {
+                            new ClientUI(wpadre, java.net.InetAddress.getByName(IPTextField.getText()));
+                        } catch (java.net.UnknownHostException e) {
+                            JOptionPane.showMessageDialog(null, "Error en la IP del servidor");
+                           Thread.currentThread().interrupt();
+                        }
                     }
                 });
-                wpadre.newThread(servThread);
-                servThread.start();
+                wpadre.newThread(clientThread);
+                clientThread.start();
             }
-
-        } else if (ClienteRadioButton.isSelected() && IPTextField.getText().isEmpty())
-            JOptionPane.showMessageDialog(this, "Debde rellenar la IP del servidor",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
-        else{
-            Thread clientThread = new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        new ClientUI(wpadre, java.net.InetAddress.getByName(IPTextField.getText()));
-                    } catch (java.net.UnknownHostException e) {
-                        JOptionPane.showMessageDialog(null, "Error en la IP del servidor");
-                        Thread.currentThread().interrupt();
-                    }
-                }
-            });
-            wpadre.newThread(clientThread);
-            clientThread.start();
         }
     }//GEN-LAST:event_EjecutarButtonActionPerformed
 

@@ -64,9 +64,7 @@ public class ClientUI extends javax.swing.JFrame {
             debugArea.append("Clave inicial: " + Conversor.byteToHexString(claveInicial) +
                     "\nNúmero de claves a probar: " + Long.toString(numClaves) + "\n");
 
-            esperarTexto();
-            debugArea.append("Texo en claro: " + Conversor.byteToHexString(plaintext) +
-                    "\nTexto cifrado: " + Conversor.byteToHexString(ciphertext) + "\n");
+            esperarTexto();            
 
             probarClaves();
         } catch (Exception e) {}
@@ -263,7 +261,6 @@ public class ClientUI extends javax.swing.JFrame {
                 claveAct = getNextKey(claveAct);
             }
 
-            debugArea.append("\nÚltima clave probada: " + Conversor.byteToHexString(claveAct));
             debugArea.append("\nPrueba de claves finalizada\n");
 
         } catch (Exception e) {

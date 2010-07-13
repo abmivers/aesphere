@@ -90,7 +90,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
                 Conversor.byteToFile(salida,cadenaOutput);
                 if (opcionentrada == 2) {  
                     //Mostramos una ventana de información
-                    new InfoArchivos (wpadre, cadenaOutput);
+                    //new InfoArchivos (wpadre, cadenaOutput);
                 }
         }
 

@@ -86,9 +86,9 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
                 break;
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
-                if (opcionentrada == 2) {
+                /*if (opcionentrada == 2) {
                     new InfoArchivos (wpadre, cadenaOutput);
-                }
+                }*/
         }
 
         if ( (salida != null) && ((opcionsalida != 2) || (opcionentrada !=2)) ) {
