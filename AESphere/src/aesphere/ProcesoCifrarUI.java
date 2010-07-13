@@ -81,9 +81,9 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
                 break;
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
-                if (opcionentrada == 2) {
+                /*if (opcionentrada == 2) {
                     new InfoArchivos (wpadre, cadenaOutput);
-                }
+                }*/
         }
 
         if ( (opcionsalida != 2) || (opcionentrada !=2) ) {
