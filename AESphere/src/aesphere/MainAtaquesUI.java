@@ -396,7 +396,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     .add(org.jdesktop.layout.GroupLayout.LEADING, clavesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .add(4, 4, 4)
                 .add(BotonInfo)
-                .addContainerGap())
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -459,7 +459,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
+            .add(jScrollPane3)
         );
 
         pack();
@@ -468,21 +468,55 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private boolean ComprobarDatos () {
 
         boolean aux = true;
+        int blockIndex = modoComboBox.getSelectedIndex();
+        int plainIndex = plainComboBox.getSelectedIndex();
 
         if ( aux && (plainTextArea.getText().isEmpty() || cipherTextArea.getText().isEmpty()) ){
-           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos",
+                   "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
            aux=false;
         }
 
-        if ( aux && (ServidorRadioButton.isSelected() && NumeroClientesTextField.getText().isEmpty() )){
-           JOptionPane.showMessageDialog(this, "Tiene que introducir el número de clientes.");
+        if ( aux && NumeroClientesTextField.getText().isEmpty() ){
+           JOptionPane.showMessageDialog(this, "Tiene que introducir el número de clientes",
+                   "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
            aux=false;
         }
-       
+
+        if ( aux && (blockIndex == 1) && ivTextField.getText().isEmpty()) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Tiene que introducir el vector de inicialización",
+                   "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && !comprobarNumero(NumeroClientesTextField.getText()) ) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Tiene que introducir un número en el número de clientes",
+                   "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (plainIndex == 0) && (plainTextArea.getText().length() > 1024) ) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Sólo puede introducir como " +
+                    "máximo 1024 caracteres en la entrada", "Ataques - Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (plainIndex == 1) )
+
         return aux;
     }
 
+    private boolean comprobarNumero (String num) {
+        boolean aux = true;
 
+        for (int i = num.length(); aux && (--i >= 0);) {
+            char c = num.charAt(i);
+            if (c < '0' || c > '9') aux = false;
+        }
+
+        return aux;
+    }
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
 
