@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE map
+PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 2.0//EN"
+"http://java.sun.com/products/javahelp/map_2_0.dtd">
+<map version="1.0">
+   <mapID target="aplicacion" url="html/main_ES.html" />
+   <mapID target="explicacion_cifrar" url="html/principal_ES.html" />
+   <mapID target="explicacion_descifrar" url="html/secundaria_ES.html" />
+   <mapID target="explicacion_shiftrows" url="html/ShiftRows_ES.html" />
+   <mapID target="explicacion_mixcolumns" url="html/MixColumns_ES.html" />
+   <mapID target="explicacion_subbytes" url="html/SubBytes_ES.html" />
+   <mapID target="explicacion_addroundkey" url="html/AddRoundKey_ES.html" />
+   <mapID target="ventana_cifrado" url="html/Cifrado_AP_ES.html" />
+   <mapID target="ventana_descifrado" url="html/Descifrado_AP_ES.html" />
+   <mapID target="ventana_main" url="html/Home_Ap_ES.html" />
+   <mapID target="ventana_herramientas" url="html/Herramientas_Ap_ES.html" />
+   <mapID target="ventana_subbytes" url="html/SubBytes_Ap_ES.html" />
+   <mapID target="ventana_addroundkey" url="html/AddRoundKey_Ap_ES.html" />
+   <mapID target="ventana_shiftrows" url="html/ShiftRows_Ap_ES.html" />
+   <mapID target="ventana_mixcolumns" url="html/MixColumns_Ap_ES.html" />
+   
+   
+</map>
