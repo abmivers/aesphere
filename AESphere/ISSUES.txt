@@ -2,3 +2,6 @@
 - no se comprueba que el IV sea un campo hexadecimal de exactamente 16 bytes
 - no se muestra el IV
 - en descifrar se debería marcar por defecto que se introdujese el IV manualmente (podría ser interesante para ver cómo varía dejar que fuese aleatorio)
+- mainAtaques debe pasar directamente el primer bloque de 16 bytes del plaintext y el ciphertext a ServUI
+- servUI debe controlar cuándo se está cifrando en modo CBC para concatenar el IV
+- incluir screenshots en la ayuda de la aplicación

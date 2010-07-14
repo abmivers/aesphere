@@ -49,9 +49,7 @@ public class ClientUI extends javax.swing.JFrame {
         try {
             socket = new DatagramSocket();
         } catch(SocketException excepcionSocket) {
-            JOptionPane.showMessageDialog(this,
-                    "Error al crear el servidor, compruebe que tiene permisos" +
-                    " para crear un servidor en el puerto 3000", "Servidor - Error",
+            JOptionPane.showMessageDialog(this, "Error al crear el cliente", "Cliente - Error",
                     JOptionPane.ERROR_MESSAGE);
             excepcionSocket.printStackTrace();
             this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));

@@ -1,0 +1,24 @@
+<meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
+<html>
+
+	<head>
+		<title>Cifrado de Bloques: CBC</title>
+	</head>
+	<body>		
+		<h1>CBC</h1>
+		
+		<p>CBC (Cipher-block chaining) es una de las múltiples respuestas que surgieron ante la debilidad del algoritmo ECB ante el ocultamiento de los patrones en la información. Su propósito es añadir cierta pseudo-aleatoriedad mediante la introducción de un vector de inicialización en el proceso de tratamiento de boques.<br>
+		
+		El funcionamiento del cifrado mediante CBC consiste en realizar un XOR del texto en claro y el texto cifrado del bloque anterior, para luego cifrar el resultado con un cifrador de bloques y la clave. Así, el texto cifrado resultante se reutilizará para el XOR del siguiente bloque. De esta manera se eliminan los rastros de los patrones que pudiese haber en la información original, y que son susceptibles a un análisis estadísitico. En el caso del primer bloque, el XOR se realiza con el vector de inicialización comentado anteriormente, lo cual, dependiendo de la calidad del generador de aleatorios utilizado, añade aleatoriedad al algoritmo.<br><br></p>
+		
+		<img style="border-width: 0px;" src="resources/ecb.png" width="589" height="457" />
+		
+		<p>A la hora de descifrar, se realiza el proceso inverso. En este caso, primero se descifra el texto cifrado con un cifrador de bloques y la clave y se realiza un XOR del resultado con el texto cifrado del bloque anterior, devolviéndose así el texto en claro. En el primer bloque, el XOR se realizará con el vector de inicialización puesto que no hay bloque anterior.<br><br></p>
+				
+		<img style="border-width: 0px;" src="resources/ecb.png" width="589" height="457" />
+		
+		<p>En ambos casos, tanto para cifrar como para descifrar, los bloques resultantes van concatenándose en orden, lo que, debido a las operaciones realizadas, no compromete la fiabilidad del algoritmo.</p>
+		
+	</body>
+</html>
+
