@@ -5,3 +5,7 @@
 - mainAtaques debe pasar directamente el primer bloque de 16 bytes del plaintext y el ciphertext a ServUI
 - servUI debe controlar cuándo se está cifrando en modo CBC para concatenar el IV
 - incluir screenshots en la ayuda de la aplicación
+- hacer ayuda de ventana mixColumns
+- hacer ayuda de ventana subbytes
+- hacer ayuda de ventana shiftrows
+- hacer ayuda de ventana addroundkey
