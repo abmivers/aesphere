@@ -707,6 +707,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 final byte [] iv = pedirIV();
 
                 if (op == 0 && iv != null) {
+                    final byte [] plainBytes = getPlain();
+                    final byte [] cipherBytes = getCipher();
                     Thread servThread = new Thread(new Runnable() {
                         public void run() {
                             new ServUI(wpadre, plainTextArea.getText(), cipherTextArea.getText(),
@@ -720,7 +722,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             }
         } else if (ClienteRadioButton.isSelected()) {
             if (IPTextField.getText().isEmpty())
-                JOptionPane.showMessageDialog(this, "Debde rellenar la IP del servidor",
+                JOptionPane.showMessageDialog(this, "Debe rellenar la IP del servidor",
                     "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
             else {
                 Thread clientThread = new Thread(new Runnable() {
@@ -820,17 +822,30 @@ public class MainAtaquesUI extends javax.swing.JFrame {
          return numKeys;
      }
 
+    private byte [] getPlain () {
+        // TODO
+        return null;
+    }
+
+    private byte [] getCipher() {
+        
+        return null;
+    }
+
     private byte [] pedirIV () {
         boolean cont = true;
         String res = "0";
-        while (cont) {
-            res = JOptionPane.showInputDialog(this, "Introduzca el vector de inicialización",
-                    "Ataques - CBC", JOptionPane.QUESTION_MESSAGE);
-            if (res == null)
-                cont = false;
-            else
-                cont = !comprobarIV(res);
-        }
+        //sólo se entra si el modo es CBC
+        if (modoComboBox.getSelectedIndex() == 1)
+            while (cont) {
+                res = JOptionPane.showInputDialog(this, "Introduzca el vector de inicialización",
+                        "Ataques - CBC", JOptionPane.QUESTION_MESSAGE);
+                if (res == null)
+                    cont = false;
+                else
+                    cont = !comprobarIV(res);
+            }
+
         if (res == null) return null;
         return Conversor.hexStringToByte(res);
     }
