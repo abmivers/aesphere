@@ -9,3 +9,5 @@
 - hacer ayuda de ventana subbytes
 - hacer ayuda de ventana shiftrows
 - hacer ayuda de ventana addroundkey
+- servUI debe transmitir al cliente el tamaño de clave
+- clientUI debe manejar distintos tamaños de clave
