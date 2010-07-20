@@ -822,13 +822,97 @@ public class MainAtaquesUI extends javax.swing.JFrame {
          return numKeys;
      }
 
+    /**
+     * Función que devuelve el primer bloque de lo que se haya introducido en el
+     * texto en claro. Si el texto en claro era menos de 16 bytes, se llevará
+     * a cabo el relleno mediante la función de relleno para ECB/CBC. Si es
+     * mayor, no será necesario
+     * @return El primer bloque del texto en claro con pad (si procede)
+     */
     private byte [] getPlain () {
-        // TODO
+        byte [] aux;
+        switch (plainComboBox.getSelectedIndex()) {
+
+            case 0:
+                if (plainTextArea.getText().length() < 16) {
+                    aux = Conversor.stringToASCII(plainTextArea.getText());
+                    aux = Conversor.pad(aux, 16);
+                } else
+                    try {
+                        aux = Conversor.stringToASCII(plainTextArea.getText(0,16));
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Ocurrió un error" +
+                                "al obtener el texto en claro", "Error - Ataques",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                break;
+
+            case 1:
+                if (plainTextArea.getText().length() < 32) {
+                    aux = Conversor.hexStringToByte(plainTextArea.getText());
+                    aux = Conversor.pad(aux, 16);
+                } else
+                    try {
+                        aux = Conversor.hexStringToByte(plainTextArea.getText(0, 32));
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Ocurrió un error" +
+                                "al obtener el texto en claro", "Error - Ataques",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                break;
+
+            case 2:
+                aux = getBytesArchivo(plainTextArea.getText());
+                if (aux.length < 16) aux = Conversor.pad(aux, 16);
+
+        }
         return null;
     }
 
+    private byte [] getBytesArchivo (String ruta) {
+        byte [] aux = null;
+        try {
+         aux = ReadFileIntoByteArray.getBytesFromFile(new File(ruta), 16);
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al" +
+                    "abrir el archivo");
+        }
+        return aux;
+    }
+
     private byte [] getCipher() {
-        
+        byte [] aux = null;
+        switch (cipherComboBox.getSelectedIndex()) {
+
+            case 0:
+                aux = Base64.decode(cipherTextArea.getText());
+                if (aux.length < 16) aux = Conversor.pad(aux, 16);
+                else if (aux.length > 16) {
+                    byte [] aux2 = aux;
+                    aux = new byte[16];
+                    System.arraycopy(aux2, 0, aux, 0, 16);
+                }
+
+            case 1:
+                if (plainTextArea.getText().length() < 32) {
+                    aux = Conversor.hexStringToByte(plainTextArea.getText());
+                    aux = Conversor.pad(aux, 16);
+                } else
+                    try {
+                        aux = Conversor.hexStringToByte(plainTextArea.getText(0, 32));
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Ocurrió un error" +
+                                "al obtener el texto en claro", "Error - Ataques",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                break;
+
+            case 2:
+                aux = getBytesArchivo(plainTextArea.getText());
+                if (aux.length < 16) aux = Conversor.pad(aux, 16);
+                
+        }
         return null;
     }
 
