@@ -96,6 +96,27 @@ public class ReadFileIntoByteArray {
 
     }
 
+    public static byte[] getBytesFromFile (File file, int numBytes) throws IOException {
+        InputStream is = new FileInputStream(file);
+        System.out.println("\nDEBUG: FileInputStream is " + file);
+
+        //obtenemos la longitud del archivo
+        long length = file.length();
+        System.out.println("DEBUG: Length of " + file + " is " + length + "\n");
+
+        // creamos el array para los datos
+        byte[] bytes = null;
+
+        // leemos el primer bloque (si la longitud es mayor a 16)
+        if (length < numBytes)
+            is.read(bytes, 0, (int) length);
+        else
+            is.read(bytes, 0, 16);
+
+        is.close();
+        return bytes;
+    }
+
 
     /**
      * Sole entry point to the class and application.
