@@ -41,7 +41,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
 
     public ProcesoCifrarDirectoUI(MainUI padre,String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
-            int modoBloque, int tamano, boolean manualIV) {
+            int modoBloque, int tamano, boolean manualIV, byte [] iv) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
@@ -55,8 +55,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
 
         //Comenzamos el cifrado
         if (manualIV) {
-            String strIV = JOptionPane.showInputDialog("Introduzca el IV:");
-            IV = Conversor.hexStringToByte(strIV);
+            IV = iv;
         }
 
         byte [] in = getIn (opcionentrada);
@@ -85,19 +84,15 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
                 jTextArea3.setText(Conversor.byteToHexString(salida));
                 break;
             case 2:
-                Conversor.byteToFile(salida,cadenaOutput);
-                if (opcionentrada == 2) {  
-                    //Mostramos una ventana de información
-                    //new InfoArchivos (wpadre, cadenaOutput);
-                }
+                Conversor.byteToFile(salida,cadenaOutput);                
         }
 
         if ( (opcionsalida != 2) || (opcionentrada != 2) ) {
-            Plaintextfield.setText(Conversor.byteToHexString(in));
-
-            this.setLocationRelativeTo(wpadre);
-            this.setVisible(true);
+            Plaintextfield.setText(Conversor.byteToHexString(in));            
         }
+
+        this.setLocationRelativeTo(wpadre);
+        this.setVisible(true);
     }
 
     private byte [] getBytesArchivo (String ruta) {
@@ -106,7 +101,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
          aux = ReadFileIntoByteArray.getBytesFromFile(new File(ruta));
         }
         catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al" +
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al " +
                     "abrir el archivo");
         }
         return aux;
@@ -174,12 +169,14 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         });
 
         jTextArea3.setColumns(20);
+        jTextArea3.setEditable(false);
         jTextArea3.setLineWrap(true);
         jTextArea3.setRows(5);
         jScrollPane3.setViewportView(jTextArea3);
 
         jLabel1.setText("Plaintext:");
 
+        Plaintextfield.setEditable(false);
         Plaintextfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PlaintextfieldActionPerformed(evt);

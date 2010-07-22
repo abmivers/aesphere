@@ -16,7 +16,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,6 +31,7 @@ public class ClientUI extends javax.swing.JFrame {
     private long numClaves;
     private byte [] plaintext;
     private byte [] ciphertext;
+    private int tamClave;
 
     /** Creates new form ClientUI */
     public ClientUI(MainUI padre, InetAddress dirIP) {
@@ -158,11 +158,22 @@ public class ClientUI extends javax.swing.JFrame {
     private void esperarClave() throws Exception {
         debugArea.append("\nRecibiendo clave inicial... ");
         try {
-            //creamos un DatagramPacket para recibir la clave
-            //clave de 128 bits
-            DatagramPacket clavePacket = new DatagramPacket(new byte[16],16);
+            //creamos un DatagramPacket para recibir el tamaño de la clave
+            int len = Integer.SIZE/8;
+            DatagramPacket tamPacket = new DatagramPacket(new byte[len], len);
             //desbloqueamos al servidor antes de recibir
-            enviarMensaje("OK");            
+            enviarMensaje("OK");
+            socket.receive(tamPacket);
+            System.out.println("CLIENTE: Tamaño de clave recibido");
+
+            tamClave = Conversor.byteToInt(tamPacket.getData());
+
+            //mandamos un mensaje de confirmación de recepción de tamaño de clave al servidor
+            enviarMensaje("TamOK");
+
+            //creamos un DatagramPacket para recibir la clave
+            DatagramPacket clavePacket = new DatagramPacket(new byte[tamClave],
+                    tamClave);
             socket.receive(clavePacket);
             System.out.println("CLIENTE: Clave recibida");
 
@@ -172,7 +183,7 @@ public class ClientUI extends javax.swing.JFrame {
             enviarMensaje("ClaveOK");            
 
             //creamos un DatagramPacket para recibir el número de claves
-            int len = Long.SIZE/8;
+            len = Long.SIZE/8;
             DatagramPacket longPacket = new DatagramPacket(new byte[len], len);
             socket.receive(longPacket);
             System.out.println("CLIENTE: Long recibido");
@@ -233,8 +244,7 @@ public class ClientUI extends javax.swing.JFrame {
             //hacemos las declaraciones antes del for
             byte [] claveAct = claveInicial;
             byte [] out = new byte[16];
-            int numWords = claveInicial.length / 4;
-            int len = claveInicial.length;                 
+            int numWords = tamClave / 4;
 
             for(long i = numClaves; --i >= 0;) {
                 //realizamos el cifrado
@@ -243,7 +253,7 @@ public class ClientUI extends javax.swing.JFrame {
 
                 //comprobamos si es una clave válida
                 boolean iguales = true;
-                for (int j = len; iguales && (--j >= 0);)
+                for (int j = 16; iguales && (--j >= 0);)
                     if (out[j] != ciphertext[j]) iguales = false;
                 if (iguales) {
                     //enviamos la clave

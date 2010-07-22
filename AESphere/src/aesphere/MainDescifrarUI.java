@@ -223,10 +223,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(ComboBoxKey, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                         .addComponent(BotonBrowseCifrarKey, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(RadioButton128)
@@ -315,7 +315,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         cifrarPanelInputLayout.setVerticalGroup(
             cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,6 +349,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
         jLabel5.setText("Modo de ejecución:");
 
+        manualIV.setSelected(true);
         manualIV.setText("Introducir IV manualmente");
         manualIV.setEnabled(false);
         manualIV.addActionListener(new java.awt.event.ActionListener() {
@@ -370,7 +371,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,7 +379,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                     .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(manualIV)
-                        .addContainerGap(489, Short.MAX_VALUE))))
+                        .addContainerGap(528, Short.MAX_VALUE))))
         );
         cifrarPanelAdvOptionsLayout.setVerticalGroup(
             cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,7 +436,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BotonBrowseCifrarOutput)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         cifrarPanelOutputLayout.setVerticalGroup(
             cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,7 +449,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                             .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonBrowseCifrarOutput)))
                     .addComponent(jLabel1))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         BotonInfoDescifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
@@ -497,9 +498,9 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cifrarPanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -842,7 +843,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         if (aux &&  (indexIn == 1) && (contenidoIn.length() % 32 != 0)) {
             JOptionPane.showMessageDialog(this, "El número de dígitos hexadecimales de la entrada debe ser múltiplo de 32");
             aux=false;
-            }
+        }
 
         if (aux && (indexIn == 0) && !comprobarBase64(contenidoIn)) {
             JOptionPane.showMessageDialog(this, "El formato de la entrada en Base64 es incorrecto.");
@@ -905,6 +906,49 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         return aux;
     }
 
+        private byte [] pedirIV () {
+        boolean cont = true;
+        String res = "0";
+        //sólo se entra si el modo es CBC
+        if (ModoCifrado.getSelectedIndex() == 1)
+            while (cont) {
+                res = JOptionPane.showInputDialog(this, "Introduzca el vector de inicialización",
+                        "Ataques - CBC", JOptionPane.QUESTION_MESSAGE);
+                if (res == null)
+                    cont = false;
+                else
+                    cont = !comprobarIV(res);
+            }
+
+        if (res == null) return null;
+        return Conversor.hexStringToByte(res);
+    }
+
+    private boolean comprobarIV (String iv) {
+        boolean aux = true;
+
+        if (aux && iv.isEmpty()) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Debe introducir un vector de inicialización",
+                    "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if (aux && (iv.length() != 32)) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "El tamaño del vector de inicialización" +
+                    " debe ser de 32 dígitos hexadecimales", "Ataques - CBC - Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+        if (aux && !ComprobarHexadecimal(iv)) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal"
+                    , "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return aux;
+    }
+
 
     private void BotonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiguienteActionPerformed
     
@@ -930,14 +974,16 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         //este valor cambiará en ComprobarDatos si la entrada es por archivo y contendrá la clave en Base64
         key = TextoKey.getText();
 
-        if ( (opcionejecucion == 0) && ComprobarDatos() )
+        byte [] iv = pedirIV();
+
+        if ( (opcionejecucion == 0) && ComprobarDatos() && (iv != null) )
             new ProcesoDescifrarUI (wpadre,TextoInput.getText(), key,
                     TextoOutput.getText(), opcionIn, opcionKey,opcionOut,
-                    op_block, tamano, manualIV.isSelected());
-        else if ( (opcionejecucion == 1) && ComprobarDatos() )
+                    op_block, tamano, manualIV.isSelected(), iv);
+        else if ( (opcionejecucion == 1) && ComprobarDatos() && (iv != null) )
             new ProcesoDescifrarDirectoUI (wpadre, TextoInput.getText(), key,
                     TextoOutput.getText(), opcionIn, opcionKey, opcionOut,
-                    op_block, tamano, manualIV.isSelected());
+                    op_block, tamano, manualIV.isSelected(), iv);
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
     private void BotonInfoDescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoDescifrarActionPerformed

@@ -35,7 +35,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
     /** Creates new form ProcesoDescifrarUI */
     public ProcesoDescifrarUI(MainUI padre,String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
-            int modoBloque, int tamano, boolean manualIV) {
+            int modoBloque, int tamano, boolean manualIV, byte [] iv) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
@@ -48,9 +48,8 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         wpadre.newchild(this);
         
         //Comenzamos el descifrado
-        if (manualIV) {
-            String strIV = JOptionPane.showInputDialog("Introduzca el IV:");
-            IV = Conversor.hexStringToByte(strIV);
+        if (manualIV) {            
+            IV = iv;
         }
         byte [] in = getIn (opcionentrada);
         byte [] key = getKey (opcionkey);
@@ -86,18 +85,15 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
                 break;
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
-                /*if (opcionentrada == 2) {
-                    new InfoArchivos (wpadre, cadenaOutput);
-                }*/
         }
 
         if ( (salida != null) && ((opcionsalida != 2) || (opcionentrada !=2)) ) {
             RondasTextArea.setText(aesenc.getResultado());
-            CiphertextArea.setText(Conversor.byteToHexString(in));
-
-            this.setLocationRelativeTo(wpadre);
-            this.setVisible(true);
+            CiphertextArea.setText(Conversor.byteToHexString(in));            
         }
+
+        this.setLocationRelativeTo(wpadre);
+        this.setVisible(true);
     }
 
     private byte [] getBytesArchivo (String ruta) {
@@ -106,7 +102,7 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
          aux = ReadFileIntoByteArray.getBytesFromFile(new File(ruta));
         }
         catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al" +
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al " +
                     "abrir el archivo");
         }
         return aux;
@@ -179,16 +175,19 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         });
 
         Plaintextfield.setColumns(20);
+        Plaintextfield.setEditable(false);
         Plaintextfield.setLineWrap(true);
         Plaintextfield.setRows(5);
         Plaintextfield.setWrapStyleWord(true);
         jScrollPane3.setViewportView(Plaintextfield);
 
         RondasTextArea.setColumns(20);
+        RondasTextArea.setEditable(false);
         RondasTextArea.setRows(5);
         jScrollPane4.setViewportView(RondasTextArea);
 
         CiphertextArea.setColumns(20);
+        CiphertextArea.setEditable(false);
         CiphertextArea.setLineWrap(true);
         CiphertextArea.setRows(5);
         CiphertextArea.setWrapStyleWord(true);
@@ -255,16 +254,18 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(9, 9, 9)
-                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE))
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
-                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 589, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .add(275, 275, 275))
+                            .add(layout.createSequentialGroup()
+                                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 589, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 12, Short.MAX_VALUE))
+                            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE))))
+                .add(269, 269, 269))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -323,7 +324,6 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea CiphertextArea;
     private javax.swing.JMenuItem CopiarCiphertext;
-    private javax.swing.JMenuItem CopiarPlaintext;
     private javax.swing.JMenuItem CopiarPlaintext1;
     private javax.swing.JMenuItem CopiarRondas;
     private javax.swing.JTextArea Plaintextfield;
