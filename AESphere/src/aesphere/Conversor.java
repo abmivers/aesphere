@@ -148,6 +148,17 @@ public class Conversor {
         return aux;
     }
 
+    public static byte [] intToByte (int num) {
+        byte [] aux = new byte[Integer.SIZE/8];
+
+        for (int i = aux.length - 1; i >= 0; i--) {
+            aux[i] = (byte) num;
+            if (num != 0) num >>= 8;
+        }
+
+        return aux;
+    }
+
     public static long byteToLong (byte [] num) {
         long aux = 0;
 
@@ -155,6 +166,18 @@ public class Conversor {
         for (int i = 0; i < len; i++) {
             aux <<= 8;
             aux += (long) (0x00ff & num[i]);            
+        }
+
+        return aux;
+    }
+
+    public static int byteToInt (byte [] num) {
+        int aux = 0;
+
+        int len = num.length;
+        for (int i = 0; i < len; i++) {
+            aux <<= 8;
+            aux += (int) (0x00ff & num[i]);
         }
 
         return aux;

@@ -37,7 +37,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
     public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
-            int modoBloque, int tamano, boolean manualIV) {
+            int modoBloque, int tamano, boolean manualIV, byte [] iv) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
@@ -50,9 +50,8 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         wpadre.newchild(this);
 
         //Comenzamos el cifrado
-        if (manualIV) {
-            String strIV = JOptionPane.showInputDialog("Introduzca el IV:");
-            IV = Conversor.hexStringToByte(strIV);
+        if (manualIV) {            
+            IV = iv;
         }
         byte [] in = getIn (opcionentrada);
         byte [] key = getKey (opcionkey);
@@ -81,18 +80,15 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
                 break;
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
-                /*if (opcionentrada == 2) {
-                    new InfoArchivos (wpadre, cadenaOutput);
-                }*/
         }
 
         if ( (opcionsalida != 2) || (opcionentrada !=2) ) {
             RondasTextArea.setText(aesenc.getResultado());
             Plaintextfield.setText(Conversor.byteToHexString(in));
-
-            this.setLocationRelativeTo(wpadre);
-            this.setVisible(true);
         }
+
+        this.setLocationRelativeTo(wpadre);
+        this.setVisible(true);
     }
 
     private byte [] getBytesArchivo (String ruta) {
@@ -101,7 +97,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
          aux = ReadFileIntoByteArray.getBytesFromFile(new File(ruta));
         }
         catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al" +
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al " +
                     "abrir el archivo");
         }
         return aux;
@@ -174,12 +170,14 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         });
 
         jTextArea3.setColumns(20);
+        jTextArea3.setEditable(false);
         jTextArea3.setLineWrap(true);
         jTextArea3.setRows(5);
         jScrollPane3.setViewportView(jTextArea3);
 
         jLabel1.setText("Plaintext:");
 
+        Plaintextfield.setEditable(false);
         Plaintextfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PlaintextfieldActionPerformed(evt);
@@ -189,6 +187,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         jLabel2.setText("Rondas AES:");
 
         RondasTextArea.setColumns(20);
+        RondasTextArea.setEditable(false);
         RondasTextArea.setLineWrap(true);
         RondasTextArea.setRows(5);
         RondasTextArea.setWrapStyleWord(true);
@@ -254,7 +253,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)

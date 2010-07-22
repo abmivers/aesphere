@@ -35,7 +35,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
     /** Creates new form ProcesoDescifrarUI */
     public ProcesoDescifrarDirectoUI(MainUI padre,String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
-            int modoBloque, int tamano, boolean manualIV) {
+            int modoBloque, int tamano, boolean manualIV, byte [] iv) {
         initComponents();
         wpadre=padre;
         cadenaInput = Texto1;
@@ -48,9 +48,8 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         wpadre.newchild(this);
 
         //Comenzamos el descifrado
-        if (manualIV) {
-            String strIV = JOptionPane.showInputDialog("Introduzca el IV:");
-            IV = Conversor.hexStringToByte(strIV);
+        if (manualIV) {            
+            IV = iv;
         }
         byte [] in = getIn (opcionentrada);
         byte [] key = getKey (opcionkey);
@@ -86,17 +85,14 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
                 break;
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
-                /*if (opcionentrada == 2) {
-                    new InfoArchivos (wpadre, cadenaOutput);
-                }*/
         }
 
         if ( (salida != null) && ((opcionsalida != 2) || (opcionentrada !=2)) ) {
-            Ciphertextfield.setText(Conversor.byteToHexString(in));
-
-            this.setLocationRelativeTo(wpadre);
-            this.setVisible(true);
+            Ciphertextfield.setText(Conversor.byteToHexString(in));            
         }
+
+        this.setLocationRelativeTo(wpadre);
+        this.setVisible(true);
     }
 
     private byte [] getBytesArchivo (String ruta) {
@@ -105,7 +101,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
          aux = ReadFileIntoByteArray.getBytesFromFile(new File(ruta));
         }
         catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al" +
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al " +
                     "abrir el archivo");
         }
         return aux;
@@ -174,6 +170,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         });
 
         Plaintextfield.setColumns(20);
+        Plaintextfield.setEditable(false);
         Plaintextfield.setLineWrap(true);
         Plaintextfield.setRows(5);
         jScrollPane3.setViewportView(Plaintextfield);
@@ -183,6 +180,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         jLabel1.setText("Plaintext:");
 
         Ciphertextfield.setColumns(20);
+        Ciphertextfield.setEditable(false);
         Ciphertextfield.setLineWrap(true);
         Ciphertextfield.setRows(5);
         jScrollPane4.setViewportView(Ciphertextfield);

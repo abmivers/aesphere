@@ -176,7 +176,7 @@ public class BlockManager {
         return out;
     }
 
-    private byte [] XOR (byte [] a, byte [] b) {
+    public static byte [] XOR (byte [] a, byte [] b) {
         byte [] aux = new byte[a.length];
 
         for (int i=0; i < a.length; i++)

@@ -25,7 +25,7 @@ public class ServUI extends javax.swing.JFrame {
     private int [] clientesPort;
 
     /** Creates new form ServUI */
-    public ServUI(MainUI padre, String plaintext, String ciphertext, 
+    public ServUI(MainUI padre, byte [] plainBytes, byte [] cipherBytes,
             int numeroclientes, byte [] claveinicial, long numClaves,
             int blockMode, byte[] IV) {
         initComponents();
@@ -66,9 +66,8 @@ public class ServUI extends javax.swing.JFrame {
             debugArea.append("Cliente " + i + ": " + clavesPorCliente[i] + " claves\n");
         }
 
-        //declaramos el array con el texto en claro
-        byte [] plainBytes = Conversor.hexStringToByte(plaintext);
-        byte [] cipherBytes = Conversor.hexStringToByte(ciphertext);        
+        //si estamos en modo CBC, hacemos XOR del IV con el texto en claro
+        if (blockMode == 1) plainBytes = BlockManager.XOR(IV, plainBytes);
 
         System.out.println("SERVIDOR: Detectando clientes");
         detectarClientes();
@@ -157,6 +156,16 @@ public class ServUI extends javax.swing.JFrame {
         try {
             InetAddress ip = clientesIP[num];
             int port = clientesPort[num];
+
+            //enviamos la longitud de la clave
+            byte [] tamClave = Conversor.intToByte(auxClave.length);
+            DatagramPacket tamPacket = new DatagramPacket(tamClave, tamClave.length,
+                    ip, port);
+            socket.send(tamPacket);
+            System.out.println("SERVIDOR: Tamaño de clave enviada");
+
+            //esperamos confirmación del cliente TamOK
+            esperarMensaje("TamOK");
 
             //enviamos la clave
             DatagramPacket keyPacket = new DatagramPacket(auxClave, auxClave.length, 

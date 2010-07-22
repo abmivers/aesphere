@@ -108,10 +108,13 @@ public class ReadFileIntoByteArray {
         byte[] bytes = null;
 
         // leemos el primer bloque (si la longitud es mayor a 16)
-        if (length < numBytes)
+        if (length < numBytes){
+            bytes = new byte [(int) length];
             is.read(bytes, 0, (int) length);
-        else
+        } else {
+            bytes = new byte [numBytes];
             is.read(bytes, 0, 16);
+        }
 
         is.close();
         return bytes;

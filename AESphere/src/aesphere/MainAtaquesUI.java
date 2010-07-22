@@ -489,6 +489,21 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
         }
 
+        if (aux &&  (cipherIndex == 1) && (cipherTextArea.getText().length() < 32) ) {
+            JOptionPane.showMessageDialog(this, "El número de dígitos hexadecimales del texto cifrado no puede ser inferior a 32");
+            aux=false;
+        }
+
+        if (aux && (cipherIndex == 0) && (cipherTextArea.getText().length() < 24) ) {
+            JOptionPane.showMessageDialog(this, "El número de caracteres del texto cifrado no puede ser inferior a 24");
+            aux=false;
+        }
+
+        if (aux &&  (cipherIndex == 1) && (cipherTextArea.getText().length() % 32 != 0)) {
+            JOptionPane.showMessageDialog(this, "El número de dígitos hexadecimales del texto cifrado debe ser múltiplo de 32");
+            aux=false;
+        }
+
         //el texto cifrado será de como máximo 1024 + 16 = 1040 bytes = 1388 caracteres en Base64
         if ( aux && (cipherIndex == 0) && (cipherTextArea.getText().length() > 1388)) {
             aux = false;
@@ -519,6 +534,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     "en Base64", "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
         }
 
+        if (aux && (cipherIndex == 0) && !comprobarBase64Length(cipherTextArea.getText())) {
+            JOptionPane.showMessageDialog(this, "La longitud del texto cifrado en Base64 es incorrecta.");
+            aux=false;
+        }
+
         if ( aux && (cipherIndex == 1) && !ComprobarHexadecimal(cipherTextArea.getText())) {
             aux = false;
             JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal" +
@@ -529,6 +549,19 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             aux = false;
 
         return aux;
+    }
+
+    private boolean comprobarBase64Length (String base64) {
+        //declaramos variable para almacenar el numero de caracteres sin relleno
+        int len = 0;
+        for (int i = base64.length() - 1; i >= 0; i--) {
+            if (base64.charAt(i) != '=') len = i + 1;
+        }
+        if (len == 0) return false;
+
+        if ( ((len * 3/4) % 16) != 0) return false;
+        //si no se ha salido aún, es correcto
+        return true;
     }
 
     private boolean comprobarBase64 (String base64) {
@@ -711,7 +744,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     final byte [] cipherBytes = getCipher();
                     Thread servThread = new Thread(new Runnable() {
                         public void run() {
-                            new ServUI(wpadre, plainTextArea.getText(), cipherTextArea.getText(),
+                            new ServUI(wpadre, plainBytes, cipherBytes,
                                     numClientes, claveini, numClaves,
                                     modoComboBox.getSelectedIndex(), iv);
                         }
@@ -830,7 +863,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
      * @return El primer bloque del texto en claro con pad (si procede)
      */
     private byte [] getPlain () {
-        byte [] aux;
+        byte [] aux = null;
         switch (plainComboBox.getSelectedIndex()) {
 
             case 0:
@@ -866,7 +899,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 if (aux.length < 16) aux = Conversor.pad(aux, 16);
 
         }
-        return null;
+        return aux;
     }
 
     private byte [] getBytesArchivo (String ruta) {
@@ -875,7 +908,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
          aux = ReadFileIntoByteArray.getBytesFromFile(new File(ruta), 16);
         }
         catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al" +
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al " +
                     "abrir el archivo");
         }
         return aux;
@@ -893,14 +926,15 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     aux = new byte[16];
                     System.arraycopy(aux2, 0, aux, 0, 16);
                 }
+                break;
 
             case 1:
-                if (plainTextArea.getText().length() < 32) {
-                    aux = Conversor.hexStringToByte(plainTextArea.getText());
+                if (cipherTextArea.getText().length() < 32) {
+                    aux = Conversor.hexStringToByte(cipherTextArea.getText());
                     aux = Conversor.pad(aux, 16);
                 } else
                     try {
-                        aux = Conversor.hexStringToByte(plainTextArea.getText(0, 32));
+                        aux = Conversor.hexStringToByte(cipherTextArea.getText(0, 32));
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(this, "Ocurrió un error" +
                                 "al obtener el texto en claro", "Error - Ataques",
@@ -909,11 +943,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 break;
 
             case 2:
-                aux = getBytesArchivo(plainTextArea.getText());
+                aux = getBytesArchivo(cipherTextArea.getText());
                 if (aux.length < 16) aux = Conversor.pad(aux, 16);
                 
         }
-        return null;
+        return aux;
     }
 
     private byte [] pedirIV () {

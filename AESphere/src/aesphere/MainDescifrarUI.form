@@ -584,6 +584,7 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="manualIV">
                   <Properties>
+                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Introducir IV manualmente"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
