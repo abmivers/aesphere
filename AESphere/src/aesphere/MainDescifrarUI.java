@@ -42,7 +42,9 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         setHelp();
         wpadre = padre;
 
-        archivos = new JFileChooser();
+        //archivos = new JFileChooser();
+        //system.out.println("BORRA LA LINEA DE ABAJO")
+        archivos = new JFileChooser("..");
 
         ButtonGroup group = new ButtonGroup();
         group.add(RadioButton128);
