@@ -65,6 +65,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("AESphere - Herramientas");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -195,7 +196,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
                     .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 375, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(638, Short.MAX_VALUE)
+                .addContainerGap(660, Short.MAX_VALUE)
                 .add(Cancelar)
                 .add(32, 32, 32)
                 .add(BotonInfo)

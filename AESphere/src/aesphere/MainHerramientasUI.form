@@ -83,6 +83,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="AESphere - Herramientas"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="cifradoMenuBarMain"/>
@@ -120,7 +121,7 @@
               <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="638" max="32767" attributes="0"/>
+              <EmptySpace pref="660" max="32767" attributes="0"/>
               <Component id="Cancelar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
