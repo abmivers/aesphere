@@ -904,8 +904,8 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private byte [] pedirIV () {
         boolean cont = true;
         String res = "0";
-        //sólo se entra si el modo es CBC
-        if (ModoCifrado.getSelectedIndex() == 1)
+        //sólo si se elige cifrado manual
+        if ( (ModoCifrado.getSelectedIndex() == 1) && manualIV.isSelected() )
             while (cont) {
                 res = JOptionPane.showInputDialog(this, "Introduzca el vector de inicialización",
                         "Ataques - CBC", JOptionPane.QUESTION_MESSAGE);

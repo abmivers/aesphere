@@ -624,7 +624,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
        
         switch (selectedIndex) {
             case 0: BotonBrowseCifrar.setEnabled(false);
-                    TextoInput.setEnabled(true);
+                    TextoInput.setEditable(true);
                     TextoInput.setText("");
 
                 break;
@@ -906,11 +906,11 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         return aux;
     }
 
-        private byte [] pedirIV () {
+    private byte [] pedirIV () {
         boolean cont = true;
         String res = "0";
-        //sólo se entra si el modo es CBC
-        if (ModoCifrado.getSelectedIndex() == 1)
+        //sólo si se elige cifrado manual
+        if ( (ModoCifrado.getSelectedIndex() == 1) && manualIV.isSelected() )
             while (cont) {
                 res = JOptionPane.showInputDialog(this, "Introduzca el vector de inicialización",
                         "Ataques - CBC", JOptionPane.QUESTION_MESSAGE);

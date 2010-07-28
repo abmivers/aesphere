@@ -50,7 +50,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         tamanoclave = tamano;
         blockMode = modoBloque;
 
-        this.setSize(550, 300);
+        this.setSize(550, 350);
         wpadre.newchild(this);
 
         //Comenzamos el cifrado
@@ -69,11 +69,15 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         byte[] salida = null;
         if (blockMode == 0) {
             aesenc = new BlockManager(key, numWords, 16, false);
-            salida = aesenc.ECB(in, true);
+            salida = aesenc.ECB(in, true);           
         }
         else if (blockMode == 1) {
             aesenc = new BlockManager(key, numWords, 16, false, IV);
             salida = aesenc.CBC(in, true);
+            //habilitamos el campo para mostrar el IV
+            ivLabel.setEnabled(true);
+            ivTextArea.setEnabled(true);
+            ivTextArea.setText(Conversor.byteToHexString(aesenc.getIV()));
         }        
 
         switch (opcionsalida) {
@@ -151,6 +155,9 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Plaintextfield = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        ivLabel = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        ivTextArea = new javax.swing.JTextArea();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -184,6 +191,16 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Ciphertext:");
+
+        ivLabel.setText("IV:");
+        ivLabel.setEnabled(false);
+
+        ivTextArea.setColumns(20);
+        ivTextArea.setEditable(false);
+        ivTextArea.setLineWrap(true);
+        ivTextArea.setRows(1);
+        ivTextArea.setEnabled(false);
+        jScrollPane4.setViewportView(ivTextArea);
 
         mainMenuArchivoCifrado.setText("Archivo");
 
@@ -229,12 +246,18 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
-                    .add(Plaintextfield, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+                            .add(Plaintextfield, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)))
+                    .add(layout.createSequentialGroup()
+                        .add(ivLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -248,7 +271,11 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel3)
                     .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(357, 357, 357))
+                .add(38, 38, 38)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(ivLabel)
+                    .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(297, 297, 297))
         );
 
         pack();
@@ -290,9 +317,12 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     private javax.swing.JTextField Plaintextfield;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JMenuBar cifradoMenuBarMain;
+    private javax.swing.JLabel ivLabel;
+    private javax.swing.JTextArea ivTextArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;
