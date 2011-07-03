@@ -29,10 +29,7 @@ import javax.swing.JOptionPane;
 public class MainUI extends javax.swing.JFrame {
 
     private javax.swing.JFrame hijoActual = null;
-    private Thread hijoThread = null;
-
-    private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
-    private String helpErrTitle = "Ayuda - Aviso";
+    private Thread hijoThread = null;    
 
     /** Creates new form Main */
     public MainUI() {
@@ -42,47 +39,28 @@ public class MainUI extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.setResizable(false);
     }
 
 
     /** Sets all the titles of the interface elements */
     private void setLangLabels () {
-        if (Entorno.getProperty("language").equals("ES")) {
-            this.setTitle("AESphere - Ventana Principal");
-            CifrarLabel.setText("CIFRAR");
-            DescifrarLabel.setText("DESCIFRAR");
-            AtaquesLabel.setText("SIMULAR ATAQUES");
-            HerramientasLabel.setText("HERRAMIENTAS");
-            mainMenuArchivo.setText("Archivo");
-            Salir.setText("Salir");
-            mainMenuOperaciones.setText("Operaciones");
-            mainMenuAyuda.setText("Ayuda");
-            Cifrar.setText("Cifrar");
-            Descifrar.setText("Descifrar");
-            SimularAtaques.setText("Simular ataques");
-            Herramientas.setText("Herramientas");
-            Contenidos.setText("Contenido");
-            helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
-            helpErrTitle = "Ayuda - Aviso";
-        }
-        else if (Entorno.getProperty("language").equals("EN")) {
-            this.setTitle("AESphere - Main Window");
-            CifrarLabel.setText("ENCRYPT");
-            DescifrarLabel.setText("DECRYPT");
-            AtaquesLabel.setText("SIMULATE ATTACKS");
-            HerramientasLabel.setText("TOOLS");
-            mainMenuArchivo.setText("File");
-            Salir.setText("Exit");
-            mainMenuOperaciones.setText("Actions");
-            mainMenuAyuda.setText("Help");
-            Cifrar.setText("Encrypt");
-            Descifrar.setText("Decrypt");
-            SimularAtaques.setText("Simulate attacks");
-            Herramientas.setText("Tools");
-            Contenidos.setText("Contents");
-            helpErrMsg = "An error has occurred while loading program help";
-            helpErrTitle = "Help - Warning";
-        }
+        this.setTitle(Entorno.getTrans("MainUI.title"));
+        CifrarLabel.setText(Entorno.getTrans("MainUI.enc").toUpperCase());
+        DescifrarLabel.setText(Entorno.getTrans("MainUI.dec").toUpperCase());
+        AtaquesLabel.setText(Entorno.getTrans("MainUI.att").toUpperCase());
+        HerramientasLabel.setText(Entorno.getTrans("MainUI.op").toUpperCase());
+        mainMenuArchivo.setText(Entorno.getTrans("gen.file"));
+        Salir.setText(Entorno.getTrans("gen.exit"));
+        mainMenuOperaciones.setText(Entorno.getTrans("MainUI.tools"));
+        mainMenuAyuda.setText(Entorno.getTrans("gen.help"));
+        Cifrar.setText(Entorno.getTrans("MainUI.enc"));
+        Descifrar.setText(Entorno.getTrans("MainUI.dec"));
+        SimularAtaques.setText(Entorno.getTrans("MainUI.att"));
+        Herramientas.setText(Entorno.getTrans("MainUI.op"));
+        Contenidos.setText(Entorno.getTrans("gen.cont"));
+        acercade.setText(Entorno.getTrans("gen.about"));
+        ComprobarVectores.setText(Entorno.getTrans("MainUI.chkVec"));
     }
 
     private void setHelp () {
@@ -106,11 +84,9 @@ public class MainUI extends javax.swing.JFrame {
             hb.enableHelpOnButton(acercade, "aplicacion", helpset);
             hb.enableHelpOnButton(Contenidos, "ventana_main", helpset);
             hb.enableHelpOnButton(BotonInfo, "ventana_main", helpset);
-        }
-
-        catch (Exception e) {
-             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
-                     JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.helpErrMsg"),
+                     Entorno.getTrans("gen.helpErrTitle"), JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -127,7 +103,6 @@ public class MainUI extends javax.swing.JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         jPopupMenu3 = new javax.swing.JPopupMenu();
         jPopupMenu4 = new javax.swing.JPopupMenu();
-        MainScrollPane = new javax.swing.JScrollPane();
         MainPanel = new javax.swing.JPanel();
         HerramientasLabel = new javax.swing.JLabel();
         BotonHerramientas = new javax.swing.JButton();
@@ -146,22 +121,20 @@ public class MainUI extends javax.swing.JFrame {
         mainMenuOperaciones = new javax.swing.JMenu();
         Cifrar = new javax.swing.JMenuItem();
         Descifrar = new javax.swing.JMenuItem();
-        ComprobarVectores = new javax.swing.JMenuItem();
         SimularAtaques = new javax.swing.JMenuItem();
         Herramientas = new javax.swing.JMenuItem();
+        ComprobarVectores = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
         Contenidos = new javax.swing.JMenuItem();
         acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        MainScrollPane.setPreferredSize(new java.awt.Dimension(700, 500));
-
         MainPanel.setPreferredSize(new java.awt.Dimension(700, 500));
 
-        HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
+        HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         HerramientasLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        HerramientasLabel.setText("HERRAMIENTAS");
+        HerramientasLabel.setText("OPERACIONES");
 
         BotonHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/herramientas.png"))); // NOI18N
         BotonHerramientas.setBorder(null);
@@ -183,9 +156,9 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
+        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        AtaquesLabel.setText("SIMULAR ATAQUES");
+        AtaquesLabel.setText("ATAQUES");
 
         BotonAtaques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ataques.png"))); // NOI18N
         BotonAtaques.setBorder(null);
@@ -215,7 +188,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
+        CifrarLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         CifrarLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         CifrarLabel.setText("CIFRAR");
 
@@ -274,7 +247,14 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(163, 163, 163)
+                        .addContainerGap()
+                        .addComponent(SpanishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(EnglishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
+                        .addComponent(BotonInfo))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addGap(166, 166, 166)
                         .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(MainPanelLayout.createSequentialGroup()
                                 .addComponent(BotonAtaques)
@@ -291,20 +271,13 @@ public class MainUI extends javax.swing.JFrame {
                             .addGroup(MainPanelLayout.createSequentialGroup()
                                 .addComponent(BotonHerramientas)
                                 .addGap(50, 50, 50)
-                                .addComponent(HerramientasLabel))))
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(SpanishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(EnglishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
-                        .addComponent(BotonInfo)))
+                                .addComponent(HerramientasLabel)))))
                 .addContainerGap())
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(57, 57, 57)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                     .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -312,23 +285,21 @@ public class MainUI extends javax.swing.JFrame {
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(DescifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(BotonDescifrar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 16, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AtaquesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                     .addComponent(BotonAtaques, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 20, Short.MAX_VALUE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(BotonHerramientas, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(26, 26, 26)
+                .addGap(41, 41, 41)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SpanishButton)
                     .addComponent(EnglishButton)
                     .addComponent(BotonInfo))
                 .addGap(12, 12, 12))
         );
-
-        MainScrollPane.setViewportView(MainPanel);
 
         mainMenuArchivo.setText("Archivo");
 
@@ -342,7 +313,7 @@ public class MainUI extends javax.swing.JFrame {
 
         mainMenuBar.add(mainMenuArchivo);
 
-        mainMenuOperaciones.setText("Operaciones");
+        mainMenuOperaciones.setText("Herramientas");
 
         Cifrar.setText("Cifrar");
         Cifrar.addActionListener(new java.awt.event.ActionListener() {
@@ -360,14 +331,6 @@ public class MainUI extends javax.swing.JFrame {
         });
         mainMenuOperaciones.add(Descifrar);
 
-        ComprobarVectores.setText("Comprobar Vectores");
-        ComprobarVectores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComprobarVectoresActionPerformed(evt);
-            }
-        });
-        mainMenuOperaciones.add(ComprobarVectores);
-
         SimularAtaques.setText("Simular Ataques");
         SimularAtaques.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,13 +339,21 @@ public class MainUI extends javax.swing.JFrame {
         });
         mainMenuOperaciones.add(SimularAtaques);
 
-        Herramientas.setText("Herramientas");
+        Herramientas.setText("Operaciones");
         Herramientas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HerramientasActionPerformed(evt);
             }
         });
         mainMenuOperaciones.add(Herramientas);
+
+        ComprobarVectores.setText("Comprobar Vectores");
+        ComprobarVectores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComprobarVectoresActionPerformed(evt);
+            }
+        });
+        mainMenuOperaciones.add(ComprobarVectores);
 
         mainMenuBar.add(mainMenuOperaciones);
 
@@ -408,11 +379,11 @@ public class MainUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
         );
 
         pack();
@@ -523,12 +494,18 @@ public class MainUI extends javax.swing.JFrame {
     private void SpanishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpanishButtonActionPerformed
         if (!Entorno.getProperty("language").equals("ES")) {
             int resul = JOptionPane.showConfirmDialog(this,
-                    "¿Está seguro de que desea cambiar el idioma a Español?",
-                    "Idioma - Aviso", JOptionPane.OK_CANCEL_OPTION);
+                    Entorno.getTrans("MainUI.langChgMsg"),
+                    Entorno.getTrans("MainUI.langChgTit"), JOptionPane.OK_CANCEL_OPTION);
             if (resul == 0) {
-                Entorno.setProperty("language", "ES");
-                setLangLabels();
-                setHelp();
+                Entorno.changeLang("ES");
+                //comprobamos que el cambio se ha llevado a cabo correctamente
+                if (!Entorno.getBadInit()) {
+                    setLangLabels();
+                    setHelp();
+                } else {
+                    //salimos si algo ha ido mal
+                    this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
+                }
             }
         }
     }//GEN-LAST:event_SpanishButtonActionPerformed
@@ -536,12 +513,18 @@ public class MainUI extends javax.swing.JFrame {
     private void EnglishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnglishButtonActionPerformed
         if (!Entorno.getProperty("language").equals("EN")) {
             int resul = JOptionPane.showConfirmDialog(this,
-                    "Are you sure that you want to change language to English?",
-                    "Language - Warning", JOptionPane.OK_CANCEL_OPTION);
+                    Entorno.getTrans("MainUI.langChgMsg"),
+                    Entorno.getTrans("MainUI.langChgTit"), JOptionPane.OK_CANCEL_OPTION);
             if (resul == 0) {
-                Entorno.setProperty("language","EN");
-                setLangLabels();
-                setHelp();
+                Entorno.changeLang("EN");
+                //comprobamos que el cambio se ha llevado a cabo correctamente
+                if (!Entorno.getBadInit()) {
+                    setLangLabels();
+                    setHelp();
+                } else {
+                    //salimos si algo ha ido mal
+                    this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
+                }
             }
         }
     }//GEN-LAST:event_EnglishButtonActionPerformed
@@ -610,7 +593,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem Herramientas;
     private javax.swing.JLabel HerramientasLabel;
     private javax.swing.JPanel MainPanel;
-    private javax.swing.JScrollPane MainScrollPane;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JMenuItem SimularAtaques;
     private javax.swing.JButton SpanishButton;

@@ -1,10 +1,15 @@
 
 package aesphere;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
 import java.io.File;
 import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 
 /**
  *
@@ -18,12 +23,14 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     /** Creates new form MainAtaquesUI */
     public MainAtaquesUI(MainUI padre) {
         initComponents();
+        setLangLabels();
         wpadre = padre;
         ButtonGroup group = new ButtonGroup();
         archivos = new JFileChooser();
         group.add(ClienteRadioButton);
         group.add(ServidorRadioButton);
         this.setSize(800, 650);
+        this.setResizable(false);
     }
 
     /** This method is called from within the constructor to
@@ -35,7 +42,6 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         entradaPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -51,7 +57,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         EjecutarButton = new javax.swing.JButton();
         funcionamientoPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        funcLabel = new javax.swing.JLabel();
         ServidorRadioButton = new javax.swing.JRadioButton();
         IPLabel = new javax.swing.JLabel();
         IPTextField = new javax.swing.JTextField();
@@ -76,6 +82,10 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditar = new javax.swing.JMenu();
+        menuCopiarClaro = new javax.swing.JMenuItem();
+        menuCopiarCifrado = new javax.swing.JMenuItem();
+        menuPegarClaro = new javax.swing.JMenuItem();
+        menuPegarCifrado = new javax.swing.JMenuItem();
         mainMenuAyuda = new javax.swing.JMenu();
         Contenidos = new javax.swing.JMenuItem();
         acercade = new javax.swing.JMenuItem();
@@ -161,7 +171,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(cipherBrowseButton))
                     .add(cipherLabel)
                     .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 286, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         entradaPanelLayout.setVerticalGroup(
             entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -194,7 +204,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         funcionamientoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FUNCIONAMIENTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
-        jLabel1.setText("Este equipo funcionará como:");
+        funcLabel.setText("Este equipo funcionará como:");
 
         ServidorRadioButton.setSelected(true);
         ServidorRadioButton.setText("Servidor");
@@ -243,7 +253,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(jLabel2)
                 .add(33, 33, 33)
                 .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 198, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(funcLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 198, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(funcionamientoPanelLayout.createSequentialGroup()
                         .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(ServidorRadioButton)
@@ -258,7 +268,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(NumeroClientesTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(modoComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 77, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         funcionamientoPanelLayout.setVerticalGroup(
             funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -266,7 +276,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(funcionamientoPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(jLabel1)
+                        .add(funcLabel)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(ServidorRadioButton)
@@ -337,13 +347,13 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(clavesPanelLayout.createSequentialGroup()
                         .add(formatoClavesLabel)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 175, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 187, Short.MAX_VALUE)
                         .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(claveSizeComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
+                .addContainerGap())
         );
         clavesPanelLayout.setVerticalGroup(
             clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -378,15 +388,14 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(Cancelar)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(EjecutarButton)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(18, 18, 18)
                         .add(BotonInfo)
-                        .add(23, 23, 23))
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, funcionamientoPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, entradaPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, clavesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .add(11, 11, 11))
+                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, funcionamientoPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, entradaPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, clavesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -397,14 +406,13 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(clavesPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(EjecutarButton)
-                    .add(Cancelar)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(EjecutarButton)
+                        .add(Cancelar))
                     .add(BotonInfo))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
-
-        jScrollPane3.setViewportView(jPanel1);
 
         mainMenuArchivo.setText("Archivo");
 
@@ -419,6 +427,39 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         cifrarMenuBarMain.add(mainMenuArchivo);
 
         mainMenuEditar.setText("Editar");
+
+        menuCopiarClaro.setText("Copiar claro");
+        menuCopiarClaro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCopiarClaroActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(menuCopiarClaro);
+
+        menuCopiarCifrado.setText("Copiar cifrado");
+        menuCopiarCifrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCopiarCifradoActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(menuCopiarCifrado);
+
+        menuPegarClaro.setText("Pegar claro");
+        menuPegarClaro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPegarClaroActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(menuPegarClaro);
+
+        menuPegarCifrado.setText("Pegar cifrado");
+        menuPegarCifrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPegarCifradoActionPerformed(evt);
+            }
+        });
+        mainMenuEditar.add(menuPegarCifrado);
+
         cifrarMenuBarMain.add(mainMenuEditar);
 
         mainMenuAyuda.setText("Ayuda");
@@ -442,16 +483,62 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /*
+     * Set all the title elements
+     */
+    private void setLangLabels () {
+        this.setTitle(Entorno.getTrans("Att.title"));
+        funcionamientoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), Entorno.getTrans("Att.funcTit").toUpperCase(), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
+        entradaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), Entorno.getTrans("Att.inTit").toUpperCase(), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
+        clavesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), Entorno.getTrans("Att.keyTit").toUpperCase(), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
+        funcLabel.setText(Entorno.getTrans("Att.funcTxt"));
+        ServidorRadioButton.setText(Entorno.getTrans("Att.serv"));
+        ClienteRadioButton.setText(Entorno.getTrans("Att.client"));
+        clientesLabel.setText(Entorno.getTrans("Att.nCliTxt"));
+        modoLabel.setText(Entorno.getTrans("Att.modeTxt"));
+        IPLabel.setText(Entorno.getTrans("Att.ipTxt"));
+        modoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { Entorno.getTrans("Att.ecb"), Entorno.getTrans("Att.cbc") }));
+        plainLabel.setText(Entorno.getTrans("AES.plain"));
+        cipherLabel.setText(Entorno.getTrans("AES.cipher"));
+        plainComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { Entorno.getTrans("AES.asciTxt"), Entorno.getTrans("AES.hex"), Entorno.getTrans("gen.file") }));
+        cipherComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { Entorno.getTrans("AES.64"), Entorno.getTrans("AES.hex"), Entorno.getTrans("gen.file") }));
+        plainBrowseButton.setText(Entorno.getTrans("gen.browse"));
+        cipherBrowseButton.setText(Entorno.getTrans("gen.browse"));
+        formatoClavesLabel.setText(Entorno.getTrans("Att.keyFormatTxt"));
+        claveInicialLabel.setText(Entorno.getTrans("Att.key1Txt"));
+        claveFinalLabel.setText(Entorno.getTrans("Att.key2Txt"));
+        clavesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { Entorno.getTrans("AES.hex"), Entorno.getTrans("AES.asci") }));
+        claveSizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { Entorno.getTrans("AES.128"), Entorno.getTrans("AES.192"), Entorno.getTrans("AES.256") }));        
+        Cancelar.setText(Entorno.getTrans("gen.cancel"));
+        EjecutarButton.setText(Entorno.getTrans("gen.exec"));
+        mainMenuArchivo.setText(Entorno.getTrans("gen.file"));
+        mainMenuEditar.setText(Entorno.getTrans("gen.edit"));
+        mainMenuAyuda.setText(Entorno.getTrans("gen.help"));
+        Salir.setText(Entorno.getTrans("gen.exit"));
+        menuCopiarClaro.setText(Entorno.getTrans("Att.copyPlain"));
+        menuPegarClaro.setText(Entorno.getTrans("Att.pastePlain"));
+        menuCopiarCifrado.setText(Entorno.getTrans("Att.copyCipher"));
+        menuPegarCifrado.setText(Entorno.getTrans("Att.pasteCipher"));
+        Contenidos.setText(Entorno.getTrans("gen.cont"));
+        acercade.setText(Entorno.getTrans("gen.about"));
+    }
+    
     private boolean ComprobarDatos () {
 
         boolean aux = true;        
@@ -459,71 +546,70 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         int cipherIndex = cipherComboBox.getSelectedIndex();
 
         if ( aux && (plainTextArea.getText().isEmpty() || cipherTextArea.getText().isEmpty()) ){
-           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos",
-                   "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+           JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.fillWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
            aux=false;
         }
 
         if ( aux && NumeroClientesTextField.getText().isEmpty() ){
-           JOptionPane.showMessageDialog(this, "Tiene que introducir el número de clientes",
-                   "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+           JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.nCliWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
            aux=false;
         }        
 
         if ( aux && !comprobarNumero(NumeroClientesTextField.getText()) ) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Tiene que introducir un número en el número de clientes",
-                   "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cliNumberWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if ( aux && (plainIndex == 0) && (plainTextArea.getText().length() > 1024) ) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Sólo puede introducir como " +
-                    "máximo 1024 caracteres en el texto en claro", "Ataques - Aviso",
-                    JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.plainMaxCharWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if ( aux && (plainIndex == 1) && (plainTextArea.getText().length() > 2048)) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Sólo puede introducir como " +
-                    "máximo 2048 dígitos hexadecimales en el texto en claro", "Ataques - Aviso",
-                    JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.plainMaxHexWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if (aux &&  (cipherIndex == 1) && (cipherTextArea.getText().length() < 32) ) {
-            JOptionPane.showMessageDialog(this, "El número de dígitos hexadecimales del texto cifrado no puede ser inferior a 32");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cipherMinHexWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
         }
 
         if (aux && (cipherIndex == 0) && (cipherTextArea.getText().length() < 24) ) {
-            JOptionPane.showMessageDialog(this, "El número de caracteres del texto cifrado no puede ser inferior a 24");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cipherMinCharWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
         }
 
         if (aux &&  (cipherIndex == 1) && (cipherTextArea.getText().length() % 32 != 0)) {
-            JOptionPane.showMessageDialog(this, "El número de dígitos hexadecimales del texto cifrado debe ser múltiplo de 32");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cipherMulHexWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
         }
 
         //el texto cifrado será de como máximo 1024 + 16 = 1040 bytes = 1388 caracteres en Base64
         if ( aux && (cipherIndex == 0) && (cipherTextArea.getText().length() > 1388)) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Sólo puede introducir como " +
-                    "máximo 1388 caracteres en Base64 en el texto cifrado", "Ataques - Aviso",
-                    JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cipherMax64WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if ( aux && (cipherIndex == 1) && (cipherTextArea.getText().length() > 2080)) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Sólo puede introducir como " +
-                    "máximo 2080 dítigos hexadecimales en el texto cifrado", "Ataques - Aviso",
-                    JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cipherMaxHexWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if ( aux && (plainIndex == 1) && !ComprobarHexadecimal(plainTextArea.getText())) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal" +
-                    " en el texto en claro", "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.plainHexWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if ( aux && (plainIndex == 2) && !comprobarArchivo(plainTextArea.getText(), 41943040) )
@@ -531,19 +617,20 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         if (aux && (cipherIndex == 0) && !comprobarBase64(cipherTextArea.getText())) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Formato incorrecto del texto cifrado " +
-                    "en Base64", "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cipher64FormatWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if (aux && (cipherIndex == 0) && !comprobarBase64Length(cipherTextArea.getText())) {
-            JOptionPane.showMessageDialog(this, "La longitud del texto cifrado en Base64 es incorrecta.");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cipher64LenWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
         }
 
         if ( aux && (cipherIndex == 1) && !ComprobarHexadecimal(cipherTextArea.getText())) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal" +
-                    " en el texto cifrado", "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cipherHexWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if ( aux && (cipherIndex == 2) && !comprobarArchivo(cipherTextArea.getText(), 41943056) )
@@ -606,20 +693,21 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         try {
             File arch = new File (ruta);
             if (!arch.exists()) {
-                JOptionPane.showMessageDialog(this, "El archivo " + ruta +
-                        " no existe", "Ataques - Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileNot1") 
+                        + " " + ruta + " " + Entorno.getTrans("gen.fileNot2"),
+                        Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
                 aux = false;
             } else {
                 if (arch.length() > max) {
                     aux = false;
-                    JOptionPane.showMessageDialog(this, "El archivo " + ruta +
-                        " supera el tamaño máximo permitido\nde 40MBs",
-                        "Ataques - Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileNot1")
+                            + " " + ruta + " " + Entorno.getTrans("gen.fileNotLen"),
+                        Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al abrir el archivo:\n" +
-                    ruta, "Ataques - Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileErr") +
+                    ruta, Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
             aux = false;
         }
         return aux;
@@ -724,16 +812,13 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
                 long clavesCliente = numClaves / numClientes;
                 if ( clavesCliente >= 900000 )
-                    op = JOptionPane.showConfirmDialog(this, "Con el espectro de claves" +
-                            " elegido podrían tardarse más de 10 minutos en terminar el proceso. " +
-                            "\n¿Está seguro de que desea continuar?",
-                            "Ataques - Confirmación", JOptionPane.YES_NO_OPTION);
+                    op = JOptionPane.showConfirmDialog(this, Entorno.getTrans("Att.keySpaceWarMsg"),
+                            Entorno.getTrans("gen.conf"), JOptionPane.YES_NO_OPTION);
                 else if ( clavesCliente <= 0 ) {
                     //para que no cree el servidor
                     op = 1;
-                    JOptionPane.showMessageDialog(this, "Espectro de claves " +
-                            "incorrecto.\nRevise la clave inicial y final.", 
-                            "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.badKeySpaceWarMsg"),
+                            Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 }
                 
                 final byte [] claveini = claveinicial;
@@ -756,15 +841,16 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             }
         } else if (ClienteRadioButton.isSelected()) {
             if (IPTextField.getText().isEmpty())
-                JOptionPane.showMessageDialog(this, "Debe rellenar la IP del servidor",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.ipWarMsg"),
+                            Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             else {
                 Thread clientThread = new Thread(new Runnable() {
                     public void run() {
                         try {
                             new ClientUI(wpadre, java.net.InetAddress.getByName(IPTextField.getText()));
                         } catch (java.net.UnknownHostException e) {
-                            JOptionPane.showMessageDialog(null, "Error en la IP del servidor");
+                            JOptionPane.showMessageDialog(null, Entorno.getTrans("Att.ipErrMsg"),
+                            Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
                            Thread.currentThread().interrupt();
                         }
                     }
@@ -841,6 +927,52 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         if (resul == JFileChooser.APPROVE_OPTION) cipherTextArea.setText(archi.getPath());
     }//GEN-LAST:event_cipherBrowseButtonActionPerformed
 
+    private void menuCopiarClaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCopiarClaroActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(plainTextArea.getText());
+        cb.setContents(ss, ss);
+    }//GEN-LAST:event_menuCopiarClaroActionPerformed
+
+    private void menuPegarClaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPegarClaroActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable t = cb.getContents(this);
+      
+        try{
+            DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
+            if (t.isDataFlavorSupported(dataFlavorStringJava)) {
+            String texto = (String) t.getTransferData(dataFlavorStringJava);
+            plainTextArea.setText(texto);}
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.pasteErr"),
+                    Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_menuPegarClaroActionPerformed
+
+    private void menuCopiarCifradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCopiarCifradoActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(cipherTextArea.getText());
+        cb.setContents(ss, ss);
+    }//GEN-LAST:event_menuCopiarCifradoActionPerformed
+
+    private void menuPegarCifradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPegarCifradoActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable t = cb.getContents(this);
+      
+        try{
+            DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
+            if (t.isDataFlavorSupported(dataFlavorStringJava)) {
+            String texto = (String) t.getTransferData(dataFlavorStringJava);
+            cipherTextArea.setText(texto);}
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.pasteErr"),
+                    Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_menuPegarCifradoActionPerformed
+
     private long getKeysToTry (byte [] iniClave, byte [] finClave) {
          int len = iniClave.length;
          long numKeys = 0;
@@ -875,9 +1007,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     try {
                         aux = Conversor.stringToASCII(plainTextArea.getText(0,16));
                     } catch (Exception e) {
-                        JOptionPane.showMessageDialog(this, "Ocurrió un error" +
-                                "al obtener el texto en claro", "Error - Ataques",
-                                JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.plainGetErr"),
+                            Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
                     }
                 break;
 
@@ -889,9 +1020,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     try {
                         aux = Conversor.hexStringToByte(plainTextArea.getText(0, 32));
                     } catch (Exception e) {
-                        JOptionPane.showMessageDialog(this, "Ocurrió un error" +
-                                "al obtener el texto en claro", "Error - Ataques",
-                                JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.plainGetErr"),
+                            Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
                     }
                 break;
 
@@ -909,8 +1039,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
          aux = ReadFileIntoByteArray.getBytesFromFile(new File(ruta), 16);
         }
         catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al " +
-                    "abrir el archivo");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileErr") +
+                    ruta, Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
         }
         return aux;
     }
@@ -937,9 +1067,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     try {
                         aux = Conversor.hexStringToByte(cipherTextArea.getText(0, 32));
                     } catch (Exception e) {
-                        JOptionPane.showMessageDialog(this, "Ocurrió un error" +
-                                "al obtener el texto en claro", "Error - Ataques",
-                                JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cipherGetErr"),
+                            Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
                     }
                 break;
 
@@ -957,8 +1086,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         //sólo se entra si el modo es CBC
         if (modoComboBox.getSelectedIndex() == 1)
             while (cont) {
-                res = JOptionPane.showInputDialog(this, "Introduzca el vector de inicialización",
-                        "Ataques - CBC", JOptionPane.QUESTION_MESSAGE);
+                res = JOptionPane.showInputDialog(this, Entorno.getTrans("AES.introIVMsg"),
+                        Entorno.getTrans("AES.introIVTit"), JOptionPane.QUESTION_MESSAGE);
                 if (res == null)
                     cont = false;
                 else
@@ -974,21 +1103,20 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         if (aux && iv.isEmpty()) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Debe introducir un vector de inicialización",
-                    "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.introIVWarMsg"),
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if (aux && (iv.length() != 32)) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "El tamaño del vector de inicialización" +
-                    " debe ser de 32 dígitos hexadecimales", "Ataques - CBC - Aviso",
-                    JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenIVWarMsg"),
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if (aux && !ComprobarHexadecimal(iv)) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal"
-                    , "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.hexIVWarMsg"),
+                    "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
         }
 
         return aux;
@@ -1018,52 +1146,52 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         if ( aux && ClaveInicialTextField.getText().isEmpty() ) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.fillWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if ( aux && ClaveFinalTextField.getText().isEmpty() ) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.fillWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if ( aux && (indexFormat == 0) && !ComprobarHexadecimal(ClaveInicialTextField.getText() )) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en la clave inicial",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1HexWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if ( aux && (indexFormat == 0) && !ComprobarHexadecimal(ClaveFinalTextField.getText()) ) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en la clave final",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2HexWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if (aux && (indexSize == 0) ) {
 
             if (aux && (indexFormat == 0) && (ClaveInicialTextField.getText().length() != 32) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 32 dígitos hexadecimales en la clave inicial",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1HexLen32WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if ( aux && (indexFormat == 0) && (ClaveFinalTextField.getText().length() != 32) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 32 dígitos hexadecimales en la clave final",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2HexLen32WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveInicialTextField.getText().length() != 16) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 16 caracteres ASCII en la clave inicial",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1AsciLen16WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveFinalTextField.getText().length() != 16) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 16 caracteres ASCII en la clave final",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2AsciLen16WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
         }
 
@@ -1071,26 +1199,26 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
             if (aux && (indexFormat == 0) && (ClaveInicialTextField.getText().length() != 48) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 48 dígitos hexadecimales en la clave inicial",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1HexLen48WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if ( aux && (indexFormat == 0) && (ClaveFinalTextField.getText().length() != 48) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 48 dígitos hexadecimales en la clave final",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2HexLen48WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveInicialTextField.getText().length() != 24) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 24 caracteres ASCII en la clave inicial",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1AsciLen24WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveFinalTextField.getText().length() != 24) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 24 caracteres ASCII en la clave final",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2AsciLen24WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
         }
 
@@ -1098,26 +1226,26 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
             if (aux && (indexFormat == 0) && (ClaveInicialTextField.getText().length() != 64) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 64 dígitos hexadecimales en la clave inicial",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1HexLen64WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if ( aux && (indexFormat == 0) && (ClaveFinalTextField.getText().length() != 64) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 64 dígitos hexadecimales en la clave final",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2HexLen64WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveInicialTextField.getText().length() != 32) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 32 caracteres ASCII en la clave inicial",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1AsciLen32WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveFinalTextField.getText().length() != 32) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, "Debe introducir 32 caracteres ASCII en la clave final",
-                    "Ataques - Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2AsciLen32WarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
         }
         return aux;
@@ -1150,18 +1278,21 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private javax.swing.JLabel clientesLabel;
     private javax.swing.JPanel entradaPanel;
     private javax.swing.JLabel formatoClavesLabel;
+    private javax.swing.JLabel funcLabel;
     private javax.swing.JPanel funcionamientoPanel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JMenu mainMenuArchivo;
     private javax.swing.JMenu mainMenuAyuda;
     private javax.swing.JMenu mainMenuEditar;
+    private javax.swing.JMenuItem menuCopiarCifrado;
+    private javax.swing.JMenuItem menuCopiarClaro;
+    private javax.swing.JMenuItem menuPegarCifrado;
+    private javax.swing.JMenuItem menuPegarClaro;
     private javax.swing.JComboBox modoComboBox;
     private javax.swing.JLabel modoLabel;
     private javax.swing.JButton plainBrowseButton;

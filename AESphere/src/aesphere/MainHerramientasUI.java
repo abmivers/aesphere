@@ -26,15 +26,14 @@ import javax.swing.JOptionPane;
 public class MainHerramientasUI extends javax.swing.JFrame {
 
     private javax.swing.JFrame hijoActual;
-    private MainUI wpadre;
-    private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
-    private String helpErrTitle = "Ayuda - Aviso";
+    private MainUI wpadre;    
 
     public MainHerramientasUI(MainUI padre) {
         initComponents();
+        setLangLabels();
         wpadre=padre;
         setHelp();
-
+        this.setResizable(false);
     }
 
     /** This method is called from within the constructor to
@@ -227,7 +226,23 @@ public class MainHerramientasUI extends javax.swing.JFrame {
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
 }//GEN-LAST:event_SalirActionPerformed
 
-private void setHelp () {
+    /*Traducciones*/
+    private void setLangLabels() {
+        this.setTitle(Entorno.getTrans("Op.title"));
+        mainMenuArchivoCifrado.setText(Entorno.getTrans("gen.file"));
+        Salir.setText(Entorno.getTrans("gen.exit"));        
+        mainMenuOperacionesCifrado.setText(Entorno.getTrans("MainUI.op"));
+        SubBytes.setText(Entorno.getTrans("Op.subBytes"));
+        MixColumns.setText(Entorno.getTrans("Op.mixColums"));
+        AddRoundKey.setText(Entorno.getTrans("Op.addRoundKey"));
+        ShiftRows.setText(Entorno.getTrans("Op.shiftRows"));
+        mainMenuAyudaCifrado.setText(Entorno.getTrans("gen.help"));
+        Contenidos.setText(Entorno.getTrans("gen.cont"));
+        acercade.setText(Entorno.getTrans("gen.about"));
+        Cancelar.setText(Entorno.getTrans("gen.back"));
+    }
+    
+    private void setHelp () {
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = getSize();
@@ -251,8 +266,8 @@ private void setHelp () {
         }
 
         catch (Exception e) {
-             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
-                     JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.helpErrMsg"), 
+                     Entorno.getTrans("gen.helpErrTitle"), JOptionPane.ERROR_MESSAGE);
         }
     }
 
