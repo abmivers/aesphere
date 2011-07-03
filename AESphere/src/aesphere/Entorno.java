@@ -130,7 +130,7 @@ public class Entorno {
         
         //obtenemos la cadena de idioma        
         String langCad = "translation_" + lang + ".conf";        
-        transArchiv = new File("translations\\" + langCad);
+        transArchiv = new File("translations/" + langCad);
         if (!transArchiv.exists()) {
             //avisamos de que la isntalación del programa está corrupta
             JOptionPane.showMessageDialog(null, "Faltan archivos de traducciones, " +
