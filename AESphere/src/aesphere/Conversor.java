@@ -7,6 +7,7 @@ package aesphere;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -195,16 +196,15 @@ public class Conversor {
             while(texto[i] == 0) i++;
             sinCero = new byte [texto.length - i];
             for (int j = 0; i < texto.length; j++, i++){
-                if (j < sinCero.length) sinCero[j] = texto[i];
-                else System.out.println("WARNING: Puede que el archivo no se" +
-                        "haya escrito bien");
+                if (j < sinCero.length) sinCero[j] = texto[i];                
             }
             
             fichero.write(sinCero);
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, Entorno.getTrans("gen.fileWriteErr") +
+                    ruta, Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
 
         } finally {
            try {
@@ -213,7 +213,8 @@ public class Conversor {
            if (null != fichero)
               fichero.close();
            } catch (Exception e2) {
-              e2.printStackTrace();
+              JOptionPane.showMessageDialog(null, Entorno.getTrans("gen.fileCloseErr") +
+                    ruta, Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
 
            }
         }

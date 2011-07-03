@@ -75,7 +75,6 @@ public class BlockManager {
      * @param cifrando A boolean that indicates if we are encrypting (true) or
      * decrypting (false)
      * @return The encrypted/decrypted array of bytes
-     * @throws IllegalArgumentException To control the mode parameter
      */
     public byte [] ECB (byte [] in, boolean cifrando) {
         byte [] outBlock = new byte [blockSize];

@@ -65,7 +65,9 @@ public class Presentation extends javax.swing.JFrame {
             Thread.sleep(2200);
         } catch(Exception exc) {}
         
-        new MainUI();
+        if (!Entorno.getBadInit()) {
+            new MainUI();
+        }
 
         pres.dispose();        
         pres=null;

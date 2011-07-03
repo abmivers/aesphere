@@ -31,9 +31,7 @@ import javax.swing.JOptionPane;
 public class MainDescifrarUI extends javax.swing.JFrame {
 
     private MainUI wpadre;
-    private String key; //para almacenar la clave cuando se introduce desde archivo
-    private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
-    private String helpErrTitle = "Ayuda - Aviso";
+    private String key; //para almacenar la clave cuando se introduce desde archivo    
 
     /** Creates new form Main */
     public MainDescifrarUI(MainUI padre) {
@@ -42,32 +40,54 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         setHelp();
         wpadre = padre;
 
-        //archivos = new JFileChooser();
-        //system.out.println("BORRA LA LINEA DE ABAJO")
         archivos = new JFileChooser("..");
 
         ButtonGroup group = new ButtonGroup();
         group.add(RadioButton128);
         group.add(RadioButton192);
         group.add(RadioButton256);
+        
+        this.setResizable(false);
     }
 
 
 
     /** Sets all the titles of the interface elements */
     private void setLangLabels () {
-        if (Entorno.getProperty("language").equals("ES")) {
-            this.setTitle("AESphere - Descifrar");
-            cifrarPanelInput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " ENTRADA ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
-            cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " SALIDA ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
-            cifrarPanelAdvOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " OPCIONES AVANZADAS ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
-        }
-        else if (Entorno.getProperty("language").equals("EN")) {
-            this.setTitle("AESphere - Decrypt");
-            cifrarPanelInput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " INPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
-            cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " OUTPUT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
-            cifrarPanelAdvOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), " ADVANCED OPTIONS ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
-        }
+        this.setTitle(Entorno.getTrans("AES.titleDec"));
+        cifrarPanelInput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), Entorno.getTrans("AES.in"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
+        cifrarPanelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), Entorno.getTrans("AES.out"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
+        cifrarPanelAdvOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), Entorno.getTrans("AES.advOpt"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18)));
+        ComboBoxInputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { Entorno.getTrans("AES.64"), Entorno.getTrans("AES.hex"), Entorno.getTrans("gen.file") }));
+        BotonBrowseCifrar.setText(Entorno.getTrans("gen.browse"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(Entorno.getTrans("AES.key")));
+        ComboBoxKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { Entorno.getTrans("AES.asci"), Entorno.getTrans("AES.hex"), Entorno.getTrans("AES.file64") }));
+        BotonBrowseCifrarKey.setText(Entorno.getTrans("gen.browse"));
+        ComboBoxOutputCifrar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { Entorno.getTrans("AES.asciTxt"), Entorno.getTrans("AES.hex"), Entorno.getTrans("gen.file") }));
+        BotonBrowseCifrarOutput.setText(Entorno.getTrans("gen.browse"));
+        jLabel4.setText(Entorno.getTrans("AES.encMeth"));
+        ModoCifrado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { Entorno.getTrans("AES.ecb"), Entorno.getTrans("AES.cbc") }));
+        manualIV.setText(Entorno.getTrans("AES.manualIV"));
+        jLabel5.setText(Entorno.getTrans("AES.execMeth"));
+        ModoEjecucion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { Entorno.getTrans("AES.step"), Entorno.getTrans("AES.direct") }));
+        ModoEjecucion.setSelectedIndex(1);
+        Cancelar.setText(Entorno.getTrans("gen.cancel"));
+        BotonSiguiente.setText(Entorno.getTrans("gen.next"));
+        mainMenuArchivo.setText(Entorno.getTrans("gen.file"));
+        AbrirClave.setText(Entorno.getTrans("AES.open64"));
+        GuardarClave.setText(Entorno.getTrans("AES.save64"));
+        Salir.setText(Entorno.getTrans("gen.exit"));
+        mainMenuEditar.setText(Entorno.getTrans("gen.edit"));
+        CopiarInput.setText(Entorno.getTrans("AES.copyIn"));
+        PegarInput.setText(Entorno.getTrans("AES.pasteIn"));
+        CopiarKey.setText(Entorno.getTrans("AES.copyKey"));
+        PegarKey.setText(Entorno.getTrans("AES.pasteKey"));
+        mainMenuAyuda.setText(Entorno.getTrans("gen.help"));
+        ContenidosDescifrar.setText(Entorno.getTrans("gen.cont"));
+        acercade.setText(Entorno.getTrans("gen.about"));
+        RadioButton128.setText(Entorno.getTrans("AES.128"));
+        RadioButton192.setText(Entorno.getTrans("AES.192"));
+        RadioButton256.setText(Entorno.getTrans("AES.256"));
     }
 
     private void setHelp () {
@@ -94,8 +114,8 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         }
 
         catch (Exception e) {
-             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
-                     JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.helpErrMsg"), 
+                     Entorno.getTrans("gen.helpErrTitle"), JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -113,7 +133,6 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         jPopupMenu3 = new javax.swing.JPopupMenu();
         jPopupMenu4 = new javax.swing.JPopupMenu();
         archivos = new javax.swing.JFileChooser();
-        cifrarScrollPaneMain = new javax.swing.JScrollPane();
         cifrarPanelMain = new javax.swing.JPanel();
         cifrarPanelInput = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -166,8 +185,6 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
-
-        cifrarScrollPaneMain.setBorder(null);
 
         cifrarPanelMain.setPreferredSize(new java.awt.Dimension(788, 566));
 
@@ -317,7 +334,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         cifrarPanelInputLayout.setVerticalGroup(
             cifrarPanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +398,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                     .addGroup(cifrarPanelAdvOptionsLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(manualIV)
-                        .addContainerGap(528, Short.MAX_VALUE))))
+                        .addContainerGap(516, Short.MAX_VALUE))))
         );
         cifrarPanelAdvOptionsLayout.setVerticalGroup(
             cifrarPanelAdvOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -438,7 +455,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BotonBrowseCifrarOutput)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         cifrarPanelOutputLayout.setVerticalGroup(
             cifrarPanelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -502,7 +519,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 .addComponent(cifrarPanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(cifrarPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -512,8 +529,6 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                     .addComponent(BotonInfoDescifrar))
                 .addContainerGap())
         );
-
-        cifrarScrollPaneMain.setViewportView(cifrarPanelMain);
 
         mainMenuArchivo.setText("Archivo");
 
@@ -601,11 +616,17 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cifrarScrollPaneMain, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(cifrarPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cifrarScrollPaneMain, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(cifrarPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         pack();
@@ -780,21 +801,22 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
             //comprobamos si la longitud es correcta
             if (key.length() != numChar) {
-                JOptionPane.showMessageDialog(this, "La longitud de la clave" +
-                        " en Base64 del archivo seleccionado debe ser de " +
-                        Integer.toString(numChar) + " caracteres.");
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.long64WarMsg1")
+                        + " " + Integer.toString(numChar) + " "
+                        + Entorno.getTrans("AES.long64WarMsg2"),
+                        Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 resul = false;
             }
             //comprobamos si el formato es correcto
             if (resul && !comprobarBase64(key)) {
-                JOptionPane.showMessageDialog(this, "El formato de la clave " +
-                        "en Base64 del archivo seleccionado es incorrecto.");
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.format64WarMsg"),
+                        Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 resul = false;
             }
         }
         catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al" +
-                    "abrir el archivo de clave");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.keyFileErrMsg"),
+                    Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
             resul = false;
         }
         return resul;
@@ -811,61 +833,72 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         boolean aux=true;
 
         if (aux && (TextoKey.getText().isEmpty() || TextoInput.getText().isEmpty())){
-           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.fillWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
            aux=false;
         }
 
         if (aux && (indexOut == 2) && TextoOutput.getText().isEmpty() ){
-           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.fillWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
            aux=false;
         }
 
         if  (aux && (indexIn == 1) && (ComprobarHexadecimal(TextoInput.getText()) == false) )
              {
-                 JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo INPUT.");
+                 JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.hexInputWarMsg"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                  aux=false;
              }
         if (aux && (indexKey == 1) && (ComprobarHexadecimal(TextoKey.getText()) == false) )
              {
-            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo KEY.");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.hexKeyWarMsg"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
             }
 
         if (aux &&  (indexIn == 1) && (contenidoIn.length() < 32) ) {
-            JOptionPane.showMessageDialog(this, "El número de dígitos hexadecimales de la entrada no puede ser inferior a 32");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenInfHexInMsg"),
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
             }
 
         if (aux && (indexIn == 0) && (contenidoIn.length() < 24) ) {
-            JOptionPane.showMessageDialog(this, "El número de caracteres de la entrada no puede ser inferior a 24");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenInCharMsg"),
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
             }
 
 
         if (aux &&  (indexIn == 1) && (contenidoIn.length() % 32 != 0)) {
-            JOptionPane.showMessageDialog(this, "El número de dígitos hexadecimales de la entrada debe ser múltiplo de 32");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenMulHexInMsg"),
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
         }
 
         if (aux && (indexIn == 0) && !comprobarBase64(contenidoIn)) {
-            JOptionPane.showMessageDialog(this, "El formato de la entrada en Base64 es incorrecto.");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.formatIn64"),
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
         }
 
         if (aux && (indexIn == 0) && !comprobarBase64Length(contenidoIn)) {
-            JOptionPane.showMessageDialog(this, "La longitud de la entrada en Base64 es incorrecta.");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenIn64"),
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
         }
 
         if (aux && RadioButton256.isSelected()) {
 
             if ( (indexKey == 0) && (contenidoKey.length() != 32) )  {
-                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 32 caracteres ASCII");
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenAsciKey32WarMsg"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 aux=false;
             }
 
             if ( (indexKey == 1) && (contenidoKey.length() != 64) ) {
-                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 64 dígitos hexadecimales");
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenHexKey64WarMsg"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 aux=false;
             }
 
@@ -876,12 +909,14 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         if (aux && RadioButton192.isSelected() ) {
 
             if ( (indexKey == 0) && (contenidoKey.length() != 24) ) {
-                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 24 caracteres ASCII");
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenAsciKey24WarMsg"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 aux=false;
             }
 
             if ( (indexKey == 1) && (contenidoKey.length() != 48) ) {
-                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 48 dígitos hexadecimales");
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenHexKey48WarMsg"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 aux=false;
             }
 
@@ -892,12 +927,14 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         if (aux && RadioButton128.isSelected()) {
 
             if ( (indexKey == 0) && (contenidoKey.length() != 16) ) {
-                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 16 caracteres ASCII");
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenAsciKey16WarMsg"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 aux=false;
             }
 
             if ( (indexKey == 1) && (contenidoKey.length() != 32) ) {
-                JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 32 dígitos hexadecimales");
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenHexKey32WarMsg"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 aux=false;
             }
 
@@ -914,8 +951,8 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         //sólo si se elige cifrado manual
         if ( (ModoCifrado.getSelectedIndex() == 1) && manualIV.isSelected() )
             while (cont) {
-                res = JOptionPane.showInputDialog(this, "Introduzca el vector de inicialización",
-                        "Ataques - CBC", JOptionPane.QUESTION_MESSAGE);
+                res = JOptionPane.showInputDialog(this, Entorno.getTrans("AES.introIVMsg"),
+                        Entorno.getTrans("AES.introIVTit"), JOptionPane.QUESTION_MESSAGE);
                 if (res == null)
                     cont = false;
                 else
@@ -931,21 +968,20 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
         if (aux && iv.isEmpty()) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Debe introducir un vector de inicialización",
-                    "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.introIVWarMsg"),
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if (aux && (iv.length() != 32)) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "El tamaño del vector de inicialización" +
-                    " debe ser de 32 dígitos hexadecimales", "Ataques - CBC - Aviso",
-                    JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenIVWarMsg"),
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if (aux && !ComprobarHexadecimal(iv)) {
             aux = false;
-            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal"
-                    , "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.hexIVWarMsg"),
+                    "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
         }
 
         return aux;
@@ -1060,7 +1096,8 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 String texto = (String) t.getTransferData(dataFlavorStringJava);
                 TextoInput.setText(texto);}
         } catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al intentar pegar el contenido del Portapapeles");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.pasteErr"),
+                   Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
 
         }
 }//GEN-LAST:event_PegarInputActionPerformed
@@ -1082,7 +1119,8 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 String texto = (String) t.getTransferData(dataFlavorStringJava);
                 TextoKey.setText(texto);}
         } catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al intentar pegar el contenido del Portapapeles");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.pasteErr"),
+                   Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
 
         }
 }//GEN-LAST:event_PegarKeyActionPerformed
@@ -1158,7 +1196,6 @@ public class MainDescifrarUI extends javax.swing.JFrame {
     private javax.swing.JPanel cifrarPanelInput;
     private javax.swing.JPanel cifrarPanelMain;
     private javax.swing.JPanel cifrarPanelOutput;
-    private javax.swing.JScrollPane cifrarScrollPaneMain;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
