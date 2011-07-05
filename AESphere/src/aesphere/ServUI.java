@@ -39,18 +39,15 @@ public class ServUI extends javax.swing.JFrame {
         try {
             socket = new DatagramSocket(3000);
         } catch (SocketException excepcionSocket) {
-            JOptionPane.showMessageDialog(this,
-                    "Error al crear el servidor, compruebe que tiene permisos" +
-                    " para crear un servidor en el puerto 3000", "Servidor - Error",
-                    JOptionPane.ERROR_MESSAGE);
-            excepcionSocket.printStackTrace();
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Net.srvPermErr"),
+                    Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);            
             this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
         }
 
         setLocationRelativeTo(wpadre);
         setVisible(true);
 
-        debugArea.append(Long.toString(numClaves) + " claves a probar\n");
+        debugArea.append(Long.toString(numClaves) + " " + Entorno.getTrans("Net.nKeys"));
         //declaramos el array con el número de claves que cada cliente deberá probar
         long [] clavesPorCliente = new long [numclientes];                
         //calculamos el número de claves a probar por cada cliente
@@ -63,13 +60,13 @@ public class ServUI extends javax.swing.JFrame {
         for (int i = 0; i < numclientes; i++, extra++) {
             if (extra < numClaves) clavesPorCliente[i] = clavesCliente + 1;
             else clavesPorCliente[i] = clavesCliente;
-            debugArea.append("Cliente " + i + ": " + clavesPorCliente[i] + " claves\n");
+            debugArea.append(Entorno.getTrans("Net.cli") + " " + i + ": " + 
+                    clavesPorCliente[i] + " " + Entorno.getTrans("Net.keys"));
         }
 
         //si estamos en modo CBC, hacemos XOR del IV con el texto en claro
         if (blockMode == 1) plainBytes = BlockManager.XOR(IV, plainBytes);
-
-        System.out.println("SERVIDOR: Detectando clientes");
+        
         detectarClientes();
 
         //generamos la clave inicial para cada cliente
@@ -78,22 +75,20 @@ public class ServUI extends javax.swing.JFrame {
         byte [] auxClave = null;
         for (int i=0; i < numclientes; i++) {
             auxClave = getClientKey(claveinicial, acum);
-            debugArea.append("Clave " + i + ": " + Conversor.byteToHexString(auxClave) + "\n");
-            debugArea.append("Enviando clave... ");
-            System.out.println("SERVIDOR: Enviando clave " + i);
+            debugArea.append(Entorno.getTrans("Net.key") + " " + i + ": " +
+                    Conversor.byteToHexString(auxClave) + "\n");
+            debugArea.append(Entorno.getTrans("Net.sendKey") + " ");
             enviarClaveCliente(auxClave,clavesPorCliente[i],i);
-            debugArea.append("Enviando texto... ");
+            debugArea.append(Entorno.getTrans("Net.sendText") + " ");
             enviarTextoCliente(plainBytes, cipherBytes, i);
             acum += clavesPorCliente[i];
         }     
                       
-        debugArea.append("\nGeneración de claves finalizada correctamente\n");     
-        debugArea.append("\nComenzando cifrado en clientes\n");
-        System.out.println("\n[" + java.util.Calendar.getInstance().getTime().toString() + "]\n");
-        esperarClaves();
-        System.out.println("\n[" + java.util.Calendar.getInstance().getTime().toString() + "]\n");
+        debugArea.append(Entorno.getTrans("Net.okKeyGen"));     
+        debugArea.append(Entorno.getTrans("Net.startEncCli"));        
+        esperarClaves();       
 
-        debugArea.append("\nFin del proceso\n");
+        debugArea.append(Entorno.getTrans("Net.end"));
     }
 
 
@@ -161,8 +156,7 @@ public class ServUI extends javax.swing.JFrame {
             byte [] tamClave = Conversor.intToByte(auxClave.length);
             DatagramPacket tamPacket = new DatagramPacket(tamClave, tamClave.length,
                     ip, port);
-            socket.send(tamPacket);
-            System.out.println("SERVIDOR: Tamaño de clave enviada");
+            socket.send(tamPacket);           
 
             //esperamos confirmación del cliente TamOK
             esperarMensaje("TamOK");
@@ -170,8 +164,7 @@ public class ServUI extends javax.swing.JFrame {
             //enviamos la clave
             DatagramPacket keyPacket = new DatagramPacket(auxClave, auxClave.length, 
                     ip, port);
-            socket.send(keyPacket);
-            System.out.println("SERVIDOR: Clave enviada");
+            socket.send(keyPacket);            
             
             //esperamos confirmación del cliente ClaveOK
             esperarMensaje("ClaveOK");            
@@ -187,12 +180,11 @@ public class ServUI extends javax.swing.JFrame {
             //esperamos la confirmación del cliente LongOK
             esperarMensaje("LongOK");                       
                        
-            debugArea.append("Clave enviada\n");
+            debugArea.append(Entorno.getTrans("Net.keySent"));
         }
         
         catch (Exception e) {
-            debugArea.append("Error al enviar la clave\n");
-            e.printStackTrace();
+            debugArea.append(Entorno.getTrans("Net.keySentErr"));            
         }
     }
 
@@ -204,38 +196,32 @@ public class ServUI extends javax.swing.JFrame {
             //enviamos el texto en claro
             DatagramPacket claroPacket = new DatagramPacket(claro, claro.length,
                     ip, port);
-            socket.send(claroPacket);
-            System.out.println("SERVIDOR: Texto en claro enviado");
+            socket.send(claroPacket);            
 
             //esperamos confirmación del cliente ClaroOK
-            esperarMensaje("ClaroOK");
-            System.out.println("SERVIDOR: ClaroOK recibido");
+            esperarMensaje("ClaroOK");            
 
             //enviamos el texto cifrado
             DatagramPacket cifradoPacket = new DatagramPacket(cifrado, cifrado.length,
                     ip, port);
-            socket.send(cifradoPacket);
-            System.out.println("SERVIDOR: Texto cifrado enviado");
+            socket.send(cifradoPacket);            
 
             //esperamos la confirmación del cliente CifradoOK
-            esperarMensaje("CifradoOK");
-            System.out.println("SERVIDOR: CifradoOK recibido");
+            esperarMensaje("CifradoOK");            
 
-            debugArea.append("Texto enviado\n");
+            debugArea.append(Entorno.getTrans("Net.textSent"));
         }
 
         catch (Exception e) {
-            debugArea.append("Error al enviar el texto\n");
-            e.printStackTrace();
+            debugArea.append(Entorno.getTrans("Net.textErr"));            
         }
     }
 
     private void detectarClientes() {
-        debugArea.append("\nEsperando conexión...\n");
+        debugArea.append(Entorno.getTrans("Net.conecWait"));
         int numCliente = 0;
         while (!Thread.currentThread().isInterrupted() && numCliente < numclientes) {
-            try {
-                System.out.println("SERVIDOR: Detectando cliente " + numCliente);
+            try {                
                 //controlamos el paquete que devuelve la función
                 //en otras llamadas no haría falta almacenar el paquete que la función devuelve
                 DatagramPacket helloPacket = esperarMensaje("ClientHello");
@@ -243,29 +229,26 @@ public class ServUI extends javax.swing.JFrame {
                 InetAddress ipcliente = helloPacket.getAddress();
                 if (!esta(clientesIP,ipcliente)) {
                     clientesIP[numCliente] = ipcliente;
-                    clientesPort[numCliente] = helloPacket.getPort();
-                    System.out.println("SERVIDOR: Almacenado cliente " + clientesIP[numCliente].toString() + ":" + clientesPort[numCliente]);
-                    debugArea.append("Conexión establecida con el cliente " + ipcliente.toString() + "\n");
+                    clientesPort[numCliente] = helloPacket.getPort();                    
+                    debugArea.append(Entorno.getTrans("Net.conecWithCli") + " " + ipcliente.toString() + "\n");
                 }
 
                 //generamos un ServerHello de confirmación de recepción del ClientHello                
                 enviarMensaje( "ServerHello", numCliente);                
 
                 //esperamos a que el cliente nos deje continuar
-                recibirIgnorar("OK", numCliente);
-                System.out.println("SERVIDOR: Cliente " + numCliente + " detectado");
+                recibirIgnorar("OK", numCliente);                
 
                 numCliente++;
                 
             } catch( Exception e ) {
-                debugArea.append("Error al conectar con los clientes\n");
-                e.printStackTrace();
+                debugArea.append(Entorno.getTrans("Net.conecWithCliErr"));                
             }
         }
     }
 
     private void esperarClaves() {
-        debugArea.append("\nBuscando claves...\n");
+        debugArea.append(Entorno.getTrans("Net.keySearch"));
         try {
             //enviamos un mensaje a todos los clientes para que comiencen a cifrar
             for(int i = 0; i < numclientes; i++)
@@ -280,24 +263,24 @@ public class ServUI extends javax.swing.JFrame {
 
                 String end = new String(clave.getData(), 0, 3);
                 InetAddress clientAddress = clave.getAddress();
-                if (end.equals("END")) {
-                    System.out.println("SERVIDOR: END recibido");
-                    debugArea.append("\nEl cliente " + clientAddress.toString() + " ha terminado\n");
+                if (end.equals("END")) {                    
+                    debugArea.append(Entorno.getTrans("Net.cliEnd1") + " " + 
+                            clientAddress.toString() + " " + Entorno.getTrans("Net.cliEnd2"));
                     numfin++;
                 } else {
-                    debugArea.append("\nCliente: " + clientAddress.toString() +
-                            "\nClave encontrada: " + Conversor.byteToHexString(clave.getData()) + "\n");
+                    debugArea.append(Entorno.getTrans("Net.cliFound1") + " " + clientAddress.toString() +
+                            Entorno.getTrans("Net.cliFound2") + " " + 
+                            Conversor.byteToHexString(clave.getData()) + "\n");
                     enviarMensaje("NEXT", clientAddress, clave.getPort());
                     numClaves++;
                 }
             }
 
-            debugArea.append("\nBúsqueda de claves finalizada\n" +
-                    Long.toString(numClaves) + " claves encontradas\n");
+            debugArea.append(Entorno.getTrans("Net.keySearchEnd") +
+                    Long.toString(numClaves) + " " + Entorno.getTrans("Net.keysFound"));
 
         } catch (Exception e) {
-            debugArea.append("Error en la búsqueda de claves\n");
-            e.printStackTrace();
+            debugArea.append(Entorno.getTrans("Net.keySearchErr"));            
         }
     }
 
@@ -312,9 +295,7 @@ public class ServUI extends javax.swing.JFrame {
 
             try {
                 socket.receive(received);                
-                msg = new String(received.getData(), 0, received.getLength());
-                System.out.println( "SERVIDOR: Recibido " + msg + "\nCliente " +
-                        received.getAddress().toString() + ":" + received.getPort() );
+                msg = new String(received.getData(), 0, received.getLength());                
             } catch (Exception e) {
                 if (--reintentos == 0)
                     throw e;
@@ -334,8 +315,7 @@ public class ServUI extends javax.swing.JFrame {
                 
         String aux = new String(received.getData(), 0, received.getLength());
         if (!aux.equals(mensaje)) 
-            throw new Exception("Se ha recibido " + aux + " cuando se esperaba " + mensaje);
-        else System.out.println("SERVIDOR: " + mensaje + " recibido");
+            throw new Exception("Se ha recibido " + aux + " cuando se esperaba " + mensaje);        
 
         return received;
     }
@@ -346,8 +326,7 @@ public class ServUI extends javax.swing.JFrame {
         DatagramPacket toSend = new DatagramPacket(mensaje.getBytes(), mensaje.length(),
                 clientesIP[nclient], clientesPort[nclient]);
 
-        socket.send(toSend);
-        System.out.println("SERVIDOR: " + mensaje + " enviado");
+        socket.send(toSend);        
     }
 
     private void enviarMensaje(String mensaje, InetAddress client, int port)
@@ -356,8 +335,7 @@ public class ServUI extends javax.swing.JFrame {
         DatagramPacket toSend = new DatagramPacket(mensaje.getBytes(), mensaje.length(),
                 client, port);
 
-        socket.send(toSend);
-        System.out.println("SERVIDOR: " + mensaje + " enviado");
+        socket.send(toSend);        
     }
 
      private byte[] getClientKey (byte [] iniClave, long offset) {
