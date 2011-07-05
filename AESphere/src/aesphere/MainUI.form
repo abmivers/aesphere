@@ -159,51 +159,55 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="SpanishButton" min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+                  <Component id="EnglishButton" min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="707" max="-2" attributes="0"/>
+                  <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="SpanishButton" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                          <Component id="EnglishButton" min="-2" pref="23" max="-2" attributes="0"/>
-                          <EmptySpace pref="707" max="32767" attributes="0"/>
-                          <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="BotonAtaques" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="AtaquesLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="BotonAtaques" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="AtaquesLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="BotonDescifrar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="DescifrarLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="BotonCifrar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="CifrarLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="BotonHerramientas" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="HerramientasLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="BotonDescifrar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="DescifrarLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="BotonHerramientas" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="HerramientasLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="1">
+                          <Component id="BotonCifrar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="CifrarLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="275" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="641" max="32767" attributes="0"/>
+                  <Component id="comprobarVectoresButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="comprobarVectoresButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="CifrarLabel" pref="98" max="32767" attributes="1"/>
+                      <Component id="CifrarLabel" alignment="0" pref="98" max="32767" attributes="1"/>
                       <Component id="BotonCifrar" alignment="0" max="32767" attributes="1"/>
                   </Group>
                   <EmptySpace type="unrelated" max="32767" attributes="0"/>
@@ -221,13 +225,13 @@
                       <Component id="HerramientasLabel" pref="100" max="32767" attributes="1"/>
                       <Component id="BotonHerramientas" alignment="1" min="-2" max="-2" attributes="1"/>
                   </Group>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="SpanishButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="EnglishButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BotonInfo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -402,6 +406,18 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SpanishButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="comprobarVectoresButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Comprobar vectores"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor predeterminado"/>
+            </Property>
+            <Property name="focusPainted" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comprobarVectoresButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

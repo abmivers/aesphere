@@ -58,30 +58,30 @@ public class AESencrypt {
       
       for (int round = 1; round < Nr; round++) {
          if (paso){
-         cadena = cadena + "ROUND " + round + "\n";
-         cadena = cadena + "***********\n";
-         cadena = cadena + Print.printArray("Start Round:\t\t", state);}
+         cadena = cadena + Entorno.getTrans("Proc.round") + " " + round + "\n";
+         cadena = cadena + Entorno.getTrans("Proc.roundUnder") + "\n";
+         cadena = cadena + Print.printArray(Entorno.getTrans("Proc.startRound"), state);}
    
          SubBytes(state); // S-box
-         if (paso) cadena = cadena + Print.printArray("After SubBytes:\t\t", state);
+         if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterSB"), state);
          ShiftRows(state); // mix up rows
-         if (paso) cadena = cadena + Print.printArray("After ShiftRows:\t", state);
+         if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterSR"), state);
          MixColumns(state); // complicated mix of columns
-         if (paso) cadena = cadena + Print.printArray("After MixColumns:\t", state);
+         if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterMC"), state);
          AddRoundKey(state); // xor with expanded key
-         if (paso) cadena = cadena + Print.printArray("After AddRoundKey:\t", state);
+         if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterARK"), state);
          if (paso) cadena = cadena + "\n";
 
       }
-      if (paso) cadena = cadena + "ROUND " + Nr + "\n";
-      if (paso) cadena = cadena + "***********\n";
-      if (paso) cadena = cadena + Print.printArray("Start Round:\t\t", state);
+      if (paso) cadena = cadena + Entorno.getTrans("Proc.round") + " " + Nr + "\n";
+      if (paso) cadena = cadena + Entorno.getTrans("Proc.roundUnder") + "\n";
+      if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.startRound"), state);
       SubBytes(state); // S-box substitution
-      if (paso) cadena = cadena + Print.printArray("After SubBytes:\t\t", state);
+      if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterSB"), state);
       ShiftRows(state); // mix up rows
-      if (paso) cadena = cadena + Print.printArray("After ShiftRows:\t", state);
+      if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterSR"), state);
       AddRoundKey(state); // xor with expanded key
-      if (paso) cadena = cadena + Print.printArray("After AddRoundKey:\t", state);
+      if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterARK"), state);
       Copy.copy(out, state);
       if (paso) cadena = cadena + "\n";
 

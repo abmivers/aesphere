@@ -30,15 +30,15 @@ import javax.swing.JOptionPane;
 public class CifrarDescifrarSimple extends javax.swing.JFrame {
 
     private javax.swing.JFrame hijoActual;
-    private MainUI wpadre;
-    private String helpErrMsg = "Ha ocurrido un error al cargar la ayuda de la aplicación";
-    private String helpErrTitle = "Ayuda - Aviso";
+    private MainUI wpadre;    
 
     /** Creates new form CifrarDescifrarSimple */
     public CifrarDescifrarSimple(MainUI padre) {
         initComponents();
+        setLangLabels();
         wpadre=padre;
         setHelp();
+        this.setResizable(false);
     }
 
     /** This method is called from within the constructor to
@@ -53,20 +53,25 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
     private void initComponents() {
 
         Plaintext = new javax.swing.JTextField();
-        Key = new javax.swing.JTextField();
         Ciphertext = new javax.swing.JTextField();
         CiphertextD = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        Key = new javax.swing.JTextField();
+        plainText = new javax.swing.JLabel();
+        cipherText = new javax.swing.JLabel();
+        keyText = new javax.swing.JLabel();
+        plainDText = new javax.swing.JLabel();
         KeyD = new javax.swing.JTextField();
         PlaintextD = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cipherDText = new javax.swing.JLabel();
+        keyDText = new javax.swing.JLabel();
+        cifrarButton = new javax.swing.JButton();
+        descifrarButton = new javax.swing.JButton();
         BotonInfo = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        vector1Pane = new javax.swing.JEditorPane();
+        jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        vector2Pane = new javax.swing.JEditorPane();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -88,6 +93,9 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
             }
         });
 
+        Ciphertext.setBackground(new java.awt.Color(255, 255, 255));
+        Ciphertext.setEditable(false);
+        Ciphertext.setBorder(null);
         Ciphertext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CiphertextActionPerformed(evt);
@@ -100,13 +108,19 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Plaintext:");
+        Key.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KeyActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Ciphertext:");
+        plainText.setText("Texto en claro:");
 
-        jLabel3.setText("Key:");
+        cipherText.setText("Texto cifrado:");
 
-        jLabel4.setText("Plaintext:");
+        keyText.setText("Clave:");
+
+        plainDText.setText("Texto en claro:");
 
         KeyD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,27 +128,30 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
             }
         });
 
+        PlaintextD.setBackground(new java.awt.Color(255, 255, 255));
+        PlaintextD.setEditable(false);
+        PlaintextD.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         PlaintextD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PlaintextDActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Ciphertext:");
+        cipherDText.setText("Texto cifrado:");
 
-        jLabel6.setText("Key:");
+        keyDText.setText("Clave:");
 
-        jButton1.setText("Cifrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cifrarButton.setText("Cifrar");
+        cifrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cifrarButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Descifrar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        descifrarButton.setText("Descifrar");
+        descifrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                descifrarButtonActionPerformed(evt);
             }
         });
 
@@ -146,6 +163,28 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
                 BotonInfoActionPerformed(evt);
             }
         });
+
+        vector1Pane.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        vector1Pane.setContentType("text/html");
+        vector1Pane.setEditable(false);
+        vector1Pane.setText("<html>\r  \n    <p style=\"margin-top:0px;padding:3px;\">\r\n      En esta herramienta podrá comprobar el correcto funcionamiento de los vectores de prueba del RFC original del AES.<br/>Para ello, algunos se ponen a su disposición <a href=\"\">aquí</a>.\n    </p>\r  \n</html>\r\n");
+        vector1Pane.addHyperlinkListener(new javax.swing.event.HyperlinkListener() {
+            public void hyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {
+                vector1PaneHyperlinkUpdate(evt);
+            }
+        });
+        jScrollPane2.setViewportView(vector1Pane);
+
+        vector2Pane.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        vector2Pane.setContentType("text/html");
+        vector2Pane.setEditable(false);
+        vector2Pane.setText("<html>\r  \n    <p style=\"margin-top:0px;padding:3px;\">\r\n      Puede probar más vectores descargándose el <a href=\"http://csrc.nist.gov/groups/STM/cavp/documents/aes/KAT_AES.zip\">archivo original</a>.\n    </p>\r  \n</html>\r\n");
+        vector2Pane.addHyperlinkListener(new javax.swing.event.HyperlinkListener() {
+            public void hyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {
+                vector2PaneHyperlinkUpdate(evt);
+            }
+        });
+        jScrollPane3.setViewportView(vector2Pane);
 
         mainMenuArchivo.setText("Archivo");
 
@@ -220,74 +259,110 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(55, 55, 55)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel3)
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel2)
-                    .add(jLabel5)
-                    .add(jLabel6)
-                    .add(jLabel4))
-                .add(30, 30, 30)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, PlaintextD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-                    .add(KeyD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, CiphertextD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(Key)
-                        .add(Ciphertext)
-                        .add(Plaintext, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 402, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, cifrarButton)
+                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
-                        .add(46, 46, 46)
-                        .add(jButton1))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(plainText)
+                            .add(keyText)
+                            .add(cipherText))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Plaintext, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Key, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Ciphertext, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)))
                     .add(layout.createSequentialGroup()
-                        .add(35, 35, 35)
-                        .add(jButton2)))
-                .add(47, 47, 47))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(733, Short.MAX_VALUE)
-                .add(BotonInfo)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(cipherDText)
+                            .add(keyDText)
+                            .add(plainDText))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(KeyD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                            .add(CiphertextD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                            .add(PlaintextD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(163, 163, 163)
+                        .add(BotonInfo))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, descifrarButton))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(48, 48, 48)
+                .addContainerGap()
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(Plaintext, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel1))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(plainText))
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(Key, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButton1)
-                    .add(jLabel3))
+                    .add(keyText))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(Ciphertext, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel2))
-                .add(47, 47, 47)
+                    .add(cipherText))
+                .add(18, 18, 18)
+                .add(cifrarButton)
+                .add(18, 18, 18)
+                .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(CiphertextD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel5))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(cipherDText)
+                    .add(CiphertextD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(KeyD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButton2)
-                    .add(jLabel6))
-                .add(27, 27, 27)
+                    .add(keyDText))
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(PlaintextD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel4))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 41, Short.MAX_VALUE)
-                .add(BotonInfo)
-                .addContainerGap())
+                    .add(plainDText))
+                .add(18, 18, 18)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(layout.createSequentialGroup()
+                        .add(descifrarButton)
+                        .add(34, 34, 34)
+                        .add(BotonInfo))
+                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(44, 44, 44))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setLangLabels () {
+        this.setTitle(Entorno.getTrans("AES.testTitle"));
+        mainMenuArchivo.setText(Entorno.getTrans("gen.file"));
+        mainMenuEditar.setText(Entorno.getTrans("gen.edit"));
+        mainMenuAyuda.setText(Entorno.getTrans("gen.help"));
+        Salir.setText(Entorno.getTrans("gen.exit"));
+        CopiarCiphertext.setText(Entorno.getTrans("Att.copyCipher"));
+        PegarCiphertext.setText(Entorno.getTrans("Att.pasteCipher"));
+        Contenidos.setText(Entorno.getTrans("gen.cont"));
+        acercade.setText(Entorno.getTrans("gen.about"));
+        vector1Pane.setText(Entorno.getTrans("Vec.txt1"));
+        vector2Pane.setText(Entorno.getTrans("Vec.txt2"));
+        plainText.setText(Entorno.getTrans("AES.plain"));
+        plainDText.setText(Entorno.getTrans("AES.plain"));
+        cipherText.setText(Entorno.getTrans("AES.cipher"));
+        cipherDText.setText(Entorno.getTrans("AES.cipher"));
+        keyText.setText(Entorno.getTrans("AES.key") + ":");
+        keyDText.setText(Entorno.getTrans("AES.key") + ":");
+        cifrarButton.setText(Entorno.getTrans("MainUI.enc"));
+        descifrarButton.setText(Entorno.getTrans("MainUI.dec"));
+        mainMenuOperaciones.setText(Entorno.getTrans("MainUI.op"));
+        CifrarItem.setText(Entorno.getTrans("MainUI.enc"));
+        DescifrarItem.setText(Entorno.getTrans("MainUI.dec"));
+    }
+    
     private void setHelp () {
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -303,8 +378,8 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
             URL hsURL = fichero.toURI().toURL();
             HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
             HelpBroker hb = helpset.createHelpBroker();
-            //hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
-            //                    (pantalla.height - ventana.height) / 2));
+            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+                                (pantalla.height - ventana.height) / 2));
             hb.setSize(new java.awt.Dimension(800, 628));
             hb.enableHelpOnButton(Contenidos, "explicacion_subbytes", helpset);
             hb.enableHelpOnButton(BotonInfo, "explicacion_subbytes", helpset);
@@ -312,8 +387,8 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         }
 
         catch (Exception e) {
-             JOptionPane.showMessageDialog(this, helpErrMsg, helpErrTitle,
-                     JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.helpErrMsg"), 
+                     Entorno.getTrans("gen.helpErrTitle"), JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -352,7 +427,8 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         boolean aux=true;
 
         if ( aux && (Plaintext.getText().isEmpty() || Key.getText().isEmpty()) ){
-           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+           JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.fillWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
            aux=false;
         }
 
@@ -360,25 +436,26 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
 
         if ( aux && !ComprobarHexadecimal(Plaintext.getText()) )
              {
-                 JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo Plaintext.");
+                 JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.plainHexWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                  aux=false;
              }
         if ( aux && !ComprobarHexadecimal(Key.getText()) )
              {
-            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo Key.");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.hexKeyWarMsg"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
             }
 
-        if ( (Plaintext.getText().length()== 32 || Plaintext.getText().length()== 48 || Plaintext.getText().length()== 64 ));
-
-        else if (aux){
-            JOptionPane.showMessageDialog(this, "El tamaño del hexadecimal a cifrar debe ser de 32, 48 o 64 dígitos");
+        if ( aux && Plaintext.getText().length()!= 32) {
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Vec.plainLen"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
             }
 
-        if ( (Key.getText().length()== 32 || Key.getText().length()== 48 || Key.getText().length()== 64 ));
-        else if (aux){
-            JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 32, 48 o 64 dígitos");
+        if ( aux && (Key.getText().length() != 32 && Key.getText().length() != 48 && Key.getText().length() != 64 )) {
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Vec.keyLen"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
             }
 
@@ -391,8 +468,9 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
 
         boolean aux=true;
 
-        if ( aux && (CiphertextD.getText().isEmpty() || KeyD.getText().isEmpty()) ){
-           JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los campos.");
+        if ( aux && (CiphertextD.getText().isEmpty() || KeyD.getText().isEmpty()) ) {
+           JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.fillWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
            aux=false;
         }
 
@@ -400,39 +478,40 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
 
         if ( aux && !ComprobarHexadecimal(CiphertextD.getText()) )
              {
-                 JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo Ciphertext.");
+                 JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cipherHexWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                  aux=false;
              }
-        if ( aux && !ComprobarHexadecimal(KeyD.getText()) )
-             {
-            JOptionPane.showMessageDialog(this, "Debe introducir un valor hexadecimal en el campo Key.");
+        if ( aux && !ComprobarHexadecimal(KeyD.getText()) ) {
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.hexKeyWarMsg"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
-            }
+        }
 
-        if (  (CiphertextD.getText().length()== 32 || CiphertextD.getText().length()== 48 || CiphertextD.getText().length()== 64 ));
-        else if (aux){
-            JOptionPane.showMessageDialog(this, "El tamaño del hexadecimal a cifrar debe ser de 32, 48 o 64 dígitos");
+        if ( aux && CiphertextD.getText().length()!= 32) {
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Vec.cipherLen"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
-            }
+        }
 
-        if (  (KeyD.getText().length()== 32 || KeyD.getText().length()== 48 || KeyD.getText().length()== 64 ));
-        else if (aux){
-            JOptionPane.showMessageDialog(this, "El tamaño de la clave debe ser de 32, 48 o 64 dígitos");
+        if ( aux && (KeyD.getText().length()!= 32 && KeyD.getText().length()!= 48 && KeyD.getText().length()!= 64 )) {
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Vec.keyLen"),
+                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
-            }
+        }
 
         return aux;
     }
 
 
 
-    private void CiphertextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CiphertextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CiphertextActionPerformed
-
     private void CiphertextDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CiphertextDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CiphertextDActionPerformed
+
+    private void KeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KeyActionPerformed
 
     private void KeyDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyDActionPerformed
         // TODO add your handling code here:
@@ -442,60 +521,13 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PlaintextDActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cifrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cifrarButtonActionPerformed
+            CifrarItemActionPerformed(evt);
+    }//GEN-LAST:event_cifrarButtonActionPerformed
 
-        if (ComprobarDatosCifrar()) {
-               String b = new String();
-
-              //GetBytes getInput = new GetBytes("/Users/antonio/plaintext.txt", 16);
-              byte[] in = Conversor.hexStringToByte(Plaintext.getText());
-              //GetBytes getKey = new GetBytes("/Users/antonio/key.txt", 32);
-              byte[] key = Conversor.hexStringToByte(Key.getText());
-              int a=4;
-
-              if (Key.getText().length()==32) a=4;
-              else if (Key.getText().length()==48) a=6;
-                   else if (Key.getText().length()==64) a=8;
-
-
-                for (int j = 0; j < 16; j++)
-                    b=b + (Conversor.byteToHexPair(key[j]));
-
-              System.out.println("keyex: ");
-              System.out.println(b +" long: "+ b.length());
-
-              AESencrypt aes = new AESencrypt(key, a,false);
-              System.out.println(Print.printArray("Plaintext:     ", in));
-              Print.printArray("Key:           ", key);
-              byte[] out = new byte[16];
-              aes.Cipher(in, out);
-              Ciphertext.setText(Conversor.byteToHexString(out));
-           }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-      if (ComprobarDatosDescifrar()){
-
-      int a=4;
-
-      if (KeyD.getText().length()==32) a=4;
-              else if (KeyD.getText().length()==48) a=6;
-                   else if (KeyD.getText().length()==62) a=8;
-
-      //GetBytes getInput = new GetBytes("/Users/antonio/Downloads/output.txt", 16);
-      byte[] in = Conversor.hexStringToByte(CiphertextD.getText());
-      //GetBytes getKey = new GetBytes("/Users/antonio/Downloads/key.txt", 16);
-      byte[] key = Conversor.hexStringToByte(KeyD.getText());
-      AESdecrypt aesDec = new AESdecrypt(key, a,false);
-      //Print.printArray("Ciphertext:    ", in);
-      //Print.printArray("Key:           ", key);
-      byte[] out = new byte[16];
-      aesDec.InvCipher(in, out);
-      PlaintextD.setText(Conversor.byteToHexString(out));
-
-      }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void descifrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descifrarButtonActionPerformed
+            DescifrarItemActionPerformed(evt);
+    }//GEN-LAST:event_descifrarButtonActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
@@ -509,29 +541,18 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void CifrarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CifrarItemActionPerformed
-        if (ComprobarDatosCifrar()) {
-               String b = new String();
-
-              //GetBytes getInput = new GetBytes("/Users/antonio/plaintext.txt", 16);
-              byte[] in = Conversor.hexStringToByte(Plaintext.getText());
-              //GetBytes getKey = new GetBytes("/Users/antonio/key.txt", 32);
-              byte[] key = Conversor.hexStringToByte(Key.getText());
+        if (ComprobarDatosCifrar()) {            
+              
               int a=4;
 
               if (Key.getText().length()==32) a=4;
-              else if (Key.getText().length()==48) a=6;
+                else if (Key.getText().length()==48) a=6;
                    else if (Key.getText().length()==64) a=8;
 
-
-                for (int j = 0; j < 16; j++)
-                    b=b + (Conversor.byteToHexPair(key[j]));
-
-              System.out.println("keyex: ");
-              System.out.println(b +" long: "+ b.length());
-
-              AESencrypt aes = new AESencrypt(key, a,false);
-              System.out.println(Print.printArray("Plaintext:     ", in));
-              Print.printArray("Key:           ", key);
+                           
+              byte[] in = Conversor.hexStringToByte(Plaintext.getText());             
+              byte[] key = Conversor.hexStringToByte(Key.getText());
+              AESencrypt aes = new AESencrypt(key, a,false);              
               byte[] out = new byte[16];
               aes.Cipher(in, out);
               Ciphertext.setText(Conversor.byteToHexString(out));
@@ -547,13 +568,9 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
               else if (KeyD.getText().length()==48) a=6;
                    else if (KeyD.getText().length()==62) a=8;
 
-      //GetBytes getInput = new GetBytes("/Users/antonio/Downloads/output.txt", 16);
-      byte[] in = Conversor.hexStringToByte(CiphertextD.getText());
-      //GetBytes getKey = new GetBytes("/Users/antonio/Downloads/key.txt", 16);
+      byte[] in = Conversor.hexStringToByte(CiphertextD.getText());      
       byte[] key = Conversor.hexStringToByte(KeyD.getText());
-      AESdecrypt aesDec = new AESdecrypt(key, a,false);
-      //Print.printArray("Ciphertext:    ", in);
-      //Print.printArray("Key:           ", key);
+      AESdecrypt aesDec = new AESdecrypt(key, a,false);      
       byte[] out = new byte[16];
       aesDec.InvCipher(in, out);
       PlaintextD.setText(Conversor.byteToHexString(out));
@@ -563,7 +580,7 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
 
     private void CopiarCiphertextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarCiphertextActionPerformed
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        StringSelection ss = new StringSelection(Ciphertext.getText());
+        StringSelection ss = new StringSelection(CiphertextD.getText());
         cb.setContents(ss, ss);
 }//GEN-LAST:event_CopiarCiphertextActionPerformed
 
@@ -576,10 +593,10 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
             DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
             if (t.isDataFlavorSupported(dataFlavorStringJava)) {
                 String texto = (String) t.getTransferData(dataFlavorStringJava);
-                CiphertextD.setText(texto);}
+                Key.setText(texto);}
         } catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al intentar pegar el contenido del Portapapeles");
-
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.pasteErr"),
+                    Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_PegarCiphertextActionPerformed
 
@@ -591,21 +608,47 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
 
 }//GEN-LAST:event_BotonInfoActionPerformed
 
-    /**
-    * @param args the command line arguments
-    */
-//    public static void main(String args[]) {
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new CifrarDescifrarSimple().setVisible(true);
-//
-//
-//
-//
-//
-//            }
-//        });
-//    }
+    private void vector1PaneHyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {//GEN-FIRST:event_vector1PaneHyperlinkUpdate
+        try{
+            //si se ha presionado una URL
+            if (evt.getEventType() == javax.swing.event.HyperlinkEvent.EventType.ACTIVATED){
+                //si no soporta desktop, no se puede abrir el archivo
+                if (java.awt.Desktop.isDesktopSupported()) {                    
+                    //le quitamos file: a la ruta
+                    java.awt.Desktop.getDesktop().open(new File(evt.getURL().toString().substring(5)));
+                } else {
+                    JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.actNot"),
+                        Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.linkErr"),
+                Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_vector1PaneHyperlinkUpdate
+
+    private void CiphertextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CiphertextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CiphertextActionPerformed
+
+    private void vector2PaneHyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {//GEN-FIRST:event_vector2PaneHyperlinkUpdate
+        try{
+            //si se ha presionado una URL
+            if (evt.getEventType() == javax.swing.event.HyperlinkEvent.EventType.ACTIVATED){
+                //si no soporta desktop, no se puede abrir la URL
+                if (java.awt.Desktop.isDesktopSupported()) {
+                    java.awt.Desktop.getDesktop().browse(evt.getURL().toURI());
+                } else {
+                    JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.actNot"),
+                        Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.linkErr"),
+                Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_vector2PaneHyperlinkUpdate
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonInfo;
@@ -622,19 +665,24 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
     private javax.swing.JTextField PlaintextD;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JMenuItem acercade;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton cifrarButton;
+    private javax.swing.JLabel cipherDText;
+    private javax.swing.JLabel cipherText;
+    private javax.swing.JButton descifrarButton;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel keyDText;
+    private javax.swing.JLabel keyText;
     private javax.swing.JMenu mainMenuArchivo;
     private javax.swing.JMenu mainMenuAyuda;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenu mainMenuEditar;
     private javax.swing.JMenu mainMenuOperaciones;
+    private javax.swing.JLabel plainDText;
+    private javax.swing.JLabel plainText;
+    private javax.swing.JEditorPane vector1Pane;
+    private javax.swing.JEditorPane vector2Pane;
     // End of variables declaration//GEN-END:variables
 
 }
