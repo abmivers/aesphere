@@ -49,9 +49,8 @@ public class ClientUI extends javax.swing.JFrame {
         try {
             socket = new DatagramSocket();
         } catch(SocketException excepcionSocket) {
-            JOptionPane.showMessageDialog(this, "Error al crear el cliente", "Cliente - Error",
-                    JOptionPane.ERROR_MESSAGE);
-            excepcionSocket.printStackTrace();
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Net.newCliErr"), 
+                    Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);            
             this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
         }
 
@@ -59,15 +58,15 @@ public class ClientUI extends javax.swing.JFrame {
             clientHello();
 
             esperarClave();
-            debugArea.append("Clave inicial: " + Conversor.byteToHexString(claveInicial) +
-                    "\nNúmero de claves a probar: " + Long.toString(numClaves) + "\n");
+            debugArea.append(Entorno.getTrans("Net.initKey") + " " + Conversor.byteToHexString(claveInicial) +
+                    Entorno.getTrans("Net.cliNKeys") + " " + Long.toString(numClaves) + "\n");
 
             esperarTexto();            
 
             probarClaves();
         } catch (Exception e) {}
                 
-        debugArea.append("\nFin del proceso\n");
+        debugArea.append(Entorno.getTrans("Net.end"));
     }
 
     /** This method is called from within the constructor to
@@ -126,19 +125,17 @@ public class ClientUI extends javax.swing.JFrame {
     private void clientHello() throws Exception {
         boolean recibido = false;
         int reintentos = 100;
-        debugArea.append("Conectando con el servidor... ");
+        debugArea.append(Entorno.getTrans("Net.servConec") + " ");
         try {
             socket.setSoTimeout(3000);
             do {
                 try {
-                    enviarMensaje("ClientHello");
-                    System.out.println("CLIENTE: ClientHello enviado");
+                    enviarMensaje("ClientHello");                    
 
                     //esperamos ServerHello
-                    esperarMensaje("ServerHello");
-                    System.out.println("CLIENTE: ServerHello recibido");
+                    esperarMensaje("ServerHello");                    
                     recibido = true;
-                    debugArea.append("Conexión establecida\n");
+                    debugArea.append(Entorno.getTrans("Net.servConecOK"));
                 } catch (Exception e) {
                     if (--reintentos == 0)
                         throw e;
@@ -148,23 +145,21 @@ public class ClientUI extends javax.swing.JFrame {
 
             socket.setSoTimeout(0);
         } catch(Exception excepcion) {
-                debugArea.append("Error al conectar con el servidor\n");
-                excepcion.printStackTrace();
+                debugArea.append(Entorno.getTrans("Net.servConecErr"));                
                 throw excepcion;
         }
 
     }
 
     private void esperarClave() throws Exception {
-        debugArea.append("\nRecibiendo clave inicial... ");
+        debugArea.append(Entorno.getTrans("Net.keyReceive") + " ");
         try {
             //creamos un DatagramPacket para recibir el tamaño de la clave
             int len = Integer.SIZE/8;
             DatagramPacket tamPacket = new DatagramPacket(new byte[len], len);
             //desbloqueamos al servidor antes de recibir
             enviarMensaje("OK");
-            socket.receive(tamPacket);
-            System.out.println("CLIENTE: Tamaño de clave recibido");
+            socket.receive(tamPacket);            
 
             tamClave = Conversor.byteToInt(tamPacket.getData());
 
@@ -174,8 +169,7 @@ public class ClientUI extends javax.swing.JFrame {
             //creamos un DatagramPacket para recibir la clave
             DatagramPacket clavePacket = new DatagramPacket(new byte[tamClave],
                     tamClave);
-            socket.receive(clavePacket);
-            System.out.println("CLIENTE: Clave recibida");
+            socket.receive(clavePacket);            
 
             claveInicial = clavePacket.getData();
 
@@ -185,31 +179,28 @@ public class ClientUI extends javax.swing.JFrame {
             //creamos un DatagramPacket para recibir el número de claves
             len = Long.SIZE/8;
             DatagramPacket longPacket = new DatagramPacket(new byte[len], len);
-            socket.receive(longPacket);
-            System.out.println("CLIENTE: Long recibido");
+            socket.receive(longPacket);            
 
             numClaves = Conversor.byteToLong(longPacket.getData());
 
             //mandamos un mensaje de confirmación de recepción de número de claves al servidor
             enviarMensaje("LongOK");            
 
-            debugArea.append("Clave recibida\n");
+            debugArea.append(Entorno.getTrans("Net.keyReceived"));
 
         } catch (Exception e) {
-            debugArea.append("Error al recibir la clave");
-            e.printStackTrace();
+            debugArea.append(Entorno.getTrans("Net.keyReceiveErr"));            
             throw e;
         }
 
     }
 
     private void esperarTexto () throws Exception {
-        debugArea.append("\nRecibiendo texto... ");
+        debugArea.append(Entorno.getTrans("Net.textReceive") + " ");
         try {
             //creamos un DatagramPacket para recibir el texto en claro
             DatagramPacket claroPacket = new DatagramPacket(new byte[16],16);
-            socket.receive(claroPacket);
-            System.out.println("CLIENTE: Texto en claro recibido");
+            socket.receive(claroPacket);            
 
             plaintext = claroPacket.getData();
 
@@ -218,25 +209,23 @@ public class ClientUI extends javax.swing.JFrame {
 
             //recibimos el texto cifrado
             DatagramPacket cifradoPacket = new DatagramPacket(new byte[16],16);
-            socket.receive(cifradoPacket);
-            System.out.println("CLIENTE: Texto cifrado recibido");
+            socket.receive(cifradoPacket);            
 
             ciphertext = cifradoPacket.getData();
 
             //mandamos un mensaje de confirmación de recepción de número de claves al servidor
             enviarMensaje("CifradoOK");            
 
-            debugArea.append("Texto recibido\n");
+            debugArea.append(Entorno.getTrans("Net.textReceived"));
 
         } catch (Exception e) {
-            debugArea.append("Error al recibir el texto");
-            e.printStackTrace();
+            debugArea.append(Entorno.getTrans("Net.textReceiveErr"));            
             throw e;
         }
     }
 
     private void probarClaves () throws Exception {
-        debugArea.append("\nComenzando la prueba de claves...\n");        
+        debugArea.append(Entorno.getTrans("Net.keyTest"));        
         try {
             //esperamos a que el servidor nos ordene comenzar
             esperarMensaje("START");
@@ -260,7 +249,7 @@ public class ClientUI extends javax.swing.JFrame {
                     DatagramPacket clave = new DatagramPacket (claveAct, claveAct.length,
                                 servIP, 3000);
                     socket.send(clave);
-                    debugArea.append("Clave encontrada: " + Conversor.byteToHexString(claveAct) + "\n");
+                    debugArea.append(Entorno.getTrans("Net.keyFound") + " " + Conversor.byteToHexString(claveAct) + "\n");
                     //esperamos a que el cliente nos deje continuar
                     esperarMensaje("NEXT");
                 }
@@ -269,14 +258,13 @@ public class ClientUI extends javax.swing.JFrame {
                 claveAct = getNextKey(claveAct);
             }
 
-            debugArea.append("\nPrueba de claves finalizada\n");
+            debugArea.append(Entorno.getTrans("Net.keyTestEnd"));
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            debugArea.append("Hubo un error al probar las claves");
+        } catch (Exception e) {            
+            debugArea.append(Entorno.getTrans("Net.keyTestErr"));
 
             try {enviarMensaje("END");} catch (IOException ex) {
-                debugArea.append("Hubo un problema al comunicar al servidor que este cliente ha acabado");
+                debugArea.append(Entorno.getTrans("Net.keyServErr"));
                 throw ex;
             }
 
@@ -284,7 +272,7 @@ public class ClientUI extends javax.swing.JFrame {
         }
 
         try {enviarMensaje("END");} catch (IOException e) {
-            debugArea.append("Hubo un problema al comunicar al servidor que este cliente ha acabado");
+            debugArea.append(Entorno.getTrans("Net.keyServErr"));
             throw e;
         }
     }
@@ -295,8 +283,7 @@ public class ClientUI extends javax.swing.JFrame {
         DatagramPacket toSend = new DatagramPacket(mensaje.getBytes(), mensaje.length(),
                 servIP, 3000);
 
-        socket.send(toSend);
-        System.out.println("CLIENTE: " + mensaje + " enviado");
+        socket.send(toSend);        
     }
 
     private void esperarMensaje (String mensaje) throws Exception {
@@ -307,8 +294,7 @@ public class ClientUI extends javax.swing.JFrame {
 
         String aux = new String(received.getData(), 0, received.getLength());
         if (!aux.equals(mensaje))
-            throw new Exception("Se ha recibido " + aux + " cuando se esperaba " + mensaje);
-        else System.out.println("CLIENTE: " + mensaje + " recibido");
+            throw new Exception("Se ha recibido " + aux + " cuando se esperaba " + mensaje);        
     }
 
     private byte [] getNextKey (byte [] clave) 
