@@ -37,28 +37,28 @@ public class AESdecrypt {
       Copy.copy(state, in); // actual component-wise copy
       InvAddRoundKey(state); // xor with expanded key
       for (int round = Nr-1; round >= 1; round--) {
-         if (paso) cadena = cadena + "ROUND " + (Nr - round) + "\n";
-         if (paso) cadena = cadena + "***********\n";
-         if (paso) cadena = cadena + Print.printArray("Start Round:\t\t", state);
+         if (paso) cadena = cadena + Entorno.getTrans("Proc.round") + " " + (Nr - round) + "\n";
+         if (paso) cadena = cadena + Entorno.getTrans("Proc.roundUnder") + "\n";
+         if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.startRound"), state);
          InvShiftRows(state); // mix up rows
-         if (paso) cadena = cadena + Print.printArray("After InvShiftRows:\t", state);
+         if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterISR"), state);
          InvSubBytes(state); // inverse S-box substitution
-         if (paso) cadena = cadena + Print.printArray("After InvSubBytes:\t", state);
+         if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterISB"), state);
          InvAddRoundKey(state); // xor with expanded key
-         if (paso) cadena = cadena + Print.printArray("After InvAddRoundKey:\t", state);
+         if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterIARK"), state);
          InvMixColumns(state); // complicated mix of columns
-         if (paso) cadena = cadena + Print.printArray("After InvMixColumns:\t", state);
+         if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterIMC"), state);
          if (paso) cadena = cadena + "\n";
       }
-      if (paso) cadena = cadena + "ROUND " + Nr + "\n";
-      if (paso) cadena = cadena + "***********\n";
-      if (paso) cadena = cadena + Print.printArray("Start Round:\t\t", state);
+      if (paso) cadena = cadena + Entorno.getTrans("Proc.round") + " " + Nr + "\n";
+      if (paso) cadena = cadena + Entorno.getTrans("Proc.roundUnder") + "\n";
+      if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.startRound"), state);
       InvShiftRows(state); // mix up rows
-      if (paso) cadena = cadena + Print.printArray("After InvShiftRows:\t", state);
+      if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterISR"), state);
       InvSubBytes(state); // inverse S-box substitution
-      if (paso) cadena = cadena + Print.printArray("After InvSubBytes:\t", state);
+      if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterISB"), state);
       InvAddRoundKey(state); // xor with expanded key
-      if (paso) cadena = cadena + Print.printArray("After InvAddRoundKey:\t", state);
+      if (paso) cadena = cadena + Print.printArray(Entorno.getTrans("Proc.afterIARK"), state);
       if (paso) cadena = cadena + "\n";
       Copy.copy(out, state);
    }

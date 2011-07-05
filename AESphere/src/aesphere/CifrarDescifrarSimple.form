@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
@@ -114,84 +114,98 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="PlaintextD" alignment="0" pref="402" max="32767" attributes="1"/>
-                  <Component id="KeyD" alignment="1" pref="402" max="32767" attributes="1"/>
-                  <Component id="CiphertextD" alignment="0" pref="402" max="32767" attributes="1"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="Key" alignment="1" max="32767" attributes="1"/>
-                      <Component id="Ciphertext" alignment="1" max="32767" attributes="1"/>
-                      <Component id="Plaintext" alignment="1" min="-2" pref="402" max="-2" attributes="1"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jSeparator1" alignment="1" pref="744" max="32767" attributes="0"/>
+                  <Component id="cifrarButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="0" pref="744" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="plainText" min="-2" max="-2" attributes="1"/>
+                          <Component id="keyText" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cipherText" alignment="0" min="-2" max="-2" attributes="1"/>
+                      </Group>
+                      <EmptySpace pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Plaintext" alignment="1" pref="661" max="32767" attributes="1"/>
+                          <Component id="Key" alignment="1" pref="661" max="32767" attributes="1"/>
+                          <Component id="Ciphertext" alignment="1" pref="661" max="32767" attributes="1"/>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="cipherDText" min="-2" max="-2" attributes="0"/>
+                          <Component id="keyDText" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="plainDText" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="KeyD" alignment="0" pref="661" max="32767" attributes="1"/>
+                          <Component id="CiphertextD" alignment="0" pref="661" max="32767" attributes="1"/>
+                          <Component id="PlaintextD" alignment="0" pref="661" max="32767" attributes="1"/>
+                      </Group>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
+                      <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="descifrarButton" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="733" max="32767" attributes="0"/>
-              <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Plaintext" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="plainText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Key" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="keyText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Ciphertext" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cipherText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="cifrarButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cipherDText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CiphertextD" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="KeyD" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="keyDText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="PlaintextD" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="plainDText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
-              <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="descifrarButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -199,9 +213,13 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="Plaintext">
     </Component>
-    <Component class="javax.swing.JTextField" name="Key">
-    </Component>
     <Component class="javax.swing.JTextField" name="Ciphertext">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CiphertextActionPerformed"/>
       </Events>
@@ -211,24 +229,29 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CiphertextDActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JTextField" name="Key">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KeyActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="plainText">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Plaintext:"/>
+        <Property name="text" type="java.lang.String" value="Texto en claro:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="cipherText">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ciphertext:"/>
+        <Property name="text" type="java.lang.String" value="Texto cifrado:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="keyText">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Key:"/>
+        <Property name="text" type="java.lang.String" value="Clave:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="plainDText">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Plaintext:"/>
+        <Property name="text" type="java.lang.String" value="Texto en claro:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="KeyD">
@@ -237,34 +260,42 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="PlaintextD">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.CompoundBorderInfo">
+            <CompoundBorder/>
+          </Border>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PlaintextDActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="cipherDText">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ciphertext:"/>
+        <Property name="text" type="java.lang.String" value="Texto cifrado:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JLabel" name="keyDText">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Key:"/>
+        <Property name="text" type="java.lang.String" value="Clave:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="cifrarButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cifrar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cifrarButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="descifrarButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descifrar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descifrarButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BotonInfo">
@@ -281,5 +312,51 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonInfoActionPerformed"/>
       </Events>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JEditorPane" name="vector1Pane">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f0" green="f0" id="Button.background" palette="3" red="f0" type="palette"/>
+            </Property>
+            <Property name="contentType" type="java.lang.String" value="text/html"/>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xd;  &#xa;    &lt;p style=&quot;margin-top:0px;padding:3px;&quot;&gt;&#xd;&#xa;      En esta herramienta podr&#xe1; comprobar el correcto funcionamiento de los vectores de prueba del RFC original del AES.&lt;br/&gt;Para ello, algunos se ponen a su disposici&#xf3;n &lt;a href=&quot;&quot;&gt;aqu&#xed;&lt;/a&gt;.&#xa;    &lt;/p&gt;&#xd;  &#xa;&lt;/html&gt;&#xd;&#xa;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="hyperlinkUpdate" listener="javax.swing.event.HyperlinkListener" parameters="javax.swing.event.HyperlinkEvent" handler="vector1PaneHyperlinkUpdate"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JEditorPane" name="vector2Pane">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f0" green="f0" id="Button.background" palette="3" red="f0" type="palette"/>
+            </Property>
+            <Property name="contentType" type="java.lang.String" value="text/html"/>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xd;  &#xa;    &lt;p style=&quot;margin-top:0px;padding:3px;&quot;&gt;&#xd;&#xa;      Puede probar m&#xe1;s vectores descarg&#xe1;ndose el &lt;a href=&quot;http://csrc.nist.gov/groups/STM/cavp/documents/aes/KAT_AES.zip&quot;&gt;archivo original&lt;/a&gt;.&#xa;    &lt;/p&gt;&#xd;  &#xa;&lt;/html&gt;&#xd;&#xa;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="hyperlinkUpdate" listener="javax.swing.event.HyperlinkListener" parameters="javax.swing.event.HyperlinkEvent" handler="vector2PaneHyperlinkUpdate"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

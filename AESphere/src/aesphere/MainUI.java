@@ -61,6 +61,7 @@ public class MainUI extends javax.swing.JFrame {
         Contenidos.setText(Entorno.getTrans("gen.cont"));
         acercade.setText(Entorno.getTrans("gen.about"));
         ComprobarVectores.setText(Entorno.getTrans("MainUI.chkVec"));
+        comprobarVectoresButton.setText(Entorno.getTrans("MainUI.chkVec"));
     }
 
     private void setHelp () {
@@ -115,6 +116,7 @@ public class MainUI extends javax.swing.JFrame {
         BotonInfo = new javax.swing.JButton();
         EnglishButton = new javax.swing.JButton();
         SpanishButton = new javax.swing.JButton();
+        comprobarVectoresButton = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -132,7 +134,7 @@ public class MainUI extends javax.swing.JFrame {
 
         MainPanel.setPreferredSize(new java.awt.Dimension(700, 500));
 
-        HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        HerramientasLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
         HerramientasLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HerramientasLabel.setText("OPERACIONES");
 
@@ -156,7 +158,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        AtaquesLabel.setFont(new java.awt.Font("Tahoma", 1, 24));
         AtaquesLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         AtaquesLabel.setText("ATAQUES");
 
@@ -240,44 +242,58 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
+        comprobarVectoresButton.setText("Comprobar vectores");
+        comprobarVectoresButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        comprobarVectoresButton.setFocusPainted(false);
+        comprobarVectoresButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprobarVectoresButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SpanishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(EnglishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(707, 707, 707)
+                .addComponent(BotonInfo)
+                .addContainerGap())
+            .addGroup(MainPanelLayout.createSequentialGroup()
+                .addGap(198, 198, 198)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(SpanishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(EnglishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
-                        .addComponent(BotonInfo))
+                        .addComponent(BotonAtaques)
+                        .addGap(50, 50, 50)
+                        .addComponent(AtaquesLabel))
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(MainPanelLayout.createSequentialGroup()
-                                .addComponent(BotonAtaques)
-                                .addGap(50, 50, 50)
-                                .addComponent(AtaquesLabel))
-                            .addGroup(MainPanelLayout.createSequentialGroup()
-                                .addComponent(BotonDescifrar)
-                                .addGap(50, 50, 50)
-                                .addComponent(DescifrarLabel))
-                            .addGroup(MainPanelLayout.createSequentialGroup()
-                                .addComponent(BotonCifrar)
-                                .addGap(50, 50, 50)
-                                .addComponent(CifrarLabel))
-                            .addGroup(MainPanelLayout.createSequentialGroup()
-                                .addComponent(BotonHerramientas)
-                                .addGap(50, 50, 50)
-                                .addComponent(HerramientasLabel)))))
-                .addContainerGap())
+                        .addComponent(BotonDescifrar)
+                        .addGap(50, 50, 50)
+                        .addComponent(DescifrarLabel))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addComponent(BotonHerramientas)
+                        .addGap(50, 50, 50)
+                        .addComponent(HerramientasLabel))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addComponent(BotonCifrar)
+                        .addGap(50, 50, 50)
+                        .addComponent(CifrarLabel)))
+                .addContainerGap(275, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
+                .addContainerGap(641, Short.MAX_VALUE)
+                .addComponent(comprobarVectoresButton)
+                .addGap(29, 29, 29))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(25, 25, 25)
+                .addComponent(comprobarVectoresButton)
+                .addGap(8, 8, 8)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CifrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                     .addComponent(BotonCifrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -293,12 +309,12 @@ public class MainUI extends javax.swing.JFrame {
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(HerramientasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(BotonHerramientas, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(41, 41, 41)
+                .addGap(44, 44, 44)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SpanishButton)
                     .addComponent(EnglishButton)
                     .addComponent(BotonInfo))
-                .addGap(12, 12, 12))
+                .addContainerGap())
         );
 
         mainMenuArchivo.setText("Archivo");
@@ -543,6 +559,10 @@ public class MainUI extends javax.swing.JFrame {
         else hijoActual.requestFocus();
     }//GEN-LAST:event_ComprobarVectoresActionPerformed
 
+    private void comprobarVectoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprobarVectoresButtonActionPerformed
+        ComprobarVectoresActionPerformed(evt);
+    }//GEN-LAST:event_comprobarVectoresButtonActionPerformed
+
     public void wclosed (javax.swing.JFrame hijo){
         if (hijoActual.equals(hijo)) {
             if (hijoThread != null) {
@@ -597,6 +617,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem SimularAtaques;
     private javax.swing.JButton SpanishButton;
     private javax.swing.JMenuItem acercade;
+    private javax.swing.JButton comprobarVectoresButton;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;

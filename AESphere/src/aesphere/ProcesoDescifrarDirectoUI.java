@@ -11,10 +11,14 @@
 
 package aesphere;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.io.File;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.JOptionPane;
 
 
@@ -37,6 +41,8 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
             int modoBloque, int tamano, boolean manualIV, byte [] iv) {
         initComponents();
+        setLangLabels();
+        setHelp();
         wpadre=padre;
         cadenaInput = Texto1;
         cadenaKey = Texto2;
@@ -44,7 +50,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         tamanoclave = tamano;
         blockMode = modoBloque;
 
-        this.setSize(550, 300);
+        this.setSize(550, 305);
         wpadre.newchild(this);
 
         //Comenzamos el descifrado
@@ -71,8 +77,8 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         if (salida == null) {            
             //Mostramos una ventana de error
-            JOptionPane.showMessageDialog(this, "Error de Descifrado. " +
-                    "Compruebe que ha introducido correctamente los datos");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.decErr"), 
+                     Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);            
             //Lanzamos el evento de cerrado de la ventana
             this.dispatchEvent(new java.awt.event.WindowEvent(this,
                     java.awt.event.WindowEvent.WINDOW_CLOSING));
@@ -92,6 +98,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         }
 
         this.setLocationRelativeTo(wpadre);
+        this.setResizable(false);
         this.setVisible(true);
     }
 
@@ -101,8 +108,8 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
          aux = ReadFileIntoByteArray.getBytesFromFile(new File(ruta));
         }
         catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al " +
-                    "abrir el archivo");
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileErr") +
+                    ruta, Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
         }
         return aux;
     }
@@ -136,6 +143,49 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         }
         return aux;
     }
+    
+    private void setLangLabels () {
+        this.setTitle(Entorno.getTrans("AES.titleDec"));
+        mainMenuArchivo.setText(Entorno.getTrans("gen.file"));
+        mainMenuEditar.setText(Entorno.getTrans("gen.edit"));
+        mainMenuAyuda.setText(Entorno.getTrans("gen.help"));
+        Salir.setText(Entorno.getTrans("gen.exit"));
+        CopiarCiphertext.setText(Entorno.getTrans("Att.copyCipher"));
+        CopiarPlaintext.setText(Entorno.getTrans("Att.copyPlain"));        
+        Contenidos.setText(Entorno.getTrans("gen.cont"));
+        acercade.setText(Entorno.getTrans("gen.about"));
+        plainLabel.setText(Entorno.getTrans("AES.plain"));
+        cipherLabel.setText(Entorno.getTrans("AES.cipher"));              
+    }
+    
+    private void setHelp () {
+
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = getSize();
+
+        try {
+            File fichero = null;
+
+            if (Entorno.getProperty("language").equals("ES"))
+                fichero = new File("help/help_set_ES.hs");
+            else if (Entorno.getProperty("language").equals("EN"))
+                fichero = new File("help/help_set_EN.hs");
+            URL hsURL = fichero.toURI().toURL();
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+                                (pantalla.height - ventana.height) / 2));
+            hb.setSize(new java.awt.Dimension(800, 628));
+            hb.enableHelpOnButton(Contenidos, "ventana_shiftrows", helpset);
+            hb.enableHelpOnButton(BotonInfo, "ventana_shiftrows", helpset);
+            hb.enableHelpOnButton(acercade, "aplicacion", helpset);
+        }
+
+        catch (Exception e) {
+             JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.helpErrMsg"), 
+                     Entorno.getTrans("gen.helpErrTitle"), JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -148,17 +198,20 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         Plaintextfield = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        cipherLabel = new javax.swing.JLabel();
+        plainLabel = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         Ciphertextfield = new javax.swing.JTextArea();
+        BotonInfo = new javax.swing.JButton();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
-        mainMenuArchivoCifrado = new javax.swing.JMenu();
+        mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
-        mainMenuEditarCifrado = new javax.swing.JMenu();
+        mainMenuEditar = new javax.swing.JMenu();
         CopiarCiphertext = new javax.swing.JMenuItem();
         CopiarPlaintext = new javax.swing.JMenuItem();
-        mainMenuAyudaCifrado = new javax.swing.JMenu();
+        mainMenuAyuda = new javax.swing.JMenu();
+        Contenidos = new javax.swing.JMenuItem();
+        acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AESphere - Proceso Descifrado");
@@ -175,9 +228,9 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         Plaintextfield.setRows(5);
         jScrollPane3.setViewportView(Plaintextfield);
 
-        jLabel3.setText("Ciphertext:");
+        cipherLabel.setText("Ciphertext:");
 
-        jLabel1.setText("Plaintext:");
+        plainLabel.setText("Plaintext:");
 
         Ciphertextfield.setColumns(20);
         Ciphertextfield.setEditable(false);
@@ -185,7 +238,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         Ciphertextfield.setRows(5);
         jScrollPane4.setViewportView(Ciphertextfield);
 
-        mainMenuArchivoCifrado.setText("Archivo");
+        BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
+        BotonInfo.setBorder(null);
+        BotonInfo.setContentAreaFilled(false);
+
+        mainMenuArchivo.setText("Archivo");
 
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -193,11 +250,11 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
                 SalirActionPerformed(evt);
             }
         });
-        mainMenuArchivoCifrado.add(Salir);
+        mainMenuArchivo.add(Salir);
 
-        cifradoMenuBarMain.add(mainMenuArchivoCifrado);
+        cifradoMenuBarMain.add(mainMenuArchivo);
 
-        mainMenuEditarCifrado.setText("Editar");
+        mainMenuEditar.setText("Editar");
 
         CopiarCiphertext.setText("Copiar Ciphertext");
         CopiarCiphertext.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +262,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
                 CopiarCiphertextActionPerformed(evt);
             }
         });
-        mainMenuEditarCifrado.add(CopiarCiphertext);
+        mainMenuEditar.add(CopiarCiphertext);
 
         CopiarPlaintext.setText("Copiar Plaintext");
         CopiarPlaintext.addActionListener(new java.awt.event.ActionListener() {
@@ -213,12 +270,24 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
                 CopiarPlaintextActionPerformed(evt);
             }
         });
-        mainMenuEditarCifrado.add(CopiarPlaintext);
+        mainMenuEditar.add(CopiarPlaintext);
 
-        cifradoMenuBarMain.add(mainMenuEditarCifrado);
+        cifradoMenuBarMain.add(mainMenuEditar);
 
-        mainMenuAyudaCifrado.setText("Ayuda");
-        cifradoMenuBarMain.add(mainMenuAyudaCifrado);
+        mainMenuAyuda.setText("Ayuda");
+
+        Contenidos.setText("Contenido");
+        Contenidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContenidosActionPerformed(evt);
+            }
+        });
+        mainMenuAyuda.add(Contenidos);
+
+        acercade.setText("Acerca de");
+        mainMenuAyuda.add(acercade);
+
+        cifradoMenuBarMain.add(mainMenuAyuda);
 
         setJMenuBar(cifradoMenuBarMain);
 
@@ -229,12 +298,15 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(6, 6, 6)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
-                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(cipherLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(plainLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(6, 6, 6)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
+                            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, BotonInfo))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -242,13 +314,15 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel3)
+                    .add(cipherLabel)
                     .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(34, 34, 34)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel1))
-                .addContainerGap(352, Short.MAX_VALUE))
+                    .add(plainLabel))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(BotonInfo)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -276,25 +350,32 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         cb.setContents(ss, ss);
 }//GEN-LAST:event_CopiarCiphertextActionPerformed
 
+    private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
+        
+}//GEN-LAST:event_ContenidosActionPerformed
+
     /**
     * @param args the command line arguments
     */
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonInfo;
     private javax.swing.JTextArea Ciphertextfield;
+    private javax.swing.JMenuItem Contenidos;
     private javax.swing.JMenuItem CopiarCiphertext;
     private javax.swing.JMenuItem CopiarPlaintext;
     private javax.swing.JTextArea Plaintextfield;
     private javax.swing.JMenuItem Salir;
+    private javax.swing.JMenuItem acercade;
     private javax.swing.JMenuBar cifradoMenuBarMain;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel cipherLabel;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JMenu mainMenuArchivoCifrado;
-    private javax.swing.JMenu mainMenuAyudaCifrado;
-    private javax.swing.JMenu mainMenuEditarCifrado;
+    private javax.swing.JMenu mainMenuArchivo;
+    private javax.swing.JMenu mainMenuAyuda;
+    private javax.swing.JMenu mainMenuEditar;
+    private javax.swing.JLabel plainLabel;
     // End of variables declaration//GEN-END:variables
 
 }
