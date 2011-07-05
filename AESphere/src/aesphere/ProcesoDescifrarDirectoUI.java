@@ -145,7 +145,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
     }
     
     private void setLangLabels () {
-        this.setTitle(Entorno.getTrans("AES.titleDec"));
+        this.setTitle(Entorno.getTrans("AES.procDecTitle"));
         mainMenuArchivo.setText(Entorno.getTrans("gen.file"));
         mainMenuEditar.setText(Entorno.getTrans("gen.edit"));
         mainMenuAyuda.setText(Entorno.getTrans("gen.help"));

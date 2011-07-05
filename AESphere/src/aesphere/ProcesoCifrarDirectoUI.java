@@ -143,7 +143,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     }
     
     private void setLangLabels () {
-        this.setTitle(Entorno.getTrans("AES.titleEnc"));
+        this.setTitle(Entorno.getTrans("AES.procEncTitle"));
         mainMenuArchivo.setText(Entorno.getTrans("gen.file"));
         mainMenuEditar.setText(Entorno.getTrans("gen.edit"));
         mainMenuAyuda.setText(Entorno.getTrans("gen.help"));

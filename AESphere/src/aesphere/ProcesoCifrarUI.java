@@ -145,7 +145,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     }
     
     private void setLangLabels () {
-        this.setTitle(Entorno.getTrans("AES.titleEnc"));
+        this.setTitle(Entorno.getTrans("AES.procEncTitle"));
         mainMenuArchivo.setText(Entorno.getTrans("gen.file"));
         mainMenuEditar.setText(Entorno.getTrans("gen.edit"));
         mainMenuAyuda.setText(Entorno.getTrans("gen.help"));
@@ -214,7 +214,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         ivTextArea = new javax.swing.JTextArea();
         cifradoMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditar = new javax.swing.JMenu();
         CopiarPlaintext = new javax.swing.JMenuItem();
@@ -275,9 +274,6 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         jScrollPane4.setViewportView(ivTextArea);
 
         mainMenuArchivo.setText("Archivo");
-
-        jMenuItem2.setText("jMenuItem2");
-        mainMenuArchivo.add(jMenuItem2);
 
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -456,7 +452,6 @@ private void copyIVMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenuItem copyIVMenu;
     private javax.swing.JLabel ivLabel;
     private javax.swing.JTextArea ivTextArea;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
