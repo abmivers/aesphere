@@ -704,6 +704,17 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             + " " + ruta + " " + Entorno.getTrans("gen.fileNotLen"),
                         Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 }
+                /*
+                 * si estamos comprobando descifrado y el tamaño no es mayor o
+                 * múltiplo de 16 bytes, tamaño incorrecto
+                 */
+                if (aux && (max == 41943056) && 
+                        ( (arch.length() < 16) || (arch.length() % 16 != 0) ) ) {
+                    aux = false;
+                    JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileNot1")
+                            + " " + ruta + " " + Entorno.getTrans("gen.fileBadSize"),
+                        Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE); 
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileErr") +
@@ -1116,7 +1127,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         if (aux && !ComprobarHexadecimal(iv)) {
             aux = false;
             JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.hexIVWarMsg"),
-                    "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         return aux;
