@@ -174,8 +174,7 @@ public class ServUI extends javax.swing.JFrame {
             DatagramPacket longPacket = new DatagramPacket(numClaves, numClaves.length,
                     ip, port);
 
-            socket.send(longPacket);
-            System.out.println("SERVIDOR: Long enviado");
+            socket.send(longPacket);            
             
             //esperamos la confirmación del cliente LongOK
             esperarMensaje("LongOK");                       

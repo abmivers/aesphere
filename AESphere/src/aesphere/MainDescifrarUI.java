@@ -787,8 +787,41 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
         return aux;
     }
+    
+    private boolean comprobarArchivo (String ruta, long max) {
+        boolean aux = true;
+        try {
+            File arch = new File (ruta);
+            if (!arch.exists()) {
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileNot1") 
+                        + " " + ruta + " " + Entorno.getTrans("gen.fileNot2"),
+                        Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
+                aux = false;
+            } else {
+                if (arch.length() > max) {
+                    aux = false;
+                    JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileNot1")
+                            + " " + ruta + " " + Entorno.getTrans("gen.fileNotLen"),
+                        Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);                
+                }
+                //longitud incorrecta si es menor de 16 o nmo es múltiplo de 16 bytes
+                if (aux && ( (arch.length() < 16) || (arch.length() % 16 != 0) ) ) {
+                    aux = false;
+                    JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileNot1")
+                            + " " + ruta + " " + Entorno.getTrans("gen.fileBadSize"),
+                        Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE); 
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileErr") +
+                    ruta, Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
+            aux = false;
+        }
+        return aux;
+    }
 
-    private boolean comprobarArchivo (int numChar) {
+
+    private boolean comprobarArchivoBase64 (int numChar) {
         boolean resul = true;
         
         try {
@@ -874,8 +907,8 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.lenMulHexInMsg"),
                     Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
-        }
-
+        } 
+        
         if (aux && (indexIn == 0) && !comprobarBase64(contenidoIn)) {
             JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.formatIn64"),
                     Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
@@ -902,7 +935,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 aux=false;
             }
 
-            if ( (indexKey == 2) && !comprobarArchivo(44) )
+            if ( (indexKey == 2) && !comprobarArchivoBase64(44) )
                 aux=false;
         }
 
@@ -920,7 +953,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 aux=false;
             }
 
-            if ( (indexKey == 2) && !comprobarArchivo(32) )
+            if ( (indexKey == 2) && !comprobarArchivoBase64(32) )
                 aux=false;
         }
 
@@ -938,10 +971,13 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 aux=false;
             }
 
-            if ( (indexKey == 2) && !comprobarArchivo(24) )
+            if ( (indexKey == 2) && !comprobarArchivoBase64(24) )
                 aux=false;
         }
-
+        
+        if ( aux && (indexIn == 2) && !comprobarArchivo(TextoInput.getText(), 41943056) )
+            aux = false;
+        
         return aux;
     }
 
@@ -981,7 +1017,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         if (aux && !ComprobarHexadecimal(iv)) {
             aux = false;
             JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.hexIVWarMsg"),
-                    "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         return aux;

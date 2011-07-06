@@ -204,6 +204,14 @@ public class MainCifrarUI extends javax.swing.JFrame {
         TextoKey.setLineWrap(true);
         TextoKey.setRows(5);
         TextoKey.setWrapStyleWord(true);
+        TextoKey.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TextoKeyKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextoKeyKeyTyped(evt);
+            }
+        });
         jScrollPane3.setViewportView(TextoKey);
 
         BotonBrowseCifrarKey.setText("Buscar");
@@ -471,7 +479,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                             .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonBrowseCifrarOutput)))
                     .addComponent(jLabel1))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         BotonInfoCifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
@@ -520,7 +528,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cifrarPanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -623,7 +631,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(cifrarPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cifrarPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
@@ -774,8 +782,33 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
         return aux;
     }
+    
+    private boolean comprobarArchivo (String ruta, long max) {
+        boolean aux = true;
+        try {
+            File arch = new File (ruta);
+            if (!arch.exists()) {
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileNot1") 
+                        + " " + ruta + " " + Entorno.getTrans("gen.fileNot2"),
+                        Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
+                aux = false;
+            } else {
+                if (arch.length() > max) {
+                    aux = false;
+                    JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileNot1")
+                            + " " + ruta + " " + Entorno.getTrans("gen.fileNotLen"),
+                        Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.fileErr") +
+                    ruta, Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
+            aux = false;
+        }
+        return aux;
+    }
 
-    private boolean comprobarArchivo (int numChar) {
+    private boolean comprobarArchivoBase64 (int numChar) {
         boolean resul = true;
 
         try {
@@ -856,7 +889,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 aux=false;
             }
 
-            if ( (indexKey == 2) && !comprobarArchivo(44) )
+            if ( (indexKey == 2) && !comprobarArchivoBase64(44) )
                 aux=false;
         }
 
@@ -874,7 +907,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 aux=false;
             }
 
-            if ( (indexKey == 2) && !comprobarArchivo(32) )
+            if ( (indexKey == 2) && !comprobarArchivoBase64(32) )
                 aux=false;
         }
 
@@ -892,9 +925,12 @@ public class MainCifrarUI extends javax.swing.JFrame {
                 aux=false;
             }
 
-            if ( (indexKey == 2) && !comprobarArchivo(24) )
+            if ( (indexKey == 2) && !comprobarArchivoBase64(24) )
                 aux=false;
         }
+        
+        if ( aux && (indexIn == 2) && !comprobarArchivo(TextoInput.getText(), 41943040) )
+            aux = false;
 
         return aux;
     }
@@ -935,7 +971,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
         if (aux && !ComprobarHexadecimal(iv)) {
             aux = false;
             JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.hexIVWarMsg"),
-                    "Ataques - CBC - Aviso", JOptionPane.WARNING_MESSAGE);
+                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         return aux;
@@ -1109,6 +1145,18 @@ public class MainCifrarUI extends javax.swing.JFrame {
     private void manualIVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualIVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_manualIVActionPerformed
+
+    private void TextoKeyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoKeyKeyTyped
+        if (TextoKey.getText().length() > 16) {
+            TextoKey.setText(TextoKey.getText().substring(0, 16));
+        }
+    }//GEN-LAST:event_TextoKeyKeyTyped
+
+    private void TextoKeyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoKeyKeyReleased
+        if (TextoKey.getText().length() > 16) {
+            TextoKey.setText(TextoKey.getText().substring(0, 16));
+        }
+    }//GEN-LAST:event_TextoKeyKeyReleased
 
 
 

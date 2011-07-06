@@ -1,15 +1,9 @@
 ESTADO	--	DESCRIPCION
 *******************************************
-fixed	--	no se hacen comprobaciones de contenido cuando la clave se mete como archivo
 BUG		--	no se comprueba que el IV sea un campo hexadecimal de exactamente 16 bytes
 BUG		--	no se muestra el IV
-fixed	--	en descifrar se debería marcar por defecto que se introdujese el IV manualmente (podría ser interesante para ver cómo varía dejar que fuese aleatorio)
-fixed	--	mainAtaques debe pasar directamente el primer bloque de 16 bytes del plaintext y el ciphertext a ServUI
 BUG		--	servUI debe controlar cuándo se está cifrando en modo CBC para concatenar el IV
 IMPROVE	--	incluir screenshots en la ayuda de la aplicación [IMPROVE]
-fixed	--	servUI debe transmitir al cliente el tamaño de clave
-fixed	--	clientUI debe manejar distintos tamaños de clave
-fixed	--	no se controla que en MainAtaques el tamaño del texto cifrado debe ser mayor a 16 bytes
 BUG		--	no se controla en MainCifrarUI y MainDescifrarUI que no se superen los 40 Mbs de archivo
 BUG		--	no se controlan máximos permitidos en MacinCifrarUI y MainDescifrarUI
 BUG		--	no se controlan mínimos para archivos en MainDescifrarUI y MainAtaquesUI
