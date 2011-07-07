@@ -212,6 +212,10 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="Plaintext">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PlaintextKeyReleased"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PlaintextKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="Ciphertext">
       <Properties>
@@ -227,11 +231,15 @@
     <Component class="javax.swing.JTextField" name="CiphertextD">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CiphertextDActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CiphertextDKeyReleased"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CiphertextDKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="Key">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KeyActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="KeyKeyReleased"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="KeyKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="plainText">
@@ -257,6 +265,8 @@
     <Component class="javax.swing.JTextField" name="KeyD">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KeyDActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="KeyDKeyReleased"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="KeyDKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="PlaintextD">

@@ -47,7 +47,9 @@ public class ServUI extends javax.swing.JFrame {
         setLocationRelativeTo(wpadre);
         setVisible(true);
 
-        debugArea.append(Long.toString(numClaves) + " " + Entorno.getTrans("Net.nKeys"));
+        if (numClaves == 1) 
+            debugArea.append("1 " + Entorno.getTrans("Net.nKey"));
+        else debugArea.append(Long.toString(numClaves) + " " + Entorno.getTrans("Net.nKeys"));
         //declaramos el array con el número de claves que cada cliente deberá probar
         long [] clavesPorCliente = new long [numclientes];                
         //calculamos el número de claves a probar por cada cliente
@@ -56,12 +58,19 @@ public class ServUI extends javax.swing.JFrame {
         numClaves -= clavesCliente * numclientes;
         //rellenamos el array de claves a probar por cada cliente
         int extra = 0;
+        long clavesCli = 0;
         debugArea.append("\n");
         for (int i = 0; i < numclientes; i++, extra++) {
-            if (extra < numClaves) clavesPorCliente[i] = clavesCliente + 1;
-            else clavesPorCliente[i] = clavesCliente;
-            debugArea.append(Entorno.getTrans("Net.cli") + " " + i + ": " + 
-                    clavesPorCliente[i] + " " + Entorno.getTrans("Net.keys"));
+            if (extra < numClaves) clavesCli = clavesCliente + 1;
+            else clavesCli = clavesCliente;
+            
+            if (clavesCli == 1)
+                debugArea.append(Entorno.getTrans("Net.cli") + " " + i + ": " + 
+                        "1 " + Entorno.getTrans("Net.keyLower"));
+            else debugArea.append(Entorno.getTrans("Net.cli") + " " + i + ": " + 
+                        clavesCli + " " + Entorno.getTrans("Net.keys"));
+            
+            clavesPorCliente[i] = clavesCli;
         }
 
         //si estamos en modo CBC, hacemos XOR del IV con el texto en claro
@@ -275,7 +284,10 @@ public class ServUI extends javax.swing.JFrame {
                 }
             }
 
-            debugArea.append(Entorno.getTrans("Net.keySearchEnd") +
+            if (numClaves == 1) 
+                debugArea.append(Entorno.getTrans("Net.keySearchEnd") +
+                    "1 " + Entorno.getTrans("Net.keyFoundEnd"));
+            else debugArea.append(Entorno.getTrans("Net.keySearchEnd") +
                     Long.toString(numClaves) + " " + Entorno.getTrans("Net.keysFound"));
 
         } catch (Exception e) {

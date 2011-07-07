@@ -203,6 +203,14 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         TextoKey.setLineWrap(true);
         TextoKey.setRows(5);
         TextoKey.setWrapStyleWord(true);
+        TextoKey.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TextoKeyKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextoKeyKeyTyped(evt);
+            }
+        });
         jScrollPane3.setViewportView(TextoKey);
 
         BotonBrowseCifrarKey.setText("Buscar");
@@ -275,6 +283,14 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         TextoInput.setLineWrap(true);
         TextoInput.setRows(5);
         TextoInput.setWrapStyleWord(true);
+        TextoInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TextoInputKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextoInputKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(TextoInput);
 
         BotonBrowseCifrar.setText("Buscar");
@@ -390,7 +406,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(ModoCifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(ModoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -468,7 +484,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                             .addComponent(TextoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonBrowseCifrarOutput)))
                     .addComponent(jLabel1))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         BotonInfoDescifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
@@ -517,7 +533,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cifrarPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cifrarPanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(cifrarPanelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cifrarPanelAdvOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -625,7 +641,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(cifrarPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cifrarPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
@@ -920,6 +936,19 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                     Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
         }
+        
+        //el texto cifrado será de como máximo 1024 + 16 = 1040 bytes = 1388 caracteres en Base64
+        if ( aux && (indexIn == 0) && (TextoInput.getText().length() > 1388) ) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.inDecAsciLenWar"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (indexIn == 1) && (TextoInput.getText().length() > 2080)) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.inDecHexLenWar"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
+        }
 
         if (aux && RadioButton256.isSelected()) {
 
@@ -1082,18 +1111,43 @@ public class MainDescifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void RadioButton256ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton256ActionPerformed
-         
+        switch (ComboBoxKey.getSelectedIndex()) {
+            case 0: 
+                if (TextoKey.getText().length() > 32)
+                    TextoKey.setText(TextoKey.getText().substring(0, 32));                
+            break;
+            case 1:
+                if (TextoKey.getText().length() > 64)
+                    TextoKey.setText(TextoKey.getText().substring(0, 64));
+            break;
+        }
        
     }//GEN-LAST:event_RadioButton256ActionPerformed
 
     private void RadioButton128ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton128ActionPerformed
-         
-        
+        switch (ComboBoxKey.getSelectedIndex()) {
+            case 0:
+                if (TextoKey.getText().length() > 16)
+                    TextoKey.setText(TextoKey.getText().substring(0, 16)); 
+            break;
+            case 1: 
+                if (TextoKey.getText().length() > 32)
+                    TextoKey.setText(TextoKey.getText().substring(0, 32)); 
+            break;
+        }        
     }//GEN-LAST:event_RadioButton128ActionPerformed
 
     private void RadioButton192ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton192ActionPerformed
-         
-        
+        switch (ComboBoxKey.getSelectedIndex()) {
+            case 0: 
+                if (TextoKey.getText().length() > 24)
+                    TextoKey.setText(TextoKey.getText().substring(0, 24)); 
+            break;
+            case 1: 
+                if (TextoKey.getText().length() > 48)
+                    TextoKey.setText(TextoKey.getText().substring(0, 48)); 
+            break;
+        }        
     }//GEN-LAST:event_RadioButton192ActionPerformed
 
     private void ModoEjecucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModoEjecucionActionPerformed
@@ -1190,6 +1244,46 @@ public class MainDescifrarUI extends javax.swing.JFrame {
     private void ContenidosDescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosDescifrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ContenidosDescifrarActionPerformed
+
+    private void TextoKeyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoKeyKeyTyped
+        switch (ComboBoxKey.getSelectedIndex()) {
+            case 0: //ASCII
+                if (RadioButton128.isSelected() && (TextoKey.getText().length() > 16) )
+                    TextoKey.setText(TextoKey.getText().substring(0, 16));                    
+                else if (RadioButton192.isSelected() && (TextoKey.getText().length() > 24) )                    
+                        TextoKey.setText(TextoKey.getText().substring(0, 24));                  
+                else if (RadioButton256.isSelected() && (TextoKey.getText().length() > 32) )                    
+                        TextoKey.setText(TextoKey.getText().substring(0, 32));                  
+            break;
+            case 1: //Hexa
+                if (RadioButton128.isSelected() && (TextoKey.getText().length() > 32) )                    
+                        TextoKey.setText(TextoKey.getText().substring(0, 32));
+                else if (RadioButton192.isSelected() && (TextoKey.getText().length() > 48) )                   
+                        TextoKey.setText(TextoKey.getText().substring(0, 48));
+                else if (RadioButton256.isSelected() && (TextoKey.getText().length() > 64) )                   
+                        TextoKey.setText(TextoKey.getText().substring(0, 64));                
+            break;
+        }
+    }//GEN-LAST:event_TextoKeyKeyTyped
+
+    private void TextoKeyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoKeyKeyReleased
+        TextoKeyKeyTyped(evt);
+    }//GEN-LAST:event_TextoKeyKeyReleased
+
+    private void TextoInputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoInputKeyTyped
+        switch (ComboBoxInputCifrar.getSelectedIndex()) {
+             case 0: //ASCII
+                 if (TextoInput.getText().length() > 1388)
+                     TextoInput.setText(TextoInput.getText().substring(0, 1388));
+             case 1: //Hexa
+                 if (TextoInput.getText().length() > 2080)
+                     TextoInput.setText(TextoInput.getText().substring(0, 2080));
+         }
+    }//GEN-LAST:event_TextoInputKeyTyped
+
+    private void TextoInputKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoInputKeyReleased
+        TextoInputKeyTyped(evt);
+    }//GEN-LAST:event_TextoInputKeyReleased
 
 
 
