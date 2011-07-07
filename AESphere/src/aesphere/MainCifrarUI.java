@@ -284,6 +284,14 @@ public class MainCifrarUI extends javax.swing.JFrame {
         TextoInput.setLineWrap(true);
         TextoInput.setRows(5);
         TextoInput.setWrapStyleWord(true);
+        TextoInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TextoInputKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextoInputKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(TextoInput);
 
         BotonBrowseCifrar.setText("Buscar");
@@ -625,14 +633,14 @@ public class MainCifrarUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
                 .addComponent(cifrarPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
                 .addComponent(cifrarPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
@@ -874,6 +882,18 @@ public class MainCifrarUI extends javax.swing.JFrame {
                          Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             aux=false;
             }
+        
+        if ( aux && (indexIn == 0) && (TextoInput.getText().length() > 1024) ) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.inAsciLenWar"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ( aux && (indexIn == 1) && (TextoInput.getText().length() > 2048)) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.inHexLenWar"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
+        }
 
         if (aux && RadioButton256.isSelected()) {
 
@@ -1041,15 +1061,42 @@ public class MainCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void RadioButton256ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton256ActionPerformed
-           
+        switch (ComboBoxKey.getSelectedIndex()) {
+            case 0: 
+                if (TextoKey.getText().length() > 32)
+                    TextoKey.setText(TextoKey.getText().substring(0, 32));                
+            break;
+            case 1:
+                if (TextoKey.getText().length() > 64)
+                    TextoKey.setText(TextoKey.getText().substring(0, 64));
+            break;
+        }
     }//GEN-LAST:event_RadioButton256ActionPerformed
 
     private void RadioButton128ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton128ActionPerformed
-         
+        switch (ComboBoxKey.getSelectedIndex()) {
+            case 0:
+                if (TextoKey.getText().length() > 16)
+                    TextoKey.setText(TextoKey.getText().substring(0, 16)); 
+            break;
+            case 1: 
+                if (TextoKey.getText().length() > 32)
+                    TextoKey.setText(TextoKey.getText().substring(0, 32)); 
+            break;
+        }
     }//GEN-LAST:event_RadioButton128ActionPerformed
 
     private void RadioButton192ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton192ActionPerformed
-         
+        switch (ComboBoxKey.getSelectedIndex()) {
+            case 0: 
+                if (TextoKey.getText().length() > 24)
+                    TextoKey.setText(TextoKey.getText().substring(0, 24)); 
+            break;
+            case 1: 
+                if (TextoKey.getText().length() > 48)
+                    TextoKey.setText(TextoKey.getText().substring(0, 48)); 
+            break;
+        }
     }//GEN-LAST:event_RadioButton192ActionPerformed
 
     private void ModoCifradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModoCifradoActionPerformed
@@ -1147,16 +1194,44 @@ public class MainCifrarUI extends javax.swing.JFrame {
     }//GEN-LAST:event_manualIVActionPerformed
 
     private void TextoKeyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoKeyKeyTyped
-        if (TextoKey.getText().length() > 16) {
-            TextoKey.setText(TextoKey.getText().substring(0, 16));
+        switch (ComboBoxKey.getSelectedIndex()) {
+            case 0: //ASCII
+                if (RadioButton128.isSelected() && (TextoKey.getText().length() > 16) )
+                    TextoKey.setText(TextoKey.getText().substring(0, 16));                    
+                else if (RadioButton192.isSelected() && (TextoKey.getText().length() > 24) )                    
+                        TextoKey.setText(TextoKey.getText().substring(0, 24));                  
+                else if (RadioButton256.isSelected() && (TextoKey.getText().length() > 32) )                    
+                        TextoKey.setText(TextoKey.getText().substring(0, 32));                  
+            break;
+            case 1: //Hexa
+                if (RadioButton128.isSelected() && (TextoKey.getText().length() > 32) )                    
+                        TextoKey.setText(TextoKey.getText().substring(0, 32));
+                else if (RadioButton192.isSelected() && (TextoKey.getText().length() > 48) )                   
+                        TextoKey.setText(TextoKey.getText().substring(0, 48));
+                else if (RadioButton256.isSelected() && (TextoKey.getText().length() > 64) )                   
+                        TextoKey.setText(TextoKey.getText().substring(0, 64));                
+            break;
         }
     }//GEN-LAST:event_TextoKeyKeyTyped
 
     private void TextoKeyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoKeyKeyReleased
-        if (TextoKey.getText().length() > 16) {
-            TextoKey.setText(TextoKey.getText().substring(0, 16));
-        }
+        TextoKeyKeyTyped(evt);
     }//GEN-LAST:event_TextoKeyKeyReleased
+
+    private void TextoInputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoInputKeyTyped
+         switch (ComboBoxInputCifrar.getSelectedIndex()) {
+             case 0: //ASCII
+                 if (TextoInput.getText().length() > 1024)
+                     TextoInput.setText(TextoInput.getText().substring(0, 1024));
+             case 1: //Hexa
+                 if (TextoInput.getText().length() > 2048)
+                     TextoInput.setText(TextoInput.getText().substring(0, 2048));
+         }
+    }//GEN-LAST:event_TextoInputKeyTyped
+
+    private void TextoInputKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoInputKeyReleased
+        TextoInputKeyTyped(evt);
+    }//GEN-LAST:event_TextoInputKeyReleased
 
 
 

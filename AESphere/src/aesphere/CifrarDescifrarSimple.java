@@ -93,7 +93,15 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
             }
         });
 
-        Ciphertext.setBackground(new java.awt.Color(255, 255, 255));
+        Plaintext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                PlaintextKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PlaintextKeyTyped(evt);
+            }
+        });
+
         Ciphertext.setEditable(false);
         Ciphertext.setBorder(null);
         Ciphertext.addActionListener(new java.awt.event.ActionListener() {
@@ -107,10 +115,26 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
                 CiphertextDActionPerformed(evt);
             }
         });
+        CiphertextD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                CiphertextDKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CiphertextDKeyTyped(evt);
+            }
+        });
 
         Key.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KeyActionPerformed(evt);
+            }
+        });
+        Key.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                KeyKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                KeyKeyTyped(evt);
             }
         });
 
@@ -127,8 +151,15 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
                 KeyDActionPerformed(evt);
             }
         });
+        KeyD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                KeyDKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                KeyDKeyTyped(evt);
+            }
+        });
 
-        PlaintextD.setBackground(new java.awt.Color(255, 255, 255));
         PlaintextD.setEditable(false);
         PlaintextD.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         PlaintextD.addActionListener(new java.awt.event.ActionListener() {
@@ -648,6 +679,46 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
                 Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_vector2PaneHyperlinkUpdate
+
+    private void PlaintextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PlaintextKeyTyped
+        if (Plaintext.getText().length() > 32) {
+            Plaintext.setText(Plaintext.getText().substring(0, 32));
+        }
+    }//GEN-LAST:event_PlaintextKeyTyped
+
+    private void PlaintextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PlaintextKeyReleased
+        PlaintextKeyTyped(evt);
+    }//GEN-LAST:event_PlaintextKeyReleased
+
+    private void KeyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeyKeyTyped
+        if (Key.getText().length() > 64) {
+            Key.setText(Key.getText().substring(0, 64));
+        }
+    }//GEN-LAST:event_KeyKeyTyped
+
+    private void KeyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeyKeyReleased
+        KeyKeyTyped(evt);
+    }//GEN-LAST:event_KeyKeyReleased
+
+    private void CiphertextDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CiphertextDKeyTyped
+        if (Ciphertext.getText().length() > 32) {
+            Ciphertext.setText(Ciphertext.getText().substring(0, 32));
+        }
+    }//GEN-LAST:event_CiphertextDKeyTyped
+
+    private void CiphertextDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CiphertextDKeyReleased
+        CiphertextDKeyTyped(evt);
+    }//GEN-LAST:event_CiphertextDKeyReleased
+
+    private void KeyDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeyDKeyTyped
+        if (Key.getText().length() > 64) {
+            Key.setText(Key.getText().substring(0, 64));
+        }
+    }//GEN-LAST:event_KeyDKeyTyped
+
+    private void KeyDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeyDKeyReleased
+        KeyDKeyTyped(evt);
+    }//GEN-LAST:event_KeyDKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

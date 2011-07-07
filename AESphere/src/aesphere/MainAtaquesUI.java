@@ -28,8 +28,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         ButtonGroup group = new ButtonGroup();
         archivos = new JFileChooser();
         group.add(ClienteRadioButton);
-        group.add(ServidorRadioButton);
-        this.setSize(800, 650);
+        group.add(ServidorRadioButton);        
+        this.setSize(800, 660);
         this.setResizable(false);
     }
 
@@ -78,6 +78,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         clavesComboBox = new javax.swing.JComboBox();
         formatoClavesLabel = new javax.swing.JLabel();
         claveSizeComboBox = new javax.swing.JComboBox();
+        nKeysTxtLabel = new javax.swing.JLabel();
+        nKeysLabel = new javax.swing.JLabel();
         cifrarMenuBarMain = new javax.swing.JMenuBar();
         mainMenuArchivo = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
@@ -104,12 +106,28 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         cipherTextArea.setLineWrap(true);
         cipherTextArea.setRows(5);
         cipherTextArea.setWrapStyleWord(true);
+        cipherTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cipherTextAreaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cipherTextAreaKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(cipherTextArea);
 
         plainTextArea.setColumns(20);
         plainTextArea.setLineWrap(true);
         plainTextArea.setRows(5);
         plainTextArea.setWrapStyleWord(true);
+        plainTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                plainTextAreaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                plainTextAreaKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(plainTextArea);
 
         plainLabel.setText("Texto en claro: ");
@@ -171,7 +189,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(cipherBrowseButton))
                     .add(cipherLabel)
                     .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 286, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         entradaPanelLayout.setVerticalGroup(
             entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -268,7 +286,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(NumeroClientesTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(modoComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 77, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         funcionamientoPanelLayout.setVerticalGroup(
             funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -308,9 +326,12 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         clavesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESPACIO DE CLAVES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
-        ClaveFinalTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClaveFinalTextFieldActionPerformed(evt);
+        ClaveFinalTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ClaveFinalTextFieldKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ClaveFinalTextFieldKeyTyped(evt);
             }
         });
 
@@ -318,19 +339,41 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         claveFinalLabel.setText("Clave final:  ");
 
-        ClaveInicialTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClaveInicialTextFieldActionPerformed(evt);
+        ClaveInicialTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ClaveInicialTextFieldKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ClaveInicialTextFieldKeyTyped(evt);
             }
         });
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef3.png"))); // NOI18N
 
         clavesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hexadecimal", "ASCII" }));
+        clavesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clavesComboBoxActionPerformed(evt);
+            }
+        });
 
         formatoClavesLabel.setText("Formato de claves:");
 
         claveSizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "128 bits", "192 bits", "256 bits" }));
+        claveSizeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                claveSizeComboBoxActionPerformed(evt);
+            }
+        });
+
+        nKeysTxtLabel.setText("claves a probar");
+
+        nKeysLabel.setText("0");
+        nKeysLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                nKeysLabelPropertyChange(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout clavesPanelLayout = new org.jdesktop.layout.GroupLayout(clavesPanel);
         clavesPanel.setLayout(clavesPanelLayout);
@@ -347,12 +390,16 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(clavesPanelLayout.createSequentialGroup()
                         .add(formatoClavesLabel)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 187, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 215, Short.MAX_VALUE)
                         .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(claveSizeComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
-                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
+                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .add(clavesPanelLayout.createSequentialGroup()
+                        .add(nKeysLabel)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(nKeysTxtLabel)))
                 .addContainerGap())
         );
         clavesPanelLayout.setVerticalGroup(
@@ -373,6 +420,10 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             .add(claveFinalLabel)
                             .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(jLabel9))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(nKeysLabel)
+                    .add(nKeysTxtLabel))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -382,20 +433,18 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .add(465, 465, 465)
-                        .add(Cancelar)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(EjecutarButton)
-                        .add(18, 18, 18)
-                        .add(BotonInfo)
-                        .add(11, 11, 11))
-                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, clavesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                        .add(jPanel1Layout.createSequentialGroup()
+                            .add(Cancelar)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                            .add(EjecutarButton)
+                            .add(18, 18, 18)
+                            .add(BotonInfo))
                         .add(org.jdesktop.layout.GroupLayout.LEADING, funcionamientoPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, entradaPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, clavesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(142, Short.MAX_VALUE))
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, entradaPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -404,14 +453,14 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(entradaPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(clavesPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                .add(clavesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(18, 18, 18)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(BotonInfo)
                     .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(EjecutarButton)
-                        .add(Cancelar))
-                    .add(BotonInfo))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .add(Cancelar)))
+                .addContainerGap())
         );
 
         mainMenuArchivo.setText("Archivo");
@@ -492,8 +541,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(19, 19, 19))
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -537,6 +585,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         menuPegarCifrado.setText(Entorno.getTrans("Att.pasteCipher"));
         Contenidos.setText(Entorno.getTrans("gen.cont"));
         acercade.setText(Entorno.getTrans("gen.about"));
+        nKeysLabel.setText("");
+        nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));        
     }
     
     private boolean ComprobarDatos () {
@@ -872,14 +922,6 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EjecutarButtonActionPerformed
 
-    private void ClaveInicialTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClaveInicialTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ClaveInicialTextFieldActionPerformed
-
-    private void ClaveFinalTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClaveFinalTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ClaveFinalTextFieldActionPerformed
-
     private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_ContenidosActionPerformed
@@ -984,18 +1026,288 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuPegarCifradoActionPerformed
 
+    private void plainTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_plainTextAreaKeyTyped
+        switch (plainComboBox.getSelectedIndex()) {
+             case 0:
+                 if (plainTextArea.getText().length() > 1024)
+                     plainTextArea.setText(plainTextArea.getText().substring(0, 1024));
+             case 1:
+                 if (plainTextArea.getText().length() > 2048)
+                     plainTextArea.setText(plainTextArea.getText().substring(0, 2048));
+         }
+    }//GEN-LAST:event_plainTextAreaKeyTyped
+
+    private void plainTextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_plainTextAreaKeyReleased
+        plainTextAreaKeyTyped(evt);
+    }//GEN-LAST:event_plainTextAreaKeyReleased
+
+    private void cipherTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cipherTextAreaKeyTyped
+        switch (cipherComboBox.getSelectedIndex()) {
+             case 0:
+                 if (cipherTextArea.getText().length() > 1388)
+                     cipherTextArea.setText(cipherTextArea.getText().substring(0, 1388));
+             case 1:
+                 if (cipherTextArea.getText().length() > 2080)
+                     cipherTextArea.setText(cipherTextArea.getText().substring(0, 2080));
+         }
+    }//GEN-LAST:event_cipherTextAreaKeyTyped
+
+    private void cipherTextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cipherTextAreaKeyReleased
+        cipherTextAreaKeyTyped(evt);
+}//GEN-LAST:event_cipherTextAreaKeyReleased
+
+    private void ClaveInicialTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ClaveInicialTextFieldKeyTyped
+        switch (claveSizeComboBox.getSelectedIndex()) {
+            case 0: //128 bits
+                switch (clavesComboBox.getSelectedIndex()) {
+                    case 0: //Hexa
+                        if (ClaveInicialTextField.getText().length() > 32)
+                            ClaveInicialTextField.setText(ClaveInicialTextField.getText().substring(0, 32));
+                        if (ClaveInicialTextField.getText().length() == 32 &&
+                                ClaveFinalTextField.getText().length() == 32)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.hexStringToByte(ClaveInicialTextField.getText()), 
+                                    Conversor.hexStringToByte(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                    case 1: //ASCII
+                        if (ClaveInicialTextField.getText().length() > 16)
+                            ClaveInicialTextField.setText(ClaveInicialTextField.getText().substring(0, 16));
+                        if (ClaveInicialTextField.getText().length() == 16 &&
+                                ClaveFinalTextField.getText().length() == 16)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.stringToASCII(ClaveInicialTextField.getText()), 
+                                    Conversor.stringToASCII(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                }
+            break;
+            case 1: //192 bits
+                switch (clavesComboBox.getSelectedIndex()) {
+                    case 0: //Hexa
+                        if (ClaveInicialTextField.getText().length() > 48)
+                            ClaveInicialTextField.setText(ClaveInicialTextField.getText().substring(0, 48));
+                        if (ClaveInicialTextField.getText().length() == 48 &&
+                                ClaveFinalTextField.getText().length() == 48)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.hexStringToByte(ClaveInicialTextField.getText()), 
+                                    Conversor.hexStringToByte(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                    case 1: //ASCII
+                        if (ClaveInicialTextField.getText().length() > 24)
+                            ClaveInicialTextField.setText(ClaveInicialTextField.getText().substring(0, 24));
+                        if (ClaveInicialTextField.getText().length() == 24 &&
+                                ClaveFinalTextField.getText().length() == 24)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.stringToASCII(ClaveInicialTextField.getText()), 
+                                    Conversor.stringToASCII(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                }
+            break;
+            case 2: //256 bits
+                switch (clavesComboBox.getSelectedIndex()) {
+                    case 0: //Hexa
+                        if (ClaveInicialTextField.getText().length() > 64)
+                            ClaveInicialTextField.setText(ClaveInicialTextField.getText().substring(0, 64));
+                        if (ClaveInicialTextField.getText().length() == 64 &&
+                                ClaveFinalTextField.getText().length() == 64)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.hexStringToByte(ClaveInicialTextField.getText()), 
+                                    Conversor.hexStringToByte(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                    case 1: //ASCII
+                        if (ClaveInicialTextField.getText().length() > 32)
+                            ClaveInicialTextField.setText(ClaveInicialTextField.getText().substring(0, 32));
+                        if (ClaveInicialTextField.getText().length() == 32 &&
+                                ClaveFinalTextField.getText().length() == 32)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.stringToASCII(ClaveInicialTextField.getText()), 
+                                    Conversor.stringToASCII(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                }
+            break;
+        }        
+    }//GEN-LAST:event_ClaveInicialTextFieldKeyTyped
+
+    private void ClaveInicialTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ClaveInicialTextFieldKeyReleased
+        ClaveInicialTextFieldKeyTyped(evt);
+    }//GEN-LAST:event_ClaveInicialTextFieldKeyReleased
+
+    private void ClaveFinalTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ClaveFinalTextFieldKeyTyped
+        switch (claveSizeComboBox.getSelectedIndex()) {
+            case 0: //128 bits
+                switch (clavesComboBox.getSelectedIndex()) {
+                    case 0: //Hexa
+                        if (ClaveFinalTextField.getText().length() > 32)
+                            ClaveFinalTextField.setText(ClaveFinalTextField.getText().substring(0, 32));
+                        if (ClaveInicialTextField.getText().length() == 32 &&
+                                ClaveFinalTextField.getText().length() == 32)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.hexStringToByte(ClaveInicialTextField.getText()), 
+                                    Conversor.hexStringToByte(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                    case 1: //ASCII
+                        if (ClaveFinalTextField.getText().length() > 16)
+                            ClaveFinalTextField.setText(ClaveFinalTextField.getText().substring(0, 16));
+                        if (ClaveInicialTextField.getText().length() == 16 &&
+                                ClaveFinalTextField.getText().length() == 16)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.stringToASCII(ClaveInicialTextField.getText()), 
+                                    Conversor.stringToASCII(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                }                
+            break;
+            case 1: //192 bits
+                switch (clavesComboBox.getSelectedIndex()) {
+                    case 0: //Hexa
+                        if (ClaveFinalTextField.getText().length() > 48)
+                            ClaveFinalTextField.setText(ClaveFinalTextField.getText().substring(0, 48));
+                        if (ClaveInicialTextField.getText().length() == 48 &&
+                                ClaveFinalTextField.getText().length() == 48)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.hexStringToByte(ClaveInicialTextField.getText()), 
+                                    Conversor.hexStringToByte(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                    case 1: //ASCII
+                        if (ClaveFinalTextField.getText().length() > 24)
+                            ClaveFinalTextField.setText(ClaveFinalTextField.getText().substring(0, 24));
+                        if (ClaveInicialTextField.getText().length() == 24 &&
+                                ClaveFinalTextField.getText().length() == 24)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.stringToASCII(ClaveInicialTextField.getText()), 
+                                    Conversor.stringToASCII(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                }
+            break;
+            case 2: //256 bits
+                switch (clavesComboBox.getSelectedIndex()) {
+                    case 0: //Hexa
+                        if (ClaveFinalTextField.getText().length() > 64)
+                            ClaveFinalTextField.setText(ClaveFinalTextField.getText().substring(0, 64));
+                        if (ClaveInicialTextField.getText().length() == 64 &&
+                                ClaveFinalTextField.getText().length() == 64)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.hexStringToByte(ClaveInicialTextField.getText()), 
+                                    Conversor.hexStringToByte(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                    case 1: //ASCII
+                        if (ClaveFinalTextField.getText().length() > 32)
+                            ClaveFinalTextField.setText(ClaveFinalTextField.getText().substring(0, 32));
+                        if (ClaveInicialTextField.getText().length() == 32 &&
+                                ClaveFinalTextField.getText().length() == 32)
+                            nKeysLabel.setText(Long.toString(getKeysToTry(
+                                    Conversor.stringToASCII(ClaveInicialTextField.getText()), 
+                                    Conversor.stringToASCII(ClaveFinalTextField.getText()))));
+                        else {
+                            nKeysLabel.setText("");
+                            nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                    break;
+                }
+            break;
+        }
+        
+    }//GEN-LAST:event_ClaveFinalTextFieldKeyTyped
+
+    private void ClaveFinalTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ClaveFinalTextFieldKeyReleased
+        ClaveFinalTextFieldKeyTyped(evt);
+    }//GEN-LAST:event_ClaveFinalTextFieldKeyReleased
+
+    private void clavesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clavesComboBoxActionPerformed
+        ClaveInicialTextFieldKeyTyped(null);
+        ClaveFinalTextFieldKeyTyped(null);
+    }//GEN-LAST:event_clavesComboBoxActionPerformed
+
+    private void claveSizeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_claveSizeComboBoxActionPerformed
+        ClaveInicialTextFieldKeyTyped(null);
+        ClaveFinalTextFieldKeyTyped(null);
+    }//GEN-LAST:event_claveSizeComboBoxActionPerformed
+
+    private void nKeysLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_nKeysLabelPropertyChange
+        if (evt.getPropertyName().equals("text")) {            
+            if (evt.getNewValue().equals("1"))
+                nKeysTxtLabel.setText(Entorno.getTrans("Net.nKey"));            
+            else if (evt.getNewValue().equals("0")) {
+                nKeysLabel.setText("");
+                nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));
+            } else if (!evt.getNewValue().equals(""))
+                nKeysTxtLabel.setText(Entorno.getTrans("Net.nKeys"));            
+        }
+    }//GEN-LAST:event_nKeysLabelPropertyChange
+
     private long getKeysToTry (byte [] iniClave, byte [] finClave) {
          int len = iniClave.length;
-         long numKeys = 0;
+         long numKeys = 0L;
+         boolean out = false;         
+         int resta = 0;
+         int lim = len - 8; //posicion a partir de la que cabe en long
 
-         for (int i = 0; i < len; i++) {
-             numKeys <<= 8;
-             numKeys += (Conversor.byteToInt(finClave[i]) - Conversor.byteToInt(iniClave[i]));
+         for (int i = 0; ((i < len) && !out); i++) {
+             resta = (Conversor.byteToInt(finClave[i]) - Conversor.byteToInt(iniClave[i]));
+             /*
+              * Un long es de como máximo 8 bytes, hasta el byte 8 la resta
+              * debe ser 0. El valor máximo de un long es 7FFFFFFFFFFFFFFF,
+              * por lo que en el byte 8 la resta debe ser 127 (7F) o menor
+              */
+             if ( (i < lim) && (resta != 0) ) out = true;             
+             else if ( (i == lim) && (resta > 127) ) out = true;
+             else if ( (i >= lim) && (resta >= 0) ) {
+                 numKeys <<= 8;
+                 numKeys += resta;
+             }                                  
          }
-
-         //como incluimos en la prueba la clave inicial y final, hay que sumar uno al resultado
-         numKeys++;
-
+         
+         //si ya hemos llegado al máximo, la suma posterior se saldrá de los límites
+         if (numKeys == 9223372036854775807L) out = true;
+         else
+             //como incluimos en la prueba la clave inicial y final, hay que sumar uno al resultado
+            numKeys++;       
+         
+         //si el número de claves supera los límites de long, devolvemos 0
+         if (out) numKeys=0;
+         
          return numKeys;
      }
 
@@ -1169,13 +1481,13 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         if ( aux && (indexFormat == 0) && !ComprobarHexadecimal(ClaveInicialTextField.getText() )) {
             aux = false;
-            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1HexWarMsg"),
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key1HexWarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
         if ( aux && (indexFormat == 0) && !ComprobarHexadecimal(ClaveFinalTextField.getText()) ) {
             aux = false;
-            JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2HexWarMsg"),
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key2HexWarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
@@ -1183,25 +1495,25 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
             if (aux && (indexFormat == 0) && (ClaveInicialTextField.getText().length() != 32) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1HexLen32WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key1HexLen32WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if ( aux && (indexFormat == 0) && (ClaveFinalTextField.getText().length() != 32) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2HexLen32WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key2HexLen32WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveInicialTextField.getText().length() != 16) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1AsciLen16WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key1AsciLen16WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveFinalTextField.getText().length() != 16) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2AsciLen16WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key2AsciLen16WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
         }
@@ -1210,25 +1522,25 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
             if (aux && (indexFormat == 0) && (ClaveInicialTextField.getText().length() != 48) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1HexLen48WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key1HexLen48WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if ( aux && (indexFormat == 0) && (ClaveFinalTextField.getText().length() != 48) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2HexLen48WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key2HexLen48WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveInicialTextField.getText().length() != 24) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1AsciLen24WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key1AsciLen24WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveFinalTextField.getText().length() != 24) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2AsciLen24WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key2AsciLen24WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
         }
@@ -1237,25 +1549,25 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
             if (aux && (indexFormat == 0) && (ClaveInicialTextField.getText().length() != 64) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1HexLen64WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key1HexLen64WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if ( aux && (indexFormat == 0) && (ClaveFinalTextField.getText().length() != 64) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2HexLen64WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key2HexLen64WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveInicialTextField.getText().length() != 32) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key1AsciLen32WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key1AsciLen32WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
 
             if (aux && (indexFormat == 1) && (ClaveFinalTextField.getText().length() != 32) ) {
                 aux = false;
-                JOptionPane.showMessageDialog(this, Entorno.getTrans("AES.key2AsciLen32WarMsg"),
+                JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.key2AsciLen32WarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             }
         }
@@ -1306,6 +1618,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuPegarClaro;
     private javax.swing.JComboBox modoComboBox;
     private javax.swing.JLabel modoLabel;
+    private javax.swing.JLabel nKeysLabel;
+    private javax.swing.JLabel nKeysTxtLabel;
     private javax.swing.JButton plainBrowseButton;
     private javax.swing.JComboBox plainComboBox;
     private javax.swing.JLabel plainLabel;

@@ -137,45 +137,147 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
         inputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("INPUT"));
 
-        a33.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                a33ActionPerformed(evt);
+        a33.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a33KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a33KeyTyped(evt);
             }
         });
 
-        a32.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                a32ActionPerformed(evt);
+        a13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a13KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a13KeyTyped(evt);
             }
         });
 
-        a24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                a24ActionPerformed(evt);
+        a32.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a32KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a32KeyTyped(evt);
             }
         });
 
-        a14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                a14ActionPerformed(evt);
+        a24.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a24KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a24KeyTyped(evt);
             }
         });
 
-        a21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                a21ActionPerformed(evt);
+        a22.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a22KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a22KeyTyped(evt);
             }
         });
 
-        a44.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                a44ActionPerformed(evt);
+        a14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a14KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a14KeyTyped(evt);
             }
         });
 
-        a23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                a23ActionPerformed(evt);
+        a42.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a42KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a42KeyTyped(evt);
+            }
+        });
+
+        a12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a12KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a12KeyTyped(evt);
+            }
+        });
+
+        a21.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a21KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a21KeyTyped(evt);
+            }
+        });
+
+        a34.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a34KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a34KeyTyped(evt);
+            }
+        });
+
+        a44.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a44KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a44KeyTyped(evt);
+            }
+        });
+
+        a11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a11KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a11KeyTyped(evt);
+            }
+        });
+
+        a43.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a43KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a43KeyTyped(evt);
+            }
+        });
+
+        a41.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a41KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a41KeyTyped(evt);
+            }
+        });
+
+        a23.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a23KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a23KeyTyped(evt);
+            }
+        });
+
+        a31.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                a31KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                a31KeyTyped(evt);
             }
         });
 
@@ -248,33 +350,147 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
         keyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("KEY"));
 
-        b23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b23ActionPerformed(evt);
+        b34.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b34KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b34KeyTyped(evt);
             }
         });
 
-        b32.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b32ActionPerformed(evt);
+        b11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b11KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b11KeyTyped(evt);
             }
         });
 
-        b22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b22ActionPerformed(evt);
+        b23.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b23KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b23KeyTyped(evt);
             }
         });
 
-        b14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b14ActionPerformed(evt);
+        b24.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b24KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b24KeyTyped(evt);
             }
         });
 
-        b33.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b33ActionPerformed(evt);
+        b42.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b42KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b42KeyTyped(evt);
+            }
+        });
+
+        b44.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b44KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b44KeyTyped(evt);
+            }
+        });
+
+        b43.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b43KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b43KeyTyped(evt);
+            }
+        });
+
+        b31.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b31KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b31KeyTyped(evt);
+            }
+        });
+
+        b41.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b41KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b41KeyTyped(evt);
+            }
+        });
+
+        b32.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b32KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b32KeyTyped(evt);
+            }
+        });
+
+        b13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b13KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b13KeyTyped(evt);
+            }
+        });
+
+        b12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b12KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b12KeyTyped(evt);
+            }
+        });
+
+        b22.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b22KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b22KeyTyped(evt);
+            }
+        });
+
+        b14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b14KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b14KeyTyped(evt);
+            }
+        });
+
+        b21.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b21KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b21KeyTyped(evt);
+            }
+        });
+
+        b33.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                b33KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                b33KeyTyped(evt);
             }
         });
 
@@ -358,11 +574,6 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         c44.setEditable(false);
 
         c23.setEditable(false);
-        c23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                c23ActionPerformed(evt);
-            }
-        });
 
         c21.setEditable(false);
 
@@ -371,22 +582,12 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         c32.setEditable(false);
 
         c24.setEditable(false);
-        c24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                c24ActionPerformed(evt);
-            }
-        });
 
         c43.setEditable(false);
 
         c12.setEditable(false);
 
         c14.setEditable(false);
-        c14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                c14ActionPerformed(evt);
-            }
-        });
 
         c34.setEditable(false);
 
@@ -397,11 +598,6 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         c41.setEditable(false);
 
         c22.setEditable(false);
-        c22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                c22ActionPerformed(evt);
-            }
-        });
 
         org.jdesktop.layout.GroupLayout outputPanelLayout = new org.jdesktop.layout.GroupLayout(outputPanel);
         outputPanel.setLayout(outputPanelLayout);
@@ -481,7 +677,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
             }
         });
 
-        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         titleLabel.setText("Proceso de AddRoundKey");
 
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
@@ -850,14 +1046,6 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         this.dispatchEvent(new java.awt.event.WindowEvent(this, java.awt.event.WindowEvent.WINDOW_CLOSING));
 }//GEN-LAST:event_SalirActionPerformed
 
-    private void a14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a14ActionPerformed
-         
-    }//GEN-LAST:event_a14ActionPerformed
-
-    private void b14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b14ActionPerformed
-         
-    }//GEN-LAST:event_b14ActionPerformed
-
     private void EjecutarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecutarButtonActionPerformed
 
         //hay que pasar la key como array []
@@ -877,38 +1065,6 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_EjecutarButtonActionPerformed
-
-    private void a21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a21ActionPerformed
-         
-    }//GEN-LAST:event_a21ActionPerformed
-
-    private void a23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a23ActionPerformed
-         
-    }//GEN-LAST:event_a23ActionPerformed
-
-    private void a24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a24ActionPerformed
-         
-    }//GEN-LAST:event_a24ActionPerformed
-
-    private void a33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a33ActionPerformed
-         
-    }//GEN-LAST:event_a33ActionPerformed
-
-    private void a44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a44ActionPerformed
-         
-    }//GEN-LAST:event_a44ActionPerformed
-
-    private void c14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c14ActionPerformed
-         
-    }//GEN-LAST:event_c14ActionPerformed
-
-    private void b22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b22ActionPerformed
-         
-    }//GEN-LAST:event_b22ActionPerformed
-
-    private void c22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c22ActionPerformed
-         
-    }//GEN-LAST:event_c22ActionPerformed
 
     private void CopiarInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarInputActionPerformed
 
@@ -1194,29 +1350,325 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         b44.setText(a);
     }//GEN-LAST:event_RandomButtonActionPerformed
 
-    private void a32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a32ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_a32ActionPerformed
+    private void a11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a11KeyTyped
+        if (a11.getText().length() > 2) {
+            a11.setText(a11.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a11KeyTyped
 
-    private void b32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b32ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b32ActionPerformed
+    private void a11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a11KeyReleased
+        a11KeyTyped(evt);
+    }//GEN-LAST:event_a11KeyReleased
 
-    private void b33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b33ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b33ActionPerformed
+    private void a12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a12KeyTyped
+        if (a12.getText().length() > 2) {
+            a12.setText(a12.getText().substring(0, 2));
+        }    
+    }//GEN-LAST:event_a12KeyTyped
 
-    private void c24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c24ActionPerformed
+    private void a12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a12KeyReleased
+        a12KeyTyped(evt);
+    }//GEN-LAST:event_a12KeyReleased
 
-    private void b23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b23ActionPerformed
+    private void a13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a13KeyTyped
+        if (a13.getText().length() > 2) {
+            a13.setText(a13.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a13KeyTyped
 
-    private void c23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c23ActionPerformed
+    private void a13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a13KeyReleased
+        a13KeyTyped(evt);
+    }//GEN-LAST:event_a13KeyReleased
+
+    private void a14KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a14KeyTyped
+        if (a14.getText().length() > 2) {
+            a14.setText(a14.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a14KeyTyped
+
+    private void a14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a14KeyReleased
+        a14KeyTyped(evt);
+    }//GEN-LAST:event_a14KeyReleased
+
+    private void a21KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a21KeyTyped
+        if (a21.getText().length() > 2) {
+            a21.setText(a21.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a21KeyTyped
+
+    private void a21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a21KeyReleased
+        a21KeyTyped(evt);
+    }//GEN-LAST:event_a21KeyReleased
+
+    private void a22KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a22KeyTyped
+        if (a22.getText().length() > 2) {
+            a22.setText(a22.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a22KeyTyped
+
+    private void a22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a22KeyReleased
+        a22KeyTyped(evt);
+    }//GEN-LAST:event_a22KeyReleased
+
+    private void a23KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a23KeyTyped
+        if (a23.getText().length() > 2) {
+            a23.setText(a23.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a23KeyTyped
+
+    private void a23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a23KeyReleased
+        a23KeyTyped(evt);
+    }//GEN-LAST:event_a23KeyReleased
+
+    private void a24KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a24KeyTyped
+        if (a24.getText().length() > 2) {
+            a24.setText(a24.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a24KeyTyped
+
+    private void a24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a24KeyReleased
+        a24KeyTyped(evt);
+    }//GEN-LAST:event_a24KeyReleased
+
+    private void a31KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a31KeyTyped
+        if (a31.getText().length() > 2) {
+            a31.setText(a31.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a31KeyTyped
+
+    private void a31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a31KeyReleased
+        a31KeyTyped(evt);
+    }//GEN-LAST:event_a31KeyReleased
+
+    private void a32KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a32KeyTyped
+        if (a32.getText().length() > 2) {
+            a32.setText(a32.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a32KeyTyped
+
+    private void a32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a32KeyReleased
+        a32KeyTyped(evt);
+    }//GEN-LAST:event_a32KeyReleased
+
+    private void a33KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a33KeyTyped
+        if (a33.getText().length() > 2) {
+            a33.setText(a33.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a33KeyTyped
+
+    private void a33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a33KeyReleased
+        a33KeyTyped(evt);
+    }//GEN-LAST:event_a33KeyReleased
+
+    private void a34KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a34KeyTyped
+        if (a34.getText().length() > 2) {
+            a34.setText(a34.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a34KeyTyped
+
+    private void a34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a34KeyReleased
+        a34KeyTyped(evt);
+    }//GEN-LAST:event_a34KeyReleased
+
+    private void a41KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a41KeyTyped
+        if (a41.getText().length() > 2) {
+            a41.setText(a41.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a41KeyTyped
+
+    private void a41KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a41KeyReleased
+        a41KeyTyped(evt);
+    }//GEN-LAST:event_a41KeyReleased
+
+    private void a42KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a42KeyTyped
+        if (a42.getText().length() > 2) {
+            a42.setText(a42.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a42KeyTyped
+
+    private void a42KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a42KeyReleased
+        a42KeyTyped(evt);
+    }//GEN-LAST:event_a42KeyReleased
+
+    private void a43KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a43KeyTyped
+        if (a43.getText().length() > 2) {
+            a43.setText(a43.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a43KeyTyped
+
+    private void a43KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a43KeyReleased
+        a43KeyTyped(evt);
+    }//GEN-LAST:event_a43KeyReleased
+
+    private void a44KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a44KeyTyped
+        if (a44.getText().length() > 2) {
+            a44.setText(a44.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_a44KeyTyped
+
+    private void a44KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a44KeyReleased
+        a44KeyTyped(evt);
+    }//GEN-LAST:event_a44KeyReleased
+
+    private void b11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b11KeyTyped
+        if (b11.getText().length() > 2) {
+            b11.setText(b11.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b11KeyTyped
+
+    private void b11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b11KeyReleased
+        b11KeyTyped(evt);
+    }//GEN-LAST:event_b11KeyReleased
+
+    private void b12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b12KeyTyped
+        if (b12.getText().length() > 2) {
+            b12.setText(b12.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b12KeyTyped
+
+    private void b12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b12KeyReleased
+        b12KeyTyped(evt);
+    }//GEN-LAST:event_b12KeyReleased
+
+    private void b13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b13KeyTyped
+        if (b13.getText().length() > 2) {
+            b13.setText(b13.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b13KeyTyped
+
+    private void b13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b13KeyReleased
+        b13KeyTyped(evt);
+    }//GEN-LAST:event_b13KeyReleased
+
+    private void b14KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b14KeyTyped
+        if (b14.getText().length() > 2) {
+            b14.setText(b14.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b14KeyTyped
+
+    private void b14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b14KeyReleased
+        b14KeyTyped(evt);
+    }//GEN-LAST:event_b14KeyReleased
+
+    private void b21KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b21KeyTyped
+        if (b21.getText().length() > 2) {
+            b21.setText(b21.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b21KeyTyped
+
+    private void b21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b21KeyReleased
+        b21KeyTyped(evt);
+    }//GEN-LAST:event_b21KeyReleased
+
+    private void b22KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b22KeyTyped
+        if (b22.getText().length() > 2) {
+            b22.setText(b22.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b22KeyTyped
+
+    private void b22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b22KeyReleased
+        b22KeyTyped(evt);
+    }//GEN-LAST:event_b22KeyReleased
+
+    private void b23KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b23KeyTyped
+        if (b23.getText().length() > 2) {
+            b23.setText(b23.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b23KeyTyped
+
+    private void b23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b23KeyReleased
+        b23KeyTyped(evt);
+    }//GEN-LAST:event_b23KeyReleased
+
+    private void b24KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b24KeyTyped
+        if (b24.getText().length() > 2) {
+            b24.setText(b24.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b24KeyTyped
+
+    private void b24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b24KeyReleased
+        b24KeyTyped(evt);
+    }//GEN-LAST:event_b24KeyReleased
+
+    private void b31KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b31KeyTyped
+        if (b31.getText().length() > 2) {
+            b31.setText(b31.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b31KeyTyped
+
+    private void b31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b31KeyReleased
+        b31KeyTyped(evt);
+    }//GEN-LAST:event_b31KeyReleased
+
+    private void b32KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b32KeyTyped
+        if (b32.getText().length() > 2) {
+            b32.setText(b32.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b32KeyTyped
+
+    private void b32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b32KeyReleased
+        b32KeyTyped(evt);
+    }//GEN-LAST:event_b32KeyReleased
+
+    private void b33KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b33KeyTyped
+        if (b33.getText().length() > 2) {
+            b33.setText(b33.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b33KeyTyped
+
+    private void b33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b33KeyReleased
+        b33KeyTyped(evt);
+    }//GEN-LAST:event_b33KeyReleased
+
+    private void b34KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b34KeyTyped
+        if (b34.getText().length() > 2) {
+            b34.setText(b34.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b34KeyTyped
+
+    private void b34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b34KeyReleased
+        b34KeyTyped(evt);
+    }//GEN-LAST:event_b34KeyReleased
+
+    private void b41KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b41KeyTyped
+        if (b41.getText().length() > 2) {
+            b41.setText(b41.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b41KeyTyped
+
+    private void b41KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b41KeyReleased
+        b41KeyTyped(evt);
+    }//GEN-LAST:event_b41KeyReleased
+
+    private void b42KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b42KeyTyped
+        if (b42.getText().length() > 2) {
+            b42.setText(b42.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b42KeyTyped
+
+    private void b42KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b42KeyReleased
+        b42KeyTyped(evt);
+    }//GEN-LAST:event_b42KeyReleased
+
+    private void b43KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b43KeyTyped
+        if (b43.getText().length() > 2) {
+            b43.setText(b43.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b43KeyTyped
+
+    private void b43KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b43KeyReleased
+        b43KeyTyped(evt);
+    }//GEN-LAST:event_b43KeyReleased
+
+    private void b44KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b44KeyTyped
+        if (b44.getText().length() > 2) {
+            b44.setText(b44.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_b44KeyTyped
+
+    private void b44KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b44KeyReleased
+        b44KeyTyped(evt);
+    }//GEN-LAST:event_b44KeyReleased
 
     /**
     * @param args the command line arguments
