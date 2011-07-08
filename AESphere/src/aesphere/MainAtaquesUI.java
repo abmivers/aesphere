@@ -598,7 +598,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         Contenidos.setText(Entorno.getTrans("gen.cont"));
         acercade.setText(Entorno.getTrans("gen.about"));
         nKeysLabel.setText("");
-        nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));        
+        nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));
+        monoCheckBox.setText(Entorno.getTrans("Att.mono"));
     }
     
     private boolean ComprobarDatos () {
