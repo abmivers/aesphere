@@ -176,4 +176,14 @@ public class AESencrypt {
             state[i][j] = (byte)(state[i][j] ^ key[i][j]);
 
    }
+   
+   public void setPaso(boolean nuevoPaso) {
+       paso = nuevoPaso;
+   }
+   
+   public void nuevoBloque (int nBlock){       
+       if (paso)
+           cadena += "\n" + Entorno.getTrans("Proc.block") + " " + nBlock + "\n" +
+                   Entorno.getTrans("Proc.blockUnder") + "\n";
+   }
 }

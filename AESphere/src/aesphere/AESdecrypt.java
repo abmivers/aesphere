@@ -146,5 +146,14 @@ public class AESdecrypt {
    public String getCadena (){
        return cadena;
    }
-
+   
+   public void setPaso(boolean nuevoPaso) {
+       paso = nuevoPaso;
+   }
+   
+   public void nuevoBloque (int nBlock){       
+       if (paso)
+           cadena += "\n" + Entorno.getTrans("Proc.block") + " " + nBlock + "\n" +
+                   Entorno.getTrans("Proc.blockUnder") + "\n";
+   }
 }

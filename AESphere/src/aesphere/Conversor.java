@@ -137,6 +137,25 @@ public class Conversor {
         
         return ascii;
     }
+    
+    public static String byteToHexShortString (byte [] in) {
+        String texto = "";
+        int len = in.length;
+        
+        for (int i = 0; i < len;i++) {
+            if (len > 112) {
+                if (i < 16) {                        
+                    texto += byteToHexPair(in[i]);
+                    if (i == 15) texto += "... ";
+                } else if (i >= (len - 16)) {
+                    if (i == (len - 16)) texto += " ...";
+                    texto += byteToHexPair(in[i]);                    
+                }
+            }
+        }
+
+        return texto;
+    }
 
     public static byte [] longToByte (long num) {
         byte [] aux = new byte[Long.SIZE/8];

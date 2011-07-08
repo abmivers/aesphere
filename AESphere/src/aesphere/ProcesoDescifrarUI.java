@@ -91,12 +91,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
                 break;
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
+                Plaintextfield.setText(Conversor.byteToHexShortString(salida));
         }
 
-        if ( (salida != null) && ((opcionsalida != 2) || (opcionentrada !=2)) ) {
-            RondasTextArea.setText(aesenc.getResultado());
-            CiphertextArea.setText(Conversor.byteToHexString(in));            
-        }
+        RondasTextArea.setText(aesenc.getResultado());
+        CiphertextArea.setText(Conversor.byteToHexShortString(in));                    
 
         this.setLocationRelativeTo(wpadre);
         this.setResizable(false);
@@ -248,11 +247,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
         CiphertextArea.setWrapStyleWord(true);
         jScrollPane1.setViewportView(CiphertextArea);
 
-        cipherLabel.setText("Ciphertext:");
+        cipherLabel.setText("Texto cifrado:");
 
         roundsLabel.setText("Rondas AES:");
 
-        plainLabel.setText("Plaintext:");
+        plainLabel.setText("Texto en claro:");
 
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
@@ -323,20 +322,17 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
                 .add(49, 49, 49)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(BotonInfo)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                        .add(layout.createSequentialGroup()
-                            .add(plainLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(9, 9, 9)
-                            .add(jScrollPane3))
-                        .add(layout.createSequentialGroup()
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(cipherLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(roundsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(jScrollPane4)
-                                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(plainLabel)
+                            .add(roundsLabel)
+                            .add(cipherLabel))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE))))
+                .add(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -351,10 +347,11 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
                     .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 248, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(plainLabel)
-                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(BotonInfo)
+                    .add(layout.createSequentialGroup()
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(BotonInfo))
+                    .add(plainLabel))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

@@ -88,24 +88,41 @@ public class BlockManager {
         if (cifrando) {
             AESencrypt cifrador = new AESencrypt(key, keySize, paso);
             
-            for (int i = 0; i < numBlocks; i++) {
-                inBlock = getBlock (in, i);
-                cifrador.Cipher(inBlock, outBlock);
-                out = addBlock (out, outBlock, i);
-            }
-
-            resultado = cifrador.getCadena();
-
+            if (paso) {
+                for (int i = 0; i < numBlocks; i++) {                
+                    if ( (numBlocks > 7) && i == 1) cifrador.setPaso(false);
+                    else if ( (numBlocks > 7) && i == (numBlocks - 1)) cifrador.setPaso(true);
+                    inBlock = getBlock (in, i);
+                    cifrador.nuevoBloque(i+1);
+                    cifrador.Cipher(inBlock, outBlock);
+                    out = addBlock (out, outBlock, i);
+                }
+                resultado = cifrador.getCadena();
+            } else
+                for (int i = 0; i < numBlocks; i++) {                                       
+                    inBlock = getBlock (in, i);                    
+                    cifrador.Cipher(inBlock, outBlock);
+                    out = addBlock (out, outBlock, i);
+                }       
         } else {
             AESdecrypt descifrador = new AESdecrypt(key,keySize, paso);
-
-            for (int i = 0; i < numBlocks; i++) {
-                inBlock = getBlock (in, i);
-                descifrador.InvCipher(inBlock, outBlock);
-                out = addBlock (out, outBlock, i);
-            }
-
-            resultado = descifrador.getCadena();
+            
+            if (paso) {
+                for (int i = 0; i < numBlocks; i++) {
+                    if ( (numBlocks > 7) && i == 1) descifrador.setPaso(false);
+                    else if ( (numBlocks > 7) && i == (numBlocks - 1)) descifrador.setPaso(true);
+                    inBlock = getBlock (in, i);
+                    descifrador.nuevoBloque(i+1);
+                    descifrador.InvCipher(inBlock, outBlock);
+                    out = addBlock (out, outBlock, i);
+                }
+                resultado = descifrador.getCadena();
+            } else
+                for (int i = 0; i < numBlocks; i++) {                    
+                    inBlock = getBlock (in, i);                    
+                    descifrador.InvCipher(inBlock, outBlock);
+                    out = addBlock (out, outBlock, i);
+                }                      
         }
 
         return out;
@@ -141,35 +158,63 @@ public class BlockManager {
 
         if (cifrando) {
             AESencrypt cifrador = new AESencrypt(key, keySize,paso);
+            
+            if (paso) {
+                for (int i = 0; i < numBlocks; i++) {
+                    if ( (numBlocks > 7) && i == 1) cifrador.setPaso(false);
+                    else if ( (numBlocks > 7) && i == (numBlocks - 1)) cifrador.setPaso(true);
 
-            for (int i = 0; i < numBlocks; i++) {
-                inBlock = getBlock (in, i);
+                    inBlock = getBlock (in, i);
 
-                if (i==0) inBlock = XOR(IV, inBlock);
-                else inBlock = XOR(outBlock, inBlock);
+                    if (i==0) inBlock = XOR(IV, inBlock);
+                    else inBlock = XOR(outBlock, inBlock);
 
-                cifrador.Cipher(inBlock, outBlock);
-                out = addBlock (out, outBlock, i);
-            }
+                    cifrador.nuevoBloque(i+1);
+                    cifrador.Cipher(inBlock, outBlock);
+                    out = addBlock (out, outBlock, i);
+                }
+                resultado = cifrador.getCadena();
+            } else
+                for (int i = 0; i < numBlocks; i++) {                  
+                    inBlock = getBlock (in, i);
 
-            resultado = cifrador.getCadena();
-
+                    if (i==0) inBlock = XOR(IV, inBlock);
+                    else inBlock = XOR(outBlock, inBlock);
+                    
+                    cifrador.Cipher(inBlock, outBlock);
+                    out = addBlock (out, outBlock, i);
+                }
         } else {
             AESdecrypt descifrador = new AESdecrypt(key,keySize,paso);
             byte [] preBlock = null;
 
-            for (int i = 0; i < numBlocks; i++) {
-                inBlock = getBlock (in, i);
-                descifrador.InvCipher(inBlock, outBlock);
+            if (paso) {
+                for (int i = 0; i < numBlocks; i++) {
+                    if ( (numBlocks > 7) && i == 1) descifrador.setPaso(false);
+                    else if ( (numBlocks > 7) && i == (numBlocks - 1)) descifrador.setPaso(true);
 
-                if (i == 0) outBlock = XOR(IV, outBlock);
-                else outBlock = XOR(preBlock,outBlock);
+                    inBlock = getBlock (in, i);
+                    descifrador.nuevoBloque(i+1);
+                    descifrador.InvCipher(inBlock, outBlock);
 
-                preBlock = inBlock;
-                out = addBlock (out, outBlock, i);
-            }
+                    if (i == 0) outBlock = XOR(IV, outBlock);
+                    else outBlock = XOR(preBlock,outBlock);
 
-            resultado = descifrador.getCadena();
+                    preBlock = inBlock;
+                    out = addBlock (out, outBlock, i);
+                }
+                resultado = descifrador.getCadena();
+            } else
+                for (int i = 0; i < numBlocks; i++) {                   
+                    inBlock = getBlock (in, i);                    
+                    descifrador.InvCipher(inBlock, outBlock);
+
+                    if (i == 0) outBlock = XOR(IV, outBlock);
+                    else outBlock = XOR(preBlock,outBlock);
+
+                    preBlock = inBlock;
+                    out = addBlock (out, outBlock, i);
+                }
         }
 
         return out;
