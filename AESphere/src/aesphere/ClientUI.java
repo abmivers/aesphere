@@ -51,6 +51,7 @@ public class ClientUI extends javax.swing.JFrame {
         try {
             socket = new DatagramSocket();
             socket.setSoTimeout(0);
+            socket.connect(servIP, 3000);
         } catch(SocketException excepcionSocket) {
             JOptionPane.showMessageDialog(this, Entorno.getTrans("Net.newCliErr"), 
                     Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);            
@@ -180,7 +181,7 @@ public class ClientUI extends javax.swing.JFrame {
             int len = Integer.SIZE/8;
             DatagramPacket tamPacket = new DatagramPacket(new byte[len], len);
             //desbloqueamos al servidor antes de recibir
-            enviarMensaje("OK");
+            enviarMensaje("OK");            
             socket.receive(tamPacket);            
 
             tamClave = Conversor.byteToInt(tamPacket.getData());
