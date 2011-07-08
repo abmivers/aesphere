@@ -883,7 +883,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 }
                 
                 final byte [] claveini = claveinicial;
-
+                final byte [] clavefin = clavefinal;
                 final byte [] iv = pedirIV();
 
                 if (op == 0 && iv != null) {
@@ -892,7 +892,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     Thread servThread = new Thread(new Runnable() {
                         public void run() {
                             new ServUI(wpadre, plainBytes, cipherBytes,
-                                    numClientes, claveini, numClaves,
+                                    numClientes, claveini, clavefin, numClaves,
                                     modoComboBox.getSelectedIndex(), iv);
                         }
                     });
@@ -1293,7 +1293,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
               */
              if ( (i < lim) && (resta != 0) ) out = true;             
              else if ( (i == lim) && (resta > 127) ) out = true;
-             else if ( (i >= lim) && (resta >= 0) ) {
+             else if ( (i >= lim) && (resta < 0) ) out = true;
+             else if ( (i >= lim) && (resta >= 0) ) {                 
                  numKeys <<= 8;
                  numKeys += resta;
              }                                  

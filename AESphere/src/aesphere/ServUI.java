@@ -23,10 +23,12 @@ public class ServUI extends javax.swing.JFrame {
     private int numclientes;
     private InetAddress [] clientesIP;
     private int [] clientesPort;
+    private long iniTime;
+    private long clavesTotales;
 
     /** Creates new form ServUI */
     public ServUI(MainUI padre, byte [] plainBytes, byte [] cipherBytes,
-            int numeroclientes, byte [] claveinicial, long numClaves,
+            int numeroclientes, byte [] claveinicial, byte [] clavefinal, long numClaves,
             int blockMode, byte[] IV) {
         initComponents();
         wpadre = padre;
@@ -34,10 +36,13 @@ public class ServUI extends javax.swing.JFrame {
         numclientes = numeroclientes;
         clientesIP = new InetAddress [numclientes];
         clientesPort = new int [numclientes];
-        setSize(400, 400);
-
+        setSize(400, 400);       
+        
+        this.setTitle(Entorno.getTrans("Net.servTitle"));
+        clavesTotales = numClaves;
+        
         try {
-            socket = new DatagramSocket(3000);
+            socket = new DatagramSocket(3000);            
         } catch (SocketException excepcionSocket) {
             JOptionPane.showMessageDialog(this, Entorno.getTrans("Net.srvPermErr"),
                     Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);            
@@ -96,8 +101,26 @@ public class ServUI extends javax.swing.JFrame {
         debugArea.append(Entorno.getTrans("Net.okKeyGen"));     
         debugArea.append(Entorno.getTrans("Net.startEncCli"));        
         esperarClaves();       
-
+        
+        this.setTitle(Entorno.getTrans("Net.servTitleEnd"));
         debugArea.append(Entorno.getTrans("Net.end"));
+        //calculamos el tiempo total tardado
+        long time = (System.currentTimeMillis() - iniTime) / 1000;
+        if (time == 0) time++;
+        if (time == 1)
+            debugArea.append(Entorno.getTrans("Net.totalTime") + " 1 " + 
+                    Entorno.getTrans("Net.second") + "\n");
+        else
+            debugArea.append(Entorno.getTrans("Net.totalTime") + " " +
+                    Long.toString(time) + " " + Entorno.getTrans("Net.seconds") + "\n");
+        //calculamos la velocidad de test al final de todo el proceso
+        long keysPerSec = clavesTotales / time;
+        if (keysPerSec == 1)
+            debugArea.append(Entorno.getTrans("Net.speed") + " 1 " + 
+                    Entorno.getTrans("Net.keyPerSec") + "\n");
+        else
+            debugArea.append(Entorno.getTrans("Net.speed") + " " +
+                    Long.toString(keysPerSec) + " " + Entorno.getTrans("Net.keysPerSec") + "\n");
     }
 
 
@@ -261,11 +284,16 @@ public class ServUI extends javax.swing.JFrame {
             //enviamos un mensaje a todos los clientes para que comiencen a cifrar
             for(int i = 0; i < numclientes; i++)
                 enviarMensaje("START", i);
+            
+            //guardamos el momento en que el cifrado comienza
+            iniTime = System.currentTimeMillis();
 
             //nos quedamos esperando claves
             DatagramPacket clave = new DatagramPacket(new byte[16],16);
             int numfin = 0;
             long numClaves = 0;
+            long time = 0L;
+            long keysPerSec = 0L;
             while (numfin < numclientes) {
                 socket.receive(clave);
 
@@ -279,8 +307,17 @@ public class ServUI extends javax.swing.JFrame {
                     debugArea.append(Entorno.getTrans("Net.cliFound1") + " " + clientAddress.toString() +
                             Entorno.getTrans("Net.cliFound2") + " " + 
                             Conversor.byteToHexString(clave.getData()) + "\n");
-                    enviarMensaje("NEXT", clientAddress, clave.getPort());
+                    //calculamos el tiempo en segundos que ha tardado hasta aquí
+                    time = (System.currentTimeMillis() - iniTime) / 1000;
+                    if (time == 0) time++;
+                    if (time == 1)
+                        debugArea.append(Entorno.getTrans("Net.keyFoundIn") + " 1 " + 
+                                Entorno.getTrans("Net.second") + "\n");
+                    else
+                        debugArea.append(Entorno.getTrans("Net.keyFoundIn") + " " +
+                                Long.toString(time) + " " + Entorno.getTrans("Net.seconds") + "\n");                    
                     numClaves++;
+                    enviarMensaje("NEXT", clientAddress, clave.getPort());                    
                 }
             }
 

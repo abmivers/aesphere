@@ -31,7 +31,8 @@ public class ClientUI extends javax.swing.JFrame {
     private long numClaves;
     private byte [] plaintext;
     private byte [] ciphertext;
-    private int tamClave;
+    private int tamClave; 
+    long iniTime;
 
     /** Creates new form ClientUI */
     public ClientUI(MainUI padre, InetAddress dirIP) {
@@ -44,10 +45,12 @@ public class ClientUI extends javax.swing.JFrame {
         setSize(400, 400);
         setLocationRelativeTo(wpadre);
         setVisible(true);
-
+        
+        this.setTitle(Entorno.getTrans("Net.cliTitle"));
         // crear objeto DatagramSocket para enviar y recibir paquetes
         try {
             socket = new DatagramSocket();
+            socket.setSoTimeout(0);
         } catch(SocketException excepcionSocket) {
             JOptionPane.showMessageDialog(this, Entorno.getTrans("Net.newCliErr"), 
                     Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);            
@@ -61,12 +64,34 @@ public class ClientUI extends javax.swing.JFrame {
             debugArea.append(Entorno.getTrans("Net.initKey") + " " + Conversor.byteToHexString(claveInicial) +
                     Entorno.getTrans("Net.cliNKeys") + " " + Long.toString(numClaves) + "\n");
 
-            esperarTexto();            
-
+            esperarTexto();          
+                        
             probarClaves();
-        } catch (Exception e) {}
-                
-        debugArea.append(Entorno.getTrans("Net.end"));
+            
+            this.setTitle(Entorno.getTrans("Net.cliTitleEnd"));
+            debugArea.append(Entorno.getTrans("Net.end"));
+            //calculamos el tiempo total tardado
+            long time = (System.currentTimeMillis() - iniTime) / 1000;
+            if (time == 0) time++;
+            if (time == 1)
+                debugArea.append(Entorno.getTrans("Net.totalTime") + " 1 " + 
+                        Entorno.getTrans("Net.second") + "\n");
+            else
+                debugArea.append(Entorno.getTrans("Net.totalTime") + " " +
+                        Long.toString(time) + " " + Entorno.getTrans("Net.seconds") + "\n");
+            //calculamos la velocidad de test al final de todo el proceso
+            long keysPerSec = numClaves / time;
+            if (keysPerSec == 1)
+                debugArea.append(Entorno.getTrans("Net.speed") + " 1 " + 
+                        Entorno.getTrans("Net.keyPerSec") + "\n");
+            else
+                debugArea.append(Entorno.getTrans("Net.speed") + " " +
+                        Long.toString(keysPerSec) + " " + Entorno.getTrans("Net.keysPerSec") + "\n");
+            
+        } catch (Exception e) {
+            this.setTitle(Entorno.getTrans("Net.cliTitleEnd"));
+            debugArea.append(Entorno.getTrans("Net.end"));
+        }       
     }
 
     /** This method is called from within the constructor to
@@ -126,8 +151,7 @@ public class ClientUI extends javax.swing.JFrame {
         boolean recibido = false;
         int reintentos = 100;
         debugArea.append(Entorno.getTrans("Net.servConec") + " ");
-        try {
-            socket.setSoTimeout(3000);
+        try {            
             do {
                 try {
                     enviarMensaje("ClientHello");                    
@@ -141,9 +165,7 @@ public class ClientUI extends javax.swing.JFrame {
                         throw e;
                 }
 
-            } while (!Thread.currentThread().isInterrupted() && !recibido);
-
-            socket.setSoTimeout(0);
+            } while (!Thread.currentThread().isInterrupted() && !recibido);            
         } catch(Exception excepcion) {
                 debugArea.append(Entorno.getTrans("Net.servConecErr"));                
                 throw excepcion;
@@ -234,6 +256,9 @@ public class ClientUI extends javax.swing.JFrame {
             byte [] claveAct = claveInicial;
             byte [] out = new byte[16];
             int numWords = tamClave / 4;
+            iniTime = System.currentTimeMillis();
+            long time = 0L;
+            long keysPerSec = 0L;
 
             for(long i = numClaves; --i >= 0;) {
                 //realizamos el cifrado
@@ -244,13 +269,39 @@ public class ClientUI extends javax.swing.JFrame {
                 boolean iguales = true;
                 for (int j = 16; iguales && (--j >= 0);)
                     if (out[j] != ciphertext[j]) iguales = false;
-                if (iguales) {
+                if (iguales) {                            
+                    debugArea.append(Entorno.getTrans("Net.keyFound") + " " + Conversor.byteToHexString(claveAct) + "\n");
+                    //calculamos el tiempo en segundos que ha tardado hasta aquí
+                    time = (System.currentTimeMillis() - iniTime) / 1000;
+                    if (time == 0) time++;
+                    if (time == 1)
+                        debugArea.append(Entorno.getTrans("Net.keyFoundIn") + " 1 " + 
+                                Entorno.getTrans("Net.second") + "\n");
+                    else
+                        debugArea.append(Entorno.getTrans("Net.keyFoundIn") + " " +
+                                Long.toString(time) + " " + Entorno.getTrans("Net.seconds") + "\n");
+                    //calculamos las claves por segundo hasta ahora                    
+                    keysPerSec = (numClaves - i) / time;
+                    if (keysPerSec == 1)
+                        debugArea.append(Entorno.getTrans("Net.speed") + " 1 " + 
+                                Entorno.getTrans("Net.keyPerSec") + "\n");
+                    else
+                        debugArea.append(Entorno.getTrans("Net.speed") + " " +
+                                Long.toString(keysPerSec) + " " + Entorno.getTrans("Net.keysPerSec") + "\n");
+                    //estimamos el tiempo que tardará en terminar
+                    time =  i / keysPerSec;
+                    if (time == 1)
+                        debugArea.append(Entorno.getTrans("Net.timeToFinish") + " 1 " + 
+                                Entorno.getTrans("Net.second") + "\n");
+                    else
+                        debugArea.append(Entorno.getTrans("Net.timeToFinish") + " " +
+                                Long.toString(time) + " " + Entorno.getTrans("Net.seconds") + "\n");
+                    
                     //enviamos la clave
                     DatagramPacket clave = new DatagramPacket (claveAct, claveAct.length,
                                 servIP, 3000);
-                    socket.send(clave);
-                    debugArea.append(Entorno.getTrans("Net.keyFound") + " " + Conversor.byteToHexString(claveAct) + "\n");
-                    //esperamos a que el cliente nos deje continuar
+                    socket.send(clave);                    
+                    //esperamos a que el servidor nos deje continuar
                     esperarMensaje("NEXT");
                 }
 
