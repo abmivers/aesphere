@@ -83,19 +83,18 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
         switch (opcionsalida) {
             case 0:
-                jTextArea3.setText(Base64.encodeToString(salida, true));
+                cipherTextArea.setText(Base64.encodeToString(salida, true));
                 break;
             case 1:
-                jTextArea3.setText(Conversor.byteToHexString(salida));
+                cipherTextArea.setText(Conversor.byteToHexString(salida));
                 break;
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
+                cipherTextArea.setText(Conversor.byteToHexShortString(salida));                
         }
 
-        if ( (opcionsalida != 2) || (opcionentrada !=2) ) {
-            RondasTextArea.setText(aesenc.getResultado());
-            Plaintextfield.setText(Conversor.byteToHexString(in));
-        }
+        RondasTextArea.setText(aesenc.getResultado());
+        Plaintextfield.setText(Conversor.byteToHexShortString(in));        
 
         this.setLocationRelativeTo(wpadre);
         this.setResizable(false);
@@ -201,7 +200,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        cipherTextArea = new javax.swing.JTextArea();
         plainLabel = new javax.swing.JLabel();
         Plaintextfield = new javax.swing.JTextField();
         roundsLabel = new javax.swing.JLabel();
@@ -233,11 +232,11 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
             }
         });
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setEditable(false);
-        jTextArea3.setLineWrap(true);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        cipherTextArea.setColumns(20);
+        cipherTextArea.setEditable(false);
+        cipherTextArea.setLineWrap(true);
+        cipherTextArea.setRows(5);
+        jScrollPane3.setViewportView(cipherTextArea);
 
         plainLabel.setText("Texto en claro:");
 
@@ -418,7 +417,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
     private void CopiarCiphertextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarCiphertextActionPerformed
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        StringSelection ss = new StringSelection(jTextArea3.getText());
+        StringSelection ss = new StringSelection(cipherTextArea.getText());
         cb.setContents(ss, ss);
     }//GEN-LAST:event_CopiarCiphertextActionPerformed
 
@@ -449,13 +448,13 @@ private void copyIVMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenuItem acercade;
     private javax.swing.JMenuBar cifradoMenuBarMain;
     private javax.swing.JLabel cipherLabel;
+    private javax.swing.JTextArea cipherTextArea;
     private javax.swing.JMenuItem copyIVMenu;
     private javax.swing.JLabel ivLabel;
     private javax.swing.JTextArea ivTextArea;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JMenu mainMenuArchivo;
     private javax.swing.JMenu mainMenuAyuda;
     private javax.swing.JMenu mainMenuEditar;

@@ -94,23 +94,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cipherLabel" min="-2" pref="85" max="-2" attributes="0"/>
-                          <Component id="plainLabel" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                          <Component id="cipherLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="plainLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane4" pref="877" max="32767" attributes="0"/>
-                          <Component id="jScrollPane3" alignment="0" pref="877" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jScrollPane4" pref="424" max="32767" attributes="1"/>
+                          <Component id="jScrollPane3" alignment="0" pref="424" max="32767" attributes="1"/>
                       </Group>
                   </Group>
                   <Component id="BotonInfo" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -124,11 +124,13 @@
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="plainLabel" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -154,12 +156,12 @@
     </Container>
     <Component class="javax.swing.JLabel" name="cipherLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ciphertext:"/>
+        <Property name="text" type="java.lang.String" value="Texo cifrado:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="plainLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Plaintext:"/>
+        <Property name="text" type="java.lang.String" value="Texto en claro:"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane4">
