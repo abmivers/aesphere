@@ -28,7 +28,7 @@ public class ServUI extends javax.swing.JFrame {
 
     /** Creates new form ServUI */
     public ServUI(MainUI padre, byte [] plainBytes, byte [] cipherBytes,
-            int numeroclientes, byte [] claveinicial, byte [] clavefinal, long numClaves,
+            int numeroclientes, byte [] claveinicial, long numClaves,
             int blockMode, byte[] IV) {
         initComponents();
         wpadre = padre;

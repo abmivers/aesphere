@@ -67,6 +67,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         modoLabel = new javax.swing.JLabel();
         modoComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
+        monoCheckBox = new javax.swing.JCheckBox();
         BotonInfo = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
         clavesPanel = new javax.swing.JPanel();
@@ -262,6 +263,13 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef1.png"))); // NOI18N
 
+        monoCheckBox.setText("Monousuario");
+        monoCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monoCheckBoxActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout funcionamientoPanelLayout = new org.jdesktop.layout.GroupLayout(funcionamientoPanel);
         funcionamientoPanel.setLayout(funcionamientoPanelLayout);
         funcionamientoPanelLayout.setHorizontalGroup(
@@ -282,9 +290,12 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             .add(modoLabel)
                             .add(IPLabel))
                         .add(35, 35, 35)
-                        .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(IPTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(NumeroClientesTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(funcionamientoPanelLayout.createSequentialGroup()
+                                .add(NumeroClientesTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(18, 18, 18)
+                                .add(monoCheckBox, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .add(modoComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 77, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
@@ -299,7 +310,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(ServidorRadioButton)
                             .add(clientesLabel)
-                            .add(NumeroClientesTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(NumeroClientesTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(monoCheckBox))
                         .add(6, 6, 6)
                         .add(funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(modoLabel)
@@ -601,15 +613,19 @@ public class MainAtaquesUI extends javax.swing.JFrame {
            aux=false;
         }
 
-        if ( aux && NumeroClientesTextField.getText().isEmpty() ){
+        if ( aux && !monoCheckBox.isSelected() && NumeroClientesTextField.getText().isEmpty() ){
            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.nCliWarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
            aux=false;
         }        
 
-        if ( aux && !comprobarNumero(NumeroClientesTextField.getText()) ) {
+        if ( aux && !monoCheckBox.isSelected() && !comprobarNumero(NumeroClientesTextField.getText()) ) {
             aux = false;
             JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cliNumberWarMsg"),
+                   Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
+        } else if ( aux && !monoCheckBox.isSelected() && (Integer.parseInt(NumeroClientesTextField.getText()) <= 0) ) {
+            aux = false;
+            JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.cliNumberNegWarMsg"),
                    Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
         }
 
@@ -812,6 +828,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         plainComboBox.setSelectedIndex(0);
         cipherComboBox.setSelectedIndex(0);
         modoComboBox.setSelectedIndex(0);
+        monoCheckBox.setEnabled(true);
+        monoCheckBox.setSelected(false);
     }//GEN-LAST:event_ServidorRadioButtonActionPerformed
 
     private void IPTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IPTextFieldActionPerformed
@@ -849,6 +867,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         plainLabel.setEnabled(false);
         claveSizeComboBox.setEnabled(false);
         formatoClavesLabel.setEnabled(false);
+        monoCheckBox.setEnabled(false);
     }//GEN-LAST:event_ClienteRadioButtonActionPerformed
 
     private void EjecutarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecutarButtonActionPerformed
@@ -869,7 +888,12 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
                 //calculamos aproximadamente el número de claves a probar por cliente para avisar si son demasiadas
                 final long numClaves = getKeysToTry(claveinicial, clavefinal);
-                final int numClientes = Integer.parseInt(NumeroClientesTextField.getText());
+                int nC = 0;
+                if (monoCheckBox.isSelected())
+                    nC = 1;
+                else
+                    nC = Integer.parseInt(NumeroClientesTextField.getText());
+                final int numClientes = nC;
 
                 long clavesCliente = numClaves / numClientes;
                 if ( clavesCliente >= 900000 )
@@ -882,22 +906,33 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
                 }
                 
-                final byte [] claveini = claveinicial;
-                final byte [] clavefin = clavefinal;
+                final byte [] claveini = claveinicial;                
                 final byte [] iv = pedirIV();
 
                 if (op == 0 && iv != null) {
                     final byte [] plainBytes = getPlain();
                     final byte [] cipherBytes = getCipher();
-                    Thread servThread = new Thread(new Runnable() {
-                        public void run() {
-                            new ServUI(wpadre, plainBytes, cipherBytes,
-                                    numClientes, claveini, clavefin, numClaves,
-                                    modoComboBox.getSelectedIndex(), iv);
-                        }
-                    });
-                    wpadre.newThread(servThread);
-                    servThread.start();
+                    if (monoCheckBox.isSelected()) {
+                        Thread monoThread = new Thread(new Runnable() {
+                            public void run() {
+                                new MonoUI(wpadre, plainBytes, cipherBytes, 
+                                        claveini, numClaves,
+                                        modoComboBox.getSelectedIndex(), iv);
+                            }
+                        });
+                        wpadre.newThread(monoThread);
+                        monoThread.start();                        
+                    } else {
+                        Thread servThread = new Thread(new Runnable() {
+                            public void run() {
+                                new ServUI(wpadre, plainBytes, cipherBytes, numClientes, 
+                                        claveini, numClaves,
+                                        modoComboBox.getSelectedIndex(), iv);
+                            }
+                        });
+                        wpadre.newThread(servThread);
+                        servThread.start();
+                    }
                 }
             }
         } else if (ClienteRadioButton.isSelected()) {
@@ -1277,6 +1312,12 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nKeysLabelPropertyChange
 
+    private void monoCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monoCheckBoxActionPerformed
+        if (monoCheckBox.isSelected())
+            NumeroClientesTextField.setEnabled(false);
+        else NumeroClientesTextField.setEnabled(true);
+    }//GEN-LAST:event_monoCheckBoxActionPerformed
+
     private long getKeysToTry (byte [] iniClave, byte [] finClave) {
          int len = iniClave.length;
          long numKeys = 0L;
@@ -1379,7 +1420,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 else if (aux.length > 16) {
                     byte [] aux2 = aux;
                     aux = new byte[16];
-                    System.arraycopy(aux2, 0, aux, 0, 16);
+                    System.arraycopy(aux2, 0, aux, 0, 16);                    
                 }
                 break;
 
@@ -1619,6 +1660,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuPegarClaro;
     private javax.swing.JComboBox modoComboBox;
     private javax.swing.JLabel modoLabel;
+    private javax.swing.JCheckBox monoCheckBox;
     private javax.swing.JLabel nKeysLabel;
     private javax.swing.JLabel nKeysTxtLabel;
     private javax.swing.JButton plainBrowseButton;

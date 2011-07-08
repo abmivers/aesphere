@@ -151,7 +151,8 @@ public class Conversor {
                     if (i == (len - 16)) texto += " ...";
                     texto += byteToHexPair(in[i]);                    
                 }
-            }
+            } else
+                texto += byteToHexPair(in[i]);
         }
 
         return texto;
