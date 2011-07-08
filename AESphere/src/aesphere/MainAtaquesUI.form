@@ -389,9 +389,13 @@
                                   <Component id="IPLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="IPTextField" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                                  <Component id="NumeroClientesTextField" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="1">
+                                      <Component id="NumeroClientesTextField" min="-2" pref="41" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="monoCheckBox" max="32767" attributes="0"/>
+                                  </Group>
                                   <Component id="modoComboBox" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -412,6 +416,7 @@
                                   <Component id="ServidorRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="clientesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="NumeroClientesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="monoCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -500,6 +505,14 @@
                   <Image iconType="3" name="/resources/botondef1.png"/>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="monoCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Monousuario"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="monoCheckBoxActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
