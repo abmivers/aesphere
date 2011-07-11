@@ -20,6 +20,9 @@
         <indexitem text="SubBytes"    target="explicacion_subbytes"/>
         <indexitem text="AddRoundKey"    target="explicacion_addroundkey"/>
         <indexitem text="Resultado Cifrado"    target="resultado_cifrado_directo"/>
+        <indexitem text="Resultado Descifrado"    target="resultado_descifrado"/>
+        <indexitem text="Comprobar Vectores"    target="ventana_vectores"/>
+        
         
         
         
