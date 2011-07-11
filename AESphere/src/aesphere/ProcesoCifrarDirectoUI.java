@@ -255,6 +255,11 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
         BotonInfo.setContentAreaFilled(false);
+        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInfoActionPerformed(evt);
+            }
+        });
 
         mainMenuArchivo.setText("Archivo");
 
@@ -380,6 +385,10 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     private void ContenidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContenidosActionPerformed
         
 }//GEN-LAST:event_ContenidosActionPerformed
+
+    private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonInfoActionPerformed
 
     /**
     * @param args the command line arguments

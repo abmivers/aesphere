@@ -34,7 +34,7 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         initComponents();
         setLangLabels();
         wpadre=padre;
-        this.setSize(555, 350);
+        this.setSize(595, 390);
         CopiarOutput.setEnabled(false);
         setHelp();
         this.setResizable(false);
