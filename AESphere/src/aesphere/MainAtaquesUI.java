@@ -28,8 +28,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         ButtonGroup group = new ButtonGroup();
         archivos = new JFileChooser();
         group.add(ClienteRadioButton);
-        group.add(ServidorRadioButton);        
-        this.setSize(800, 660);
+        group.add(ServidorRadioButton);
+        this.setSize(830, 710);
         this.setResizable(false);
     }
 
