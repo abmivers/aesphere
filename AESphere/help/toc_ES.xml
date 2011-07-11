@@ -2,24 +2,39 @@
 <toc version="1.0"> <!--  categoryclosedimage="FolderClosed" categoryopenimage="FolderOpened"  
 topicimage="ItemIco"-->
            <tocitem text="Ayuda de AESphere"    target="aplicacion">
+           
            <tocitem text="Ventana Main"    target="ventana_main"/>
            <tocitem text="Ventana Cifrado"    target="ventana_cifrado"/>
+           
            <tocitem text="Cifrado"    target="explicacion_cifrar"/>
            <tocitem text="Ventana Descifrado"    target="ventana_descifrado"/>
+           
            <tocitem text="Descifrado"    target="explicacion_descifrar"/>
+           
            <tocitem text="Ventana Herramientas"    target="ventana_herramientas"/>
+           
            <tocitem text="Ventana ShiftRows"    target="ventana_shiftrows"/>
+           
            <tocitem text="ShiftRows"    target="explicacion_shiftrows"/>
+           
            <tocitem text="Ventana MixColumns"    target="ventana_mixcolumns"/>
+           
            <tocitem text="MixColumns"    target="explicacion_mixcolumns"/>
+           
            <tocitem text="Ventana SubBytes"    target="ventana_subbytes"/>
+           
            <tocitem text="SubBytes"    target="explicacion_subbytes"/>
+           
            <tocitem text="Ventana AddRoundKey"    target="ventana_addroundkey"/>
+           
            <tocitem text="AddRoundKey"    target="explicacion_addroundkey"/>
+           
            <tocitem text="Resultado Cifrado"    target="resultado_cifrado_directo"/>
+           <tocitem text="Resultado Descifrado"    target="resultado_descifrado"/>			
+           <tocitem text="Comprobar Vectores"    target="ventana_vectores"/>
            
            
            
                
-        </tocitem>
+           </tocitem>
 </toc>
