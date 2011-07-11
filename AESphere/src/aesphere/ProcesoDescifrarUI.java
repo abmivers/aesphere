@@ -178,8 +178,8 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
             hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
                                 (pantalla.height - ventana.height) / 2));
             hb.setSize(new java.awt.Dimension(800, 628));
-            hb.enableHelpOnButton(Contenidos, "ventana_shiftrows", helpset);
-            hb.enableHelpOnButton(BotonInfo, "ventana_shiftrows", helpset);
+            hb.enableHelpOnButton(Contenidos, "resultado_descifrado", helpset);
+            hb.enableHelpOnButton(BotonInfo, "resultado_descifrado", helpset);
             hb.enableHelpOnButton(acercade, "aplicacion", helpset);
         }
 
