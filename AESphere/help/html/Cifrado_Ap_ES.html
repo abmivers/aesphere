@@ -14,23 +14,36 @@
 <p>El proceso de cifrado está claramente diferenciado en
 tres sencillos pasos. <br>
 <br>
-<u>1 - Entrada y clave.</u> <br>
-A la hora de elegir la entrada tenemos tres posibilidades: <b>Texto ASCII</b>, <b>Hexadecimal</b> y <b>Archivo</b><br>
+
+<img style="border-width: 0px;" src="resources/botondef1.png" width="30" height="29" /> <u>Entrada y clave.</u> <br>
+A la hora de elegir la entrada tenemos tres posibilidades: <b>Texto ASCII</b>, <b>Hexadecimal</b> y <b>Archivo</b><br><br>
+<img style="border-width: 0px;" src="resources/Imagen1.png" width="255" height="168" />
+<br><br>
 - Si elegimos la opción de Texto ASCII se habilita el
 Área de texto para poder introducir un texto de hasta 1024 caracteres. El texto se rellenará para que el tamaño del mismo coincida con el tamaño de bloque que utiliza la aplicación para cifrar y descifra (este relleno no afectará en ningún momento ni al cifrar ni al descifrar). <br>
-- En el caso de elegir la opción hexadecimal se procederá de manera análoga a la anterior, rellenando la entrada únicamente con caracteres hexadecimales.<br>
+- En el caso de elegir la opción hexadecimal se procederá de manera análoga a la anterior, rellenando la entrada únicamente con caracteres hexadecimales ya que la aplicación sólo permite la entrada de caracteres hexadecimales.<br>
 - Para el caso de entrada a través de archivo, se habilitará el botón "Buscar", el cual te permite elegir un archivo de entrada. Puede ser cualquier tipo de archivo; tanto un archivo de texto (en cuyo caso se cifrará su contenido), como una imagen, un archivo de sonido, un archivo comprimido, etc. La única limitación es el tamaño del archivo, que es de 40 megabytes, ya que el propósito de esta aplicación es fundamentalmente didáctico, y archivos mayores conllevan un proceso muy largo e incluso llegando a colapsar la pila de Java.<br><br>
+<img style="border-width: 0px;" src="resources/Imagen2.png" width="255" height="168" />
+<br><br>
 En cuanto a la clave, también nos encontramos ante tres posibilidades, <b>Texto ASCII</b>, <b>Hexadecimal</b> y <b>Archivo (base64)</b>.<br>
 Hemos de elegir el tamaño que tendrá nuestra clave: 128, 192 ó 256 bits. Este tamaño provocará que el proceso de cifrar tenga más o menos rondas: 10, 12 ó 14 respectivamente. <br>
-El número de caracteres a introducir dependerá directamente del tamaño de bits elegido, excepto para el caso de que elijamos la opción "Archivo", la cual nos permitirá buscar un archivo con una clave guardada. Desde el menú archivo podemos guardar y cargar claves para que este procedimiento resulte más cómodo. La clave cargada de archivo en caso de ser menor de los bits marcados, se rellenará para coincidir con el tamaño de bits elegido.</p>
+El número de caracteres a introducir dependerá directamente del tamaño de bits elegido. La aplicación no permite introducir más caracteres del que se expecifiquen. En el caso de que elijamos la opción "Archivo", se nos permitirá buscar un archivo con una clave guardada. Desde el menú archivo podemos guardar y cargar claves para que este procedimiento resulte más cómodo. La clave cargada de archivo en caso de ser menor de los bits marcados, se rellenará para coincidir con el tamaño de bits elegido.</p>
 
-<p><u>2 - Salida.</u><br>
-Una vez elegida la entrada y la clave, tendremos que elegir el formato de nuestra salida.<br>
+<p><img style="border-width: 0px;" src="resources/botondef2.png" width="30" height="29" /> <u>Salida.</u><br>
+Una vez elegida la entrada y la clave, tendremos que elegir el formato de nuestra salida.<br><br>
+<img style="border-width: 0px;" src="resources/Imagen3.png" width="239" height="112" />
+
+<br><br>
 La salida puede ser igualmente <b>base64</b>, <b>Hexadecimal</b> y <b>Archivo</b>. De esta elección dependerá el formato de escritura de la salida del cifrado. De elegir salida archivo, se deberá especificar la ruta donde se creará el archivo o bien elegir, mediante el botón "Buscar". Si elegimos un archivo existente, se reemplazará tras el término del cifrado.</p>
 
-<p><u>3 - Opciones Avanzadas.</u> <br>
-Por último, deberemos elegir el método de cifrado y el modo de ejecución.<br>
-Mediante el combo de "Método de cifrado" podemos seleccionar si el cifrado se realizará mediante ECB o CBC, que son distintas formas de tratar los bloques de la entrada. De elegir el método CBC, se habilitaría un check para poder introducir el IV (Vector de Inicialización) manualmente, o bien, que se genere aleatoriamente.<br>
+<p><img style="border-width: 0px;" src="resources/botondef3.png" width="30" height="29" /><u>Opciones Avanzadas.</u> <br>
+Por último, deberemos elegir el método de cifrado y el modo de ejecución.<br><br>
+<img style="border-width: 0px;" src="resources/Imagen4.png" width="356" height="132" />
+<br><br>
+Mediante el combo de "Método de cifrado" podemos seleccionar si el cifrado se realizará mediante ECB o CBC, que son distintas formas de tratar los bloques de la entrada. De elegir el método CBC, se habilitaría un check para poder introducir el IV (Vector de Inicialización) manualmente, o bien, que se genere aleatoriamente.<br><br>
+<img style="border-width: 0px;" src="resources/Imagen5.png" width="312" height="65" />
+
+<br><br>
 Eligiendo si el modo de ejecución es directo o paso a paso, provocaremos que la salida sea directamente la entrada cifrada o bien el resultado de los pasos intermedios del proceso junto con la entrada cifrada respectivamente. Huelga decir que de elegir el modo "paso a paso", el procedimiento tardará más. De elegir salida "Archivo", el modo "paso a paso" sólo mostrará el primer y último bloque en caso de que éste sea demasiado grande. </p>
 
 <p>Desde el menú "Archivo" podremos cargar y guardar claves como comentábamos, y desde el menú "Editar" podremos copiar y pegar los campos que necesitemos.</p>

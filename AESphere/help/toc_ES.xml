@@ -16,6 +16,7 @@ topicimage="ItemIco"-->
            <tocitem text="SubBytes"    target="explicacion_subbytes"/>
            <tocitem text="Ventana AddRoundKey"    target="ventana_addroundkey"/>
            <tocitem text="AddRoundKey"    target="explicacion_addroundkey"/>
+           <tocitem text="Resultado Cifrado"    target="resultado_cifrado_directo"/>
            
            
            
