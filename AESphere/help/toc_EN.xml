@@ -2,7 +2,11 @@
 <toc version="1.0"> <!--  categoryclosedimage="FolderClosed" categoryopenimage="FolderOpened"  
 topicimage="ItemIco"-->
            <tocitem text="Ayuda de AESphere"    target="aplicacion">
-           <tocitem text="Cifrado"    target="ventana_cifrar"/>
-           <tocitem text="Descifrado"    target="ventana_descifrar"/>
+           <tocitem text="Ventana Main"    target="ventana_main"/>
+           <tocitem text="Ventana Cifrado"    target="ventana_cifrado"/>
+           <tocitem text="Cifrado"    target="explicacion_cifrar"/>
+           <tocitem text="Ventana Descifrado"    target="ventana_descifrado"/>
+           <tocitem text="Descifrado"    target="explicacion_descifrar"/>
         </tocitem>
+        
 </toc>

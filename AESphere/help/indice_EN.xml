@@ -4,9 +4,22 @@
          "http://java.sun.com/products/javahelp/index_1_0.dtd">
 <index version="1.0">
         <indexitem text="Ayuda de Aesphere"    target="aplicacion"/>
-
-        <indexitem text="Cifrado"    target="ventana_cifrar"/>
-
-        <indexitem text="Descifrado"    target="ventana_descifrar"/>
+        <indexitem text="Ventana Main"    target="ventana_main"/>
+        <indexitem text="Ventana Cifrado"    target="ventana_cifrado"/>
+        <indexitem text="Ventana Descifrado"    target="ventana_descifrado"/>
+        <indexitem text="Ventana Herramientas"    target="ventana_herramientas"/>
+        <indexitem text="Ventana AddRoundKey"    target="ventana_addroundkey"/>
+        <indexitem text="Ventana MixColumns"    target="ventana_mixcolumns"/>
+        <indexitem text="Ventana SubBytes"    target="ventana_subbytes"/>
+        <indexitem text="Ventana SubBytes"    target="ventana_subbytes"/>
+        <indexitem text="Ventana ShiftRows"    target="ventana_shiftrows"/>
+        <indexitem text="Proceso Cifrado"    target="explicacion_cifrar"/>
+        <indexitem text="Proceso Descifrado"    target="explicacion_descifrar"/>
+        <indexitem text="ShiftRows"    target="explicacion_shiftrows"/>
+        <indexitem text="MixColumns"    target="explicacion_mixcolumns"/>
+        <indexitem text="SubBytes"    target="explicacion_subbytes"/>
+        <indexitem text="AddRoundKey"    target="explicacion_addroundkey"/>
+        <indexitem text="Resultado Cifrado"    target="resultado_cifrado_directo"/>
+        
 
 </index>

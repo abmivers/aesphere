@@ -19,6 +19,7 @@
         <indexitem text="MixColumns"    target="explicacion_mixcolumns"/>
         <indexitem text="SubBytes"    target="explicacion_subbytes"/>
         <indexitem text="AddRoundKey"    target="explicacion_addroundkey"/>
+        <indexitem text="Resultado Cifrado"    target="resultado_cifrado_directo"/>
         
         
         
