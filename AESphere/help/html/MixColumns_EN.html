@@ -5,15 +5,15 @@
 <body>
 	<h1>MixColumns</h1>
 	
-	<p>Se trata de la transformaci&oacute;n siguiente a ShiftRow. Durante el proceso de MixColumns, los cuatro bytes de cada columna del state se combinan usando una transformaci&oacute;n lineal que es inversible (para poder realizar luego el descifrado). La funci&oacute;n MixColumns toma como entrada cuatro bytes y devuelve otros cuatro. Cabe destacar que cualquier cambio en los bytes de entrada, influir&iacute;a en el resto de las salidas de 4 bytes.<br>
-	MixColumns junto con ShiftRows proporcionan la fase de difusi&oacute;n del cifrado AES.<br>
-	<p>Veamos como funciona en detalle el proceso de MixColumns:<br>
-	MixColumns opera columna por columna de la matriz, tomando a cada una como un polinomio de grado tres. Es decir, que las columnas son consideradas como polinomios en el campo GF(2<sup>8</sup>) (Campo de Galois) y cada una es multiplicada m&oacute;dulo x<sup>4</sup>+1 con un polinomio fijo c(x), dado por: <br>
+	<p>This is the transformation after ShiftRows. During the MixColums process, the four bytes of each column of the state are comined using a linear transformation that is inversible (in order to conduct the decryption). The funtion MixColumns uses as input four bytes and returns another four. It must be noted that any change in the input bytes will influence in the rest of the 4 bytes outputs.<br>
+	Along with ShiftRows, MixColumns conforms the diffusion phase of the AES cipher.<br>
+	<p>Let's see how the MixColumns works in detail:<br>
+	MixColumns operates columns by column of the matrix, taking each one as a polynomial of degree 3. This means that the columns are taken as polynomials in the field GF(2<sup>8</sup>) (Galois Field) and each one is multiplied module x<sup>4</sup>+1 with a fixed polynomial c(x), given by: <br>
 	
 	c(x)= {03}x<sup>3</sup> + {01}x&sup2; + {01}x + {02}<br><br>
-	Puede verse mejor en esta imagen: 	
+	This can be clearly seen in this image: 	
 	<p><img style="border-width: 0px;" src="resources/matriz2.png" width="356" height="174" /></p>
-	<p>Esta matriz fue elejida cuidadosamente, apoy&aacute;ndose en la teor&iacute;a de c&oacute;digos de correcci&oacute;n de errores.</p>
+	<p>This matrix was carefully chosen, basing on the theory of error-correcting codes.</p>
 	
 	<p><img style="border-width: 0px;" src="resources/mixcolumns.png" width="300" height="159" />
 	

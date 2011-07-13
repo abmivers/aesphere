@@ -1,29 +1,29 @@
 <html>
 <head>
-	<title>Proceso de Cifrado</title>
+	<title>Encryption process</title>
 </head>
 <body>
-	<h1>Proceso de Cifrado</h1>
+	<h1>Encryption process</h1>
 	
-	<p>El algoritmo AES (Advanced Encryption Standard) tiene un tama&ntilde;o fijo de bloque de 128 bits a la hora de cifrar. El tama&ntilde;o de la clave, sin embargo, puede ser de 128, 192 &oacute; 256 bits.<br><br>
+	<p>The AES (Advanced Encryption Standard) algorithm has a fixed block size of 128 bits. The size of the key, though, can be of 128, 192 and 256 bits.<br><br>
 	
-El proceso de cifrado consta de un n&uacute;mero variable de rondas que depende exclusivamente del tama&ntilde;o de la clave, 10 rondas en caso de que la clave sea de 128 bits, 12 rondas para claves de 192 y por &uacute;ltimo 14 rondas para las de 256. <br><br>
-AES opera sobre una matriz de 4x4 bytes, denominada state sobre la que va realizando las modificaciones pertinentes.<br><br>
-El esquema del proceso es el siguiente: 
-<p>1 - Expansi&oacute;n de la clave usando el esquema de claves de Rijndael.</p>
-<p>2 - Etapa inicial: <br>
+The ecryption process consists of a variable number of rounds that depends exclusively on the key size; 10 rounds for a 128 bits key, 12 rounds for a 192 bits key and 14 rounds for a 256 bits key. <br><br>
+AES operates on a 4x4 bytes matrix called state on which it performs the needed modifications.<br><br>
+The scheme of the process is as follows: 
+<p>1 - Key expansion using the Rijndael key schedule.</p>
+<p>2 - First round: <br>
 AddRoundKey </p>
-<p>3 - Rondas:<br>
-<a href="SubBytes_ES.html">SubBytes</a> - Se realiza una sustituci&oacute;n no lineal donde cada byte es reemplazado con otro de acuerdo a una tabla de b&uacute;squeda.<br>
-<a href="ShiftRows_ES.html">ShiftRows</a> - En este paso se realiza una transposici&oacute;n donde cada fila del state es rotada de manera c&iacute;clica un n&uacute;mero determinado de veces.<br>
-<a href="MixColumns_ES.html">MixColumns</a> - operaci&oacute;n de mezclado que opera en las columnas del state, combinando los cuatro bytes en cada columna usando una transformaci&oacute;n lineal.<br>
-<a href="AddRoundKey_ES.html">AddRoundKey</a> - cada byte del state es combinado con la clave de ronda; cada clave de ronda se deriva de la clave de cifrado usando una iteraci&oacute;n de la clave.</p>
-<p>4 - Etapa final, en la que se realizan las siguientes operaciones: <br>
+<p>3 - Rounds:<br>
+<a href="SubBytes_EN.html">SubBytes</a> - Non linear subtitution where each byte is replaced with another one in correspondance with a search table..<br>
+<a href="ShiftRows_EN.html">ShiftRows</a> - Transposition where each row of the state matrix is rotated in a cyclic way a certain number of times.<br>
+<a href="MixColumns_EN.html">MixColumns</a> - Mixing operation that operates in the columns of the state, combining the four bytes in each column by using a linear transformation.<br>
+<a href="AddRoundKey_EN.html">AddRoundKey</a> - Each byt of the state is combined with the round key; each round key is derived from the encryption key using a key iteration.</p>
+<p>4 - Final round, in which the following operations are performed: <br>
 SubBytes<br>
 ShiftRows<br>
 AddRoundKey <br></p>
 		
-	<p>El bloque 3 correspondiente a las rondas es el que se repite dependiendo del tama&ntilde;o de la clave. Para claves de 128 bits, donde el n&uacute;mero de rondas es 10, este bloque se repitir&iacute;a un total de 9 veces que m&aacute;s la ronda final (en la que no se realiza el proceso de MixColumns) dar&iacute;an las 10 rondas de las que habl&aacute;bamos. Para tama&ntilde;os de clave superiores, el recorrido ser&iacute;a an&aacute;logo.</p>
+	<p>The rounds (point 3) are the ones that are repeated depending on the size of the key. For keys of 128 bits, where the number of round is ten, this rounds repeats a total of 9 times that plus the final round (in which the MixColumns operation is not performed) sums the 10 rounds that we were mentioning. For bigger key sizes, the process will be similar.</p>
 
 
 </body>
