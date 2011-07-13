@@ -21,5 +21,6 @@ PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 2.0//EN"
    <mapID target="resultado_cifrado_directo" url="html/ResultadoCifrarDirecto_ES.html" />
    <mapID target="resultado_descifrado" url="html/ResultadoDescifrar_ES.html" />
    <mapID target="ventana_vectores" url="html/VentanaVectores_ES.html" />
+   <mapID target="relleno" url="html/Relleno_ES.html" />
    
 </map>

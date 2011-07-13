@@ -1,0 +1,23 @@
+<meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
+<html>
+
+<head>
+  <title>Relleno en AESphere</title>
+</head>
+<body>
+
+<h1>Relleno en AESphere</h1>
+<p> El algoritmo AES trabaja sobre un tamaño fijo de bloque de 128 bits. La aplicación AESphere permite cifrar textos grandes, textos que no tienen por 
+qué coincidir exactamente con el tamaño de bloque. Nos encontramos entonces ante textos que deben ser rellenados para poder ser cifrados con AES. Existen distintos métodos de rellenado, el que se usa en AESphere se basa en rellenar con el número de bytes que faltan para llegar al tamaño del bloque siguiente. Es decir:  </p>
+
+<p> <img style="border-width: 0px;" src="resources/Imagen23.png" width="540" height="77" /> </p>
+
+<p> Como vemos, la cadena HOLA tiene 4 bytes, con lo cual faltan 12 bytes más para llegar a 16 bytes (que es la potencia de 16 más cercana). Como faltan 12 bytes, el relleno hasta 16 se realizará con el hexadecimal 0C que es justamente el 12 decimal. Incluso si la entrada fuera múltiplo del tamaño de bloque, se rellenaría con el valor 10 en hexadecimal (correspondiente al 16 decimal, igual al tamaño de un bloque). 
+ </p>
+
+
+<p>Información relacionada: <br>
+<a href="principal_ES.html">Cifrado</a>,<a href="secundaria_ES.html">Descifrado</a>, <a href="AddRoundKey_ES.html"> AddRoundKey</a>, <a href="MixColumns_ES.html">MixColumns</a>, <a href="ShiftRows_ES.html">ShiftRows</a>, <a href="SubBytes_ES.html">SubBytes</a>, <a href="base64_ES.html">Base64</a>, <a href="ecb_ES.html">ECB</a>, <a href="cbc_ES.html">CBC</a>.
+</p>
+</body>
+</html>
