@@ -32,7 +32,9 @@ topicimage="ItemIco"-->
            <tocitem text="Resultado Cifrado"    target="resultado_cifrado_directo"/>
            <tocitem text="Resultado Descifrado"    target="resultado_descifrado"/>			
            <tocitem text="Comprobar Vectores"    target="ventana_vectores"/>
-           
+    
+           <tocitem text="Relleno"    target="relleno"/>
+    
            
            
                

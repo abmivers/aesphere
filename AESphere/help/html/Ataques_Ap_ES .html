@@ -14,19 +14,30 @@
 <p>El proceso de simulación de ataques está claramente diferenciado en
 tres sencillos pasos. <br></p>
 <br>
-<p><u>1 - Funcionamiento.</u> <br>
+<p><img style="border-width: 0px;" src="resources/botondef1.png" width="30" height="29" /> <u> Funcionamiento.</u> <br>
 Aquí se presentan dos modos de funcionamiento principales: <b>Servidor</b> y <b>Cliente</b><br></p>
+<img style="border-width: 0px;" src="resources/Imagen19.png" width="479" height="120" />
+
 <p>Al elegir el modo Servidor podemos observar que todas las opciones y campos de la pantalla se habilitarán, ya que son necesarios para su ejecución. En este apartado en particular deberemos introducir el número de clientes que van a conectarse a nuestro servidor, que será con los que se comunicará para llevar a cabo el ataque, y el modo de cifrado. Esta opción nos permite elegir la manera en la que el texto en claro será tratado en la aplicación una vez se divida en bloques. Estos dos métodos son el ECB (<i>Electronic CodeBook</i> - Libro de código electrónico) y CBC (<i>Cipher-Block Chaining</i> - Cifrador de Bloques en Cadena). Al elegir el modo CBC, cuando pulsemos el botón "Ejecutar" nos aparecerá una ventana pidiéndonos que introduzcamos el vector de incialización, que es un vector de 16 bytes (32 dígitos hexadecimales) necesario para llevar a cabo este método.</p>
 <p>Si elegimos el modo Cliente, tan sólo debemos introducir la IP del servidor al cual nos queremos conectar para realizar el ataque. En caso de que ésta fuese incorrecta o no se encontrase, el programa nos avisaría de ello, no dejándonos continuar.</p>
 
-<p><u>2 - Entrada.</u><br>
+<p><img style="border-width: 0px;" src="resources/botondef2.png" width="30" height="29" /><u> Entrada.</u><br>
 Una vez seleccionado el modo de funcionamiento, si hemos elegido actuar como servidor, tendremos que rellenar esta sección. Podemos observar que hay que introducir dos cosas distintas: el <b>texto en claro</b> y el <b>texto cifrado</b>.</p> 
-<p>En el <u>texto en claro</u> debemos introducir el texto o archivo antes de ser cifrado, y puede rellenarse con tres formatos distintos, que se configuran en la caja de selección que se encuentra sobre dicha área de texto: <b>Texto ASCII</b>, <b>Hexadecimal</b> y <b>Archivo</b>. El texto ASCII permite la introducción de un texto estándar de hasta 1024 caracteres, el hexadecimal permite la introducción de una ristra de hasta 2048 dígitos hexadecimales, y el archivo habilita el botón "Buscar". A través de este botón accedemos a una ventana donde se nos permite elegir el archivo sin cifrar, de hasta un tamaño de 40MB, que queremos utilizar.</p>
-<p>Por otra parte, en el <u>texto cifrado</u> debemos introducir el texto o archivo después de ser cifrado por la aplicación. Al igual que en el texto en claro tiene tres opciones de formato: <b>Base64</b>, <b>Hexadecimal</b> y <b>Archivo</b>. Base64 es una forma de codificación de cualquier cantidad de bits que permite representarlos en caracteres imprimibles, y se permite la entrada en el programa de hasta 1388 caracteres en Base64. Para hexadecimal se permite introducir hasta 2080 dígitos hexadecimales, y la opción archivo habilita el botón buscar, que como en el texto en claro nos llevará a una ventana donde seleccionar el archivo, en este caso cifrado, que queremos utilizar. Recordamos que dicho archivo puede ser como máximo de 40 MB.</p>
+<p>En el <u>texto en claro</u> debemos introducir el texto o archivo antes de ser cifrado, y puede rellenarse con tres formatos distintos, que se configuran en la caja de selección que se encuentra sobre dicha área de texto: <b>Texto ASCII</b>, <b>Hexadecimal</b> y <b>Archivo</b>.</p> 
+<img style="border-width: 0px;" src="resources/Imagen21.png" width="311" height="180" />
 
-<p><u>3 - Espacio de claves.</u> <br>
+<p>El texto ASCII permite la introducción de un texto estándar de hasta 1024 caracteres, el hexadecimal permite la introducción de una ristra de hasta 2048 dígitos hexadecimales, y el archivo habilita el botón "Buscar". A través de este botón accedemos a una ventana donde se nos permite elegir el archivo sin cifrar, de hasta un tamaño de 40MB, que queremos utilizar.</p>
+<p>Por otra parte, en el <u>texto cifrado</u> debemos introducir el texto o archivo después de ser cifrado por la aplicación. Al igual que en el texto en claro tiene tres opciones de formato: <b>Base64</b>, <b>Hexadecimal</b> y <b>Archivo</b>. </p>
+
+<img style="border-width: 0px;" src="resources/Imagen20.png" width="311" height="180" />
+
+<p>Base64 es una forma de codificación de cualquier cantidad de bits que permite representarlos en caracteres imprimibles, y se permite la entrada en el programa de hasta 1388 caracteres en Base64. Para hexadecimal se permite introducir hasta 2080 dígitos hexadecimales, y la opción archivo habilita el botón buscar, que como en el texto en claro nos llevará a una ventana donde seleccionar el archivo, en este caso cifrado, que queremos utilizar. Recordamos que dicho archivo puede ser como máximo de 40 MB.</p>
+
+<p><img style="border-width: 0px;" src="resources/botondef3.png" width="30" height="29" /><u> Espacio de claves.</u> <br>
 Por último, deberemos introducir la clave inicial y final que usaremos para realizar la búsqueda de la clave entre ambos valores.<br>
-Aquí disponemos de varias opciones de formato en el que introducir dichas claves. En la caja de la derecha podemos seleccionar el tamaño de la clave, que será de 128, 192 o 256 bits. Resaltar que con claves más grandes el proceso de prueba de claves requerirá más tiempo. En cuanto a la caja de la izquierda, nos permite elegir si introduciremos la clave en <b>ASCII</b> o <b>Hexadecimal</b><br>
+<p> <img style="border-width: 0px;" src="resources/Imagen22.png" width="669" height="115" />
+ </p>
+<p>Aquí disponemos de varias opciones de formato en el que introducir dichas claves. En la caja de la derecha podemos seleccionar el tamaño de la clave, que será de 128, 192 o 256 bits. Resaltar que con claves más grandes el proceso de prueba de claves requerirá más tiempo. En cuanto a la caja de la izquierda, nos permite elegir si introduciremos la clave en <b>ASCII</b> o <b>Hexadecimal</b><br>
 En caso de que hayamos seleccionado ASCII, deberemos introducir 16, 24 ó 32 caracteres estándar (para un tamaño de clave de 128, 192 ó 256 bits respectivamente).
 Si hemos seleccionado hexadecimal, deberemos introducir 32, 48, ó 64 dígitos hexadecimales (para un tamaño de clave de 128, 192 ó 256 bits respectivamente).</p>
 
@@ -35,10 +46,10 @@ Si hemos seleccionado hexadecimal, deberemos introducir 32, 48, ó 64 dígitos h
 <p>Pulsando el botón "Ejecutar" lanzaremos la ejecución del servidor o el cliente, según hayamos elegido. Si los datos han sido introducidos correctamente, aparecerá una ventana en la que se podrá ir siguiendo el estado de la conexión y el proceso en general. Para una descripción detallada de los diferentes mensajes y su significado, pulsa <a href ="mensajes_comunicacion_ES.html">aquí</a></p>
 
 <p>La aplicación comprobará que se están introduciendo datos correctos en cada campo de la pantalla, avisando al usuario en caso de que tenga que rellenar alguno de ellos o sea incorrecto. </p>
-<br><br>
+
 <p> Mediante el botón "Cancelar" volveremos a la pantalla principal de la aplicación.</p>
 
-<p>Para una información más detallada y teórica de este proceso consulte los siguientes términos: <br>
+<p>Información relacionada: <br>
 <a href="principal_ES.html">Cifrado</a>,<a href="secundaria_ES.html">Descifrado</a>, <a href="AddRoundKey_ES.html"> AddRoundKey</a>, <a href="MixColumns_ES.html">MixColumns</a>, <a href="ShiftRows_ES.html">ShiftRows</a>, <a href="SubBytes_ES.html">SubBytes</a>, <a href="mensajes_comunicacion_ES.html">Descripción de mensajes del proceso de la comunicación cliente/servidor</a>, <a href="base64_ES.html">Base64</a>, <a href="ecb_ES.html">ECB</a>, <a href="cbc_ES.html">CBC</a>.
 
 
