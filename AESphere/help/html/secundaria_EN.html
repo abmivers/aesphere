@@ -1,0 +1,31 @@
+<meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
+<html>
+<head>
+	<title>Decryption process</title>
+</head>
+<body>
+	<h1>Decryption process</h1>
+	<p>AES is a symmetric cipher, which means that the same key is used for encryption and decryption. All of the AES security is based on the key because the the algorithm to encrypt and decrypt is known. The main security issue that it has is the key exchange, because for an attacker it is easier to try to intercept this key than to try to discover it.<br> 
+	
+	Let's now explain the decryption process in the AES algorith. As in the encryption, AES operates on a 4x4 matrix called state. As for the key, it can have a length of 128, 192 or 256 bits. This key size will determine the number of rounds that will be performed during the decryption process: 10, 12 or 14.<br><br>
+	
+	The process is as follows:<br>
+<p>1 - Key expansion. The Rijndael key schedule is used.</p>
+<p>2 - Initial round: <br>
+AddRoundKey </p>
+<p>3 - Rounds:<br>
+<a href="ShiftRows_EN.html">InvShiftRows</a> - Cyclic transposition of the bytes in the rows. <br>
+<a href="SubBytes_EN.html">InvSubBytes</a> - An inverse subtitution is applied to each byte of the state by using S-boxes<br>
+<a href="AddRoundKey_EN.html">AddRoundKey</a> - Each byte of the state is combined with the round key, which is obtained using a XOR operation.<br>
+<a href="MixColumns_EN.html">InvMixColumns</a> - Complex column mixing using a linear transformation on the columns.<br></p>
+
+<p>4 - Final round, in which the following operations are performed: <br>
+InvShiftRows<br>
+InvSubBytes<br>
+AddRoundKey<br>
+
+<p>The operations of the third round are the ones that area repeated depending on the size of the key.</p> 	
+	
+
+</body>
+</html>

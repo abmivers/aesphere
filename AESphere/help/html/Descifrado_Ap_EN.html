@@ -1,0 +1,55 @@
+<meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
+<html>
+
+
+<head>
+
+
+  <title>Decryption process</title>
+</head>
+<body>
+
+<h1>AESphere decryption process</h1>
+<p></p>
+<p>The decryption process is clearly separated in three simple steps. <br>
+<br>
+<img style="border-width: 0px;" src="resources/botondef1.png" width="30" height="29" /><u>Input and key.</u> <br>
+When choosing the input we have three options: <b>base64</b>, <b>Hexadecimal</b> and <b>File</b><br><br>
+<img style="border-width: 0px;" src="resources/Imagen24.png" width="275" height="168" />
+<br><br>
+
+- If we choose the base64 option, the text area is enabled to enter a ciphertext as input. This text must be the result of the encryption process, because the program will check this and, if it is not a ciphertext, the application will detect that and will warn the user about it. <br>
+- The same verification is performed when the input is hexadecimal of fiel. By selecting hexadecimal, the application will only allow the entering of hexadecimal digits and by selecting the option "File", a button is enabled to browse for an encrypted file or a text file with an ecrypted text.<br><br>
+<img style="border-width: 0px;" src="resources/Imagen2.png" width="255" height="168" />
+<br><br>
+As for the key, we also have three options: <b>ASCII text</b>, <b>Hexadecimal</b> and <b>File (base64)</b>.<br>
+We have to choose the size that the key will have: 128, 192 or 256 bits. Depending on this size the decryption process will have more or less rounds: 10, 12 or 14 respectively. <br>
+Obviously, if we want the decryption to return the expected result, que have to coose the same key that we used in the encryption (the application will not allow keys longer than the size selected).</p>
+
+<p><img style="border-width: 0px;" src="resources/botondef2.png" width="30" height="29" /> <u>Output.</u><br>
+Once the input and the key have been chosen, we have to select the output format of the decryption process.<br>
+The options for the output are <b>ASCII</b>, <b>Hexadecimal</b> and <b>File</b>. The format in which the program will give the output depends on the user selection. The option "File" enables a text field to write the path of the decrypted file and a button in case that we want to browse for the file.</p>
+<p><img style="border-width: 0px;" src="resources/Imagen25.png" width="244" height="114" /></p>
+<br><br>
+
+<p><img style="border-width: 0px;" src="resources/botondef3.png" width="30" height="29" /><u>Advanced Options.</u> <br>
+Finally, we have to choose the encryption method and the execution mode.<br><br><img style="border-width: 0px;" src="resources/Imagen4.png" width="356" height="132" /> <br><br>
+In the encryption method (as in the key), we have to choose the same option as the one that we in the encryption, or so the result will not be the expected one. By choosing the CBC method, the check box for entering the initialization vector manually is enabled. If we select it, a window, prior to the decryption process, will ask us to enter the initialization vector.</p>
+
+<p>From the "File" menu we can load and save keys, and from the menu "Edit" we can copy and paste the fields that we need.</p>
+<br><img style="border-width: 0px;" src="resources/Imagen7.png" width="255" height="135" /><br>
+
+
+<p>The application will check that all fields have been filled in before continuing and will inform the user in case that any of the fields is empty or has a wrong value. </p>
+
+<p> By pressing the "Cancel" button we will return to the main window of the application.</p>
+
+
+<p>For a more detailed and theoric information of this process, please see: <br>
+<a href="secundaria_EN.html">Decryption</a>,<a href="principal_EN.html">Encryption</a>, <a href="AddRoundKey_EN.html"> AddRoundKey</a>, <a href="MixColumns_EN.html">MixColumns</a>, <a href="ShiftRows_EN.html">ShiftRows</a>, <a href="SubBytes_EN.html">SubBytes</a>, <a href="base64_EN.html">Base64</a>, <a href="ecb_EN.html">ECB</a>, <a href="cbc_EN.html">CBC</a>.
+
+
+
+ </p>
+</body>
+</html>

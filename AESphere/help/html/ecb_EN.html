@@ -1,0 +1,20 @@
+<meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
+<html>
+
+	<head>
+		<title>Block encryption: ECB</title>
+	</head>
+	<body>
+		<h1>ECB</h1>
+		
+		<p>The ECB (Electronic CodeBook) method is the simplest of the block encrypton methods. The message is split in independent block and each block is encrypted independently. <br>
+		
+		These method has a clear disadvantage in comparison to others because the fact that each block is encrypted independently causes that encrypting a block with certain value, the result will always be the same. This weakness makes possible the dictionary attack. Also, an atacker that listens to the channel used for transmitting the message can delete certain blocks of this message without being spotted.<br><br></p>
+		
+		<p>Decryption is the same as encryption, as each encrypted block is treated and decrypted independently from the others.<br><br></p>
+		
+		
+		<img style="border-width: 0px;" src="resources/ecb.png" width="589" height="457" />		
+	</body>
+</html>
+

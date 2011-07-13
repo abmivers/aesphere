@@ -1,0 +1,62 @@
+<meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
+<html>
+
+
+<head>
+
+
+  <title>Encryption process</title>
+</head>
+<body>
+
+<h1>AESphere encryption process</h1>
+<p></p>
+<p>The encryption process is clearly divided in three simple steps. <br>
+<br>
+
+<img style="border-width: 0px;" src="resources/botondef1.png" width="30" height="29" /> <u>Input and key.</u> <br>
+When choosing the input we have three options: <b>ASCII text</b>, <b>Hexadecimal</b> and <b>File</b><br><br>
+<img style="border-width: 0px;" src="resources/Imagen1.png" width="255" height="168" />
+<br><br>
+- If we choose the ASCII text option, the text area is enabled to enter a text up to 1024 characters long. The text will be filled so that the length of the input is multiple of the length of the block that the application uses to encrypt and decrypt (this fil will not affect the encryption nor the decryption process). <br>
+- In case that the hexadecimal option is selected, the input will also be filled in a similar way as the previous case.<br>
+- As for the file input, a "Browse" button will be enabled, which allows you to select an input file. It can be a file of any type: a text file (in which case its content will be encrypted), an image, a sound file, a compressed file, etc. The only limitation that exist is the size of the file, which is of 40 megabytes as maximum, as the purpose of this application is mainly dedactic, and bigger files cuold lead tto a very long process and could even break the Java stack.<br><br>
+<img style="border-width: 0px;" src="resources/Imagen2.png" width="255" height="168" />
+<br><br>
+As for the key, we also have three options: <b>ASCII text</b>, <b>Hexadecimal</b> and <b>File (base64)</b>.<br>
+We have to choose the soze that the key will have: 128, 192 or 256 bits. This size will determine the number of rounds that the encryption process has: 10, 12 or 14 respectively. <br>
+The number of characters to enter will depend directly on the size chosen. The application does not allow to enter more characters than especified. If we choose the option "File", we will be allowed to browse for a file with a saved key. From the "File" menu we can save and load keys so that this process is more comfortable. </p>
+
+<p><img style="border-width: 0px;" src="resources/botondef2.png" width="30" height="29" /> <u>Output.</u><br>
+Once the key an input have been chosen, we have to choose the output format.<br><br>
+<img style="border-width: 0px;" src="resources/Imagen3.png" width="239" height="112" />
+
+<br><br>
+The output has the options <b>base64</b>, <b>Hexadecimal</b> y <b>File</b>. The format of the encryption output will depend on this choice. If the option selected is  "File", a path has to be specified for the file, or choose one by pressing the button "Browse" If we choose an existing file, it will be overwritten during the encryption process.</p>
+
+<p><img style="border-width: 0px;" src="resources/botondef3.png" width="30" height="29" /><u>Advanced options.</u> <br>
+Finally, we have to choose the encryption method and the execution mode.<br><br>
+<img style="border-width: 0px;" src="resources/Imagen4.png" width="356" height="132" />
+<br><br>
+In the selection box "Encryption method" we can choose if the encryption will be performed using ECB or CBC, two different ways of manging the blocks from the input. If CBC is selected, a check box for introducing the initialization vector manually will be enabled. if we don't select this box, the initilization vector will be generated randomly.<br><br>
+<img style="border-width: 0px;" src="resources/Imagen5.png" width="312" height="65" />
+
+<br><br>
+By choosing if the execution mode is direct or step by step, we can have in the output the result of the steps of the process alongside the encryption output. If the mode "step by step" is chosen, the encryption process will be slower. Besides, the step by step option will show onle the steps for the first and last block of the input if it is too big. </p>
+
+<p>From the "File" menu we van load and save keys as commented previously, and from the "Edit" menu we can copy and paste all the field we need to.</p>
+
+<p>By pressing the button "Next" we will launch the process. </p>
+
+<p>The application will check that each field is filled in correctly, warning the user in case that one of them is empty or has a wrong value. </p>
+
+<p>By pressing the "Cancel" button we will return to the main window of the application.</p>
+
+<p>For more detailed and theoric information of this process, please see: <br>
+<a href="principal_EN.html">Encryption</a>,<a href="secundaria_EN.html">Decryption</a>, <a href="AddRoundKey_EN.html"> AddRoundKey</a>, <a href="MixColumns_EN.html">MixColumns</a>, <a href="ShiftRows_EN.html">ShiftRows</a>, <a href="SubBytes_EN.html">SubBytes</a>, <a href="base64_EN.html">Base64</a>, <a href="ecb_EN.html">ECB</a>, <a href="cbc_EN.html">CBC</a>.
+
+
+
+ </p>
+</body>
+</html>

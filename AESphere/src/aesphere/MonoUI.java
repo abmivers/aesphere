@@ -38,10 +38,7 @@ public class MonoUI extends javax.swing.JFrame {
         tamClave = claveinicial.length;
         setSize(400, 400);
         setLocationRelativeTo(wpadre);
-        setVisible(true);
-        
-        System.out.println(Conversor.byteToHexString(plaintext));
-        System.out.println(Conversor.byteToHexString(ciphertext));
+        setVisible(true);        
         
         this.setTitle(Entorno.getTrans("Net.monoTitle"));    
        
