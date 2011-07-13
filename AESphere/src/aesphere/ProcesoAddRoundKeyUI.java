@@ -111,6 +111,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
+        cleanFieldsMenu = new javax.swing.JMenuItem();
         CopiarInput = new javax.swing.JMenuItem();
         CopiarKey = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
@@ -683,6 +684,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
         BotonInfo.setContentAreaFilled(false);
+        BotonInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonInfoActionPerformed(evt);
@@ -709,6 +711,14 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         cifradoMenuBarMain.add(mainMenuArchivoCifrado);
 
         mainMenuEditarCifrado.setText("Editar");
+
+        cleanFieldsMenu.setText("Limpiar campos");
+        cleanFieldsMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanFieldsMenuActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(cleanFieldsMenu);
 
         CopiarInput.setText("Copiar Input");
         CopiarInput.addActionListener(new java.awt.event.ActionListener() {
@@ -844,6 +854,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         mainMenuAyudaCifrado.setText(Entorno.getTrans("gen.help"));
         Contenidos.setText(Entorno.getTrans("gen.cont"));
         acercade.setText(Entorno.getTrans("gen.about"));
+        cleanFieldsMenu.setText(Entorno.getTrans("Op.cleanFields"));
     }
     
     private void setHelp () {
@@ -1354,6 +1365,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (a11.getText().length() > 2) {
             a11.setText(a11.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a11.getText())) {
+            a11.setText(a11.getText().substring(0, a11.getText().length() - 1));
+        }
     }//GEN-LAST:event_a11KeyTyped
 
     private void a11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a11KeyReleased
@@ -1363,7 +1378,11 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void a12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a12KeyTyped
         if (a12.getText().length() > 2) {
             a12.setText(a12.getText().substring(0, 2));
-        }    
+        }
+        
+        while (!ComprobarHexadecimal(a12.getText())) {
+            a12.setText(a12.getText().substring(0, a12.getText().length() - 1));
+        }
     }//GEN-LAST:event_a12KeyTyped
 
     private void a12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a12KeyReleased
@@ -1373,6 +1392,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void a13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a13KeyTyped
         if (a13.getText().length() > 2) {
             a13.setText(a13.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a13.getText())) {
+            a13.setText(a13.getText().substring(0, a13.getText().length() - 1));
         }
     }//GEN-LAST:event_a13KeyTyped
 
@@ -1384,6 +1407,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (a14.getText().length() > 2) {
             a14.setText(a14.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a14.getText())) {
+            a14.setText(a14.getText().substring(0, a14.getText().length() - 1));
+        }
     }//GEN-LAST:event_a14KeyTyped
 
     private void a14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a14KeyReleased
@@ -1393,6 +1420,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void a21KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a21KeyTyped
         if (a21.getText().length() > 2) {
             a21.setText(a21.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a21.getText())) {
+            a21.setText(a21.getText().substring(0, a21.getText().length() - 1));
         }
     }//GEN-LAST:event_a21KeyTyped
 
@@ -1404,6 +1435,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (a22.getText().length() > 2) {
             a22.setText(a22.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a22.getText())) {
+            a22.setText(a22.getText().substring(0, a22.getText().length() - 1));
+        }
     }//GEN-LAST:event_a22KeyTyped
 
     private void a22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a22KeyReleased
@@ -1413,6 +1448,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void a23KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a23KeyTyped
         if (a23.getText().length() > 2) {
             a23.setText(a23.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a23.getText())) {
+            a23.setText(a23.getText().substring(0, a23.getText().length() - 1));
         }
     }//GEN-LAST:event_a23KeyTyped
 
@@ -1424,6 +1463,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (a24.getText().length() > 2) {
             a24.setText(a24.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a24.getText())) {
+            a24.setText(a24.getText().substring(0, a24.getText().length() - 1));
+        }
     }//GEN-LAST:event_a24KeyTyped
 
     private void a24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a24KeyReleased
@@ -1433,6 +1476,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void a31KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a31KeyTyped
         if (a31.getText().length() > 2) {
             a31.setText(a31.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a31.getText())) {
+            a31.setText(a31.getText().substring(0, a31.getText().length() - 1));
         }
     }//GEN-LAST:event_a31KeyTyped
 
@@ -1444,6 +1491,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (a32.getText().length() > 2) {
             a32.setText(a32.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a32.getText())) {
+            a32.setText(a32.getText().substring(0, a32.getText().length() - 1));
+        }
     }//GEN-LAST:event_a32KeyTyped
 
     private void a32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a32KeyReleased
@@ -1453,6 +1504,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void a33KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a33KeyTyped
         if (a33.getText().length() > 2) {
             a33.setText(a33.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a33.getText())) {
+            a33.setText(a33.getText().substring(0, a33.getText().length() - 1));
         }
     }//GEN-LAST:event_a33KeyTyped
 
@@ -1464,6 +1519,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (a34.getText().length() > 2) {
             a34.setText(a34.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a34.getText())) {
+            a34.setText(a34.getText().substring(0, a34.getText().length() - 1));
+        }
     }//GEN-LAST:event_a34KeyTyped
 
     private void a34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a34KeyReleased
@@ -1473,6 +1532,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void a41KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a41KeyTyped
         if (a41.getText().length() > 2) {
             a41.setText(a41.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a41.getText())) {
+            a41.setText(a41.getText().substring(0, a41.getText().length() - 1));
         }
     }//GEN-LAST:event_a41KeyTyped
 
@@ -1484,6 +1547,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (a42.getText().length() > 2) {
             a42.setText(a42.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a42.getText())) {
+            a42.setText(a42.getText().substring(0, a42.getText().length() - 1));
+        }
     }//GEN-LAST:event_a42KeyTyped
 
     private void a42KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a42KeyReleased
@@ -1493,6 +1560,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void a43KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a43KeyTyped
         if (a43.getText().length() > 2) {
             a43.setText(a43.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a43.getText())) {
+            a43.setText(a43.getText().substring(0, a43.getText().length() - 1));
         }
     }//GEN-LAST:event_a43KeyTyped
 
@@ -1504,6 +1575,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (a44.getText().length() > 2) {
             a44.setText(a44.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a44.getText())) {
+            a44.setText(a44.getText().substring(0, a44.getText().length() - 1));
+        }
     }//GEN-LAST:event_a44KeyTyped
 
     private void a44KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a44KeyReleased
@@ -1513,6 +1588,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void b11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b11KeyTyped
         if (b11.getText().length() > 2) {
             b11.setText(b11.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(b11.getText())) {
+            b11.setText(b11.getText().substring(0, b11.getText().length() - 1));
         }
     }//GEN-LAST:event_b11KeyTyped
 
@@ -1524,6 +1603,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (b12.getText().length() > 2) {
             b12.setText(b12.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(b12.getText())) {
+            b12.setText(b12.getText().substring(0, b12.getText().length() - 1));
+        }
     }//GEN-LAST:event_b12KeyTyped
 
     private void b12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b12KeyReleased
@@ -1533,6 +1616,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void b13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b13KeyTyped
         if (b13.getText().length() > 2) {
             b13.setText(b13.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(b13.getText())) {
+            b13.setText(b13.getText().substring(0, b13.getText().length() - 1));
         }
     }//GEN-LAST:event_b13KeyTyped
 
@@ -1544,6 +1631,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (b14.getText().length() > 2) {
             b14.setText(b14.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(b14.getText())) {
+            b14.setText(b14.getText().substring(0, b14.getText().length() - 1));
+        }
     }//GEN-LAST:event_b14KeyTyped
 
     private void b14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b14KeyReleased
@@ -1553,6 +1644,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void b21KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b21KeyTyped
         if (b21.getText().length() > 2) {
             b21.setText(b21.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(b21.getText())) {
+            b21.setText(b21.getText().substring(0, b21.getText().length() - 1));
         }
     }//GEN-LAST:event_b21KeyTyped
 
@@ -1564,6 +1659,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (b22.getText().length() > 2) {
             b22.setText(b22.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(b22.getText())) {
+            b22.setText(b22.getText().substring(0, b22.getText().length() - 1));
+        }
     }//GEN-LAST:event_b22KeyTyped
 
     private void b22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b22KeyReleased
@@ -1573,6 +1672,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void b23KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b23KeyTyped
         if (b23.getText().length() > 2) {
             b23.setText(b23.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(b23.getText())) {
+            b23.setText(b23.getText().substring(0, b23.getText().length() - 1));
         }
     }//GEN-LAST:event_b23KeyTyped
 
@@ -1584,6 +1687,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (b24.getText().length() > 2) {
             b24.setText(b24.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(b24.getText())) {
+            b24.setText(b24.getText().substring(0, b24.getText().length() - 1));
+        }
     }//GEN-LAST:event_b24KeyTyped
 
     private void b24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b24KeyReleased
@@ -1593,6 +1700,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void b31KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b31KeyTyped
         if (b31.getText().length() > 2) {
             b31.setText(b31.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(b31.getText())) {
+            b31.setText(b31.getText().substring(0, b31.getText().length() - 1));
         }
     }//GEN-LAST:event_b31KeyTyped
 
@@ -1604,6 +1715,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (b32.getText().length() > 2) {
             b32.setText(b32.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(b32.getText())) {
+            b32.setText(b32.getText().substring(0, b32.getText().length() - 1));
+        }
     }//GEN-LAST:event_b32KeyTyped
 
     private void b32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b32KeyReleased
@@ -1613,6 +1728,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void b33KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b33KeyTyped
         if (b33.getText().length() > 2) {
             b33.setText(b33.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(b33.getText())) {
+            b33.setText(b33.getText().substring(0, b33.getText().length() - 1));
         }
     }//GEN-LAST:event_b33KeyTyped
 
@@ -1624,6 +1743,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (b34.getText().length() > 2) {
             b34.setText(b34.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(b34.getText())) {
+            b34.setText(b34.getText().substring(0, b34.getText().length() - 1));
+        }
     }//GEN-LAST:event_b34KeyTyped
 
     private void b34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b34KeyReleased
@@ -1633,6 +1756,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void b41KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b41KeyTyped
         if (b41.getText().length() > 2) {
             b41.setText(b41.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(b41.getText())) {
+            b41.setText(b41.getText().substring(0, b41.getText().length() - 1));
         }
     }//GEN-LAST:event_b41KeyTyped
 
@@ -1644,6 +1771,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (b42.getText().length() > 2) {
             b42.setText(b42.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(b42.getText())) {
+            b42.setText(b42.getText().substring(0, b42.getText().length() - 1));
+        }
     }//GEN-LAST:event_b42KeyTyped
 
     private void b42KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b42KeyReleased
@@ -1653,6 +1784,10 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private void b43KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b43KeyTyped
         if (b43.getText().length() > 2) {
             b43.setText(b43.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(b43.getText())) {
+            b43.setText(b43.getText().substring(0, b43.getText().length() - 1));
         }
     }//GEN-LAST:event_b43KeyTyped
 
@@ -1664,11 +1799,66 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
         if (b44.getText().length() > 2) {
             b44.setText(b44.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(b44.getText())) {
+            b44.setText(b44.getText().substring(0, b44.getText().length() - 1));
+        }
     }//GEN-LAST:event_b44KeyTyped
 
     private void b44KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b44KeyReleased
         b44KeyTyped(evt);
     }//GEN-LAST:event_b44KeyReleased
+
+    private void cleanFieldsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFieldsMenuActionPerformed
+        a11.setText("");
+        a12.setText("");
+        a13.setText("");
+        a14.setText("");
+        a21.setText("");
+        a22.setText("");
+        a23.setText("");
+        a24.setText("");
+        a31.setText("");
+        a32.setText("");
+        a33.setText("");
+        a34.setText("");
+        a41.setText("");
+        a42.setText("");
+        a43.setText("");
+        a44.setText("");
+        b11.setText("");
+        b12.setText("");
+        b13.setText("");
+        b14.setText("");
+        b21.setText("");
+        b22.setText("");
+        b23.setText("");
+        b24.setText("");
+        b31.setText("");
+        b32.setText("");
+        b33.setText("");
+        b34.setText("");
+        b41.setText("");
+        b42.setText("");
+        b43.setText("");
+        b44.setText("");
+        c11.setText("");
+        c12.setText("");
+        c13.setText("");
+        c14.setText("");
+        c21.setText("");
+        c22.setText("");
+        c23.setText("");
+        c24.setText("");
+        c31.setText("");
+        c32.setText("");
+        c33.setText("");
+        c34.setText("");
+        c41.setText("");
+        c42.setText("");
+        c43.setText("");
+        c44.setText("");
+    }//GEN-LAST:event_cleanFieldsMenuActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1735,6 +1925,7 @@ public class ProcesoAddRoundKeyUI extends javax.swing.JFrame {
     private javax.swing.JTextField c43;
     private javax.swing.JTextField c44;
     private javax.swing.JMenuBar cifradoMenuBarMain;
+    private javax.swing.JMenuItem cleanFieldsMenu;
     private javax.swing.JPanel inputPanel;
     private javax.swing.JPanel keyPanel;
     private javax.swing.JMenu mainMenuArchivoCifrado;

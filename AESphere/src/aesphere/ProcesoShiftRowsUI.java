@@ -94,6 +94,7 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
+        cleanFieldsMenu = new javax.swing.JMenuItem();
         CopiarInput = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
         pegarInput = new javax.swing.JMenuItem();
@@ -112,6 +113,7 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
         BotonInfo.setContentAreaFilled(false);
+        BotonInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         EjecutarButton.setText("Ejecutar");
         EjecutarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -458,6 +460,14 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
 
         mainMenuEditarCifrado.setText("Editar");
 
+        cleanFieldsMenu.setText("Limpiar campos");
+        cleanFieldsMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanFieldsMenuActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(cleanFieldsMenu);
+
         CopiarInput.setText("Copiar Input");
         CopiarInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -565,6 +575,7 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         mainMenuAyudaCifrado.setText(Entorno.getTrans("gen.help"));
         Contenidos.setText(Entorno.getTrans("gen.cont"));
         acercade.setText(Entorno.getTrans("gen.about"));
+        cleanFieldsMenu.setText(Entorno.getTrans("Op.cleanFields"));
     }
     
     private void setHelp () {
@@ -888,6 +899,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         if (a11.getText().length() > 2) {
             a11.setText(a11.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a11.getText())) {
+            a11.setText(a11.getText().substring(0, a11.getText().length() - 1));
+        }
     }//GEN-LAST:event_a11KeyTyped
 
     private void a11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a11KeyReleased
@@ -897,7 +912,11 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void a12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a12KeyTyped
         if (a12.getText().length() > 2) {
             a12.setText(a12.getText().substring(0, 2));
-        }    
+        }
+        
+        while (!ComprobarHexadecimal(a12.getText())) {
+            a12.setText(a12.getText().substring(0, a12.getText().length() - 1));
+        }
     }//GEN-LAST:event_a12KeyTyped
 
     private void a12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a12KeyReleased
@@ -907,6 +926,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void a13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a13KeyTyped
         if (a13.getText().length() > 2) {
             a13.setText(a13.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a13.getText())) {
+            a13.setText(a13.getText().substring(0, a13.getText().length() - 1));
         }
     }//GEN-LAST:event_a13KeyTyped
 
@@ -918,6 +941,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         if (a14.getText().length() > 2) {
             a14.setText(a14.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a14.getText())) {
+            a14.setText(a14.getText().substring(0, a14.getText().length() - 1));
+        }
     }//GEN-LAST:event_a14KeyTyped
 
     private void a14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a14KeyReleased
@@ -927,6 +954,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void a21KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a21KeyTyped
         if (a21.getText().length() > 2) {
             a21.setText(a21.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a21.getText())) {
+            a21.setText(a21.getText().substring(0, a21.getText().length() - 1));
         }
     }//GEN-LAST:event_a21KeyTyped
 
@@ -938,6 +969,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         if (a22.getText().length() > 2) {
             a22.setText(a22.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a22.getText())) {
+            a22.setText(a22.getText().substring(0, a22.getText().length() - 1));
+        }
     }//GEN-LAST:event_a22KeyTyped
 
     private void a22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a22KeyReleased
@@ -947,6 +982,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void a23KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a23KeyTyped
         if (a23.getText().length() > 2) {
             a23.setText(a23.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a23.getText())) {
+            a23.setText(a23.getText().substring(0, a23.getText().length() - 1));
         }
     }//GEN-LAST:event_a23KeyTyped
 
@@ -958,6 +997,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         if (a24.getText().length() > 2) {
             a24.setText(a24.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a24.getText())) {
+            a24.setText(a24.getText().substring(0, a24.getText().length() - 1));
+        }
     }//GEN-LAST:event_a24KeyTyped
 
     private void a24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a24KeyReleased
@@ -967,6 +1010,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void a31KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a31KeyTyped
         if (a31.getText().length() > 2) {
             a31.setText(a31.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a31.getText())) {
+            a31.setText(a31.getText().substring(0, a31.getText().length() - 1));
         }
     }//GEN-LAST:event_a31KeyTyped
 
@@ -978,6 +1025,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         if (a32.getText().length() > 2) {
             a32.setText(a32.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a32.getText())) {
+            a32.setText(a32.getText().substring(0, a32.getText().length() - 1));
+        }
     }//GEN-LAST:event_a32KeyTyped
 
     private void a32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a32KeyReleased
@@ -987,6 +1038,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void a33KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a33KeyTyped
         if (a33.getText().length() > 2) {
             a33.setText(a33.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a33.getText())) {
+            a33.setText(a33.getText().substring(0, a33.getText().length() - 1));
         }
     }//GEN-LAST:event_a33KeyTyped
 
@@ -998,6 +1053,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         if (a34.getText().length() > 2) {
             a34.setText(a34.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a34.getText())) {
+            a34.setText(a34.getText().substring(0, a34.getText().length() - 1));
+        }
     }//GEN-LAST:event_a34KeyTyped
 
     private void a34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a34KeyReleased
@@ -1007,6 +1066,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void a41KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a41KeyTyped
         if (a41.getText().length() > 2) {
             a41.setText(a41.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a41.getText())) {
+            a41.setText(a41.getText().substring(0, a41.getText().length() - 1));
         }
     }//GEN-LAST:event_a41KeyTyped
 
@@ -1018,6 +1081,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         if (a42.getText().length() > 2) {
             a42.setText(a42.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a42.getText())) {
+            a42.setText(a42.getText().substring(0, a42.getText().length() - 1));
+        }
     }//GEN-LAST:event_a42KeyTyped
 
     private void a42KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a42KeyReleased
@@ -1027,6 +1094,10 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private void a43KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a43KeyTyped
         if (a43.getText().length() > 2) {
             a43.setText(a43.getText().substring(0, 2));
+        }
+        
+        while (!ComprobarHexadecimal(a43.getText())) {
+            a43.setText(a43.getText().substring(0, a43.getText().length() - 1));
         }
     }//GEN-LAST:event_a43KeyTyped
 
@@ -1038,11 +1109,50 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
         if (a44.getText().length() > 2) {
             a44.setText(a44.getText().substring(0, 2));
         }
+        
+        while (!ComprobarHexadecimal(a44.getText())) {
+            a44.setText(a44.getText().substring(0, a44.getText().length() - 1));
+        }
     }//GEN-LAST:event_a44KeyTyped
 
     private void a44KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a44KeyReleased
         a44KeyTyped(evt);
     }//GEN-LAST:event_a44KeyReleased
+
+    private void cleanFieldsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFieldsMenuActionPerformed
+        a11.setText("");
+        a12.setText("");
+        a13.setText("");
+        a14.setText("");
+        a21.setText("");
+        a22.setText("");
+        a23.setText("");
+        a24.setText("");
+        a31.setText("");
+        a32.setText("");
+        a33.setText("");
+        a34.setText("");
+        a41.setText("");
+        a42.setText("");
+        a43.setText("");
+        a44.setText("");
+        b11.setText("");
+        b12.setText("");
+        b13.setText("");
+        b14.setText("");
+        b21.setText("");
+        b22.setText("");
+        b23.setText("");
+        b24.setText("");
+        b31.setText("");
+        b32.setText("");
+        b33.setText("");
+        b34.setText("");
+        b41.setText("");
+        b42.setText("");
+        b43.setText("");
+        b44.setText("");       
+}//GEN-LAST:event_cleanFieldsMenuActionPerformed
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1088,6 +1198,7 @@ public class ProcesoShiftRowsUI extends javax.swing.JFrame {
     private javax.swing.JTextField b43;
     private javax.swing.JTextField b44;
     private javax.swing.JMenuBar cifradoMenuBarMain;
+    private javax.swing.JMenuItem cleanFieldsMenu;
     private javax.swing.JPanel inputPanel;
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;

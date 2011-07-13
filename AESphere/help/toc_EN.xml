@@ -1,15 +1,26 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <toc version="1.0"> <!--  categoryclosedimage="FolderClosed" categoryopenimage="FolderOpened"  
 topicimage="ItemIco"-->
-           <tocitem text="Ayuda de AESphere"    target="aplicacion">
-           
-           <tocitem text="Ventana Main"    target="ventana_main"/>
-           <tocitem text="Ventana Cifrado"    target="ventana_cifrado"/>
-           
-           <tocitem text="Cifrado"    target="explicacion_cifrar"/>
-           <tocitem text="Ventana Descifrado"    target="ventana_descifrado"/>
-           
-           <tocitem text="Descifrado"    target="explicacion_descifrar"/>
+           <tocitem text="AESphere help"    target="aplicacion">
+           <tocitem text="Main Window"    target="ventana_main"/>
+           <tocitem text="AESphere Encryption Process"    target="ventana_cifrado"/>
+           <tocitem text="Encryption Process"    target="explicacion_cifrar"/>
+           <tocitem text="AESphere Decryption Process"    target="ventana_descifrado"/>
+           <tocitem text="Decryption Process"    target="explicacion_descifrar"/>
+           <tocitem text="Actions Window"    target="ventana_herramientas"/>
+           <tocitem text="Attacks Window"    target="ventana_ataques"/>  
+           <tocitem text="ShiftRows Window"    target="ventana_shiftrows"/>
+           <tocitem text="ShiftRows"    target="explicacion_shiftrows"/>
+           <tocitem text="MixColumns Window"    target="ventana_mixcolumns"/>
+           <tocitem text="MixColumns"    target="explicacion_mixcolumns"/>
+           <tocitem text="SubBytes Window"    target="ventana_subbytes"/>
+           <tocitem text="SubBytes"    target="explicacion_subbytes"/>
+           <tocitem text="AddRoundKey Window"    target="ventana_addroundkey"/>
+           <tocitem text="AddRoundKey"    target="explicacion_addroundkey"/>
+           <tocitem text="Encryption Result"    target="resultado_cifrado_directo"/>
+           <tocitem text="Decryption Result"    target="resultado_descifrado"/>                      
+           <tocitem text="Check Vectors"    target="ventana_vectores"/>
+           <tocitem text="Padding"    target="relleno"/>
         </tocitem>
         
 </toc>

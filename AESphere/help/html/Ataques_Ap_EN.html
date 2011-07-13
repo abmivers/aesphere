@@ -1,45 +1,51 @@
 <meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
 <html>
-
-
 <head>
-
-
-  <title>Simulación de ataques</title>
+  <title>Attacks window</title>
 </head>
 <body>
 
-<h1>Simulación de ataques mediante AESphere</h1>
+<h1>Attacks window</h1>
 <p></p>
-<p>El proceso de simulación de ataques está claramente diferenciado en
-tres sencillos pasos. <br></p>
+<p>The process of simulating attacks is divided in three simple steps. <br></p>
 <br>
-<p><u>1 - Funcionamiento.</u> <br>
-Aquí se presentan dos modos de funcionamiento principales: <b>Servidor</b> y <b>Cliente</b><br></p>
-<p>Al elegir el modo Servidor podemos observar que todas las opciones y campos de la pantalla se habilitarán, ya que son necesarios para su ejecución. En este apartado en particular deberemos introducir el número de clientes que van a conectarse a nuestro servidor, que será con los que se comunicará para llevar a cabo el ataque, y el modo de cifrado. Esta opción nos permite elegir la manera en la que el texto en claro será tratado en la aplicación una vez se divida en bloques. Estos dos métodos son el ECB (<i>Electronic CodeBook</i> - Libro de código electrónico) y CBC (<i>Cipher-Block Chaining</i> - Cifrador de Bloques en Cadena). Al elegir el modo CBC, cuando pulsemos el botón "Ejecutar" nos aparecerá una ventana pidiéndonos que introduzcamos el vector de incialización, que es un vector de 16 bytes (32 dígitos hexadecimales) necesario para llevar a cabo este método.</p>
-<p>Si elegimos el modo Cliente, tan sólo debemos introducir la IP del servidor al cual nos queremos conectar para realizar el ataque. En caso de que ésta fuese incorrecta o no se encontrase, el programa nos avisaría de ello, no dejándonos continuar.</p>
+<p><img style="border-width: 0px;" src="resources/botondef1.png" width="30" height="29" /> <u> Operation.</u> <br>
+Here there are two main operation modes: <b>Server</b> and <b>Client</b><br></p>
+<img style="border-width: 0px;" src="resources/Imagen19.png" width="479" height="120" />
 
-<p><u>2 - Entrada.</u><br>
-Una vez seleccionado el modo de funcionamiento, si hemos elegido actuar como servidor, tendremos que rellenar esta sección. Podemos observar que hay que introducir dos cosas distintas: el <b>texto en claro</b> y el <b>texto cifrado</b>.</p> 
-<p>En el <u>texto en claro</u> debemos introducir el texto o archivo antes de ser cifrado, y puede rellenarse con tres formatos distintos, que se configuran en la caja de selección que se encuentra sobre dicha área de texto: <b>Texto ASCII</b>, <b>Hexadecimal</b> y <b>Archivo</b>. El texto ASCII permite la introducción de un texto estándar de hasta 1024 caracteres, el hexadecimal permite la introducción de una ristra de hasta 2048 dígitos hexadecimales, y el archivo habilita el botón "Buscar". A través de este botón accedemos a una ventana donde se nos permite elegir el archivo sin cifrar, de hasta un tamaño de 40MB, que queremos utilizar.</p>
-<p>Por otra parte, en el <u>texto cifrado</u> debemos introducir el texto o archivo después de ser cifrado por la aplicación. Al igual que en el texto en claro tiene tres opciones de formato: <b>Base64</b>, <b>Hexadecimal</b> y <b>Archivo</b>. Base64 es una forma de codificación de cualquier cantidad de bits que permite representarlos en caracteres imprimibles, y se permite la entrada en el programa de hasta 1388 caracteres en Base64. Para hexadecimal se permite introducir hasta 2080 dígitos hexadecimales, y la opción archivo habilita el botón buscar, que como en el texto en claro nos llevará a una ventana donde seleccionar el archivo, en este caso cifrado, que queremos utilizar. Recordamos que dicho archivo puede ser como máximo de 40 MB.</p>
+<p>By choosing the server mode we can see that every option and field of the window are enabled, because they are necessary for its execution. In this part of thw window we have to enter the number of clients that are going to connect to our server, with which it will communicate to perform the attack, and the encryption mode. In case that we want to perform the attack in a single computer, the option single user is available, in which no information about the connection is needed to be provided. This option allows as to choose the way in which the plaintext will be managed in the application once it is splitted into blocks. These two method are ECB (<i>Electronic CodeBook</i>) and CBC (<i>Cipher-Block Chaining</i>). By choosing the CBC mode, when we press the "Run" button a window will appear to ask for the initilization vector, which is a 16 bytes vector (32 hexadecimal digits) needed for performing this method.</p>
+<p>If we choose the client mode, we have to enter only the IP of the server to which we want to connect to perform the attack. In case that this were wrong or were not found, the program would warn us, not letting us continue.</p>
 
-<p><u>3 - Espacio de claves.</u> <br>
-Por último, deberemos introducir la clave inicial y final que usaremos para realizar la búsqueda de la clave entre ambos valores.<br>
-Aquí disponemos de varias opciones de formato en el que introducir dichas claves. En la caja de la derecha podemos seleccionar el tamaño de la clave, que será de 128, 192 o 256 bits. Resaltar que con claves más grandes el proceso de prueba de claves requerirá más tiempo. En cuanto a la caja de la izquierda, nos permite elegir si introduciremos la clave en <b>ASCII</b> o <b>Hexadecimal</b><br>
-En caso de que hayamos seleccionado ASCII, deberemos introducir 16, 24 ó 32 caracteres estándar (para un tamaño de clave de 128, 192 ó 256 bits respectivamente).
-Si hemos seleccionado hexadecimal, deberemos introducir 32, 48, ó 64 dígitos hexadecimales (para un tamaño de clave de 128, 192 ó 256 bits respectivamente).</p>
+<p><img style="border-width: 0px;" src="resources/botondef2.png" width="30" height="29" /><u> Input.</u><br>
+Once selected the operation mode, if we hace chosen to act as a server, we have to fill in this section. We can see that we have to enter two different thing: the <b>plaintext</b> and the <b>ciphertext</b>.</p> 
+<p>In the <u>plaintext</u> we must enter the text or file before the encryption, and can be filled in in three different formats, that are configured in the selection box that is found over this text area: <b>ASCII text</b>, <b>Hexadecimal</b> and <b>File</b>.</p> 
+<img style="border-width: 0px;" src="resources/Imagen21.png" width="311" height="180" />
 
-<p>Desde el menú "Archivo" podremos salir de esta ventana, y desde el menú "Editar" podremos copiar y pegar los campos que necesitemos.</p>
+<p>The ASCII text allows to enter an standard text of up to 1024 characters, the hecadecimal allows to enter up to 2048 hexadecimal digits, and the file enables the "Browse" button. Through this button we access to a window where we are allowed to choose the unencrypted file, with a size of 40MB at maximum, that we want to use.</p>
+<p>Apart from this, in the  <u>ciphertext</u> we have to enter the text or file after being encrypted with the application. Just as in the plaintext it has three format options: <b>Base64</b>, <b>Hexadecimal</b> and <b>File</b>. </p>
 
-<p>Pulsando el botón "Ejecutar" lanzaremos la ejecución del servidor o el cliente, según hayamos elegido. Si los datos han sido introducidos correctamente, aparecerá una ventana en la que se podrá ir siguiendo el estado de la conexión y el proceso en general. Para una descripción detallada de los diferentes mensajes y su significado, pulsa <a href ="mensajes_comunicacion_ES.html">aquí</a></p>
+<img style="border-width: 0px;" src="resources/Imagen20.png" width="311" height="180" />
 
-<p>La aplicación comprobará que se están introduciendo datos correctos en cada campo de la pantalla, avisando al usuario en caso de que tenga que rellenar alguno de ellos o sea incorrecto. </p>
-<br><br>
-<p> Mediante el botón "Cancelar" volveremos a la pantalla principal de la aplicación.</p>
+<p>Base64 is a method to encode any quantity if bits that allows to represent them in printable characters, and it is allowed to enter up to 1388 characters in Base64. For the hexadecimal option it is allowes to enter up to 2080 hexadecimal digits, and the file option enables the button "Browse", that is similar to the plaintext one, and will lead us to a window where we can select the file, encrypted this time, that we want tu use. Remember that this file can have a maximum size of 40MBs.</p>
 
-<p>Para una información más detallada y teórica de este proceso consulte los siguientes términos: <br>
-<a href="principal_ES.html">Cifrado</a>,<a href="secundaria_ES.html">Descifrado</a>, <a href="AddRoundKey_ES.html"> AddRoundKey</a>, <a href="MixColumns_ES.html">MixColumns</a>, <a href="ShiftRows_ES.html">ShiftRows</a>, <a href="SubBytes_ES.html">SubBytes</a>, <a href="mensajes_comunicacion_ES.html">Descripción de mensajes del proceso de la comunicación cliente/servidor</a>, <a href="base64_ES.html">Base64</a>, <a href="ecb_ES.html">ECB</a>, <a href="cbc_ES.html">CBC</a>.
+<p><img style="border-width: 0px;" src="resources/botondef3.png" width="30" height="29" /><u> Key space.</u> <br>
+Finally, we have to enter the initial and final key that we will use to perform the key search between both values.<br>
+<p> <img style="border-width: 0px;" src="resources/Imagen22.png" width="669" height="115" />
+ </p>
+<p>Here we have several format options in which to enter those keys. In the box at the right we can select the size of the key, that will be of 128, 192 or 256 bits. It need to be noted that with bigger keys the key test process will take longer. As for the box at the left, ir allows us to choose if we will enter the key in <b>ASCII</b> or <b>Hexadecimal</b><br>
+If we select ASCII, we have to enter 16, 24 or 32 standard characters (for a key size of 128, 192 or 256 bits respectively).
+If we select hexadecimal, we have to enter 32, 48 or 64 hexadecimal digits (for a key size of 128, 192 or 256 bits respectively).</p>
+
+<p>From the menu "File" we can exit this window, and from the menu "Edit" we can copy and paste all the fields that we need to.</p>
+
+<p>Pby pressing the button "Run" we will launch the execution of the server or client, depending on our selection. I fthe data have been entered correctlym a window will appear in which the state of the connection and the whole process can be followed. For a more detailed description of the different messages and their meaning, click <a href ="mensajes_comunicacion_EN.html">here</a></p>
+
+<p>The application will check that all the field are filled in correctly, warning the user in case that he has to fill in any of them or because any entered data is not correct. </p>
+
+<p> by pressing the button "Cancel" we will come back to the main application window.</p>
+
+<p>Related information: <br>
+<a href="principal_EN.html">Encryption</a>,<a href="secundaria_EN.html">Decryption</a>, <a href="AddRoundKey_EN.html"> AddRoundKey</a>, <a href="MixColumns_EN.html">MixColumns</a>, <a href="ShiftRows_EN.html">ShiftRows</a>, <a href="SubBytes_EN.html">SubBytes</a>, <a href="mensajes_comunicacion_EN.html">Description of the messages of the client/server commication process</a>, <a href="base64_EN.html">Base64</a>, <a href="ecb_EN.html">ECB</a>, <a href="cbc_EN.html">CBC</a>, <a href="Relleno_EN.html">Padding</a>.
 
 
 
