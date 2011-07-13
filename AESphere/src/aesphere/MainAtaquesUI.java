@@ -10,6 +10,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.awt.Dimension;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import java.net.URL;
 
 /**
  *
@@ -190,7 +194,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(cipherBrowseButton))
                     .add(cipherLabel)
                     .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 286, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         entradaPanelLayout.setVerticalGroup(
             entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -297,7 +301,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                                 .add(18, 18, 18)
                                 .add(monoCheckBox, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .add(modoComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 77, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         funcionamientoPanelLayout.setVerticalGroup(
             funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -328,6 +332,11 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
         BotonInfo.setContentAreaFilled(false);
+        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInfoActionPerformed(evt);
+            }
+        });
 
         Cancelar.setLabel("Cancelar");
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -402,16 +411,12 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(clavesPanelLayout.createSequentialGroup()
                         .add(formatoClavesLabel)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 215, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(claveSizeComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                    .add(clavesPanelLayout.createSequentialGroup()
-                        .add(nKeysLabel)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(nKeysTxtLabel)))
+                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         clavesPanelLayout.setVerticalGroup(
@@ -600,6 +605,35 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         nKeysLabel.setText("");
         nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));
         monoCheckBox.setText(Entorno.getTrans("Att.mono"));
+    }
+    
+        private void setHelp () {
+
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = getSize();
+
+        try {
+            File fichero = null;
+
+            if (Entorno.getProperty("language").equals("ES"))
+                fichero = new File("help/help_set_ES.hs");
+            else if (Entorno.getProperty("language").equals("EN"))
+                fichero = new File("help/help_set_EN.hs");
+            URL hsURL = fichero.toURI().toURL();
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            hb.setLocation(new java.awt.Point((pantalla.width - ventana.width) / 2,
+                                (pantalla.height - ventana.height) / 2));
+            hb.setSize(new java.awt.Dimension(800, 628));
+            hb.enableHelpOnButton(Contenidos, "ventana_ataques", helpset);
+            hb.enableHelpOnButton(BotonInfo, "ventana_ataques", helpset);
+            hb.enableHelpOnButton(acercade, "aplicacion", helpset);
+        }
+
+        catch (Exception e) {
+             JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.helpErrMsg"), 
+                     Entorno.getTrans("gen.helpErrTitle"), JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     private boolean ComprobarDatos () {
@@ -1318,6 +1352,10 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             NumeroClientesTextField.setEnabled(false);
         else NumeroClientesTextField.setEnabled(true);
     }//GEN-LAST:event_monoCheckBoxActionPerformed
+
+    private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonInfoActionPerformed
 
     private long getKeysToTry (byte [] iniClave, byte [] finClave) {
          int len = iniClave.length;
