@@ -1,0 +1,24 @@
+<meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
+<html>
+
+	<head>
+		<title>Block encryption: CBC</title>
+	</head>
+	<body>		
+		<h1>CBC</h1>
+		
+		<p>CBC (Cipher-block chaining) is one the multiple solutions to the weakness of the ECB algorithm that appeared. This weakness is that ECB does not hide the data patterns. The purpose of the CBC algorith is to add a certain pseudo-randomness to the process of managing the blocks by using an initilization vector.<br>
+		
+		The functioning of the CBC encryption method consists in performing a XOR operation between the plaintext and the ciphertext of the previous block, and then encrypting the resulting block with a block cipher and the key. Then, the resulting ciphertext is used for the XOR operation of the following block. By doing so, the data patterns that could exist on the original data, and that are susceptible to statistical analysis, are deleted in the resulting data. For the first block, the XOR operation is performed with the initialization vector commented previously, which adds randomness to the algorithm depending on the quality of the random generator used.<br><br></p>
+		
+		<img style="border-width: 0px;" src="resources/Cbc_encryption.png"/>
+		
+		<p>When decrypting, the inverse process is performed. In this case, the ciphertext is first decrypted with a block cipher and the key and then an XOR operation is performed with the resulting block and the ciphertext of the previous block, obtaining the plaintext. For the first block, the XOR operation is performed with the initialization vector because there is no previous block.<br><br></p>
+				
+		<img style="border-width: 0px;" src="resources/Cbc_decryption.png"/>
+		
+		<p>In both cases, to encrypt and decrypt, the resulting blocks are concatenated in order, which does no compromise the reliability of the algorithm because of the performed operations.</p>
+		
+	</body>
+</html>
+

@@ -62,7 +62,7 @@ public class Presentation extends javax.swing.JFrame {
         new Entorno();
 
         try {
-            Thread.sleep(2200);
+            Thread.sleep(1100);
         } catch(Exception exc) {}
         
         if (!Entorno.getBadInit()) {

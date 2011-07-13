@@ -1,0 +1,21 @@
+<meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
+<html>
+<head>
+	<title>ShiftRows</title>
+</head>
+<body>
+	<h1>ShiftRows</h1>
+	<p>During this process, the bytes of each row of the matrix with which the AES algorith operates (state) are rotated in a clycic way. It is a simple but necessary operation in which the bytes of the rows are rotated as follows: <br>
+	The first row is not rotated, it remains unaltered. <br>
+	Each byte of the second row is rotated one position to the left.<br>
+	In the third row, the bytes are rotated two positions to the left. <br>
+	And finally, each byte of the fourth and last row is rotated three positions to the left.</p>
+	
+	Thanks to this transformation, the resulting matrix contains the same bytes as the original matrix, which will be necessary for other parts of the whole AES process. <br>
+	
+	This process can be clearly seen on the following image: <br><br>
+	
+	<img style="border-width: 0px;" src="resources/shiftrows.png" width="350" height="130" />
+	
+</body>
+</html>
