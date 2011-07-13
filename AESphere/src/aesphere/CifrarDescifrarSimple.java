@@ -110,11 +110,6 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
             }
         });
 
-        CiphertextD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CiphertextDActionPerformed(evt);
-            }
-        });
         CiphertextD.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 CiphertextDKeyReleased(evt);
@@ -189,6 +184,7 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
         BotonInfo.setContentAreaFilled(false);
+        BotonInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonInfoActionPerformed(evt);
@@ -293,9 +289,9 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, cifrarButton)
-                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(plainText)
@@ -303,9 +299,9 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
                             .add(cipherText))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Plaintext, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Key, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Ciphertext, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Plaintext, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Key, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Ciphertext, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(cipherDText)
@@ -313,9 +309,9 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
                             .add(plainDText))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(KeyD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
-                            .add(CiphertextD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
-                            .add(PlaintextD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)))
+                            .add(KeyD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                            .add(CiphertextD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                            .add(PlaintextD, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(163, 163, 163)
@@ -536,10 +532,6 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
 
 
 
-    private void CiphertextDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CiphertextDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CiphertextDActionPerformed
-
     private void KeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_KeyActionPerformed
@@ -611,7 +603,7 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
 
     private void CopiarCiphertextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarCiphertextActionPerformed
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        StringSelection ss = new StringSelection(CiphertextD.getText());
+        StringSelection ss = new StringSelection(Ciphertext.getText());
         cb.setContents(ss, ss);
 }//GEN-LAST:event_CopiarCiphertextActionPerformed
 
@@ -623,8 +615,8 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         try{
             DataFlavor dataFlavorStringJava = new DataFlavor("application/x-java-serialized-object; class=java.lang.String");
             if (t.isDataFlavorSupported(dataFlavorStringJava)) {
-                String texto = (String) t.getTransferData(dataFlavorStringJava);
-                Key.setText(texto);}
+                String texto = (String) t.getTransferData(dataFlavorStringJava);                
+                CiphertextD.setText(texto);}
         } catch (Exception e){
             JOptionPane.showMessageDialog(this, Entorno.getTrans("gen.pasteErr"),
                     Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
@@ -684,6 +676,10 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         if (Plaintext.getText().length() > 32) {
             Plaintext.setText(Plaintext.getText().substring(0, 32));
         }
+        
+        while (!ComprobarHexadecimal(Plaintext.getText())) {
+            Plaintext.setText(Plaintext.getText().substring(0,Plaintext.getText().length() - 1));
+        }
     }//GEN-LAST:event_PlaintextKeyTyped
 
     private void PlaintextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PlaintextKeyReleased
@@ -694,6 +690,10 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
         if (Key.getText().length() > 64) {
             Key.setText(Key.getText().substring(0, 64));
         }
+        
+        while (!ComprobarHexadecimal(Key.getText())) {
+            Key.setText(Key.getText().substring(0,Key.getText().length() - 1));
+        }
     }//GEN-LAST:event_KeyKeyTyped
 
     private void KeyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeyKeyReleased
@@ -701,8 +701,12 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
     }//GEN-LAST:event_KeyKeyReleased
 
     private void CiphertextDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CiphertextDKeyTyped
-        if (Ciphertext.getText().length() > 32) {
-            Ciphertext.setText(Ciphertext.getText().substring(0, 32));
+        if (CiphertextD.getText().length() > 32) {
+            CiphertextD.setText(CiphertextD.getText().substring(0, 32));
+        } 
+        
+        while (!ComprobarHexadecimal(CiphertextD.getText())) {
+            CiphertextD.setText(CiphertextD.getText().substring(0,CiphertextD.getText().length() - 1));
         }
     }//GEN-LAST:event_CiphertextDKeyTyped
 
@@ -711,8 +715,11 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
     }//GEN-LAST:event_CiphertextDKeyReleased
 
     private void KeyDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeyDKeyTyped
-        if (Key.getText().length() > 64) {
-            Key.setText(Key.getText().substring(0, 64));
+         if (KeyD.getText().length() > 64) {
+            KeyD.setText(KeyD.getText().substring(0, 64));
+        }
+        while (!ComprobarHexadecimal(KeyD.getText())) {
+            KeyD.setText(KeyD.getText().substring(0,KeyD.getText().length() - 1));
         }
     }//GEN-LAST:event_KeyDKeyTyped
 

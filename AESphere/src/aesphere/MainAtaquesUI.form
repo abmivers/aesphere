@@ -109,8 +109,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -130,22 +130,24 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="clavesPanel" alignment="0" max="32767" attributes="1"/>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="Cancelar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="EjecutarButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="Cancelar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="EjecutarButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="funcionamientoPanel" alignment="0" max="32767" attributes="1"/>
+                              <Component id="entradaPanel" alignment="0" max="32767" attributes="1"/>
+                              <Component id="clavesPanel" alignment="0" min="-2" max="-2" attributes="1"/>
                           </Group>
-                          <Component id="funcionamientoPanel" alignment="0" max="32767" attributes="1"/>
-                          <Component id="entradaPanel" alignment="0" max="32767" attributes="1"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="125" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -208,7 +210,7 @@
                           <Component id="cipherLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="286" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="116" max="32767" attributes="0"/>
+                      <EmptySpace pref="33" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -400,7 +402,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="109" max="32767" attributes="0"/>
+                      <EmptySpace pref="112" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -526,9 +528,6 @@
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonInfoActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Cancelar">
           <Properties>
@@ -552,25 +551,30 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="claveInicialLabel" min="-2" pref="88" max="-2" attributes="0"/>
+                          <Component id="claveInicialLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="claveFinalLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="nKeysLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="nKeysTxtLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="ClaveFinalTextField" alignment="0" pref="509" max="32767" attributes="1"/>
                           <Group type="102" attributes="1">
                               <Component id="formatoClavesLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="224" max="32767" attributes="0"/>
                               <Component id="clavesComboBox" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="claveSizeComboBox" min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="ClaveFinalTextField" alignment="0" pref="0" max="32767" attributes="1"/>
-                          <Component id="ClaveInicialTextField" alignment="0" pref="0" max="32767" attributes="1"/>
+                          <Component id="ClaveInicialTextField" alignment="0" pref="509" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -580,38 +584,46 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="formatoClavesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="claveSizeComboBox" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="clavesComboBox" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="claveInicialLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ClaveInicialTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="claveFinalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ClaveFinalTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="nKeysLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="nKeysTxtLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="97" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
+            <Component class="javax.swing.JTextField" name="ClaveInicialTextField">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ClaveInicialTextFieldKeyReleased"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ClaveInicialTextFieldKeyTyped"/>
+              </Events>
+            </Component>
             <Component class="javax.swing.JTextField" name="ClaveFinalTextField">
               <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClaveFinalTextFieldActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ClaveFinalTextFieldKeyReleased"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ClaveFinalTextFieldKeyTyped"/>
               </Events>
@@ -626,17 +638,16 @@
                 <Property name="text" type="java.lang.String" value="Clave final:  "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="ClaveInicialTextField">
-              <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ClaveInicialTextFieldKeyReleased"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ClaveInicialTextFieldKeyTyped"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/botondef3.png"/>
                 </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="formatoClavesLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Formato de claves:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="clavesComboBox">
@@ -651,11 +662,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clavesComboBoxActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="formatoClavesLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Formato de claves:"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="claveSizeComboBox">
               <Properties>

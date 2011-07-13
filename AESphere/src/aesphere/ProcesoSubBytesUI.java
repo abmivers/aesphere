@@ -94,6 +94,7 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         mainMenuArchivoCifrado = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
         mainMenuEditarCifrado = new javax.swing.JMenu();
+        cleanFieldsMenu = new javax.swing.JMenuItem();
         CopiarInput = new javax.swing.JMenuItem();
         CopiarOutput = new javax.swing.JMenuItem();
         pegarInput = new javax.swing.JMenuItem();
@@ -331,7 +332,7 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
                     .add(a42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(a43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(a44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         outputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("OUTPUT"));
@@ -473,6 +474,7 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
         BotonInfo.setContentAreaFilled(false);
+        BotonInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         RandomButton.setText("Random");
         RandomButton.addActionListener(new java.awt.event.ActionListener() {
@@ -494,6 +496,14 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         cifradoMenuBarMain.add(mainMenuArchivoCifrado);
 
         mainMenuEditarCifrado.setText("Editar");
+
+        cleanFieldsMenu.setText("Limpiar campos");
+        cleanFieldsMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanFieldsMenuActionPerformed(evt);
+            }
+        });
+        mainMenuEditarCifrado.add(cleanFieldsMenu);
 
         CopiarInput.setText("Copiar Input");
         CopiarInput.addActionListener(new java.awt.event.ActionListener() {
@@ -571,7 +581,7 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
                     .add(titleLabel))
                 .add(32, 32, 32)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(outputPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(outputPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                     .add(inputPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -601,6 +611,7 @@ public class ProcesoSubBytesUI extends javax.swing.JFrame {
         mainMenuAyudaCifrado.setText(Entorno.getTrans("gen.help"));
         Contenidos.setText(Entorno.getTrans("gen.cont"));
         acercade.setText(Entorno.getTrans("gen.about"));
+        cleanFieldsMenu.setText(Entorno.getTrans("Op.cleanFields"));
     }
     
     private void setHelp () {
@@ -934,6 +945,10 @@ private void a11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a11KeyT
     if (a11.getText().length() > 2) {
             a11.setText(a11.getText().substring(0, 2));
         }
+    
+    while (!ComprobarHexadecimal(a11.getText())) {
+            a11.setText(a11.getText().substring(0, a11.getText().length() - 1));
+        }
 }//GEN-LAST:event_a11KeyTyped
 
 private void a11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a11KeyReleased
@@ -943,7 +958,11 @@ private void a11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a11K
 private void a12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a12KeyTyped
     if (a12.getText().length() > 2) {
             a12.setText(a12.getText().substring(0, 2));
-        }    
+        }
+    
+    while (!ComprobarHexadecimal(a12.getText())) {
+            a12.setText(a12.getText().substring(0, a12.getText().length() - 1));
+        }
 }//GEN-LAST:event_a12KeyTyped
 
 private void a12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a12KeyReleased
@@ -953,7 +972,11 @@ private void a12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a12K
 private void a13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a13KeyTyped
     if (a13.getText().length() > 2) {
             a13.setText(a13.getText().substring(0, 2));
-        } 
+        }
+    
+    while (!ComprobarHexadecimal(a13.getText())) {
+            a13.setText(a13.getText().substring(0, a13.getText().length() - 1));
+        }
 }//GEN-LAST:event_a13KeyTyped
 
 private void a13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a13KeyReleased
@@ -963,6 +986,10 @@ private void a13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a13K
 private void a14KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a14KeyTyped
     if (a14.getText().length() > 2) {
             a14.setText(a14.getText().substring(0, 2));
+        }
+    
+    while (!ComprobarHexadecimal(a14.getText())) {
+            a14.setText(a14.getText().substring(0, a14.getText().length() - 1));
         }
 }//GEN-LAST:event_a14KeyTyped
 
@@ -974,6 +1001,10 @@ private void a21KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a21KeyT
     if (a21.getText().length() > 2) {
             a21.setText(a21.getText().substring(0, 2));
         }
+    
+    while (!ComprobarHexadecimal(a21.getText())) {
+            a21.setText(a21.getText().substring(0, a21.getText().length() - 1));
+        }
 }//GEN-LAST:event_a21KeyTyped
 
 private void a21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a21KeyReleased
@@ -983,6 +1014,10 @@ private void a21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a21K
 private void a22KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a22KeyTyped
     if (a22.getText().length() > 2) {
             a22.setText(a22.getText().substring(0, 2));
+        }
+    
+    while (!ComprobarHexadecimal(a22.getText())) {
+            a22.setText(a22.getText().substring(0, a22.getText().length() - 1));
         }
 }//GEN-LAST:event_a22KeyTyped
 
@@ -994,6 +1029,10 @@ private void a23KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a23KeyT
     if (a23.getText().length() > 2) {
             a23.setText(a23.getText().substring(0, 2));
         }
+    
+    while (!ComprobarHexadecimal(a23.getText())) {
+            a23.setText(a23.getText().substring(0, a23.getText().length() - 1));
+        }
 }//GEN-LAST:event_a23KeyTyped
 
 private void a23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a23KeyReleased
@@ -1003,6 +1042,10 @@ private void a23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a23K
 private void a24KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a24KeyTyped
     if (a24.getText().length() > 2) {
             a24.setText(a24.getText().substring(0, 2));
+        }
+    
+    while (!ComprobarHexadecimal(a24.getText())) {
+            a24.setText(a24.getText().substring(0, a24.getText().length() - 1));
         }
 }//GEN-LAST:event_a24KeyTyped
 
@@ -1014,6 +1057,10 @@ private void a31KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a31KeyT
     if (a31.getText().length() > 2) {
             a31.setText(a31.getText().substring(0, 2));
         }
+    
+    while (!ComprobarHexadecimal(a31.getText())) {
+            a31.setText(a31.getText().substring(0, a31.getText().length() - 1));
+        }
 }//GEN-LAST:event_a31KeyTyped
 
 private void a31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a31KeyReleased
@@ -1023,6 +1070,10 @@ private void a31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a31K
 private void a32KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a32KeyTyped
     if (a32.getText().length() > 2) {
             a32.setText(a32.getText().substring(0, 2));
+        }
+    
+    while (!ComprobarHexadecimal(a32.getText())) {
+            a32.setText(a32.getText().substring(0, a32.getText().length() - 1));
         }
 }//GEN-LAST:event_a32KeyTyped
 
@@ -1034,6 +1085,10 @@ private void a33KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a33KeyT
     if (a33.getText().length() > 2) {
             a33.setText(a33.getText().substring(0, 2));
         }
+    
+    while (!ComprobarHexadecimal(a33.getText())) {
+            a33.setText(a33.getText().substring(0, a33.getText().length() - 1));
+        }
 }//GEN-LAST:event_a33KeyTyped
 
 private void a33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a33KeyReleased
@@ -1043,6 +1098,10 @@ private void a33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a33K
 private void a34KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a34KeyTyped
     if (a34.getText().length() > 2) {
             a34.setText(a34.getText().substring(0, 2));
+        }
+    
+    while (!ComprobarHexadecimal(a34.getText())) {
+            a34.setText(a34.getText().substring(0, a34.getText().length() - 1));
         }
 }//GEN-LAST:event_a34KeyTyped
 
@@ -1054,6 +1113,10 @@ private void a41KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a41KeyT
     if (a41.getText().length() > 2) {
             a41.setText(a41.getText().substring(0, 2));
         }
+    
+    while (!ComprobarHexadecimal(a41.getText())) {
+            a41.setText(a41.getText().substring(0, a41.getText().length() - 1));
+        }
 }//GEN-LAST:event_a41KeyTyped
 
 private void a41KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a41KeyReleased
@@ -1063,6 +1126,10 @@ private void a41KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a41K
 private void a42KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a42KeyTyped
     if (a42.getText().length() > 2) {
             a42.setText(a42.getText().substring(0, 2));
+        }
+    
+    while (!ComprobarHexadecimal(a42.getText())) {
+            a42.setText(a42.getText().substring(0, a42.getText().length() - 1));
         }
 }//GEN-LAST:event_a42KeyTyped
 
@@ -1074,6 +1141,10 @@ private void a43KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a43KeyT
     if (a43.getText().length() > 2) {
             a43.setText(a43.getText().substring(0, 2));
         }
+    
+    while (!ComprobarHexadecimal(a43.getText())) {
+            a43.setText(a43.getText().substring(0, a43.getText().length() - 1));
+        }
 }//GEN-LAST:event_a43KeyTyped
 
 private void a43KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a43KeyReleased
@@ -1084,11 +1155,50 @@ private void a44KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a44KeyT
     if (a44.getText().length() > 2) {
             a44.setText(a44.getText().substring(0, 2));
         }
+    
+    while (!ComprobarHexadecimal(a44.getText())) {
+            a44.setText(a44.getText().substring(0, a44.getText().length() - 1));
+        }
 }//GEN-LAST:event_a44KeyTyped
 
 private void a44KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a44KeyReleased
     a44KeyTyped(evt);
 }//GEN-LAST:event_a44KeyReleased
+
+private void cleanFieldsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFieldsMenuActionPerformed
+    a11.setText("");
+    a12.setText("");
+    a13.setText("");
+    a14.setText("");
+    a21.setText("");
+    a22.setText("");
+    a23.setText("");
+    a24.setText("");
+    a31.setText("");
+    a32.setText("");
+    a33.setText("");
+    a34.setText("");
+    a41.setText("");
+    a42.setText("");
+    a43.setText("");
+    a44.setText("");
+    b11.setText("");
+    b12.setText("");
+    b13.setText("");
+    b14.setText("");
+    b21.setText("");
+    b22.setText("");
+    b23.setText("");
+    b24.setText("");
+    b31.setText("");
+    b32.setText("");
+    b33.setText("");
+    b34.setText("");
+    b41.setText("");
+    b42.setText("");
+    b43.setText("");
+    b44.setText("");    
+}//GEN-LAST:event_cleanFieldsMenuActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1138,6 +1248,7 @@ private void a44KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a44K
     private javax.swing.JTextField b43;
     private javax.swing.JTextField b44;
     private javax.swing.JMenuBar cifradoMenuBarMain;
+    private javax.swing.JMenuItem cleanFieldsMenu;
     private javax.swing.JPanel inputPanel;
     private javax.swing.JMenu mainMenuArchivoCifrado;
     private javax.swing.JMenu mainMenuAyudaCifrado;

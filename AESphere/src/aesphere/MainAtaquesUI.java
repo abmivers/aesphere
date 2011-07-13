@@ -1,6 +1,7 @@
 
 package aesphere;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -10,10 +11,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
-import java.awt.Dimension;
+import java.net.URL;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
-import java.net.URL;
 
 /**
  *
@@ -28,12 +28,13 @@ public class MainAtaquesUI extends javax.swing.JFrame {
     public MainAtaquesUI(MainUI padre) {
         initComponents();
         setLangLabels();
+        setHelp();
         wpadre = padre;
         ButtonGroup group = new ButtonGroup();
         archivos = new JFileChooser();
         group.add(ClienteRadioButton);
         group.add(ServidorRadioButton);
-        this.setSize(830, 710);
+        this.setSize(810, 710);
         this.setResizable(false);
     }
 
@@ -75,13 +76,13 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         BotonInfo = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
         clavesPanel = new javax.swing.JPanel();
+        ClaveInicialTextField = new javax.swing.JTextField();
         ClaveFinalTextField = new javax.swing.JTextField();
         claveInicialLabel = new javax.swing.JLabel();
         claveFinalLabel = new javax.swing.JLabel();
-        ClaveInicialTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        clavesComboBox = new javax.swing.JComboBox();
         formatoClavesLabel = new javax.swing.JLabel();
+        clavesComboBox = new javax.swing.JComboBox();
         claveSizeComboBox = new javax.swing.JComboBox();
         nKeysTxtLabel = new javax.swing.JLabel();
         nKeysLabel = new javax.swing.JLabel();
@@ -194,7 +195,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         .add(cipherBrowseButton))
                     .add(cipherLabel)
                     .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 286, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         entradaPanelLayout.setVerticalGroup(
             entradaPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -301,7 +302,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                                 .add(18, 18, 18)
                                 .add(monoCheckBox, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .add(modoComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 77, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         funcionamientoPanelLayout.setVerticalGroup(
             funcionamientoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -332,11 +333,6 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         BotonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfo.setBorder(null);
         BotonInfo.setContentAreaFilled(false);
-        BotonInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonInfoActionPerformed(evt);
-            }
-        });
 
         Cancelar.setLabel("Cancelar");
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -347,6 +343,20 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         clavesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESPACIO DE CLAVES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
+        ClaveInicialTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ClaveInicialTextFieldKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ClaveInicialTextFieldKeyTyped(evt);
+            }
+        });
+
+        ClaveFinalTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClaveFinalTextFieldActionPerformed(evt);
+            }
+        });
         ClaveFinalTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ClaveFinalTextFieldKeyReleased(evt);
@@ -360,16 +370,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
         claveFinalLabel.setText("Clave final:  ");
 
-        ClaveInicialTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                ClaveInicialTextFieldKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                ClaveInicialTextFieldKeyTyped(evt);
-            }
-        });
-
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botondef3.png"))); // NOI18N
+
+        formatoClavesLabel.setText("Formato de claves:");
 
         clavesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hexadecimal", "ASCII" }));
         clavesComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -377,8 +380,6 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 clavesComboBoxActionPerformed(evt);
             }
         });
-
-        formatoClavesLabel.setText("Formato de claves:");
 
         claveSizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "128 bits", "192 bits", "256 bits" }));
         claveSizeComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -405,43 +406,48 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 .add(jLabel9)
                 .add(18, 18, 18)
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(claveInicialLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 88, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(claveInicialLabel)
                     .add(claveFinalLabel))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(18, 18, 18)
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(clavesPanelLayout.createSequentialGroup()
+                        .add(nKeysLabel)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(nKeysTxtLabel))
+                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                    .add(clavesPanelLayout.createSequentialGroup()
                         .add(formatoClavesLabel)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 224, Short.MAX_VALUE)
                         .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(claveSizeComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))
                 .addContainerGap())
         );
         clavesPanelLayout.setVerticalGroup(
             clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(clavesPanelLayout.createSequentialGroup()
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel9)
                     .add(clavesPanelLayout.createSequentialGroup()
+                        .add(4, 4, 4)
                         .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(formatoClavesLabel)
                             .add(claveSizeComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(clavesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(18, 18, 18)
                         .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(claveInicialLabel)
                             .add(ClaveInicialTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(12, 12, 12)
+                        .add(18, 18, 18)
                         .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(claveFinalLabel)
-                            .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(jLabel9))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                            .add(ClaveFinalTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .add(18, 18, 18)
                 .add(clavesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(nKeysLabel)
                     .add(nKeysTxtLabel))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
@@ -449,19 +455,20 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, clavesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(jPanel1Layout.createSequentialGroup()
-                            .add(Cancelar)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                            .add(EjecutarButton)
-                            .add(18, 18, 18)
-                            .add(BotonInfo))
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, funcionamientoPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, entradaPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(Cancelar)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(EjecutarButton)
+                        .add(18, 18, 18)
+                        .add(BotonInfo))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, funcionamientoPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, entradaPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, clavesPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -551,8 +558,8 @@ public class MainAtaquesUI extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -607,7 +614,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         monoCheckBox.setText(Entorno.getTrans("Att.mono"));
     }
     
-        private void setHelp () {
+    private void setHelp () {
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = getSize();
@@ -949,6 +956,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                     final byte [] cipherBytes = getCipher();
                     if (monoCheckBox.isSelected()) {
                         Thread monoThread = new Thread(new Runnable() {
+                            @Override
                             public void run() {
                                 new MonoUI(wpadre, plainBytes, cipherBytes, 
                                         claveini, numClaves,
@@ -959,6 +967,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         monoThread.start();                        
                     } else {
                         Thread servThread = new Thread(new Runnable() {
+                            @Override
                             public void run() {
                                 new ServUI(wpadre, plainBytes, cipherBytes, numClientes, 
                                         claveini, numClaves,
@@ -1098,12 +1107,17 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
     private void plainTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_plainTextAreaKeyTyped
         switch (plainComboBox.getSelectedIndex()) {
-             case 0:
+             case 0: //ASCII
                  if (plainTextArea.getText().length() > 1024)
                      plainTextArea.setText(plainTextArea.getText().substring(0, 1024));
-             case 1:
+             break;
+             case 1: //hexa
                  if (plainTextArea.getText().length() > 2048)
                      plainTextArea.setText(plainTextArea.getText().substring(0, 2048));
+                 while (!ComprobarHexadecimal(plainTextArea.getText())) {
+                     plainTextArea.setText(plainTextArea.getText().substring(0, plainTextArea.getText().length() - 1));
+                 }
+             break;
          }
     }//GEN-LAST:event_plainTextAreaKeyTyped
 
@@ -1113,12 +1127,17 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
     private void cipherTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cipherTextAreaKeyTyped
         switch (cipherComboBox.getSelectedIndex()) {
-             case 0:
+             case 0: //base64
                  if (cipherTextArea.getText().length() > 1388)
                      cipherTextArea.setText(cipherTextArea.getText().substring(0, 1388));
-             case 1:
+             break;
+             case 1: //hexa
                  if (cipherTextArea.getText().length() > 2080)
                      cipherTextArea.setText(cipherTextArea.getText().substring(0, 2080));
+                 while (!ComprobarHexadecimal(cipherTextArea.getText())) {
+                     cipherTextArea.setText(cipherTextArea.getText().substring(0, cipherTextArea.getText().length() - 1));
+                 }
+             break;
          }
     }//GEN-LAST:event_cipherTextAreaKeyTyped
 
@@ -1141,6 +1160,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         else {
                             nKeysLabel.setText("");
                             nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                        while (!ComprobarHexadecimal(ClaveInicialTextField.getText())) {
+                            ClaveInicialTextField.setText(ClaveInicialTextField.getText().substring(0, ClaveInicialTextField.getText().length() - 1));
                         }
                     break;
                     case 1: //ASCII
@@ -1172,6 +1194,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             nKeysLabel.setText("");
                             nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
                         }
+                        while (!ComprobarHexadecimal(ClaveInicialTextField.getText())) {
+                            ClaveInicialTextField.setText(ClaveInicialTextField.getText().substring(0, ClaveInicialTextField.getText().length() - 1));
+                        }
                     break;
                     case 1: //ASCII
                         if (ClaveInicialTextField.getText().length() > 24)
@@ -1201,6 +1226,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         else {
                             nKeysLabel.setText("");
                             nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                        while (!ComprobarHexadecimal(ClaveInicialTextField.getText())) {
+                            ClaveInicialTextField.setText(ClaveInicialTextField.getText().substring(0, ClaveInicialTextField.getText().length() - 1));
                         }
                     break;
                     case 1: //ASCII
@@ -1241,6 +1269,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             nKeysLabel.setText("");
                             nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
                         }
+                        while (!ComprobarHexadecimal(ClaveFinalTextField.getText())) {
+                            ClaveFinalTextField.setText(ClaveFinalTextField.getText().substring(0, ClaveFinalTextField.getText().length() - 1));
+                        }
                     break;
                     case 1: //ASCII
                         if (ClaveFinalTextField.getText().length() > 16)
@@ -1271,6 +1302,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                             nKeysLabel.setText("");
                             nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
                         }
+                        while (!ComprobarHexadecimal(ClaveFinalTextField.getText())) {
+                            ClaveFinalTextField.setText(ClaveFinalTextField.getText().substring(0, ClaveFinalTextField.getText().length() - 1));
+                        }
                     break;
                     case 1: //ASCII
                         if (ClaveFinalTextField.getText().length() > 24)
@@ -1300,6 +1334,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         else {
                             nKeysLabel.setText("");
                             nKeysTxtLabel.setText(Entorno.getTrans("Att.noKeys"));                            
+                        }
+                        while (!ComprobarHexadecimal(ClaveFinalTextField.getText())) {
+                            ClaveFinalTextField.setText(ClaveFinalTextField.getText().substring(0, ClaveFinalTextField.getText().length() - 1));
                         }
                     break;
                     case 1: //ASCII
@@ -1353,9 +1390,9 @@ public class MainAtaquesUI extends javax.swing.JFrame {
         else NumeroClientesTextField.setEnabled(true);
     }//GEN-LAST:event_monoCheckBoxActionPerformed
 
-    private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
+    private void ClaveFinalTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClaveFinalTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BotonInfoActionPerformed
+    }//GEN-LAST:event_ClaveFinalTextFieldActionPerformed
 
     private long getKeysToTry (byte [] iniClave, byte [] finClave) {
          int len = iniClave.length;

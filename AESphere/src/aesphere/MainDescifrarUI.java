@@ -490,6 +490,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         BotonInfoDescifrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/info.png"))); // NOI18N
         BotonInfoDescifrar.setBorder(null);
         BotonInfoDescifrar.setContentAreaFilled(false);
+        BotonInfoDescifrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonInfoDescifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonInfoDescifrarActionPerformed(evt);
@@ -635,14 +636,14 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
                 .addComponent(cifrarPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
                 .addComponent(cifrarPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
@@ -1261,7 +1262,10 @@ public class MainDescifrarUI extends javax.swing.JFrame {
                 else if (RadioButton192.isSelected() && (TextoKey.getText().length() > 48) )                   
                         TextoKey.setText(TextoKey.getText().substring(0, 48));
                 else if (RadioButton256.isSelected() && (TextoKey.getText().length() > 64) )                   
-                        TextoKey.setText(TextoKey.getText().substring(0, 64));                
+                        TextoKey.setText(TextoKey.getText().substring(0, 64)); 
+                while (!ComprobarHexadecimal(TextoKey.getText())) {
+                     TextoKey.setText(TextoKey.getText().substring(0, TextoKey.getText().length() - 1));
+                }
             break;
         }
     }//GEN-LAST:event_TextoKeyKeyTyped
@@ -1278,6 +1282,9 @@ public class MainDescifrarUI extends javax.swing.JFrame {
              case 1: //Hexa
                  if (TextoInput.getText().length() > 2080)
                      TextoInput.setText(TextoInput.getText().substring(0, 2080));
+                 while (!ComprobarHexadecimal(TextoInput.getText())) {
+                     TextoInput.setText(TextoInput.getText().substring(0, TextoInput.getText().length() - 1));
+                 }
          }
     }//GEN-LAST:event_TextoInputKeyTyped
 

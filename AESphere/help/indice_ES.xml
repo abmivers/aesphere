@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='ISO-8859-1'  ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE index
   PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Index Version 1.0//EN"
          "http://java.sun.com/products/javahelp/index_1_0.dtd">
@@ -23,11 +23,6 @@
         <indexitem text="Resultado Descifrado"    target="resultado_descifrado"/>
         <indexitem text="Comprobar Vectores"    target="ventana_vectores"/>
         <indexitem text="Relleno"    target="relleno"/>
-        
-        
-        
-        
-                
-
+        <indexitem text="Ventana Ataques"    target="ventana_ataques"/>
 
 </index>
