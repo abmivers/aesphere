@@ -1279,12 +1279,14 @@ public class MainDescifrarUI extends javax.swing.JFrame {
              case 0: //ASCII
                  if (TextoInput.getText().length() > 1388)
                      TextoInput.setText(TextoInput.getText().substring(0, 1388));
+                 break;
              case 1: //Hexa
                  if (TextoInput.getText().length() > 2080)
                      TextoInput.setText(TextoInput.getText().substring(0, 2080));
                  while (!ComprobarHexadecimal(TextoInput.getText())) {
                      TextoInput.setText(TextoInput.getText().substring(0, TextoInput.getText().length() - 1));
                  }
+                 break;
          }
     }//GEN-LAST:event_TextoInputKeyTyped
 

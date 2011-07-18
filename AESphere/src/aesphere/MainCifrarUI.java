@@ -1227,12 +1227,14 @@ public class MainCifrarUI extends javax.swing.JFrame {
              case 0: //ASCII
                  if (TextoInput.getText().length() > 1024)
                      TextoInput.setText(TextoInput.getText().substring(0, 1024));
+                 break;
              case 1: //Hexa
                  if (TextoInput.getText().length() > 2048)
                      TextoInput.setText(TextoInput.getText().substring(0, 2048));
                  while (!ComprobarHexadecimal(TextoInput.getText())) {
                      TextoInput.setText(TextoInput.getText().substring(0, TextoInput.getText().length() - 1));
                  }
+                 break;
          }
     }//GEN-LAST:event_TextoInputKeyTyped
 
