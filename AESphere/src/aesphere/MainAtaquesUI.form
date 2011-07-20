@@ -107,11 +107,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -130,8 +126,10 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="funcionamientoPanel" alignment="0" max="32767" attributes="1"/>
+                      <Component id="entradaPanel" alignment="0" max="32767" attributes="1"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="Cancelar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -139,15 +137,9 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="funcionamientoPanel" alignment="0" max="32767" attributes="1"/>
-                              <Component id="entradaPanel" alignment="0" max="32767" attributes="1"/>
-                              <Component id="clavesPanel" alignment="0" min="-2" max="-2" attributes="1"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="clavesPanel" alignment="0" max="32767" attributes="1"/>
                   </Group>
+                  <EmptySpace pref="21" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -158,8 +150,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="entradaPanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="clavesPanel" max="32767" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="clavesPanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -167,7 +159,7 @@
                           <Component id="Cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="104" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -210,7 +202,7 @@
                           <Component id="cipherLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="286" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <EmptySpace pref="72" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -402,7 +394,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="112" max="32767" attributes="0"/>
+                      <EmptySpace pref="151" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -527,6 +519,9 @@
               <Border info="null"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de mano"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="Cancelar">
@@ -566,15 +561,15 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="nKeysTxtLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="ClaveFinalTextField" alignment="0" pref="509" max="32767" attributes="1"/>
-                          <Group type="102" attributes="1">
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="formatoClavesLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="224" max="32767" attributes="0"/>
+                              <EmptySpace pref="263" max="32767" attributes="0"/>
                               <Component id="clavesComboBox" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="claveSizeComboBox" min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="ClaveInicialTextField" alignment="0" pref="509" max="32767" attributes="1"/>
+                          <Component id="ClaveInicialTextField" alignment="0" pref="548" max="32767" attributes="1"/>
+                          <Component id="ClaveFinalTextField" alignment="0" pref="548" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -609,7 +604,7 @@
                           <Component id="nKeysLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="nKeysTxtLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="97" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

@@ -7,16 +7,16 @@
 <body>
 
 <h1>Relleno en AESphere</h1>
-<p> El algoritmo AES trabaja sobre un tamaño fijo de bloque de 128 bits. La aplicación AESphere permite cifrar textos grandes, textos que no tienen por 
-qué coincidir exactamente con el tamaño de bloque. Nos encontramos entonces ante textos que deben ser rellenados para poder ser cifrados con AES. Existen distintos métodos de rellenado, el que se usa en AESphere se basa en rellenar con el número de bytes que faltan para llegar al tamaño del bloque siguiente. Es decir:  </p>
+<p> El algoritmo AES trabaja sobre un tama&#241;o fijo de bloque de 128 bits. La aplicaci&#243;n AESphere permite cifrar textos grandes, textos que no tienen por 
+qu&#233; coincidir exactamente con el tama&#241;o de bloque. Nos encontramos entonces ante textos que deben ser rellenados para poder ser cifrados con AES. Existen distintos m&#233;todos de rellenado, el que se usa en AESphere se basa en rellenar con el n&#250;mero de bytes que faltan para llegar al tama&#241;o del bloque siguiente. Es decir:  </p>
 
 <p> <img style="border-width: 0px;" src="resources/Imagen23.png" width="540" height="77" /> </p>
 
-<p> Como vemos, la cadena HOLA tiene 4 bytes, con lo cual faltan 12 bytes más para llegar a 16 bytes (que es la potencia de 16 más cercana). Como faltan 12 bytes, el relleno hasta 16 se realizará con el hexadecimal 0C que es justamente el 12 decimal. Incluso si la entrada fuera múltiplo del tamaño de bloque, se rellenaría con el valor 10 en hexadecimal (correspondiente al 16 decimal, igual al tamaño de un bloque). 
+<p> Como vemos, la cadena HOLA tiene 4 bytes, con lo cual faltan 12 bytes m&#225;s para llegar a 16 bytes (que es la potencia de 16 m&#225;s cercana). Como faltan 12 bytes, el relleno hasta 16 se realizar&#225; con el hexadecimal 0C que es justamente el 12 decimal. Incluso si la entrada fuera m&#250;ltiplo del tama&#241;o de bloque, se rellenar&#237;a con el valor 10 en hexadecimal (correspondiente al 16 decimal, igual al tama&#241;o de un bloque). 
  </p>
 
 
-<p>Información relacionada: <br>
+<p>Informaci&#243;n relacionada: <br>
 <a href="principal_ES.html">Cifrado</a>,<a href="secundaria_ES.html">Descifrado</a>.
 </p>
 </body>

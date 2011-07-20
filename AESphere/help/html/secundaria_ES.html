@@ -5,26 +5,26 @@
 </head>
 <body>
 	<h1>Proceso de Descifrado</h1>
-	<p>AES es un sistema de cifrado simétrico, lo cual significa que se utiliza la misma clave para cifrar y para descifrar. AES basa toda su seguridad en la clave, ya que el algoritmo de cifrado/descifrado es conocido. El principal problema de seguridad que tiene es el intercambio de esta clave, ya que para un posible atacante es más fácil intentar interceptar esta clave que averiguar la misma.<br> 
+	<p>AES es un sistema de cifrado sim&#233;trico, lo cual significa que se utiliza la misma clave para cifrar y para descifrar. AES basa toda su seguridad en la clave, ya que el algoritmo de cifrado/descifrado es conocido. El principal problema de seguridad que tiene es el intercambio de esta clave, ya que para un posible atacante es m&#225;s f&#225;cil intentar interceptar esta clave que averiguar la misma.<br> 
 	
-	Pasemos a explicar el proceso de descifrado de AES. Al igual que a la hora de cifrar, AES opera sobre una matriz de 4x4 bytes llamda state. En cuanto a la clave, ésta puede ser de 128, 192 o 256 bits. Este tamaño de clave marcará el número de rondas que se harán durante el desarrollo del descifrado: 10, 12 o 14.<br><br>
+	Pasemos a explicar el proceso de descifrado de AES. Al igual que a la hora de cifrar, AES opera sobre una matriz de 4x4 bytes llamda state. En cuanto a la clave, &#233;sta puede ser de 128, 192 o 256 bits. Este tama&#241;o de clave marcar&#225; el n&#250;mero de rondas que se har&#225;n durante el desarrollo del descifrado: 10, 12 o 14.<br><br>
 	
-	El proceso a realizar sería el siguiente:<br>
-<p>1 - Expansión de la clave. Se usa el esquema de claves de Rijndael.</p>
+	El proceso a realizar ser&#237;a el siguiente:<br>
+<p>1 - Expansi&#243;n de la clave. Se usa el esquema de claves de Rijndael.</p>
 <p>2 - Etapa inicial: <br>
 AddRoundKey </p>
 <p>3 - Rondas:<br>
-<a href="ShiftRows_ES.html">InvShiftRows</a> - Transposición circular de los bytes de las filas. <br>
-<a href="SubBytes_ES.html">InvSubBytes</a> - Se aplica una sustitución inversa mediante cajas-S a cada byte del state<br>
-<a href="AddRoundKey_ES.html">AddRoundKey</a> - cada byte del state es combinado con la clave de ronda, obtenida esta mediante una operación XOR.<br>
-<a href="MixColumns_ES.html">InvMixColumns</a> - Complejo mezclado de columnas usando una transformación lineal sobre las columnas.<br></p>
+<a href="ShiftRows_ES.html">InvShiftRows</a> - Transposici&#243;n circular de los bytes de las filas. <br>
+<a href="SubBytes_ES.html">InvSubBytes</a> - Se aplica una sustituci&#243;n inversa mediante cajas-S a cada byte del state<br>
+<a href="AddRoundKey_ES.html">AddRoundKey</a> - cada byte del state es combinado con la clave de ronda, obtenida esta mediante una operaci&#243;n XOR.<br>
+<a href="MixColumns_ES.html">InvMixColumns</a> - Complejo mezclado de columnas usando una transformaci&#243;n lineal sobre las columnas.<br></p>
 
 <p>4 - Etapa final, en la que se realizan las siguientes operaciones: <br>
 InvShiftRows<br>
 InvSubBytes<br>
 AddRoundKey<br>
 
-<p>Las fases de la tercera ronda son las que se repiten dependiendo del número de bits de la clave.</p> 	
+<p>Las fases de la tercera ronda son las que se repiten dependiendo del n&#250;mero de bits de la clave.</p> 	
 	
 
 </body>

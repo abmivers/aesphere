@@ -9,7 +9,7 @@
 <h1>AESphere padding</h1>
 <p> The AES algorithm works with a fixed block size of 128 bits. The AESphere application allows working with big text sizes, which does not have to have sizes that are multiple of the length of the block. We then find texts that needs to be padded in order to be encrypted with AES. There are different ways of padding, the one used in AESphere is based in filling the bytes that need to be padded with the number of bytes that the text is short from being multiple of the block length. The next image illustrates it:  </p>
 
-<p> <img style="border-width: 0px;" src="resources/Imagen23.png" width="540" height="77" /> </p>
+<p> <img style="border-width: 0px;" src="resources/Imagen23_EN.png" /> </p>
 
 <p> As we see, the string HOLA has 4 bytes, so that it is 12 bytes short from 16 bytes (which is the nearest multiple of the block length). As 12 bytes are needed to be filled, the padding until the 16 bytes is performed with the 0C hexadecimal, which stand for 12 in decimal. Even if the input is multiple of the block size, the padding is performed, in this case 16 bytes would be filled with the hexadecimal value 10. 
  </p>
