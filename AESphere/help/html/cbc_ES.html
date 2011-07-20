@@ -7,17 +7,17 @@
 	<body>		
 		<h1>CBC</h1>
 		
-		<p>CBC (Cipher-block chaining) es una de las múltiples respuestas que surgieron ante la debilidad del algoritmo ECB ante el ocultamiento de los patrones en la información. Su propósito es añadir cierta pseudo-aleatoriedad mediante la introducción de un vector de inicialización en el proceso de tratamiento de boques.<br>
+		<p>CBC (Cipher-block chaining) es una de las m&#250;ltiples respuestas que surgieron ante la debilidad del algoritmo ECB ante el ocultamiento de los patrones en la informaci&#243;n. Su prop&#243;sito es a&#241;adir cierta pseudo-aleatoriedad mediante la introducci&#243;n de un vector de inicializaci&#243;n en el proceso de tratamiento de boques.<br>
 		
-		El funcionamiento del cifrado mediante CBC consiste en realizar un XOR del texto en claro y el texto cifrado del bloque anterior, para luego cifrar el resultado con un cifrador de bloques y la clave. Así, el texto cifrado resultante se reutilizará para el XOR del siguiente bloque. De esta manera se eliminan los rastros de los patrones que pudiese haber en la información original, y que son susceptibles a un análisis estadísitico. En el caso del primer bloque, el XOR se realiza con el vector de inicialización comentado anteriormente, lo cual, dependiendo de la calidad del generador de aleatorios utilizado, añade aleatoriedad al algoritmo.<br><br></p>
+		El funcionamiento del cifrado mediante CBC consiste en realizar un XOR del texto en claro y el texto cifrado del bloque anterior, para luego cifrar el resultado con un cifrador de bloques y la clave. As&#237;, el texto cifrado resultante se reutilizar&#225; para el XOR del siguiente bloque. De esta manera se eliminan los rastros de los patrones que pudiese haber en la informaci&#243;n original, y que son susceptibles a un an&#225;lisis estad&#237;sitico. En el caso del primer bloque, el XOR se realiza con el vector de inicializaci&#243;n comentado anteriormente, lo cual, dependiendo de la calidad del generador de aleatorios utilizado, a&#241;ade aleatoriedad al algoritmo.<br><br></p>
 		
 		<img style="border-width: 0px;" src="resources/Cbc_encryption.png"/>
 		
-		<p>A la hora de descifrar, se realiza el proceso inverso. En este caso, primero se descifra el texto cifrado con un cifrador de bloques y la clave y se realiza un XOR del resultado con el texto cifrado del bloque anterior, devolviéndose así el texto en claro. En el primer bloque, el XOR se realizará con el vector de inicialización puesto que no hay bloque anterior.<br><br></p>
+		<p>A la hora de descifrar, se realiza el proceso inverso. En este caso, primero se descifra el texto cifrado con un cifrador de bloques y la clave y se realiza un XOR del resultado con el texto cifrado del bloque anterior, devolvi&#233;ndose as&#237; el texto en claro. En el primer bloque, el XOR se realizar&#225; con el vector de inicializaci&#243;n puesto que no hay bloque anterior.<br><br></p>
 				
 		<img style="border-width: 0px;" src="resources/Cbc_decryption.png"/>
 		
-		<p>En ambos casos, tanto para cifrar como para descifrar, los bloques resultantes van concatenándose en orden, lo que, debido a las operaciones realizadas, no compromete la fiabilidad del algoritmo.</p>
+		<p>En ambos casos, tanto para cifrar como para descifrar, los bloques resultantes van concaten&#225;ndose en orden, lo que, debido a las operaciones realizadas, no compromete la fiabilidad del algoritmo.</p>
 		
 	</body>
 </html>
