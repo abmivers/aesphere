@@ -5,51 +5,51 @@
 <head>
 
 
-  <title>Mensajes de la comunicación cliente/servidor</title>
+  <title>Server/client communication messages</title>
 </head>
 <body>
 
-<h1>Descripción de mensajes de la comunicación cliente/servidor</h1>
+<h1>Description of the server/client communication messages</h1>
 <p></p>
-<p>Durante el proceso de ataque, en la pantalla del servidor o del cliente irán apareciendo una serie de mensajes que describirán el progreso de la prueba de claves. A continuación se incluye el significado de los diferentes mensajes que pueden aparecer.<br></p>
-<p><b>· <u>SERVIDOR</u></b><br><br>
-- "<i>x</i> claves a probar": indica el número <i>x</i> de claves que se probarán tras haber procedido a su cálculo.<br><br>
-- "Cliente <i>n</i>: <i>x</i> claves": indica el número <i>x</i> de claves que tendrá que probar el cliente <i>n</i>.<br><br>
-- "Esperando conexión...": el servidor ha comenzado a esperar las conexiones de los clientes. Esperará hasta haber conectado con todos los clientes que se le indicaron.<br><br>
-- "Conexión establecida con el cliente <i>z</i>": se ha detectado correctamente el cliente <i>z</i>. <i>z</i> será la dirección del cliente expresada de la forma <i>&lt;nombre_cliente&gt;/&lt;dir_ip&gt;</i>.<br><br>
-- "Error al conectar con los clientes": el servidor no ha podido recibir las peticiones de los clientes o no ha podido comunicarse con ellos. Se seguirá intentando la conexión de todas maneras, por lo que es posible que este mensaje aparezca reiteradas veces si se ha dado algún fallo en la comunicación. Si esto continúa ocurriendo puede ser debido a la red a través de la que se conecta con el cliente, a que el puerto que el servidor está usando está ocupado por otra aplicación o a un fallo puntual de pérdida de información en la red. Se recomienda cerrar la ventana de los clientes que no se hayan conectado con el servidor y volver a lanzarlos. Reiniciar todo el proceso, tanto en servidor como en cliente, cerrando y volviendo a abrir la aplicación, también puede solucionar el problema.<br><br>
-- "Clave <i>n</i>: <i>z</i>": indica la clave inicial <i>z</i> que se le enviará al cliente <i>n</i>. <i>z</i> será la clave expresada en hexadecimal.<br><br>
-- "Enviando clave... ": el servidor ha procedido a enviar la clave indicada.<br><br>
-- "Clave enviada": el servidor ha conseguido enviar correctamente la clave al cliente.<br><br>
-- "Error al enviar la clave": el servidor ha recibido una respuesta inesperada del cliente al enviar la clave. El proceso del cliente parará y el servidor intentará continuar con otro cliente. Esto ocurrirá cuando otros clientes intenten conectarse al servidor una vez que este ha terminado de detectar todos los clientes con los que tienen que conectarse. Si no es el caso, entonces es que ha ocurrido algún problema en la red, por lo que es recomendable reiniciar el proceso.<br><br>
-- "Enviando texto... ": el servidor procede a enviar el texto en claro y cifrado al cliente.<br><br>
-- "Texto enviado": el servidor ha enviado correctamente los textos.<br><br>
-- "Error al enviar el texto": el servidor ha recibido una respuesta inesperada del cliente al enviar el texto. El proceso del cliente parará y el servidor intentará continuar con otro cliente. Esto ocurrirá cuando otros clientes intenten conectarse al servidor una vez que este ha terminado de detectar todos los clientes con los que tienen que conectarse. Si no es el caso, entonces es que ha ocurrido algún problema en la red, por lo que es recomendable reiniciar el proceso.<br><br>
-- "Generación de claves finalizada correctamente": la fase de generar las claves y distribuir los datos necesarios a los clientes ha terminado. Puede llegarse a este punto incluso aunque haya ocurrido algún error, ya que el servidor intentará continuar aunque la comunicación con algún cliente falle.<br><br>
-- "Comenzando cifrado en clientes" y "Buscando claves...": comienza la fase de la prueba de claves en los clientes. El servidor les avisa de que pueden comenzar a cifrar para intentar encontrar la clave.<br><br>
-- "El cliente <i>z</i> ha terminado": el proceso de búsqueda de claves ha acabado en el cliente <i>z</i>. <i>z</i> será la dirección del cliente expresada de la forma <i>&lt;nombre_cliente&gt;/&lt;dir_ip&gt;</i>.<br><br>
-- "Cliente: <i>z</i>" y "Clave encontrada: <i>x</i>": el cliente <i>z</i> ha encontrado una clave <i>x</i> válida para descifrar el mensaje y se la ha enviado al servidor. <i>z</i> será la dirección del cliente expresada de la forma <i>&lt;nombre_cliente&gt;/&lt;dir_ip&gt;</i>. <i>x</i> será la clave expresada en hexadecimal.<br><br>
--"Búsqueda de claves finalizada" y "<i>n</i> claves encontradas": todos los clientes han terminado el proceso de probar claves. Indica el total <i>n</i> de claves que se han encontrado entre todos ellos.<br><br>
-- "Error en la búsqueda de claves": hubo un problema en la comunicación en red, por lo que se recomienda reiniciar el proceso. El servidor dejará de buscar claves, sin embargo los clientes continuarán, por lo que habrá que cerrarlos para parar su ejecución. Hay que verificar que no haya clientes intentando conectarse una vez que el servidor haya detectado todos.<br><br>
-- "Fin del proceso": el servidor ha parado su ejecución, correcta o incorrectamente. No quedan más operaciones pendientes.<br><br>
+<p>While the attack process is being executed, in the server of client screen a series of messages that describes the progress of the key testing. An explanation about the different messages that may appear follows.<br></p>
+<p><b><u>SERVER</u></b><br><br>
+- &quot;<i>x</i> keys to try&quot;: shows the number <i>x</i> of keys that will be tested after calculating them.<br><br>
+- &quot;Client <i>n</i>: <i>x</i> keys&quot;: shows the number <i>x</i> of keys that the client <i>n</i> has to test.<br><br>
+- &quot;Awaiting connection...&quot;: the server has begun to wait for clients connections. It will wait until all the specified clients are connected.<br><br>
+- &quot;Connection established with the client <i>z</i>&quot;: the client <i>z</i> has been detected properly. <i>z</i> is the address of the client expressed with the format <i>&lt;client_name&gt;/&lt;ip_addr&gt;</i>.<br><br>
+- &quot;An error occurred while connecting with clients&quot;: the server was not able to receive the request from the clients or was not able to communicate with them. Anyway, the server will try to connect several times, so this message can appear several times as well if any error occurred in the communication process. If this keeps happening it may be caused by the network through which the server is connecting with the client, by the port of that the server uses, which may be used by other application, or by a momentary loss of information on the network. It is recommended to close the window of the client that has not established a connection with the server and start them again. Restarting the whole process, both on the server and on the clients, closing and opening the application again, can solve the problem too.<br><br>
+- &quot;Key <i>n</i>: <i>z</i>&quot;: shows the initial key <i>z</i> that will be sent to the client <i>n</i>. <i>z</i> is the key in hexadecimal format.<br><br>
+- &quot;Sending key... &quot;: the server has proceeded to send the specified key.<br><br>
+- &quot;Key sent&quot;: the server has correctly sent the key to the client.<br><br>
+- &quot;An error occurred while sending the key&quot;: the server received an unexpected answer from the client while sending the key. The process will stop on the client and the server will try to continuo with another client. This will happen when other clients try to connect to the server one it has finished detecting all the clients with which it has to connect. If that is not the case, then an error with the network occurred, so it is recommended to restart the process.<br><br>
+- &quot;Sending text... &quot;: the server proceeds to send the plaintex and the ciphertext to the client.<br><br>
+- &quot;Text sent&quot;: the server has correctly sent the text.<br><br>
+- &quot;An error occurred while receiving the text": the server received an unexpected answer from the client while sending the text. The process will stop on the client and the server will try to continue with another client. This will happen when other clients try yo connect to the server once it has finished detecting all the clients to which it has to connect. if this is not the case, then an error occurred on the network, so it is recommended to restart the process.<br><br>
+- &quot;Key generation ended properly&quot;: the process of generating and distributing the needed data to the clients has ended. This point can be reached even if an error occurred, because the server will try to continue even though the communication with some of the clients fails.<br><br>
+- &quot;Starting ecryption on clients&quot; and &quot;Searching for keys...&quot;: the process of key testing starts on the clients. The server sends a message to each client to allow them to start trying keys to try to find the key used.<br><br>
+- &quot;The client <i>z</i> has finished&quot;: the process of key searching has ended on the client <i>z</i>. <i>z</i> is the client adrres expressed with the format <i>&lt;client_name&gt;/&lt;ip_addr&gt;</i>.<br><br>
+- &quot;Client: <i>z</i>&quot; and &quot;Key found&quot;: <i>x</i>": the client <i>z</i> has found a key <i>x</i> that is valid to decrypt the message and has sent it to the server. <i>z</i> is the address of the client expressed with the format <i>&lt;client_name&gt;/&lt;ip_addr&gt;</i>. <i>x</i> is the key in hexadecimal format.<br><br>
+-&quot;Key search finished&quot; and &quot;<i>n</i> keys found&quot;: all the clients has finished the process of trying keys. It indicates the number <i>n</i> of keys that have been found.<br><br>
+- &quot;An error occurred while searching for keys&quot;: and error occurred in the communication through the network, so it is recommended to restart the process. The server will stop looking for keys, though the clients will keep on trying keys, so they have to be closed os oirder to stop their execution. It has to be checked that there are no clients trying to connect once the server has detected all the clients to which it has to connect.<br><br>
+- &quot;End of process&quot;: the server has stopped its execution. No more operations pending.<br><br>
 
-<p><b>· <u>CLIENTE</u></b><br><br>
-- "Conectando con el servidor...": el cliente intenta conectar con el servidor. Realizará 100 intentos de conexión con 3 segundos de espacio entre cada una de ellas.<br><br>
-- "Conexión establecida": el cliente se ha conectado correctamente al servidor.<br><br>
-- "Error al conectar con el servidor": ha habido un problema en la red o se han agotado el número de intentos de conexión con el servidor. En cualquier caso, se recomienda cerrar y volver a abrir el cliente para reintentar la conexión con el servidor.<br><br>
-- "Recibiendo clave inicial...": el cliente intenta recibir la clave inicial del servidor.<br><br>
-- "Clave recibida": el cliente ha recibido la clave correctamente.<br><br>
-- "Error al recibir la clave": ha habido un problema en la red. El cliente terminará su ejecución inmediatamente. Si el servidor se bloquea posteriormente, puede ser porque esté esperando una respuesta de este cliente. En ese caso, se recomienda reiniciar el proceso.<br><br>
-- "Clave inicial <i>x</i>": indica la clave inicial <i>x</i> a partir de la cual comenzará a probar. <i>x</i> será la clave expresada en hexadecimal.<br><br>
-- "Número de claves a probar: <i>n</i>": indica el número <i>n</i> de claves a probar a partir de la clave inicial.<br><br>
-- "Recibiendo texto...": el cliente intenta recibir el texto en claro y el texto cifrado del servidor.<br><br>
-- "Texto recibido": el cliente ha recibido los textos correctamente.<br><br>
-- "Error al recibir el texto": ha habido un problema en la red. El cliente terminará su ejecución inmediatamente. Si el servidor se bloquea posteriormente, puede ser porque esté esperando una respuesta de este cliente. En ese caso, se recomienda reiniciar el proceso.<br><br>
-- "Comenzando la prueba de claves...": el cliente ha recibido la orden de comenzar a probar claves, por lo que comenzará a cifrar en búsqueda de la clave.<br><br>
-- "Clave encontrada: <i>x</i>": el cliente ha encontrado la clave <i>x</i> como válida para descifrar el mensaje. <i>x</i> será la clave expresada en hexadecimal.<br><br>
-- "Prueba de claves finalizada": el cliente ha terminado la prueba de todas las claves que se le habían indicado correctamente.<br><br>
-- "Hubo un error al probar las claves": bien se ha encontrado una clave incorrecta o ha habido un problema en la red. En cualquier caso, el cliente dejará de probar claves y comunicará al servidor que ha terminado. Se recomienda comparar la clave inicial recibida por el cliente y la que envía el servidor para ver si coinciden. De no ser así, se trata de un error puntual en la red y un reintento del proceso debería solucionar el problema.<br><br>
-- "Hubo un problema al comunicar al servidor que este cliente ha acabado": ha habido un problema de red cuando se intentaba comunicar al servidor el final del proceso. Si el servidor se bloquea posteriormente será porque estará esperando este mensaje, así que habrá que pararlo manualmente.<br><br>
-- "Fin del proceso": el cliente ha finalizado correcta o incorrectamente. No quedan más operaciones pendientes.<br><br>
+<p><b><u>CLIENT</u></b><br><br>
+- &quot;Connecting to server&quot;: the client tries to connect to the server. It will try to connect 100 times with a waiting time of 3 seconds between each try.<br><br>
+- &quot;Connection established&quot;: the client has connected properly to the server.<br><br>
+- &quot;An error occurred while connecting to the server&quot;: an error occurred on the network or the number of connection tries has reached its limit. It is recommended to close and open the client again in order to try to connect again with the server.<br><br>
+- &quot;Receiving initial key...&quot;: the client is trying to receive the initial key from the server.<br><br>
+- &quot;Key received&quot;: the client has correctly received the key.<br><br>
+- &quot;An error occurred while receiving the key&quot;: and error occurred on the network. The client will end its execution immediately. If the server freezes after this happens, it may be because it is expecting an answer from this client. In this case, it is recommended to restart the process.<br><br>
+- &quot;Initial key <i>x</i>&quot;: shows the initial key <i>x</i> from which the client will start to try. <i>x</i> is the key in hexadecimal format.<br><br>
+- &quot;Number of keys to try: <i>n</i>&quot;: shows the number <i>n</i> of keys to try starting from the initial key.<br><br>
+- &quot;Receiving text...&quot;: the client tries to receive the plaintext and the ciphertext from the server.<br><br>
+- &quot;Text received&quot;: the client has correctly received the text.<br><br>
+- &quot;An error occurred while receiving the text&quot;: an error occurred on the network. The client will end its execution immediately. If the server freezes after this happens, it may be because it is expecting an answer from this client. In this case, it is recommended to restart the process.<br><br>
+- &quot;Starting key testing...&quot;: the client has received the order to start trying keys, so it will start the encryption process in search of the key.<br><br>
+- &quot;Key found: <i>x</i>&quot;: the client has found the key <i>x</i> as valid for decrypting the message. <i>x</i> is the key in hexadecimal format.<br><br>
+- &quot;Key testing finished&quot;: the client has finished testing all its corresponding keys.<br><br>
+- &quot;An error occurred while testing the keys&quot;: a wrong key has been transmitted from the server or an error has occurred on the network. The client will stop trying keys and will communicate the server that it has finished. It is recommended to compare the initial key received from the server with the one that the server sends to see if they are the same. If not, it is a momentary error on the network and a restart of the process should solve the problem.<br><br>
+- &quot;An error occurred while telling the server that this client has finished&quot;: an error occurred on the network while trying to communicate the server that the client has finished the process. If the server freezes after this happens, it may be because it is expecting an answer from this client, so it has to be stopped manually.<br><br>
+- &quot;End of process&quot;: the client has finished. No more operations pending.<br><br>
 </body>
 </html>
