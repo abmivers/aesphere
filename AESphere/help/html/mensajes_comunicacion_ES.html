@@ -12,7 +12,7 @@
 <h1>Descripci&#243;n de mensajes de la comunicaci&#243;n cliente/servidor</h1>
 <p></p>
 <p>Durante el proceso de ataque, en la pantalla del servidor o del cliente ir&#225;n apareciendo una serie de mensajes que describir&#225;n el progreso de la prueba de claves. A continuaci&#243;n se incluye el significado de los diferentes mensajes que pueden aparecer.<br></p>
-<p><b>· <u>SERVIDOR</u></b><br><br>
+<p><b><u>SERVIDOR</u></b><br><br>
 - &quot;<i>x</i> claves a probar&quot;: indica el n&#250;mero <i>x</i> de claves que se probar&#225;n tras haber procedido a su c&#225;lculo.<br><br>
 - &quot;Cliente <i>n</i>: <i>x</i> claves&quot;: indica el n&#250;mero <i>x</i> de claves que tendr&#225; que probar el cliente <i>n</i>.<br><br>
 - &quot;Esperando conexi&#243;n...&quot;: el servidor ha comenzado a esperar las conexiones de los clientes. Esperar&#225; hasta haber conectado con todos los clientes que se le indicaron.<br><br>
@@ -33,7 +33,7 @@
 - &quot;Error en la b&#250;squeda de claves&quot;: hubo un problema en la comunicaci&#243;n en red, por lo que se recomienda reiniciar el proceso. El servidor dejar&#225; de buscar claves, sin embargo los clientes continuar&#225;n, por lo que habr&#225; que cerrarlos para parar su ejecuci&#243;n. Hay que verificar que no haya clientes intentando conectarse una vez que el servidor haya detectado todos.<br><br>
 - &quot;Fin del proceso&quot;: el servidor ha parado su ejecuci&#243;n, correcta o incorrectamente. No quedan m&#225;s operaciones pendientes.<br><br>
 
-<p><b>· <u>CLIENTE</u></b><br><br>
+<p><b><u>CLIENTE</u></b><br><br>
 - &quot;Conectando con el servidor...&quot;: el cliente intenta conectar con el servidor. Realizar&#225; 100 intentos de conexi&#243;n con 3 segundos de espacio entre cada una de ellas.<br><br>
 - &quot;Conexi&#243;n establecida&quot;: el cliente se ha conectado correctamente al servidor.<br><br>
 - &quot;Error al conectar con el servidor&quot;: ha habido un problema en la red o se han agotado el n&#250;mero de intentos de conexi&#243;n con el servidor. En cualquier caso, se recomienda cerrar y volver a abrir el cliente para reintentar la conexi&#243;n con el servidor.<br><br>

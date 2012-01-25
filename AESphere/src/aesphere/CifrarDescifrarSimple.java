@@ -589,7 +589,7 @@ public class CifrarDescifrarSimple extends javax.swing.JFrame {
 
       if (KeyD.getText().length()==32) a=4;
               else if (KeyD.getText().length()==48) a=6;
-                   else if (KeyD.getText().length()==62) a=8;
+                   else if (KeyD.getText().length()==64) a=8;
 
       byte[] in = Conversor.hexStringToByte(CiphertextD.getText());      
       byte[] key = Conversor.hexStringToByte(KeyD.getText());
