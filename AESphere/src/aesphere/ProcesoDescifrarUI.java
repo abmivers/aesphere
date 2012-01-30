@@ -82,26 +82,26 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
             //Lanzamos el evento de cerrado de la ventana
             this.dispatchEvent(new java.awt.event.WindowEvent(this, 
                     java.awt.event.WindowEvent.WINDOW_CLOSING));
-        } else switch (opcionsalida) {
-            case 0:
-                Plaintextfield.setText(Conversor.byteToTextString(salida));
-                break;
-            case 1:
-                Plaintextfield.setText(Conversor.byteToHexString(salida));
-                break;
-            case 2:
-                Conversor.byteToFile(salida,cadenaOutput);
-                Plaintextfield.setText(Conversor.byteToHexShortString(salida));
-                
+        } else { 
+            switch (opcionsalida) {
+                case 0:
+                    Plaintextfield.setText(Conversor.byteToTextString(salida));
+                    break;
+                case 1:
+                    Plaintextfield.setText(Conversor.byteToHexString(salida));
+                    break;
+                case 2:
+                    Conversor.byteToFile(salida,cadenaOutput);
+                    Plaintextfield.setText(Conversor.byteToHexShortString(salida));
+            }
+            
             RondasTextArea.setText(aesenc.getResultado());
             CiphertextArea.setText(Conversor.byteToHexShortString(in));                    
 
             this.setLocationRelativeTo(wpadre);
             this.setResizable(false);
             this.setVisible(true);
-        }
-
-        
+        }        
     }
 
     private byte [] getBytesArchivo (String ruta) {
