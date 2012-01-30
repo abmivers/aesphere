@@ -92,14 +92,13 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
                 Plaintextfield.setText(Conversor.byteToHexShortString(salida));
+            
+            Ciphertextfield.setText(Conversor.byteToHexShortString(in));                    
+
+            this.setLocationRelativeTo(wpadre);
+            this.setResizable(false);
+            this.setVisible(true);           
         }
-
-        
-        Ciphertextfield.setText(Conversor.byteToHexShortString(in));                    
-
-        this.setLocationRelativeTo(wpadre);
-        this.setResizable(false);
-        this.setVisible(true);
     }
 
     private byte [] getBytesArchivo (String ruta) {

@@ -92,14 +92,16 @@ public class ProcesoDescifrarUI extends javax.swing.JFrame {
             case 2:
                 Conversor.byteToFile(salida,cadenaOutput);
                 Plaintextfield.setText(Conversor.byteToHexShortString(salida));
+                
+            RondasTextArea.setText(aesenc.getResultado());
+            CiphertextArea.setText(Conversor.byteToHexShortString(in));                    
+
+            this.setLocationRelativeTo(wpadre);
+            this.setResizable(false);
+            this.setVisible(true);
         }
 
-        RondasTextArea.setText(aesenc.getResultado());
-        CiphertextArea.setText(Conversor.byteToHexShortString(in));                    
-
-        this.setLocationRelativeTo(wpadre);
-        this.setResizable(false);
-        this.setVisible(true);
+        
     }
 
     private byte [] getBytesArchivo (String ruta) {
