@@ -23,6 +23,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 
     private MainUI wpadre;
     private javax.swing.JFileChooser archivos;
+    private MainAtaquesUI yo = null;
 
     /** Creates new form MainAtaquesUI */
     public MainAtaquesUI(MainUI padre) {
@@ -834,7 +835,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
 }//GEN-LAST:event_SalirActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        wpadre.setEnabled(true);
+        //wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing
@@ -950,11 +951,12 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                 if (op == 0 && iv != null) {
                     final byte [] plainBytes = getPlain();
                     final byte [] cipherBytes = getCipher();
+                    yo = this;
                     if (monoCheckBox.isSelected()) {
                         Thread monoThread = new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                new MonoUI(wpadre, plainBytes, cipherBytes, 
+                                new MonoUI(wpadre, yo, plainBytes, cipherBytes, 
                                         claveini, numClaves,
                                         modoComboBox.getSelectedIndex(), iv);
                             }
@@ -965,7 +967,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         Thread servThread = new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                new ServUI(wpadre, plainBytes, cipherBytes, numClientes, 
+                                new ServUI(wpadre, yo, plainBytes, cipherBytes, numClientes, 
                                         claveini, numClaves,
                                         modoComboBox.getSelectedIndex(), iv);
                             }
@@ -973,17 +975,19 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         wpadre.newThread(servThread);
                         servThread.start();
                     }
-                }
+                    yo = null;
+                }                
             }
         } else if (ClienteRadioButton.isSelected()) {
             if (IPTextField.getText().isEmpty())
                 JOptionPane.showMessageDialog(this, Entorno.getTrans("Att.ipWarMsg"),
                             Entorno.getTrans("gen.war"), JOptionPane.WARNING_MESSAGE);
             else {
+                yo = this;
                 Thread clientThread = new Thread(new Runnable() {
                     public void run() {
                         try {
-                            new ClientUI(wpadre, java.net.InetAddress.getByName(IPTextField.getText()));
+                            new ClientUI(wpadre, yo, java.net.InetAddress.getByName(IPTextField.getText()));
                         } catch (java.net.UnknownHostException e) {
                             JOptionPane.showMessageDialog(null, Entorno.getTrans("Att.ipErrMsg"),
                             Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);
@@ -991,6 +995,7 @@ public class MainAtaquesUI extends javax.swing.JFrame {
                         }
                     }
                 });
+                yo = null;
                 wpadre.newThread(clientThread);
                 clientThread.start();
             }

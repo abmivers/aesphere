@@ -39,13 +39,13 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
 
     /** Creates new form ProcesoCifrarUI */
 
-    public ProcesoCifrarUI(MainUI padre,String Texto1, String Texto2, 
+    public ProcesoCifrarUI(MainUI padreMain, MainCifrarUI padre, String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
             int modoBloque, int tamano, boolean manualIV, byte [] iv) {
         initComponents();
         setLangLabels();
         setHelp();
-        wpadre=padre;
+        wpadre=padreMain;
         cadenaInput = Texto1;
         cadenaKey = Texto2;
         cadenaOutput = Texto3;
@@ -53,7 +53,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
         blockMode = modoBloque;
 
         this.setSize(800, 620);
-        wpadre.newchild(this);
+        wpadre.newchild(padre, this);
 
         //Comenzamos el cifrado
         if (manualIV) {            
@@ -391,7 +391,7 @@ public class ProcesoCifrarUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        wpadre.setEnabled(true);
+        //wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);       
     }//GEN-LAST:event_formWindowClosing

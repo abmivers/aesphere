@@ -26,11 +26,11 @@ public class MonoUI extends javax.swing.JFrame {
     long iniTime;
 
     /** Creates new form ClientUI */
-    public MonoUI(MainUI padre, byte [] plainBytes, byte [] cipherBytes,
+    public MonoUI(MainUI padreMain, MainAtaquesUI padre, byte [] plainBytes, byte [] cipherBytes,
             byte [] claveinicial, long nClaves, int blockMode, byte[] IV) {
         initComponents();
-        wpadre = padre;
-        wpadre.newchild(this);        
+        wpadre = padreMain;
+        wpadre.newchild(padre, this);        
         plaintext = plainBytes;
         ciphertext = cipherBytes;
         claveInicial = claveinicial;
@@ -118,7 +118,7 @@ public class MonoUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        wpadre.setEnabled(true);
+        //wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing

@@ -1081,11 +1081,11 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         byte [] iv = pedirIV();
 
         if ( (opcionejecucion == 0) && ComprobarDatos() && (iv != null) )
-            new ProcesoDescifrarUI (wpadre,TextoInput.getText(), key,
+            new ProcesoDescifrarUI (wpadre, this, TextoInput.getText(), key,
                     TextoOutput.getText(), opcionIn, opcionKey,opcionOut,
                     op_block, tamano, manualIV.isSelected(), iv);
         else if ( (opcionejecucion == 1) && ComprobarDatos() && (iv != null) )
-            new ProcesoDescifrarDirectoUI (wpadre, TextoInput.getText(), key,
+            new ProcesoDescifrarDirectoUI (wpadre, this, TextoInput.getText(), key,
                     TextoOutput.getText(), opcionIn, opcionKey, opcionOut,
                     op_block, tamano, manualIV.isSelected(), iv);
     }//GEN-LAST:event_BotonSiguienteActionPerformed
@@ -1097,7 +1097,7 @@ public class MainDescifrarUI extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
          
-        wpadre.setEnabled(true);
+        //wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing

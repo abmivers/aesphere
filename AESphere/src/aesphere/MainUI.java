@@ -28,7 +28,11 @@ import javax.swing.JOptionPane;
  */
 public class MainUI extends javax.swing.JFrame {
 
-    private javax.swing.JFrame hijoActual = null;
+    private javax.swing.JFrame hijoCifrar = null;
+    private javax.swing.JFrame hijoDescifrar = null;
+    private javax.swing.JFrame hijoAtaques = null;
+    private javax.swing.JFrame hijoHerramientas = null;
+    private javax.swing.JFrame hijoVectores = null;
     private Thread hijoThread = null;    
 
     /** Creates new form Main */
@@ -407,45 +411,45 @@ public class MainUI extends javax.swing.JFrame {
 
     private void BotonDescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDescifrarActionPerformed
          
-        this.setEnabled(false);
-        if (hijoActual == null) {
-            hijoActual = new MainDescifrarUI(this);
-            hijoActual.setLocationRelativeTo(this);
-            hijoActual.setVisible(true);
+        //this.setEnabled(false);
+        if (hijoDescifrar == null) {
+            hijoDescifrar = new MainDescifrarUI(this);
+            hijoDescifrar.setLocationRelativeTo(this);
+            hijoDescifrar.setVisible(true);
         }
-        else hijoActual.requestFocus();
+        else hijoDescifrar.requestFocus();
     }//GEN-LAST:event_BotonDescifrarActionPerformed
 
     private void BotonAtaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAtaquesActionPerformed
-        this.setEnabled(false);
-        if (hijoActual == null) {
-            hijoActual = new MainAtaquesUI(this);
-            hijoActual.setLocationRelativeTo(this);
-            hijoActual.setVisible(true);
+        //this.setEnabled(false);
+        if (hijoAtaques == null) {
+            hijoAtaques = new MainAtaquesUI(this);
+            hijoAtaques.setLocationRelativeTo(this);
+            hijoAtaques.setVisible(true);
         }
-        else hijoActual.requestFocus();
+        else hijoAtaques.requestFocus();
     }//GEN-LAST:event_BotonAtaquesActionPerformed
 
     private void BotonCifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCifrarActionPerformed
       
-        this.setEnabled(false);
-        if (hijoActual == null) {
-            hijoActual = new MainCifrarUI(this);
-            hijoActual.setLocationRelativeTo(this);
-            hijoActual.setVisible(true);
+        //this.setEnabled(false);
+        if (hijoCifrar == null) {
+            hijoCifrar = new MainCifrarUI(this);
+            hijoCifrar.setLocationRelativeTo(this);
+            hijoCifrar.setVisible(true);
         }
-        else hijoActual.requestFocus();
+        else hijoCifrar.requestFocus();
     }//GEN-LAST:event_BotonCifrarActionPerformed
 
     private void BotonHerramientasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonHerramientasActionPerformed
          
-        this.setEnabled(false);
-        if (hijoActual == null) {
-            hijoActual = new MainHerramientasUI(this);
-            hijoActual.setLocationRelativeTo(this);
-            hijoActual.setVisible(true);
+        //this.setEnabled(false);
+        if (hijoHerramientas == null) {
+            hijoHerramientas = new MainHerramientasUI(this);
+            hijoHerramientas.setLocationRelativeTo(this);
+            hijoHerramientas.setVisible(true);
         }
-        else hijoActual.requestFocus();
+        else hijoHerramientas.requestFocus();
     }//GEN-LAST:event_BotonHerramientasActionPerformed
 
     private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
@@ -466,36 +470,36 @@ public class MainUI extends javax.swing.JFrame {
 
     private void CifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CifrarActionPerformed
 
-        this.setEnabled(false);
-        if (hijoActual == null) {
-            hijoActual = new MainCifrarUI(this);
-            hijoActual.setLocationRelativeTo(this);
-            hijoActual.setVisible(true);
+        //this.setEnabled(false);
+        if (hijoCifrar == null) {
+            hijoCifrar = new MainCifrarUI(this);
+            hijoCifrar.setLocationRelativeTo(this);
+            hijoCifrar.setVisible(true);
         }
-        else hijoActual.requestFocus();
+        else hijoCifrar.requestFocus();
 }//GEN-LAST:event_CifrarActionPerformed
 
     private void DescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescifrarActionPerformed
 
-        this.setEnabled(false);
-        if (hijoActual == null) {
-            hijoActual = new MainDescifrarUI(this);
-            hijoActual.setLocationRelativeTo(this);
-            hijoActual.setVisible(true);
+        //this.setEnabled(false);
+        if (hijoDescifrar == null) {
+            hijoDescifrar = new MainDescifrarUI(this);
+            hijoDescifrar.setLocationRelativeTo(this);
+            hijoDescifrar.setVisible(true);
         }
-        else hijoActual.requestFocus();
+        else hijoDescifrar.requestFocus();
 
 }//GEN-LAST:event_DescifrarActionPerformed
 
     private void HerramientasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HerramientasActionPerformed
 
-        this.setEnabled(false);
-        if (hijoActual == null) {
-            hijoActual = new MainHerramientasUI(this);
-            hijoActual.setLocationRelativeTo(this);
-            hijoActual.setVisible(true);
+        //this.setEnabled(false);
+        if (hijoHerramientas == null) {
+            hijoHerramientas = new MainHerramientasUI(this);
+            hijoHerramientas.setLocationRelativeTo(this);
+            hijoHerramientas.setVisible(true);
         }
-        else hijoActual.requestFocus();
+        else hijoHerramientas.requestFocus();
 
 }//GEN-LAST:event_HerramientasActionPerformed
 
@@ -550,13 +554,13 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ContenidosActionPerformed
 
     private void ComprobarVectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarVectoresActionPerformed
-        this.setEnabled(false);
-        if (hijoActual == null) {
-            hijoActual = new CifrarDescifrarSimple(this);
-            hijoActual.setLocationRelativeTo(this);
-            hijoActual.setVisible(true);
+        //this.setEnabled(false);
+        if (hijoVectores == null) {
+            hijoVectores = new CifrarDescifrarSimple(this);
+            hijoVectores.setLocationRelativeTo(this);
+            hijoVectores.setVisible(true);
         }
-        else hijoActual.requestFocus();
+        else hijoVectores.requestFocus();
     }//GEN-LAST:event_ComprobarVectoresActionPerformed
 
     private void comprobarVectoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprobarVectoresButtonActionPerformed
@@ -564,21 +568,44 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_comprobarVectoresButtonActionPerformed
 
     public void wclosed (javax.swing.JFrame hijo){
-        if (hijoActual.equals(hijo)) {
+        if ( (hijoAtaques != null) && hijoAtaques.equals(hijo)) {
             if (hijoThread != null) {
                 hijoThread.interrupt();
                 hijoThread = null;
             }
-            hijoActual.dispose();
-            hijoActual = null;
-        }        
+            hijoAtaques.dispose();
+            hijoAtaques = null;
+        } else if ( (hijoCifrar != null) && hijoCifrar.equals(hijo)) {
+            hijoCifrar.dispose();
+            hijoCifrar = null;
+        } else if ( (hijoDescifrar != null) && hijoDescifrar.equals(hijo)) {
+            hijoDescifrar.dispose();
+            hijoDescifrar = null;
+        } else if ( (hijoHerramientas != null) && hijoHerramientas.equals(hijo)) {
+            hijoHerramientas.dispose();
+            hijoHerramientas = null;
+        } else if ( (hijoVectores != null) && hijoVectores.equals(hijo)) {
+            hijoVectores.dispose();
+            hijoVectores = null;
+        }
     }
 
-    public void newchild (javax.swing.JFrame newhijo){
-        if (hijoActual == null) hijoActual = newhijo;
-        else {
-            hijoActual.dispose();
-            hijoActual = newhijo;
+    public void newchild (javax.swing.JFrame oldhijo, javax.swing.JFrame newhijo){
+        if ( (hijoAtaques != null) && hijoAtaques.equals(oldhijo)) {
+            hijoAtaques.dispose();
+            hijoAtaques = newhijo;
+        } else if ( (hijoCifrar != null) && hijoCifrar.equals(oldhijo)) {
+            hijoCifrar.dispose();
+            hijoCifrar = newhijo;
+        } else if ( (hijoDescifrar != null) && hijoDescifrar.equals(oldhijo)) {
+            hijoDescifrar.dispose();
+            hijoDescifrar = newhijo;
+        } else if ( (hijoHerramientas != null) && hijoHerramientas.equals(oldhijo)) {
+            hijoHerramientas.dispose();
+            hijoHerramientas = newhijo;
+        } else if ( (hijoVectores != null) && hijoVectores.equals(oldhijo)) {
+            hijoVectores.dispose();
+            hijoVectores = newhijo;
         }
     }
 
