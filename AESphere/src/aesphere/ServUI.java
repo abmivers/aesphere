@@ -27,12 +27,12 @@ public class ServUI extends javax.swing.JFrame {
     private long clavesTotales;
 
     /** Creates new form ServUI */
-    public ServUI(MainUI padre, byte [] plainBytes, byte [] cipherBytes,
+    public ServUI(MainUI padreMain, MainAtaquesUI padre, byte [] plainBytes, byte [] cipherBytes,
             int numeroclientes, byte [] claveinicial, long numClaves,
             int blockMode, byte[] IV) {
         initComponents();
-        wpadre = padre;
-        wpadre.newchild(this);
+        wpadre = padreMain;
+        wpadre.newchild(padre, this);
         numclientes = numeroclientes;
         clientesIP = new InetAddress [numclientes];
         clientesPort = new int [numclientes];
@@ -174,7 +174,7 @@ public class ServUI extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
         socket.close();        
-        wpadre.setEnabled(true);
+        //wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);        
     }

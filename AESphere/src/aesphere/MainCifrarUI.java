@@ -1026,12 +1026,12 @@ public class MainCifrarUI extends javax.swing.JFrame {
         byte [] iv = pedirIV();
 
         if ( (opcionejecucion == 0) && ComprobarDatos() && iv != null)
-            new ProcesoCifrarUI (wpadre,TextoInput.getText(), key,
+            new ProcesoCifrarUI (wpadre, this, TextoInput.getText(), key,
                 TextoOutput.getText(), opcionIn, opcionKey, opcionOut, op_block,
                 tamano, manualIV.isSelected(), iv);
         else if ( (opcionejecucion == 1) && ComprobarDatos() && (iv != null) )
             new ProcesoCifrarDirectoUI
-                (wpadre,TextoInput.getText(), key,
+                (wpadre, this, TextoInput.getText(), key,
                 TextoOutput.getText(), opcionIn, opcionKey, opcionOut, op_block,
                 tamano, manualIV.isSelected(), iv);
     }//GEN-LAST:event_BotonSiguienteActionPerformed
@@ -1047,7 +1047,7 @@ public class MainCifrarUI extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
          
-        wpadre.setEnabled(true);
+        //wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing

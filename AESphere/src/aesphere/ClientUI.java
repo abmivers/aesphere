@@ -35,10 +35,10 @@ public class ClientUI extends javax.swing.JFrame {
     long iniTime;
 
     /** Creates new form ClientUI */
-    public ClientUI(MainUI padre, InetAddress dirIP) {
+    public ClientUI(MainUI padreMain, MainAtaquesUI padre, InetAddress dirIP) {
         initComponents();
-        wpadre = padre;
-        wpadre.newchild(this);
+        wpadre = padreMain;
+        wpadre.newchild(padre, this);
         servIP = dirIP;
         plaintext = new byte[16];
         ciphertext = new byte[16];
@@ -142,7 +142,7 @@ public class ClientUI extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         socket.close();
-        wpadre.setEnabled(true);
+        //wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing

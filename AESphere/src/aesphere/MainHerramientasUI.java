@@ -328,7 +328,7 @@ public class MainHerramientasUI extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        wpadre.setEnabled(true);
+        //wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);
     }//GEN-LAST:event_formWindowClosing

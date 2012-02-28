@@ -37,13 +37,13 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     private int blockMode;
     private byte [] IV = null;
 
-    public ProcesoCifrarDirectoUI(MainUI padre,String Texto1, String Texto2, 
+    public ProcesoCifrarDirectoUI(MainUI padreMain, MainCifrarUI padre, String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
             int modoBloque, int tamano, boolean manualIV, byte [] iv) {
         initComponents();
         setLangLabels();
         setHelp();
-        wpadre=padre;
+        wpadre = padreMain;
         cadenaInput = Texto1;
         cadenaKey = Texto2;
         cadenaOutput = Texto3;
@@ -51,7 +51,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         blockMode = modoBloque;
 
         this.setSize(550, 360);
-        wpadre.newchild(this);
+        wpadre.newchild(padre, this);
 
         //Comenzamos el cifrado
         if (manualIV) {
@@ -359,7 +359,7 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        wpadre.setEnabled(true);
+        //wpadre.setEnabled(true);
         wpadre.requestFocus();
         wpadre.wclosed(this);       
     }//GEN-LAST:event_formWindowClosing

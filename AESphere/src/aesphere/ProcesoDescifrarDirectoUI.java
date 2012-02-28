@@ -37,13 +37,13 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
     private byte [] IV = null;
 
     /** Creates new form ProcesoDescifrarUI */
-    public ProcesoDescifrarDirectoUI(MainUI padre,String Texto1, String Texto2, 
+    public ProcesoDescifrarDirectoUI(MainUI padreMain, MainDescifrarUI padre, String Texto1, String Texto2, 
             String Texto3,int opcionentrada,int opcionkey,int opcionsalida,
             int modoBloque, int tamano, boolean manualIV, byte [] iv) {
         initComponents();
         setLangLabels();
         setHelp();
-        wpadre=padre;
+        wpadre = padreMain;
         cadenaInput = Texto1;
         cadenaKey = Texto2;
         cadenaOutput = Texto3;
@@ -51,7 +51,7 @@ public class ProcesoDescifrarDirectoUI extends javax.swing.JFrame {
         blockMode = modoBloque;
 
         this.setSize(550, 305);
-        wpadre.newchild(this);
+        wpadre.newchild(padre, this);
 
         //Comenzamos el descifrado
         if (manualIV) {            
