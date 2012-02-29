@@ -42,7 +42,8 @@ public class ServUI extends javax.swing.JFrame {
         clavesTotales = numClaves;
         
         try {
-            socket = new DatagramSocket(3000);            
+            socket = new DatagramSocket(3000);
+            socket.setSoTimeout(0);
         } catch (SocketException excepcionSocket) {
             JOptionPane.showMessageDialog(this, Entorno.getTrans("Net.srvPermErr"),
                     Entorno.getTrans("gen.err"), JOptionPane.ERROR_MESSAGE);            
