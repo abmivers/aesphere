@@ -51,8 +51,8 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         blockMode = modoBloque;
 
         this.setSize(550, 360);
-        wpadre.newchild(padre, this);
-
+        wpadre.newchild(padre, this);       
+        
         //Comenzamos el cifrado
         if (manualIV) {
             IV = iv;
@@ -293,6 +293,11 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
         mainMenuEditar.add(CopiarCiphertext);
 
         copyIVMenu.setText("Copiar IV");
+        copyIVMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyIVMenuActionPerformed(evt);
+            }
+        });
         mainMenuEditar.add(copyIVMenu);
 
         cifradoMenuBarMain.add(mainMenuEditar);
@@ -374,12 +379,12 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     private void CopiarPlaintextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarPlaintextActionPerformed
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
         StringSelection ss = new StringSelection(Plaintextfield.getText());
-        cb.setContents(ss, ss);
+        cb.setContents(ss, ss);        
 }//GEN-LAST:event_CopiarPlaintextActionPerformed
 
     private void CopiarCiphertextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarCiphertextActionPerformed
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        StringSelection ss = new StringSelection(ivTextArea.getText());
+        StringSelection ss = new StringSelection(cipherTextArea.getText());
         cb.setContents(ss, ss);
     }//GEN-LAST:event_CopiarCiphertextActionPerformed
 
@@ -390,6 +395,12 @@ public class ProcesoCifrarDirectoUI extends javax.swing.JFrame {
     private void BotonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInfoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonInfoActionPerformed
+
+    private void copyIVMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyIVMenuActionPerformed
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection ss = new StringSelection(ivTextArea.getText());
+        cb.setContents(ss, ss);
+    }//GEN-LAST:event_copyIVMenuActionPerformed
 
     /**
     * @param args the command line arguments
