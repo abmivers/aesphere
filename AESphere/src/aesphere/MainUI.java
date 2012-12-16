@@ -509,6 +509,15 @@ public class MainUI extends javax.swing.JFrame {
 }//GEN-LAST:event_SalirActionPerformed
 
     private void SimularAtaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimularAtaquesActionPerformed
+
+    //this.setEnabled(false);
+        if (hijoAtaques == null) {
+            hijoAtaques = new MainAtaquesUI(this);
+            hijoAtaques.setLocationRelativeTo(this);
+            hijoAtaques.setVisible(true);
+        }
+        else hijoAtaques.requestFocus();
+
     }//GEN-LAST:event_SimularAtaquesActionPerformed
 
     private void SpanishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpanishButtonActionPerformed
