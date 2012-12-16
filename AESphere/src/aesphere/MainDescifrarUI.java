@@ -666,16 +666,21 @@ public class MainDescifrarUI extends javax.swing.JFrame {
             case 0: BotonBrowseCifrar.setEnabled(false);
                     TextoInput.setEditable(true);
                     TextoInput.setText("");
+                    ComboBoxOutputCifrar.setEnabled(true);
+                    
 
                 break;
             case 1: BotonBrowseCifrar.setEnabled(false);
                     TextoInput.setEditable(true);
                     TextoInput.setText("");
+                    ComboBoxOutputCifrar.setEnabled(true);
 
                 break;
             case 2: BotonBrowseCifrar.setEnabled(true);
                     TextoInput.setEditable(false);
-                    TextoInput.setText("");                    
+                    TextoInput.setText("");         
+                    ComboBoxOutputCifrar.setEnabled(true);
+                break;
         }
 
     }//GEN-LAST:event_ComboBoxInputCifrarActionPerformed
@@ -706,6 +711,18 @@ public class MainDescifrarUI extends javax.swing.JFrame {
         int resul = archivos.showOpenDialog(null);
         File arch= archivos.getSelectedFile();
         if (resul == JFileChooser.APPROVE_OPTION) this.TextoInput.setText(arch.getPath());
+        
+        if (arch.length()>65536) {
+            ComboBoxOutputCifrar.setSelectedIndex(2);
+            BotonBrowseCifrarOutput.setEnabled(true);
+            TextoOutput.setEnabled(true);
+            ComboBoxOutputCifrar.setEnabled(false);
+                    
+        }
+        else {
+            ComboBoxOutputCifrar.setEnabled(true);
+        }
+  
   
     }//GEN-LAST:event_BotonBrowseCifrarActionPerformed
 
