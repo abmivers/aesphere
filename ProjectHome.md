@@ -1,0 +1,1 @@
+This software aims to offer a nice and clean interface to encrypt and decrypt plain text, hexadecimal input, and show the whole proccess with it's multiple phases.
